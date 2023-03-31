@@ -1,0 +1,18 @@
+// @use "./c3-input-file"
+@use "./c3-dropdown" as *
+// @use "./c3-menu"
+// @use "./c3-modal"
+// @use "./c3-typography"
+@use "./c3-root-variables" as *
+// @use "./c3-list"
+// @use "./c3-highlight"
+
+=c3-core($theme)
+  // @include c3-input-file.c3-input-file-theme($theme)
+  @include c3-material-dropdown($theme)
+  // @include c3-menu.c3-menu-theme($theme)
+  // @include c3-modal.c3-modal($theme)
+  // @include c3-typography.c3-typography($theme)
+  @include c3-root-variables($theme)
+  // @include c3-list.c3-list($theme)
+  // @include c3-highlight.c3-highlight($theme)

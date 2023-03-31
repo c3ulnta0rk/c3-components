@@ -1,0 +1,23 @@
+@use '@angular/material' as mat
+
+.app-navbar
+  position: relative
+  background-color: var(--background-app-bar)
+  color: var(--foreground-text)
+  height: 64px
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: start
+  z-index: 1000
+  @include mat.elevation(12)
+
+  &.primary
+    background-color: var(--primary-color)
+    color: var(--foreground-text)
+  &.accent
+    background-color: var(--accent-color)
+    color: var(--foreground-text)
+  &.warn
+    background-color: var(--warn-color)
+    color: var(--foreground-text)

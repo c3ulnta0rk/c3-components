@@ -1,0 +1,13 @@
+<mat-toolbar class="primary">
+  <span>Components</span>
+</mat-toolbar>
+<mat-drawer-container class="components_container">
+  <mat-drawer #drawer mode="side" opened class="drawer">
+    <a mat-button routerLink="/components/dropdown/overview" routerLinkActive="docs-navbar-item-selected">Dropdown</a>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>

@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat
+@use "./assets/core" as c3
+@use "./assets/theme" as theme
+@import '@angular/material/theming'
+
+html,
+body
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
+
+@media (prefers-color-scheme: light)
+  @include mat.all-component-themes(theme.$theme-light)
+  @include c3.core(theme.$theme-light)
+  @inclde mat.core()
+  $primary: map-get(theme.$theme-light, primary)
+  $accent: map-get(theme.$theme-light, accent)
+  $warn: map-get(theme.$theme-light, warn)
+  $background: map-get(theme.$theme-light, background)
+  $foreground: map-get(theme.$theme-light, foreground)
+
+  *
+    color: mat-color($foreground, text)
+  body
+    background: mat-color($background, card)
+
+@media (prefers-color-scheme: dark)
+  @include mat.all-component-themes(theme.$theme-dark)
+  @include c3.core(theme.$theme-dark)
+  @inclde mat.core()
+  $primary: map-get(theme.$theme-dark, primary)
+  $accent: map-get(theme.$theme-dark, accent)
+  $warn: map-get(theme.$theme-dark, warn)
+  $background: map-get(theme.$theme-dark, background)
+  $foreground: map-get(theme.$theme-dark, foreground)
+  *
+    color: mat-color($foreground, text)
+  body
+    background: mat-color($background, card)
+
+a.docs-navbar-item-selected
+  background-color: rgba(0,0,0,.2)

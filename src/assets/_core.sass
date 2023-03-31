@@ -1,0 +1,10 @@
+@use "./mat-color-palette.scss" as *
+@use "./margin.scss" as *
+@use './c3-styles/c3-core' as *
+@use './customScrollbar.scss' as *
+
+=core($theme)
+  @include c3-core($theme)
+  @include color-palette($theme)
+  @include margin()
+  @include customScrollbar($theme)
