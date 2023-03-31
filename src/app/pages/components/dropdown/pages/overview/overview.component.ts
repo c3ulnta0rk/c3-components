@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./overview.component.sass']
 })
 export class DropdownOverviewComponent {
-
 }

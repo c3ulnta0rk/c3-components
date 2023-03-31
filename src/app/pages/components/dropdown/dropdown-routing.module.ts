@@ -3,25 +3,43 @@ import { RouterModule, Routes } from '@angular/router';
 import { DropdownOverviewComponent } from './pages/overview/overview.component';
 import { DropdownApiComponent } from './pages/api/api.component';
 import { DropdownExamplesComponent } from './pages/examples/examples.component';
+import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'overview',
-    pathMatch: 'full'
+    component: ComponentNavComponent,
+    children: [
+      {
+        path: 'overview',
+        component: DropdownOverviewComponent
+      },
+      {
+        path: 'api',
+        component: DropdownApiComponent
+      },
+      {
+        path: 'examples',
+        component: DropdownExamplesComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'overview'
+      }
+    ],
+    data: {
+      links: [{
+        url: 'overview',
+        label: 'Overview'
+      }, {
+        url: 'api',
+        label: 'Api'
+      }, {
+        url: 'examples',
+        label: 'Examples'
+      }]
+    }
   },
-  {
-    path: 'overview',
-    component: DropdownOverviewComponent
-  },
-  {
-    path: 'api',
-    component: DropdownApiComponent
-  },
-  {
-    path: 'examples',
-    component: DropdownExamplesComponent
-  }
 ];
 
 @NgModule({

@@ -6,6 +6,9 @@ import { DropdownApiComponent } from './pages/api/api.component';
 import { DropdownOverviewComponent } from './pages/overview/overview.component';
 import { DropdownExamplesComponent } from './pages/examples/examples.component';
 
+import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
+
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,8 @@ import { DropdownExamplesComponent } from './pages/examples/examples.component';
   ],
   imports: [
     CommonModule,
-    DropdownRoutingModule
+    DropdownRoutingModule,
+    ComponentNavComponent
   ]
 })
 export class DropdownModule { }
