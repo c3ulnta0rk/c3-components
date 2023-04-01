@@ -4,6 +4,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "c3-components": [
+        "dist/c3-components"
+      ],
       "c3-dropdown": [
         "dist/c3-dropdown"
       ]

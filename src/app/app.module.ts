@@ -7,19 +7,18 @@ import { DocsComponent } from './components/docs/docs.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    DocsComponent,
-    HomeComponent,
-  ],
+  declarations: [DocsComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NavbarComponent
+    NavbarComponent,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [DocsComponent]
+  bootstrap: [DocsComponent],
 })
-export class AppModule { }
+export class AppModule {}

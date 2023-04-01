@@ -1,6 +1,7 @@
 <mat-toolbar class="primary">
   <span>Components</span>
 </mat-toolbar>
+
 <mat-drawer-container class="components_container">
   <mat-drawer #drawer mode="side" opened class="drawer">
     <a mat-button routerLink="/components/dropdown" routerLinkActive="docs-navbar-item-selected">Dropdown</a>
@@ -11,5 +12,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
-
 </mat-drawer-container>

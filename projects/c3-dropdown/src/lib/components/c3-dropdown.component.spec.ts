@@ -8,9 +8,8 @@ describe('C3DropdownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ C3DropdownComponent ]
-    })
-    .compileComponents();
+      declarations: [C3DropdownComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(C3DropdownComponent);
     component = fixture.componentInstance;

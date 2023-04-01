@@ -7,19 +7,19 @@ import { DropdownOverviewComponent } from './pages/overview/overview.component';
 import { DropdownExamplesComponent } from './pages/examples/examples.component';
 
 import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
-
-
+import { C3DropdownModule } from 'c3-dropdown';
 
 @NgModule({
   declarations: [
     DropdownApiComponent,
     DropdownOverviewComponent,
-    DropdownExamplesComponent
+    DropdownExamplesComponent,
   ],
   imports: [
     CommonModule,
     DropdownRoutingModule,
-    ComponentNavComponent
-  ]
+    ComponentNavComponent,
+    C3DropdownModule,
+  ],
 })
-export class DropdownModule { }
+export class DropdownModule {}

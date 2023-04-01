@@ -1,6 +1,18 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/c3-dropdown",
+  "assets": [
+    {
+      "glob": "**/**.scss",
+      "input": ".",
+      "output": "."
+    },
+    {
+      "glob": "**/**.sass",
+      "input": "./src",
+      "output": "."
+    }
+  ],
   "lib": {
     "entryFile": "src/public-api.ts"
   }

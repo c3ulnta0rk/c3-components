@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { ComponentsComponent } from './components.component';
+import { ComponentsComponent } from './components/components-pages/components.component';
 
 const routes: Routes = [
   {
@@ -10,22 +10,25 @@ const routes: Routes = [
     children: [
       {
         path: 'categories',
-        component: CategoriesComponent
+        component: CategoriesComponent,
       },
       {
         path: 'dropdown',
-        loadChildren: () => import('./dropdown/dropdown.module').then(m => m.DropdownModule)
+        loadChildren: () =>
+          import('./pages/dropdown/dropdown.module').then(
+            (m) => m.DropdownModule
+          ),
       },
       {
         path: '**',
-        redirectTo: 'categories'
-        },
-    ]
-  }
+        redirectTo: 'categories',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ComponentsRoutingModule { }
+export class ComponentsRoutingModule {}

@@ -1,5 +1,5 @@
 // @use "./c3-input-file"
-@use "./c3-dropdown" as *
+@use "c3-dropdown" as c3
 // @use "./c3-menu"
 // @use "./c3-modal"
 // @use "./c3-typography"
@@ -9,7 +9,7 @@
 
 =c3-core($theme)
   // @include c3-input-file.c3-input-file-theme($theme)
-  @include c3-material-dropdown($theme)
+  @include c3.c3-material-dropdown($theme)
   // @include c3-menu.c3-menu-theme($theme)
   // @include c3-modal.c3-modal($theme)
   // @include c3-typography.c3-typography($theme)
