@@ -1,33 +1,44 @@
-@function generate-accent-palette($base-color) {
-  $palette: (50: mix($base-color, #ffffff, 90%),
-    100: mix($base-color, #ffffff, 70%),
-    200: mix($base-color, #ffffff, 50%),
-    300: mix($base-color, #ffffff, 30%),
-    400: mix($base-color, #ffffff, 15%),
-    500: $base-color,
-    600: mix($base-color, #000000, 15%),
-    700: mix($base-color, #000000, 30%),
-    800: mix($base-color, #000000, 50%),
-    900: mix($base-color, #000000, 70%),
-    A100: mix($base-color, #ffffff, 50%),
-    A200: mix($base-color, #ffffff, 30%),
-    A400: mix($base-color, #ffffff, 15%),
-    A700: mix($base-color, #000000, 30%),
-    contrast: (50: #000000,
+@use "sass:color";
+@use "sass:map";
+@import "@angular/material/theming";
+
+// Fonction pour générer une palette de couleurs
+@function generate-palette($primary-color) {
+  $lighter: color.scale($primary-color, $lightness: 60%);
+  $darker: color.scale($primary-color, $lightness: -60%);
+
+  $palette: (
+    50: $lighter,
+    100: color.scale($primary-color, $lightness: 40%),
+    200: color.scale($primary-color, $lightness: 20%),
+    300: color.scale($primary-color, $lightness: 10%),
+    400: color.scale($primary-color, $lightness: 5%),
+    500: $primary-color,
+    600: color.scale($primary-color, $lightness: -5%),
+    700: color.scale($primary-color, $lightness: -10%),
+    800: color.scale($primary-color, $lightness: -20%),
+    900: $darker,
+    A100: color.scale($primary-color, $lightness: 70%),
+    A200: color.scale($primary-color, $lightness: 80%),
+    A400: color.scale($primary-color, $lightness: 90%),
+    A700: color.scale($primary-color, $lightness: -30%),
+    contrast: (
+      50: #000000,
       100: #000000,
       200: #000000,
-      300: #ffffff,
+      300: #000000,
       400: #ffffff,
       500: #ffffff,
       600: #ffffff,
-      700: #000000,
-      800: #000000,
-      900: #000000,
+      700: #ffffff,
+      800: #ffffff,
+      900: #ffffff,
       A100: #000000,
       A200: #000000,
-      A400: #ffffff,
-      A700: #ffffff,
+      A400: #000000,
+      A700: #000000,
     ),
   );
+
   @return $palette;
 }

@@ -7,9 +7,9 @@ import { DropdownOverviewComponent } from './pages/overview/overview.component';
 import { DropdownExamplesComponent } from './pages/examples/examples.component';
 
 import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
-import { C3DropdownModule } from 'c3-dropdown';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { C3DropdownModule } from 'c3-components';
 
 @NgModule({
   declarations: [

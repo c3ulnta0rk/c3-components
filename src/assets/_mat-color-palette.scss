@@ -18,27 +18,39 @@
   }
 
   .primary {
-    $color: utils.get-color-from-palette(map.get($config, primary),
-      if($is-dark, 500, 700));
+    $color: utils.get-color-from-palette(
+      map.get($config, primary),
+      if($is-dark, 500, 600)
+    );
     background-color: $color;
-    color: utils.get-contrast-color-from-palette(map.get($config, primary),
-        if($is-dark, 500, 700));
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, primary),
+      if($is-dark, 500, 600)
+    );
   }
 
   .accent {
-    $color: utils.get-color-from-palette(map.get($config, accent),
-      if($is-dark, 500, 700));
+    $color: utils.get-color-from-palette(
+      map.get($config, accent),
+      if($is-dark, 500, 700)
+    );
     background-color: $color;
-    color: utils.get-contrast-color-from-palette(map.get($config, accent),
-        if($is-dark, 500, 700));
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, accent),
+      if($is-dark, 500, 700)
+    );
   }
 
   .warn {
-    $color: utils.get-color-from-palette(map.get($config, warn),
-      if($is-dark, 500, 700));
+    $color: utils.get-color-from-palette(
+      map.get($config, warn),
+      if($is-dark, 500, 700)
+    );
     background-color: $color;
-    color: utils.get-contrast-color-from-palette(map.get($config, warn),
-        if($is-dark, 500, 700));
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, warn),
+      if($is-dark, 500, 700)
+    );
   }
 
   $colors-name: (
@@ -63,52 +75,54 @@
     "blue-grey": mat.$blue-grey-palette,
   );
 
-$variante: "", 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200,
-  A400, A700;
+  $variante: "", 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200,
+    A400, A700;
 
-@each $name,
-$value in $colors-name {
-  .#{$name} {
-    $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
-    background-color: $color;
-    color: utils.get-contrast-color-from-palette($value,
-        if($is-dark, 500, 700));
-  }
-
-  .#{$name}-important {
-    $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
-    background-color: $color !important;
-    color: utils.get-contrast-color-from-palette($value,
-        if($is-dark, 500, 700)) !important;
-  }
-
-  @each $v in $variante {
-    .#{$name}#{$v} {
-      $color: utils.get-color-from-palette($value, $v);
+  @each $name, $value in $colors-name {
+    .#{$name} {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
       background-color: $color;
-      color: utils.get-contrast-color-from-palette($value, $v);
+      color: utils.get-contrast-color-from-palette(
+        $value,
+        if($is-dark, 500, 700)
+      );
     }
 
-    .#{$name}#{$v}-important {
-      $color: utils.get-color-from-palette($value, $v);
+    .#{$name}-important {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
       background-color: $color !important;
-      color: utils.get-contrast-color-from-palette($value, $v) !important;
+      color: utils.get-contrast-color-from-palette(
+        $value,
+        if($is-dark, 500, 700)
+      ) !important;
+    }
+
+    @each $v in $variante {
+      .#{$name}#{$v} {
+        $color: utils.get-color-from-palette($value, $v);
+        background-color: $color;
+        color: utils.get-contrast-color-from-palette($value, $v);
+      }
+
+      .#{$name}#{$v}-important {
+        $color: utils.get-color-from-palette($value, $v);
+        background-color: $color !important;
+        color: utils.get-contrast-color-from-palette($value, $v) !important;
+      }
     }
   }
-}
 
-@each $name,
-$value in $colors-name {
-  .text-#{$name} {
-    $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
-    color: $color;
-  }
-
-  @each $v in $variante {
-    .text-#{$name}#{$v} {
-      $color: utils.get-color-from-palette($value, $v);
+  @each $name, $value in $colors-name {
+    .text-#{$name} {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
       color: $color;
     }
+
+    @each $v in $variante {
+      .text-#{$name}#{$v} {
+        $color: utils.get-color-from-palette($value, $v);
+        color: $color;
+      }
+    }
   }
-}
 }

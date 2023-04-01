@@ -1,5 +1,5 @@
 {
-  "name": "c3-dropdown",
+  "name": "c3-components",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^15.2.0",

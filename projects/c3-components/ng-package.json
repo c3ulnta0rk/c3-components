@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/c3-dropdown",
+  "dest": "../../dist/c3-components",
   "assets": [
     {
       "glob": "**/**.scss",
