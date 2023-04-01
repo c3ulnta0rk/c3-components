@@ -3,6 +3,9 @@ import {
   Component,
   TemplateRef,
   ViewChild,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
 @Component({
@@ -14,15 +17,21 @@ import {
       </div>
     </ng-template>
   `,
-  styles: [],
 })
-export class C3DropdownComponent {
+export class C3DropdownComponent implements OnChanges {
   @ViewChild(TemplateRef) template!: TemplateRef<any>;
 
-  /** Classes to be added to the tooltip. Supports the same syntax as `ngClass`. */
-  dropdownClass!: string | string[] | Set<string> | { [key: string]: any };
+  /** Classes to be added to the container of the content. Supports the same syntax as `ngClass`. */
+  @Input()
+  dropdownClass: string | string[] | Set<string> | { [key: string]: any } = '';
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dropdownClass']) {
+      this._markForCheck();
+    }
+  }
 
   _markForCheck(): void {
     this._changeDetectorRef.markForCheck();

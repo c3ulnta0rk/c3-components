@@ -2,25 +2,24 @@ import {
   Directive,
   forwardRef,
   ElementRef,
-  NgZone,
   ViewContainerRef,
   Input,
   OnDestroy,
-  AfterViewInit,
+  HostListener,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   Overlay,
-  ScrollDispatcher,
   OverlayRef,
   OverlayConfig,
   ConnectedPosition,
 } from '@angular/cdk/overlay';
-import { Platform } from '@angular/cdk/platform';
 import { C3DropdownComponent } from '../components/c3-dropdown.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { merge, Subscription } from 'rxjs';
+import { merge, Subject, Subscription, takeUntil } from 'rxjs';
 
 export const MAT_DROPDOWN_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,28 +27,39 @@ export const MAT_DROPDOWN_VALUE_ACCESSOR: any = {
   multi: true,
 };
 
+/**
+ * @description The C3DropdownTrigger directive is used to display or hide a dropdown menu
+ * C3DropdownComponent when an item is clicked.
+ * @selector [c3Dropdown]
+ * @exportAs c3DropdownTrigger
+ * @input c3Dropdown - A reference to an instance of C3DropdownComponent.
+ * @input c3DropdownDisabled - A boolean indicating whether the directive should be disabled.
+ * @input c3DropdownClass - A string, an array of strings, a set of strings or a
+ * object representing the CSS classes to be applied to the dropdown menu.
+ */
 @Directive({
   selector: '[c3Dropdown]',
   exportAs: 'c3DropdownTrigger',
   providers: [MAT_DROPDOWN_VALUE_ACCESSOR],
 })
-export class C3DropdownTrigger implements OnDestroy, AfterViewInit {
-  overlayRef!: OverlayRef | null;
-  private _closingActionsSubscription = Subscription.EMPTY;
+export class C3DropdownTrigger implements OnChanges, OnDestroy {
+  private overlayRef?: OverlayRef | null;
+  private _closingActionsSubscription: Subscription = Subscription.EMPTY;
+  private _destroyed = new Subject<void>();
 
-  private _manualListeners = new Map<
-    string,
-    EventListenerOrEventListenerObject
-  >();
-  private _dropdownClass!:
+  private _dropdownClass:
     | string
     | string[]
     | Set<string>
-    | { [key: string]: any };
+    | { [key: string]: any } = '';
+
   private _dropdownDisabled: boolean = false;
 
-  @Input('c3Dropdown') dropdown!: C3DropdownComponent;
+  /** The dropdown menu instance */
+  @Input('c3Dropdown')
+  dropdown?: C3DropdownComponent;
 
+  /** Whether the dropdown is disabled. */
   @Input('c3DropdownDisabled')
   get dropdownDisabled(): boolean {
     return this._dropdownDisabled;
@@ -58,45 +68,38 @@ export class C3DropdownTrigger implements OnDestroy, AfterViewInit {
     this._dropdownDisabled = coerceBooleanProperty(value);
   }
 
+  /** Classes to be passed to the dropdown menu. Supports the same syntax as `ngClass`. */
   @Input('c3DropdownClass')
-  get dropdownClass() {
-    return this._dropdownClass;
+  dropdownClass: string | string[] | Set<string> | { [key: string]: any } = '';
+
+  constructor(
+    private _element: ElementRef<HTMLElement>,
+    private _overlay: Overlay,
+    private _viewContainerRef: ViewContainerRef
+  ) {}
+
+  @HostListener('click')
+  onClick() {
+    this.show();
   }
-  set dropdownClass(
-    value: string | string[] | Set<string> | { [key: string]: any }
-  ) {
-    this._dropdownClass = value;
-    if (this.dropdown) {
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dropdownClass'] && this.dropdown) {
       this.dropdown.dropdownClass = this._dropdownClass;
       this.dropdown._markForCheck();
     }
   }
 
-  constructor(
-    private _element: ElementRef<HTMLElement>,
-    private _overlay: Overlay,
-    platform: Platform,
-    private _ngZone: NgZone,
-    private _scrollDispatcher: ScrollDispatcher,
-    private _viewContainerRef: ViewContainerRef
-  ) {
-    this._manualListeners.set('click', () => this.show());
-  }
-
-  ngAfterViewInit() {
-    this._manualListeners.forEach((listener, event) =>
-      this._element.nativeElement.addEventListener(event, listener)
-    );
-  }
-
   ngOnDestroy() {
-    this._manualListeners.forEach((listener, event) => {
-      this._element.nativeElement.removeEventListener(event, listener);
-    });
-    this._manualListeners.clear();
+    this._destroyed.next();
+    this._destroyed.complete();
+    this._closingActionsSubscription.unsubscribe();
+    this.close();
   }
 
-  show() {
+  public show(): void {
+    if (!this.dropdown) return;
+
     const overlayRef = this._overlay.create(this._getOverlayConfig());
     const portal = new TemplatePortal(
       this.dropdown.template,
@@ -111,7 +114,7 @@ export class C3DropdownTrigger implements OnDestroy, AfterViewInit {
     );
   }
 
-  close() {
+  public close(): void {
     if (this.overlayRef && this.overlayRef.hasAttached())
       this.overlayRef.detach();
   }
@@ -153,6 +156,6 @@ export class C3DropdownTrigger implements OnDestroy, AfterViewInit {
     const backdrop = this.overlayRef!.backdropClick();
     const detachments = this.overlayRef!.detachments();
 
-    return merge(backdrop, detachments);
+    return merge(backdrop, detachments).pipe(takeUntil(this._destroyed));
   }
 }
