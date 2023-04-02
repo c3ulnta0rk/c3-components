@@ -7,8 +7,35 @@
       "c3-components": [
         "dist/c3-components"
       ],
+      "c3-dialog": [
+        "dist/c3-dialog"
+      ],
       "c3-dropdown": [
         "dist/c3-dropdown"
+      ],
+      "c3-file": [
+        "dist/c3-file"
+      ],
+      "c3-highlight-text": [
+        "dist/c3-highlight-text"
+      ],
+      "c3-menu": [
+        "dist/c3-menu"
+      ],
+      "c3-modal": [
+        "dist/c3-modal"
+      ],
+      "c3-navbar": [
+        "dist/c3-navbar"
+      ],
+      "c3-pdf-dialog": [
+        "dist/c3-pdf-dialog"
+      ],
+      "c3-rounded-title": [
+        "dist/c3-rounded-title"
+      ],
+      "c3-tabs": [
+        "dist/c3-tabs"
       ]
     },
     "outDir": "./dist/out-tsc",

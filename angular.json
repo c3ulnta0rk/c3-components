@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -20,17 +20,11 @@
             "outputPath": "dist/c3-components-docs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "sass",
-            "assets": [
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.sass"
-            ],
+            "assets": ["src/assets"],
+            "styles": ["src/styles.sass"],
             "scripts": []
           },
           "configurations": {
@@ -81,16 +75,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "sass",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.sass"
@@ -100,23 +88,23 @@
         }
       }
     },
-    "c3-components": {
+    "c3-dropdown": {
       "projectType": "library",
-      "root": "projects/c3-components",
-      "sourceRoot": "projects/c3-components/src",
+      "root": "projects/c3-dropdown",
+      "sourceRoot": "projects/c3-dropdown/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/c3-components/ng-package.json"
+            "project": "projects/c3-dropdown/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/c3-components/tsconfig.lib.prod.json"
+              "tsConfig": "projects/c3-dropdown/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/c3-components/tsconfig.lib.json"
+              "tsConfig": "projects/c3-dropdown/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -124,7 +112,301 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/c3-components/tsconfig.spec.json",
+            "tsConfig": "projects/c3-dropdown/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        }
+      }
+    },
+    "c3-dialog": {
+      "projectType": "library",
+      "root": "projects/c3-dialog",
+      "sourceRoot": "projects/c3-dialog/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-dialog/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-dialog/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-dialog/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-file": {
+      "projectType": "library",
+      "root": "projects/c3-file",
+      "sourceRoot": "projects/c3-file/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-file/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-file/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-file/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-file/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-highlight-text": {
+      "projectType": "library",
+      "root": "projects/c3-highlight-text",
+      "sourceRoot": "projects/c3-highlight-text/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-highlight-text/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-highlight-text/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-highlight-text/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-highlight-text/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-menu": {
+      "projectType": "library",
+      "root": "projects/c3-menu",
+      "sourceRoot": "projects/c3-menu/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-menu/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-menu/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-menu/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-modal": {
+      "projectType": "library",
+      "root": "projects/c3-modal",
+      "sourceRoot": "projects/c3-modal/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-modal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-modal/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-modal/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-modal/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-navbar": {
+      "projectType": "library",
+      "root": "projects/c3-navbar",
+      "sourceRoot": "projects/c3-navbar/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-navbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-navbar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-navbar/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-navbar/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-rounded-title": {
+      "projectType": "library",
+      "root": "projects/c3-rounded-title",
+      "sourceRoot": "projects/c3-rounded-title/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-rounded-title/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-rounded-title/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-rounded-title/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-rounded-title/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-pdf-dialog": {
+      "projectType": "library",
+      "root": "projects/c3-pdf-dialog",
+      "sourceRoot": "projects/c3-pdf-dialog/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-pdf-dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-pdf-dialog/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-pdf-dialog/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-pdf-dialog/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "c3-tabs": {
+      "projectType": "library",
+      "root": "projects/c3-tabs",
+      "sourceRoot": "projects/c3-tabs/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/c3-tabs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/c3-tabs/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/c3-tabs/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/c3-tabs/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

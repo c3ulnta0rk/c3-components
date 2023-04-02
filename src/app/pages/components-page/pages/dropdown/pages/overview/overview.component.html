@@ -14,10 +14,10 @@
   </div>
 </div>
 
-<div class="pa-1 mb-1 viewer rounded-sm stroked mat-elevation-z2">
-  <h4>Dropdown with template</h4>
+<example-viewer class="mb-1">
+  <h4 title>Dropdown with template</h4>
 
-  <div class="py-1">
+  <ng-container example>
     <button mat-raised-button [c3Dropdown]="dropdownTemplate">Dropdown trigger</button>
 
     <c3-dropdown #dropdownTemplate>
@@ -28,8 +28,25 @@
         </p>
       </div>
     </c3-dropdown>
-  </div>
-</div>
+  </ng-container>
+
+  <ng-container html>
+    <pre>
+      <code>
+        <button mat-raised-button [c3Dropdown]="dropdownTemplate">Dropdown trigger</button>
+
+        <c3-dropdown #dropdownTemplate>
+          <div class="pa-1">
+            <h4>Dropdown template</h4>
+            <p>
+              This is a dropdown template
+            </p>
+          </div>
+        </c3-dropdown>
+      </code>
+    </pre>
+  </ng-container>
+</example-viewer>
 
 <div class="pa-1 mb-1 viewer rounded-sm stroked mat-elevation-z2">
   <h4>Dropdown with dropdownVeryLongTemplate</h4>
