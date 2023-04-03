@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "paths": {
       "c3-components": [
+        "dist/c3-components",
         "dist/c3-components"
       ],
       "c3-dialog": [

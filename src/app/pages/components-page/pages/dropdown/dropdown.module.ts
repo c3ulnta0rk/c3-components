@@ -9,7 +9,7 @@ import { DropdownExamplesComponent } from './pages/examples/examples.component';
 import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { C3DropdownModule } from 'c3-dropdown';
+import { C3DropdownModule } from 'c3-components';
 import { ExampleViewerComponent } from 'src/app/components/example-viewer/example-viewer.component';
 
 @NgModule({

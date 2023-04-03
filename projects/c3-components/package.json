@@ -1,0 +1,22 @@
+{
+  "name": "c3-components",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@angular/cdk": "15.2.5",
+    "@angular/material": "15.2.5"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "files": [
+    "./_index.scss"
+  ],
+  "exports": {
+    ".": {
+      "sass": "./_index.scss"
+    }
+  }
+}
