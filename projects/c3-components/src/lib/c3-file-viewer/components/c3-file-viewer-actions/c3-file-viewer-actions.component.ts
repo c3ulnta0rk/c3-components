@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
-import { C3FileViewerService } from '../../services/c3-file-viewer.service';
+import { Component, Host, Input } from '@angular/core';
+import { C3FileViewer } from '../../models/file-viewer';
 
 @Component({
   selector: 'c3-file-viewer-actions',
   templateUrl: './c3-file-viewer-actions.component.html',
 })
 export class C3FileViewerActionsComponent {
-  constructor(public _c3FileViewer: C3FileViewerService) {}
+  @Input()
+  fileViewer!: C3FileViewer;
+
+  get config() {
+    return this.fileViewer.config;
+  }
 }

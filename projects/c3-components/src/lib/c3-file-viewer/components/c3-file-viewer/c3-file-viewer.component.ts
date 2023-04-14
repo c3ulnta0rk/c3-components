@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostListener,
@@ -12,7 +11,8 @@ import {
 } from '@angular/core';
 import { C3FileViewerConfig } from '../../models/file-viewer-config.model';
 import { CustomFileEvent } from '../../models/custom-file-event.model';
-import { C3FileViewerService } from '../../services/c3-file-viewer.service';
+import { HttpClient } from '@angular/common/http';
+import { C3FileViewer } from '../../models/file-viewer';
 
 @Component({
   selector: 'c3-file-viewer',
@@ -25,8 +25,11 @@ import { C3FileViewerService } from '../../services/c3-file-viewer.service';
 })
 export class C3FileViewerComponent {
   @Input()
-  public set src(src: string[]) {
-    this._c3FileViewer.src = src;
+  public set src(value: string[]) {
+    this.fileViewer.src = value;
+  }
+  public get src(): string[] {
+    return this.fileViewer.src;
   }
 
   @Input()
@@ -36,9 +39,15 @@ export class C3FileViewerComponent {
   public index: number = 0;
 
   @Input()
-  public set config(config: C3FileViewerConfig) {
-    this._c3FileViewer.config = config;
+  public set config(value: C3FileViewerConfig) {
+    this.fileViewer.config = value;
   }
+
+  public get config(): C3FileViewerConfig {
+    return this.fileViewer.config;
+  }
+
+  public fileViewer: C3FileViewer;
 
   @Output()
   public indexChange: EventEmitter<number> = new EventEmitter();
@@ -51,44 +60,46 @@ export class C3FileViewerComponent {
 
   constructor(
     @Optional() @Inject('config') public moduleConfig: C3FileViewerConfig,
-    public _c3FileViewer: C3FileViewerService
+    public _http: HttpClient
   ) {
-    this._c3FileViewer.customFile$.subscribe((event) => {
+    this.fileViewer = new C3FileViewer(this._http);
+
+    this.fileViewer.customFile$.subscribe((event) => {
       this.customFileEvent.emit(event);
     });
 
-    this._c3FileViewer.index$.subscribe((index) => {
+    this.fileViewer.index$.subscribe((index) => {
       this.indexChange.emit(index);
     });
 
-    this._c3FileViewer.config$.subscribe((config) => {
+    this.fileViewer.config$.subscribe((config) => {
       this.configChange.emit(config);
     });
   }
 
+  @HostListener('mouseover')
+  onMouseOver() {
+    this.fileViewer.hovered = true;
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.fileViewer.hovered = false;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['screenHeightOccupied'])
-      this._c3FileViewer.styleHeight =
+      this.fileViewer.styleHeight =
         'calc(100% - ' + this.screenHeightOccupied + 'px)';
   }
 
   @HostListener('window:keyup.ArrowRight', ['$event'])
   next(event: KeyboardEvent) {
-    this._c3FileViewer.nextImage(event);
+    this.fileViewer.nextImage(event);
   }
 
   @HostListener('window:keyup.ArrowLeft', ['$event'])
   previous(event: KeyboardEvent) {
-    this._c3FileViewer.previousImage(event);
-  }
-
-  @HostListener('mouseover')
-  onMouseOver() {
-    this._c3FileViewer.onMouseOver();
-  }
-
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this._c3FileViewer.onMouseLeave();
+    this.fileViewer.previousImage(event);
   }
 }

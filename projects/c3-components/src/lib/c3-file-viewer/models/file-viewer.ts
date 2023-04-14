@@ -1,14 +1,25 @@
-import { Injectable } from '@angular/core';
-import { C3FileViewerConfig } from '../models/file-viewer-config.model';
-import { DEFAULT_CONFIG } from '../consts/default.config';
 import { BehaviorSubject } from 'rxjs';
-import { CustomFileEvent } from '../models/custom-file-event.model';
+import { DEFAULT_CONFIG } from '../consts/default.config';
+import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
+import { CustomFileEvent } from './custom-file-event.model';
 
-@Injectable({
-  providedIn: 'any',
-})
-export class C3FileViewerService {
+export class C3FileViewer {
+  private _config: C3FileViewerConfig = DEFAULT_CONFIG;
+  get config(): C3FileViewerConfig {
+    return this._config;
+  }
+
+  set config(value: C3FileViewerConfig) {
+    this._config = this.mergeConfig(DEFAULT_CONFIG, value);
+    this.config$.next(this._config);
+  }
+  public config$ = new BehaviorSubject<C3FileViewerConfig>(DEFAULT_CONFIG);
+
+  public fullscreen$ = new BehaviorSubject<Boolean>(false);
+
+  public customFile$ = new BehaviorSubject<any>(null);
+  public index$ = new BehaviorSubject<number>(0);
   public loading: boolean = true;
   public currentIndex: number = 0;
 
@@ -17,31 +28,16 @@ export class C3FileViewerService {
     msTransform: '',
     oTransform: '',
     webkitTransform: '',
+    minHeight: 'auto',
+    maxHeight: 'auto',
+    height: 'auto',
+    minWidth: 'auto',
+    maxWidth: 'auto',
+    width: 'auto',
   };
   public styleHeight = '100%';
-  public fullscreen$ = new BehaviorSubject<Boolean>(false);
-
-  public customFile$ = new BehaviorSubject<any>(null);
-  public index$ = new BehaviorSubject<number>(0);
-  public config$ = new BehaviorSubject<C3FileViewerConfig>(DEFAULT_CONFIG);
-
-  public set src(value: string[]) {
-    this._src = value;
-  }
-  public get src(): string[] {
-    return this._src;
-  }
-  private _src: string[] = [];
-
-  public set config(value: C3FileViewerConfig) {
-    this._config = this.mergeConfig(DEFAULT_CONFIG, value);
-    this.config$.next(this._config);
-  }
-
-  public get config(): C3FileViewerConfig {
-    return this._config;
-  }
-  private _config: C3FileViewerConfig = DEFAULT_CONFIG;
+  public hovered = false;
+  public src: string[] = [];
 
   private scale = 1;
   private rotation = 0;
@@ -49,9 +45,24 @@ export class C3FileViewerService {
   private translateY = 0;
   private prevX: number = 0;
   private prevY: number = 0;
-  private hovered = false;
+  private _http: HttpClient;
 
-  constructor(private _http: HttpClient) {}
+  constructor(http: HttpClient) {
+    this._http = http;
+
+    this.config$.subscribe((config) => {
+      const { minHeight, maxHeight, minWidth, maxWidth, height, width } =
+        config;
+      this.style.minHeight = this.valueToCss(minHeight);
+      this.style.height = this.valueToCss(height);
+      this.style.width = this.valueToCss(width);
+      this.style.maxHeight = this.valueToCss(maxHeight);
+      this.style.minWidth = this.valueToCss(minWidth);
+      this.style.maxWidth = this.valueToCss(maxWidth);
+
+      this.updateStyle();
+    });
+  }
 
   getFile(src: string) {
     const client = this.config.customClient || this._http.get.bind(this._http);
@@ -59,15 +70,6 @@ export class C3FileViewerService {
     return client(src, {
       responseType: 'blob',
     });
-  }
-
-  nextImage(event: KeyboardEvent | MouseEvent) {
-    if (this.canNavigate(event) && this.currentIndex < this.src.length - 1) {
-      this.loading = true;
-      this.currentIndex++;
-      this.index$.next(this.currentIndex);
-      this.reset();
-    }
   }
 
   previousImage(event: KeyboardEvent | MouseEvent) {
@@ -79,12 +81,13 @@ export class C3FileViewerService {
     }
   }
 
-  onMouseOver() {
-    this.hovered = true;
-  }
-
-  onMouseLeave() {
-    this.hovered = false;
+  nextImage(event: KeyboardEvent | MouseEvent) {
+    if (this.canNavigate(event) && this.currentIndex < this.src.length - 1) {
+      this.loading = true;
+      this.currentIndex++;
+      this.index$.next(this.currentIndex);
+      this.reset();
+    }
   }
 
   zoomIn() {
@@ -176,6 +179,10 @@ export class C3FileViewerService {
     this.style.msTransform = this.style.transform;
     this.style.webkitTransform = this.style.transform;
     this.style.oTransform = this.style.transform;
+  }
+
+  private valueToCss(value: number | string | undefined) {
+    return value ? (typeof value === 'string' ? value : value + 'px') : 'auto';
   }
 
   private mergeConfig(

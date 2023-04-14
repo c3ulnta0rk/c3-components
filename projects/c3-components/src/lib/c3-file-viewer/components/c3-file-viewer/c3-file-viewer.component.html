@@ -1,25 +1,26 @@
 <div
   class="container"
-  [c3-full-screen]="_c3FileViewer.fullscreen$ | async"
-  [style.height]="_c3FileViewer.styleHeight"
-  [style.backgroundColor]="_c3FileViewer.config.containerBackgroundColor"
-  (wheel)="_c3FileViewer.scrollZoom($event)"
-  (dragover)="_c3FileViewer.onDragOver($event)"
+  [c3-full-screen]="fileViewer.fullscreen$ | async"
+  [style.height]="fileViewer.styleHeight"
+  [style.backgroundColor]="fileViewer.config.containerBackgroundColor"
+  (wheel)="fileViewer.scrollZoom($event)"
+  (dragover)="fileViewer.onDragOver($event)"
 >
   <c3-file-viewer-image
-    [src]="_c3FileViewer.src[index]"
-    [style]="_c3FileViewer.style"
+    [fileViewer]="fileViewer"
+    [src]="fileViewer.src[index]"
+    [style]="fileViewer.style"
     alt="Image not found..."
-    (dragstart)="_c3FileViewer.onDragStart($event)"
-    (load)="_c3FileViewer.onLoad(_c3FileViewer.src[index])"
-    (error)="_c3FileViewer.imageNotFound(_c3FileViewer.src[index])"
-    (loadstart)="_c3FileViewer.onLoadStart(_c3FileViewer.src[index])"
+    (dragstart)="fileViewer.onDragStart($event)"
+    (load)="fileViewer.onLoad(src[index])"
+    (error)="fileViewer.imageNotFound(src[index])"
+    (loadstart)="fileViewer.onLoadStart(src[index])"
   />
   <!-- Div below will be used to hide the 'ghost' image when dragging -->
   <div></div>
-  <div class="spinner-container" *ngIf="_c3FileViewer.loading">
+  <div class="spinner-container" *ngIf="fileViewer.loading">
     <div class="spinner"></div>
   </div>
 
-  <c3-file-viewer-actions />
+  <c3-file-viewer-actions [fileViewer]="fileViewer"/>
 </div>

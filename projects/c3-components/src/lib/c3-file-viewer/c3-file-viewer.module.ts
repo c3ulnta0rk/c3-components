@@ -6,12 +6,11 @@ import { C3FileViewerActionsComponent } from './components/c3-file-viewer-action
 import { C3FileViewerImageComponent } from './components/c3-file-viewer-image/c3-file-viewer-image.component';
 import { C3FileViewerPdfComponent } from './components/c3-file-viewer-pdf/c3-file-viewer-pdf.component';
 import { C3FileViewerVideoComponent } from './components/c3-file-viewer-video/c3-file-viewer-video.component';
-import { C3FileViewerService } from './services/c3-file-viewer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { C3SafeUrlModule } from '../c3-safe-url/c3-safe-url.module';
 
 @NgModule({
-  providers: [C3FileViewerService],
+  providers: [],
   declarations: [
     FullScreenDirective,
     C3FileViewerComponent,

@@ -11,6 +11,13 @@ export interface C3FileViewerConfig {
   allowKeyboardNavigation?: boolean;
   customClient?: HttpClient['get'];
 
+  minHeight?: number | string;
+  minWidth?: number | string;
+  width?: number | string;
+  maxHeight?: number | string;
+  height?: number | string;
+  maxWidth?: number | string;
+
   btnShow?: {
     zoomIn?: boolean;
     zoomOut?: boolean;

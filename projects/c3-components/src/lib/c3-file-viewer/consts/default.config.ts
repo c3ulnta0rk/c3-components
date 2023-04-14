@@ -5,7 +5,7 @@ export const DEFAULT_CONFIG: C3FileViewerConfig = {
   btnClass: 'default',
   btnSubClass: 'material-icons',
   zoomFactor: 0.1,
-  containerBackgroundColor: '#ccc',
+  containerBackgroundColor: '#00000000',
   wheelZoom: false,
   allowFullscreen: true,
   allowKeyboardNavigation: true,
@@ -30,12 +30,6 @@ export const DEFAULT_CONFIG: C3FileViewerConfig = {
     },
     rotateCounterClockwise: {
       text: 'rotate_left',
-    },
-    next: {
-      text: 'arrow_right',
-    },
-    prev: {
-      text: 'arrow_left',
     },
     fullscreen: {
       text: 'fullscreen',
