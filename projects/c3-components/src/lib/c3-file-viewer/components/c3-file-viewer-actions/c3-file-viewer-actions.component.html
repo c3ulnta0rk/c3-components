@@ -1,0 +1,195 @@
+<!-- Button Container -->
+<div class="btn-container" [class]="_c3FileViewer.config.btnContainerClass">
+  <!-- Rotate Counter Clockwise -->
+  <ng-container *ngIf="_c3FileViewer.config.btnShow?.rotateCounterClockwise">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.rotateCounterClockwise()"
+      *ngIf="_c3FileViewer.config.btnIcons?.rotateCounterClockwise?.classes"
+    >
+      <span
+        [class]="_c3FileViewer.config.btnIcons?.rotateCounterClockwise?.classes"
+      ></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.rotateCounterClockwise?.text"
+      (click)="_c3FileViewer.rotateCounterClockwise()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.rotateCounterClockwise?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Rotate Clockwise -->
+  <ng-container *ngIf="_c3FileViewer.config.btnShow?.rotateClockwise">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.rotateClockwise()"
+      *ngIf="_c3FileViewer.config.btnIcons?.rotateClockwise?.classes"
+    >
+      <span
+        [class]="_c3FileViewer.config.btnIcons?.rotateClockwise?.classes"
+      ></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.rotateClockwise?.text"
+      (click)="_c3FileViewer.rotateClockwise()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.rotateClockwise?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Zoom Out -->
+  <ng-container *ngIf="_c3FileViewer.config.btnShow?.zoomOut">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.zoomOut()"
+      *ngIf="_c3FileViewer.config.btnIcons?.zoomOut?.classes"
+    >
+      <span [class]="_c3FileViewer.config.btnIcons?.zoomOut?.classes"></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.zoomOut?.text"
+      (click)="_c3FileViewer.zoomOut()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.zoomOut?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Zoom In -->
+  <ng-container *ngIf="_c3FileViewer.config.btnShow?.zoomIn">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.zoomIn()"
+      *ngIf="_c3FileViewer.config.btnIcons?.zoomIn?.classes"
+    >
+      <span [class]="_c3FileViewer.config.btnIcons?.zoomIn?.classes"></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.zoomIn?.text"
+      (click)="_c3FileViewer.zoomIn()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.zoomIn?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Fullscreen -->
+  <ng-container *ngIf="_c3FileViewer.config.allowFullscreen">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.toggleFullscreen()"
+      *ngIf="_c3FileViewer.config.btnIcons?.fullscreen?.classes"
+    >
+      <span [class]="_c3FileViewer.config.btnIcons?.fullscreen?.classes"></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.fullscreen?.text"
+      (click)="_c3FileViewer.toggleFullscreen()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.fullscreen?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Reset -->
+  <ng-container *ngIf="_c3FileViewer.config.btnShow?.reset">
+    <button
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+      (click)="_c3FileViewer.reset()"
+      *ngIf="_c3FileViewer.config.btnIcons?.reset?.classes"
+    >
+      <span [class]="_c3FileViewer.config.btnIcons?.reset?.classes"></span>
+    </button>
+    <a
+      [class]="_c3FileViewer.config.btnClass"
+      *ngIf="_c3FileViewer.config.btnIcons?.reset?.text"
+      (click)="_c3FileViewer.reset()"
+    >
+      <span [class]="_c3FileViewer.config.btnSubClass">{{
+        _c3FileViewer.config.btnIcons?.reset?.text
+      }}</span>
+    </a>
+  </ng-container>
+
+  <!-- Custom Buttons -->
+  <ng-container *ngFor="let cBtn of _c3FileViewer.config.customBtns">
+    <button
+      *ngIf="cBtn.icon.classes"
+      type="button"
+      [class]="_c3FileViewer.config.btnClass"
+    >
+      <span *ngIf="cBtn.icon.classes" [class]="cBtn.icon.classes"></span>
+    </button>
+    <ng-container *ngIf="cBtn.icon.text">
+      <a [class]="_c3FileViewer.config.btnClass" *ngIf="cBtn.icon.text">
+        <span [class]="_c3FileViewer.config.btnSubClass">{{
+          cBtn.icon.text
+        }}</span>
+      </a>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="nav-button-container">
+  <button
+    *ngIf="_c3FileViewer.config.btnShow?.next"
+    type="button"
+    [class]="_c3FileViewer.config.btnClass"
+    (click)="_c3FileViewer.previousImage($event)"
+    [disabled]="_c3FileViewer.currentIndex === 0"
+  >
+    <span
+      *ngIf="_c3FileViewer.config.btnIcons?.prev?.classes"
+      [class]="_c3FileViewer.config.btnIcons?.prev?.classes"
+    ></span>
+  </button>
+  <a
+    [class]="_c3FileViewer.config.btnClass"
+    *ngIf="_c3FileViewer.config.btnIcons?.prev?.text"
+    (click)="_c3FileViewer.previousImage($event)"
+  >
+    <span [class]="_c3FileViewer.config.btnSubClass">{{
+      _c3FileViewer.config.btnIcons?.prev?.text
+    }}</span>
+  </a>
+  <button
+    *ngIf="_c3FileViewer.config.btnShow?.next"
+    type="button"
+    [class]="_c3FileViewer.config.btnClass"
+    (click)="_c3FileViewer.nextImage($event)"
+    [disabled]="_c3FileViewer.currentIndex === _c3FileViewer.src.length - 1"
+  >
+    <span
+      *ngIf="_c3FileViewer.config.btnIcons?.next?.classes"
+      [class]="_c3FileViewer.config.btnIcons?.next?.classes"
+    ></span>
+  </button>
+  <a
+    [class]="_c3FileViewer.config.btnClass"
+    *ngIf="_c3FileViewer.config.btnIcons?.next?.text"
+    (click)="_c3FileViewer.nextImage($event)"
+  >
+    <span [class]="_c3FileViewer.config.btnSubClass">{{
+      _c3FileViewer.config.btnIcons?.next?.text
+    }}</span>
+  </a>
+</div>

@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { FileRoutingModule } from './file-viewer-routing.module';
+import { FileViewerApiComponent } from './pages/api/api.component';
+import { FileViewerExamplesComponent } from './pages/examples/examples.component';
+import { FileViewerOverviewComponent } from './pages/overview/overview.component';
+import { ComponentNavComponent } from 'src/app/components/component-nav/component-nav.component';
+import { C3FileViewerModule } from 'c3-components';
+import { ExampleViewerComponent } from 'src/app/components/example-viewer/example-viewer.component';
+import { BasicViewerComponent } from './components/basic-viewer/basic-viewer.component';
+import { CustomClientComponent } from './components/custom-client/custom-client.component';
+import { CustomInterceptor } from './interceptor/custom-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    FileViewerApiComponent,
+    FileViewerExamplesComponent,
+    FileViewerOverviewComponent,
+    BasicViewerComponent,
+    CustomClientComponent,
+  ],
+  imports: [
+    ComponentNavComponent,
+    CommonModule,
+    FileRoutingModule,
+    C3FileViewerModule,
+    ExampleViewerComponent,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },
+  ],
+})
+export class FileViewerModule {}

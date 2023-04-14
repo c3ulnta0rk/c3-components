@@ -25,9 +25,18 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'file',
+        path: 'file-upload',
         loadChildren: () =>
-          import('./pages/file/file.module').then((m) => m.FileModule),
+          import('./pages/file-upload/file-upload.module').then(
+            (m) => m.FileUploadModule
+          ),
+      },
+      {
+        path: 'file-viewer',
+        loadChildren: () =>
+          import('./pages/file-viewer/file-viewer.module').then(
+            (m) => m.FileViewerModule
+          ),
       },
       {
         path: 'highlight-text',

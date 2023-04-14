@@ -1,0 +1,6 @@
+<img
+  [src]="src | c3SafeUrl"
+  [ngStyle]="style"
+  alt="Image not found..."
+  (dragstart)="dragstart.emit($event)"
+/>

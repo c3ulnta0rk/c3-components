@@ -1,6 +1,6 @@
 @use "@angular/material" as mat
-@use "./assets/core" as c3
 @use "./assets/theme" as theme
+@use "./assets/core" as *
 @import '@angular/material/theming'
 
 html,
@@ -13,8 +13,8 @@ body
 @include mat.all-component-themes(theme.$theme-light)
 
 @media (prefers-color-scheme: light)
-  @include c3.core(theme.$theme-light)
-  @inclde mat.core()
+  @include mat.core()
+  @include core(theme.$theme-light)
   $primary: map-get(theme.$theme-light, primary)
   $accent: map-get(theme.$theme-light, accent)
   $warn: map-get(theme.$theme-light, warn)
@@ -28,8 +28,8 @@ body
 
 @media (prefers-color-scheme: dark)
   @include mat.all-component-colors(theme.$theme-dark)
-  @include c3.core(theme.$theme-dark)
-  @inclde mat.core()
+  @include mat.core()
+  @include core(theme.$theme-dark)
   $primary: map-get(theme.$theme-dark, primary)
   $accent: map-get(theme.$theme-dark, accent)
   $warn: map-get(theme.$theme-dark, warn)
