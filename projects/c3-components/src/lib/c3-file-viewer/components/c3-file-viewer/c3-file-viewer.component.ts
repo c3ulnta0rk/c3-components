@@ -13,6 +13,7 @@ import { C3FileViewerConfig } from '../../models/file-viewer-config.model';
 import { CustomFileEvent } from '../../models/custom-file-event.model';
 import { HttpClient } from '@angular/common/http';
 import { C3FileViewer } from '../../models/file-viewer';
+import { FileMetadata } from '../../models/file-metadata';
 
 @Component({
   selector: 'c3-file-viewer',
@@ -25,11 +26,11 @@ import { C3FileViewer } from '../../models/file-viewer';
 })
 export class C3FileViewerComponent {
   @Input()
-  public set src(value: string[]) {
-    this.fileViewer.src = value;
+  public set files(value: FileMetadata[]) {
+    this.fileViewer.files = value;
   }
-  public get src(): string[] {
-    return this.fileViewer.src;
+  public get files(): FileMetadata[] {
+    return this.fileViewer.files;
   }
 
   @Input()

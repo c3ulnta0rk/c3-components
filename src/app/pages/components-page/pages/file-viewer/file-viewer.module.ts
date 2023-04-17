@@ -10,8 +10,6 @@ import { C3FileViewerModule } from 'c3-components';
 import { ExampleViewerComponent } from 'src/app/components/example-viewer/example-viewer.component';
 import { BasicViewerComponent } from './components/basic-viewer/basic-viewer.component';
 import { CustomClientComponent } from './components/custom-client/custom-client.component';
-import { CustomInterceptor } from './interceptor/custom-interceptor.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,9 +25,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     FileRoutingModule,
     C3FileViewerModule,
     ExampleViewerComponent,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },
   ],
 })
 export class FileViewerModule {}

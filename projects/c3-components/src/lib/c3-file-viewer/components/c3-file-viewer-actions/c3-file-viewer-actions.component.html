@@ -1,5 +1,50 @@
+<div class="nav-button-container">
+  <button
+    *ngIf="config.btnShow?.prev"
+    type="button"
+    [class]="config.btnClass"
+    (click)="fileViewer.previousImage($event)"
+    [disabled]="fileViewer.currentIndex === 0"
+  >
+    <span
+      *ngIf="config.btnIcons?.prev?.classes"
+      [class]="config.btnIcons?.prev?.classes"
+    ></span>
+  </button>
+  <a
+    [class]="config.btnClass"
+    *ngIf="config.btnIcons?.prev?.text"
+    (click)="fileViewer.previousImage($event)"
+  >
+    <span [class]="config.btnSubClass">{{ config.btnIcons?.prev?.text }}</span>
+  </a>
+  <button
+    *ngIf="config.btnShow?.next"
+    type="button"
+    [class]="config.btnClass"
+    (click)="fileViewer.nextImage($event)"
+    [disabled]="fileViewer.currentIndex === fileViewer.files.length - 1"
+  >
+    <span
+      *ngIf="config.btnIcons?.next?.classes"
+      [class]="config.btnIcons?.next?.classes"
+    ></span>
+  </button>
+  <a
+    [class]="config.btnClass"
+    *ngIf="config.btnIcons?.next?.text"
+    (click)="fileViewer.nextImage($event)"
+  >
+    <span [class]="config.btnSubClass">{{ config.btnIcons?.next?.text }}</span>
+  </a>
+</div>
+
 <!-- Button Container -->
-<div class="btn-container" [class]="config.btnContainerClass">
+<div
+  class="btn-container"
+  [class]="config.btnContainerClass"
+  *ngIf="fileViewer.currentFile.type.startsWith('image')"
+>
   <!-- Rotate Counter Clockwise -->
   <ng-container *ngIf="config.btnShow?.rotateCounterClockwise">
     <button
@@ -137,45 +182,4 @@
       </a>
     </ng-container>
   </ng-container>
-</div>
-
-<div class="nav-button-container">
-  <button
-    *ngIf="config.btnShow?.prev"
-    type="button"
-    [class]="config.btnClass"
-    (click)="fileViewer.previousImage($event)"
-    [disabled]="fileViewer.currentIndex === 0"
-  >
-    <span
-      *ngIf="config.btnIcons?.prev?.classes"
-      [class]="config.btnIcons?.prev?.classes"
-    ></span>
-  </button>
-  <a
-    [class]="config.btnClass"
-    *ngIf="config.btnIcons?.prev?.text"
-    (click)="fileViewer.previousImage($event)"
-  >
-    <span [class]="config.btnSubClass">{{ config.btnIcons?.prev?.text }}</span>
-  </a>
-  <button
-    *ngIf="config.btnShow?.next"
-    type="button"
-    [class]="config.btnClass"
-    (click)="fileViewer.nextImage($event)"
-    [disabled]="fileViewer.currentIndex === fileViewer.src.length - 1"
-  >
-    <span
-      *ngIf="config.btnIcons?.next?.classes"
-      [class]="config.btnIcons?.next?.classes"
-    ></span>
-  </button>
-  <a
-    [class]="config.btnClass"
-    *ngIf="config.btnIcons?.next?.text"
-    (click)="fileViewer.nextImage($event)"
-  >
-    <span [class]="config.btnSubClass">{{ config.btnIcons?.next?.text }}</span>
-  </a>
 </div>

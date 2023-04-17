@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject, filter, mergeMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { C3FileViewerConfig } from '../../models/file-viewer-config.model';
 import { C3FileViewer } from '../../models/file-viewer';
+import { FileMetadata } from '../../models/file-metadata';
 
 @Component({
   selector: 'c3-file-viewer-image, [c3-file-viewer-image]',
   templateUrl: './c3-file-viewer-image.component.html',
 })
 export class C3FileViewerImageComponent {
-  @Input('src')
-  set _srcUpdated(src: string) {
-    this.src$.next(src);
+  @Input('file')
+  set _srcUpdated({ location }: FileMetadata) {
+    this.src$.next(location);
   }
   src = '';
   private src$ = new Subject<string>();
@@ -31,7 +31,7 @@ export class C3FileViewerImageComponent {
   @Output()
   loadstart = new EventEmitter<Event>();
 
-  constructor(private _http: HttpClient) {
+  constructor() {
     this.src$
       .pipe(
         tap(() => this.loadstart.emit()),
@@ -41,7 +41,7 @@ export class C3FileViewerImageComponent {
         tap(() => this.load.emit())
       )
       .subscribe({
-        next: () => {},
+        next: () => null,
         error: this.error.emit.bind(this.error),
       });
   }

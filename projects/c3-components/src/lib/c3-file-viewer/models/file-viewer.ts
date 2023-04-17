@@ -1,8 +1,9 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { DEFAULT_CONFIG } from '../consts/default.config';
 import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
 import { CustomFileEvent } from './custom-file-event.model';
+import { FileMetadata } from './file-metadata';
 
 export class C3FileViewer {
   private _config: C3FileViewerConfig = DEFAULT_CONFIG;
@@ -22,6 +23,9 @@ export class C3FileViewer {
   public index$ = new BehaviorSubject<number>(0);
   public loading: boolean = true;
   public currentIndex: number = 0;
+  get currentFile(): FileMetadata {
+    return this.files[this.currentIndex];
+  }
 
   public style = {
     transform: '',
@@ -37,7 +41,29 @@ export class C3FileViewer {
   };
   public styleHeight = '100%';
   public hovered = false;
-  public src: string[] = [];
+
+  public set files(value: FileMetadata[]) {
+    this._files = value;
+    this.currentIndex = 0;
+    this.index$.next(this.currentIndex);
+
+    this.filesObject = value.map((file) => {
+      return {
+        ...file,
+        objectUrl: file.objectUrl || this.createObjectURL(file),
+      };
+    });
+  }
+  public get files(): FileMetadata[] {
+    return this._files;
+  }
+  private _files: FileMetadata[] = [];
+
+  private filesObject: Array<
+    FileMetadata & {
+      objectUrl?: Observable<string>;
+    }
+  > = [];
 
   private scale = 1;
   private rotation = 0;
@@ -59,32 +85,40 @@ export class C3FileViewer {
       this.style.maxHeight = this.valueToCss(maxHeight);
       this.style.minWidth = this.valueToCss(minWidth);
       this.style.maxWidth = this.valueToCss(maxWidth);
+      this.styleHeight = this.valueToCss(height);
 
       this.updateStyle();
     });
   }
 
-  getFile(src: string) {
-    const client = this.config.customClient || this._http.get.bind(this._http);
+  createObjectURL(file: FileMetadata) {
+    return this.getFile(file.location).pipe(
+      map((response) => URL.createObjectURL(response))
+    );
+  }
 
-    return client(src, {
+  getFile(location: string) {
+    const client = this.config.customClient || this._http.get.bind(this._http);
+    return client(location, {
       responseType: 'blob',
     });
   }
 
   previousImage(event: KeyboardEvent | MouseEvent) {
-    if (this.canNavigate(event) && this.currentIndex > 0) {
+    if (this.canNavigate(event)) {
       this.loading = true;
-      this.currentIndex--;
+      if (this.currentIndex > 0) this.currentIndex--;
+      else this.currentIndex = this.files.length - 1;
       this.index$.next(this.currentIndex);
       this.reset();
     }
   }
 
   nextImage(event: KeyboardEvent | MouseEvent) {
-    if (this.canNavigate(event) && this.currentIndex < this.src.length - 1) {
+    if (this.canNavigate(event)) {
       this.loading = true;
-      this.currentIndex++;
+      if (this.currentIndex < this.files.length - 1) this.currentIndex++;
+      else this.currentIndex = 0;
       this.index$.next(this.currentIndex);
       this.reset();
     }
@@ -121,17 +155,17 @@ export class C3FileViewer {
     this.updateStyle();
   }
 
-  onLoad(url: string) {
+  onLoad(file: FileMetadata) {
     this.loading = false;
   }
 
-  onLoadStart(url: string) {
+  onLoadStart(file: FileMetadata) {
     this.loading = true;
   }
 
-  imageNotFound(url: string) {
+  imageNotFound(file: FileMetadata) {
     this.loading = false;
-    this.customFile$.next(new CustomFileEvent('imageNotFound', url));
+    this.customFile$.next(new CustomFileEvent('imageNotFound', file.location));
   }
 
   onDragOver(evt: DragEvent) {

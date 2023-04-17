@@ -7,14 +7,27 @@
   (dragover)="fileViewer.onDragOver($event)"
 >
   <c3-file-viewer-image
+    *ngIf="files[index].type.startsWith('image')"
     [fileViewer]="fileViewer"
-    [src]="fileViewer.src[index]"
+    [file]="fileViewer.files[index]"
     [style]="fileViewer.style"
-    alt="Image not found..."
     (dragstart)="fileViewer.onDragStart($event)"
-    (load)="fileViewer.onLoad(src[index])"
-    (error)="fileViewer.imageNotFound(src[index])"
-    (loadstart)="fileViewer.onLoadStart(src[index])"
+    (load)="fileViewer.onLoad(files[index])"
+    (error)="fileViewer.imageNotFound(files[index])"
+    (loadstart)="fileViewer.onLoadStart(files[index])"
+  />
+
+  <c3-file-viewer-video
+    *ngIf="files[index].type.startsWith('video')"
+  />
+
+  <c3-file-viewer-pdf
+    *ngIf="files[index].type.startsWith('application/pdf')"
+    [fileViewer]="fileViewer"
+    [file]="fileViewer.files[index]"
+    (load)="fileViewer.onLoad(files[index])"
+    (error)="fileViewer.imageNotFound(files[index])"
+    (loadstart)="fileViewer.onLoadStart(files[index])"
   />
   <!-- Div below will be used to hide the 'ghost' image when dragging -->
   <div></div>

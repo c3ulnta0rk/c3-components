@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { CustomFileEvent, C3FileViewerConfig } from 'c3-components';
+import {
+  CustomFileEvent,
+  C3FileViewerConfig,
+  FileMetadata,
+} from 'c3-components';
 
 @Component({
   selector: 'basic-viewer',
@@ -7,14 +11,28 @@ import { CustomFileEvent, C3FileViewerConfig } from 'c3-components';
   styleUrls: ['./basic-viewer.component.sass'],
 })
 export class BasicViewerComponent {
-  images = [
-    'https://media.discordapp.net/attachments/1008571172792828055/1096409134896775208/c3ulnta0rk_a_goat_with_this_logo_no_background_no_text_2269a9f9-1823-4f99-b87a-e2a82218b4a1.png?width=468&height=468',
-    'https://cdn.discordapp.com/attachments/346645203626491905/1096566281894907944/owl-g35ff5e73c_1920.jpg',
+  public images: Array<FileMetadata> = [
+    // {
+    //   name: 'pdf1',
+    //   type: 'application/pdf',
+    //   location:
+    //     'http://10.86.20.173:4001/api/file/src/L2hvbWUvYWRtaW5pc3RyYXRldXIvc2Vydi9jb21tdW4vR0VEL1BMQU5TIE1BSVRSSVNFUy9ITUUgTW9udGFnZSBFcXVpcGVtZW50L0QwMzU4ODMtMDAtRC5wZGY=',
+    // },
+    {
+      name: 'image1',
+      type: 'image/png',
+      location:
+        'https://media.discordapp.net/attachments/1008571172792828055/1096409134896775208/c3ulnta0rk_a_goat_with_this_logo_no_background_no_text_2269a9f9-1823-4f99-b87a-e2a82218b4a1.png?width=468&height=468',
+    },
+    {
+      name: 'image2',
+      type: 'image/jpg',
+      location:
+        'https://cdn.discordapp.com/attachments/346645203626491905/1096566281894907944/owl-g35ff5e73c_1920.jpg',
+    },
   ];
-
-  imageIndexOne = 0;
-
-  config: C3FileViewerConfig = {
+  public imageIndexOne = 0;
+  public config: C3FileViewerConfig = {
     btnContainerClass: 'other',
     btnClass: 'btn btn-hover-primary px-1',
     btnSubClass: 'material-icons font-size-xl',
