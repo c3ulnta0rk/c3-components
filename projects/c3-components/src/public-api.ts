@@ -27,6 +27,7 @@ export * from './lib/c3-file-viewer/components/c3-file-viewer/c3-file-viewer.com
 export * from './lib/c3-file-viewer/directives/full-screen.directive';
 export * from './lib/c3-file-viewer/models/custom-file-event.model';
 export * from './lib/c3-file-viewer/models/file-viewer-config.model';
+export * from './lib/c3-file-viewer/models/file-viewer';
 export * from './lib/c3-file-viewer/models/file-metadata';
 export * from './lib/c3-file-viewer/c3-file-viewer.module';
 

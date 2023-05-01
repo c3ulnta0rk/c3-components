@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { DEFAULT_CONFIG } from '../consts/default.config';
 import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
@@ -23,8 +23,9 @@ export class C3FileViewer {
   public index$ = new BehaviorSubject<number>(0);
   public loading: boolean = true;
   public currentIndex: number = 0;
+
   get currentFile(): FileMetadata {
-    return this.files[this.currentIndex];
+    return this.filesObjectUrl[this.currentIndex];
   }
 
   public style = {
@@ -47,7 +48,7 @@ export class C3FileViewer {
     this.currentIndex = 0;
     this.index$.next(this.currentIndex);
 
-    this.filesObject = value.map((file) => {
+    this.filesObjectUrl = value.map((file) => {
       return {
         ...file,
         objectUrl: file.objectUrl || this.createObjectURL(file),
@@ -59,7 +60,7 @@ export class C3FileViewer {
   }
   private _files: FileMetadata[] = [];
 
-  private filesObject: Array<
+  public filesObjectUrl: Array<
     FileMetadata & {
       objectUrl?: Observable<string>;
     }
@@ -92,8 +93,10 @@ export class C3FileViewer {
   }
 
   createObjectURL(file: FileMetadata) {
+    this.onLoadStart(file);
     return this.getFile(file.location).pipe(
-      map((response) => URL.createObjectURL(response))
+      map((response) => URL.createObjectURL(response)),
+      tap(() => this.onLoad(file))
     );
   }
 

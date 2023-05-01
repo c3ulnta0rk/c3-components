@@ -1,7 +1,7 @@
 <!-- pdf viewer -->
 <embed
   type="application/pdf"
-  [src]="src | c3SafeUrl"
+  [src]="fileViewer.currentFile.objectUrl | async | c3SafeUrl"
   [style.height]="'100%'"
   [style.width]="'100%'"
 />

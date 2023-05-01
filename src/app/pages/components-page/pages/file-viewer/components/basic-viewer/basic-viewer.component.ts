@@ -12,12 +12,6 @@ import {
 })
 export class BasicViewerComponent {
   public images: Array<FileMetadata> = [
-    // {
-    //   name: 'pdf1',
-    //   type: 'application/pdf',
-    //   location:
-    //     'http://10.86.20.173:4001/api/file/src/L2hvbWUvYWRtaW5pc3RyYXRldXIvc2Vydi9jb21tdW4vR0VEL1BMQU5TIE1BSVRSSVNFUy9ITUUgTW9udGFnZSBFcXVpcGVtZW50L0QwMzU4ODMtMDAtRC5wZGY=',
-    // },
     {
       name: 'image1',
       type: 'image/png',
@@ -62,7 +56,7 @@ export class BasicViewerComponent {
   };
 
   handleEvent(event: CustomFileEvent) {
-    console.log(`${event.name} has been clicked on img ${event.fileUrl}`);
+    console.log(`${event?.name} has been clicked on img ${event?.fileUrl}`);
 
     switch (event.name) {
       case 'print':

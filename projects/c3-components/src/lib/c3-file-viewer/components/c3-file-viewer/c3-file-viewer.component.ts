@@ -4,6 +4,7 @@ import {
   HostListener,
   Inject,
   Input,
+  OnInit,
   Optional,
   Output,
   SimpleChanges,
@@ -24,14 +25,9 @@ import { FileMetadata } from '../../models/file-metadata';
     class: 'c3-file-viewer',
   },
 })
-export class C3FileViewerComponent {
+export class C3FileViewerComponent implements OnInit {
   @Input()
-  public set files(value: FileMetadata[]) {
-    this.fileViewer.files = value;
-  }
-  public get files(): FileMetadata[] {
-    return this.fileViewer.files;
-  }
+  files: FileMetadata[] = [];
 
   @Input()
   public screenHeightOccupied?: 0; // In Px
@@ -40,15 +36,10 @@ export class C3FileViewerComponent {
   public index: number = 0;
 
   @Input()
-  public set config(value: C3FileViewerConfig) {
-    this.fileViewer.config = value;
-  }
+  public config: C3FileViewerConfig = {};
 
-  public get config(): C3FileViewerConfig {
-    return this.fileViewer.config;
-  }
-
-  public fileViewer: C3FileViewer;
+  @Input()
+  public fileViewer!: C3FileViewer;
 
   @Output()
   public indexChange: EventEmitter<number> = new EventEmitter();
@@ -62,8 +53,12 @@ export class C3FileViewerComponent {
   constructor(
     @Optional() @Inject('config') public moduleConfig: C3FileViewerConfig,
     public _http: HttpClient
-  ) {
-    this.fileViewer = new C3FileViewer(this._http);
+  ) {}
+
+  ngOnInit() {
+    if (!this.fileViewer) this.fileViewer = new C3FileViewer(this._http);
+    if (this.config) this.fileViewer.config = this.config;
+    if (this.files) this.fileViewer.files = this.files;
 
     this.fileViewer.customFile$.subscribe((event) => {
       this.customFileEvent.emit(event);
@@ -89,7 +84,7 @@ export class C3FileViewerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['screenHeightOccupied'])
+    if (changes['screenHeightOccupied'] && this.fileViewer)
       this.fileViewer.styleHeight =
         'calc(100% - ' + this.screenHeightOccupied + 'px)';
   }
