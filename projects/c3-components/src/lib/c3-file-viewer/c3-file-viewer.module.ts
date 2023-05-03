@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { C3SafeUrlPipe } from '../../public-api';
 import { C3FileViewerDialogComponent } from './components/public/c3-file-viewer-dialog/c3-file-viewer-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { C3FileViewerDialog } from './components/c3-file-viewer-dialog/c3-file-viewer-dialog';
+import { C3FileViewerDialog } from './components/public/c3-file-viewer-dialog/c3-file-viewer-dialog';
 
 @NgModule({
   providers: [],

@@ -5,12 +5,11 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import { C3FileViewer } from '../../../models/file-viewer';
-import { C3FileViewerDialog } from '../../c3-file-viewer-dialog/c3-file-viewer-dialog';
+import { C3FileViewerDialog } from './c3-file-viewer-dialog';
 
 @Component({
   selector: 'c3-file-viewer-dialog',
-  templateUrl: './c3-file-viewer-dialog.component.html',
-  styleUrls: ['./c3-file-viewer-dialog.component.css'],
+  template: ` <ng-content /> `,
 })
 export class C3FileViewerDialogComponent {
   @Input()
