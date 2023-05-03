@@ -72,10 +72,20 @@ export class C3FileViewer {
   private translateY = 0;
   private prevX: number = 0;
   private prevY: number = 0;
-  private _http: HttpClient;
+  public http?: HttpClient;
 
-  constructor(http: HttpClient) {
-    this._http = http;
+  constructor({
+    http,
+    config,
+    files,
+  }: {
+    http?: HttpClient;
+    config?: C3FileViewerConfig;
+    files?: FileMetadata[];
+  }) {
+    if (http) this.http = http;
+    if (config) this.config = config;
+    if (files) this.files = files;
 
     this.config$.subscribe((config) => {
       const { minHeight, maxHeight, minWidth, maxWidth, height, width } =
@@ -101,7 +111,13 @@ export class C3FileViewer {
   }
 
   getFile(location: string) {
-    const client = this.config.customClient || this._http.get.bind(this._http);
+    const client = this.config.customClient || this.http?.get.bind(this.http);
+    if (!client) {
+      throw new Error(
+        'No http client provided. Please provide a custom client or import HttpClientModule'
+      );
+    }
+
     return client(location, {
       responseType: 'blob',
     });

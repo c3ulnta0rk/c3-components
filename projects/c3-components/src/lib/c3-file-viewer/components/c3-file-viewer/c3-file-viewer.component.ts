@@ -14,7 +14,6 @@ import { C3FileViewerConfig } from '../../models/file-viewer-config.model';
 import { CustomFileEvent } from '../../models/custom-file-event.model';
 import { HttpClient } from '@angular/common/http';
 import { C3FileViewer } from '../../models/file-viewer';
-import { FileMetadata } from '../../models/file-metadata';
 
 @Component({
   selector: 'c3-file-viewer',
@@ -27,16 +26,7 @@ import { FileMetadata } from '../../models/file-metadata';
 })
 export class C3FileViewerComponent implements OnInit {
   @Input()
-  files: FileMetadata[] = [];
-
-  @Input()
   public screenHeightOccupied?: 0; // In Px
-
-  @Input()
-  public index: number = 0;
-
-  @Input()
-  public config: C3FileViewerConfig = {};
 
   @Input()
   public fileViewer!: C3FileViewer;
@@ -56,9 +46,7 @@ export class C3FileViewerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (!this.fileViewer) this.fileViewer = new C3FileViewer(this._http);
-    if (this.config) this.fileViewer.config = this.config;
-    if (this.files) this.fileViewer.files = this.files;
+    if (!this.fileViewer.http) this.fileViewer.http = this._http;
 
     this.fileViewer.customFile$.subscribe((event) => {
       this.customFileEvent.emit(event);

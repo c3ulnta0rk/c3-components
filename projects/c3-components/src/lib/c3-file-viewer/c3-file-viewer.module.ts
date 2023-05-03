@@ -7,7 +7,7 @@ import { C3FileViewerImageComponent } from './components/c3-file-viewer-image/c3
 import { C3FileViewerPdfComponent } from './components/c3-file-viewer-pdf/c3-file-viewer-pdf.component';
 import { C3FileViewerVideoComponent } from './components/c3-file-viewer-video/c3-file-viewer-video.component';
 import { HttpClientModule } from '@angular/common/http';
-import { C3SafeUrlModule } from '../c3-safe-url/c3-safe-url.module';
+import { C3SafeUrlPipe } from '../../public-api';
 
 @NgModule({
   providers: [],
@@ -19,7 +19,7 @@ import { C3SafeUrlModule } from '../c3-safe-url/c3-safe-url.module';
     C3FileViewerPdfComponent,
     C3FileViewerVideoComponent,
   ],
-  imports: [CommonModule, HttpClientModule, C3SafeUrlModule],
+  imports: [CommonModule, HttpClientModule, C3SafeUrlPipe],
   exports: [FullScreenDirective, C3FileViewerComponent],
 })
 export class C3FileViewerModule {}

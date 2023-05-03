@@ -35,4 +35,3 @@ export * from './lib/c3-file-viewer/c3-file-viewer.module';
  * Safe Url
  */
 export * from './lib/c3-safe-url/pipes/c3-safe-url.pipe';
-export * from './lib/c3-safe-url/c3-safe-url.module';
