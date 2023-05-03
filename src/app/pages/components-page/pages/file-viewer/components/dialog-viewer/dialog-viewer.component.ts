@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-import {
-  CustomFileEvent,
-  C3FileViewerConfig,
-  FileMetadata,
-  C3FileViewer,
-} from 'c3-components';
+import { C3FileViewer, C3FileViewerConfig, FileMetadata } from 'c3-components';
 
 @Component({
-  selector: 'basic-viewer',
-  templateUrl: './basic-viewer.component.html',
-  styleUrls: ['./basic-viewer.component.sass'],
+  selector: 'dialog-viewer',
+  templateUrl: './dialog-viewer.component.html',
+  styleUrls: ['./dialog-viewer.component.sass'],
 })
-export class BasicViewerComponent {
+export class DialogViewerComponent {
   public images: Array<FileMetadata> = [
     {
       name: 'image1',
@@ -59,14 +54,4 @@ export class BasicViewerComponent {
     files: this.images,
     config: this.config,
   });
-
-  handleEvent(event: CustomFileEvent) {
-    console.log(`${event?.name} has been clicked on img ${event?.fileUrl}`);
-
-    switch (event?.name) {
-      case 'print':
-        console.log('run print logic');
-        break;
-    }
-  }
 }

@@ -4,6 +4,7 @@ import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
 import { CustomFileEvent } from './custom-file-event.model';
 import { FileMetadata } from './file-metadata';
+import { inject } from '@angular/core';
 
 export class C3FileViewer {
   private _config: C3FileViewerConfig = DEFAULT_CONFIG;
@@ -55,9 +56,11 @@ export class C3FileViewer {
       };
     });
   }
+
   public get files(): FileMetadata[] {
     return this._files;
   }
+
   private _files: FileMetadata[] = [];
 
   public filesObjectUrl: Array<
@@ -72,18 +75,14 @@ export class C3FileViewer {
   private translateY = 0;
   private prevX: number = 0;
   private prevY: number = 0;
-  public http?: HttpClient;
 
   constructor({
-    http,
     config,
     files,
   }: {
-    http?: HttpClient;
     config?: C3FileViewerConfig;
     files?: FileMetadata[];
   }) {
-    if (http) this.http = http;
     if (config) this.config = config;
     if (files) this.files = files;
 
@@ -111,7 +110,9 @@ export class C3FileViewer {
   }
 
   getFile(location: string) {
-    const client = this.config.customClient || this.http?.get.bind(this.http);
+    const client =
+      this.config.customClient ||
+      inject(HttpClient).get.bind(inject(HttpClient));
     if (!client) {
       throw new Error(
         'No http client provided. Please provide a custom client or import HttpClientModule'

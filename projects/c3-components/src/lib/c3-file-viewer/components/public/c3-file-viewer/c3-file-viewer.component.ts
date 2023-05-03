@@ -10,10 +10,10 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { C3FileViewerConfig } from '../../models/file-viewer-config.model';
-import { CustomFileEvent } from '../../models/custom-file-event.model';
+import { C3FileViewerConfig } from '../../../models/file-viewer-config.model';
+import { CustomFileEvent } from '../../../models/custom-file-event.model';
 import { HttpClient } from '@angular/common/http';
-import { C3FileViewer } from '../../models/file-viewer';
+import { C3FileViewer } from '../../../models/file-viewer';
 
 @Component({
   selector: 'c3-file-viewer',
@@ -46,7 +46,7 @@ export class C3FileViewerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (!this.fileViewer.http) this.fileViewer.http = this._http;
+    this.defineStyleHeight();
 
     this.fileViewer.customFile$.subscribe((event) => {
       this.customFileEvent.emit(event);
@@ -73,8 +73,7 @@ export class C3FileViewerComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['screenHeightOccupied'] && this.fileViewer)
-      this.fileViewer.styleHeight =
-        'calc(100% - ' + this.screenHeightOccupied + 'px)';
+      this.defineStyleHeight();
   }
 
   @HostListener('window:keyup.ArrowRight', ['$event'])
@@ -85,5 +84,10 @@ export class C3FileViewerComponent implements OnInit {
   @HostListener('window:keyup.ArrowLeft', ['$event'])
   previous(event: KeyboardEvent) {
     this.fileViewer.previousImage(event);
+  }
+
+  defineStyleHeight() {
+    this.fileViewer.styleHeight =
+      'calc(100% - ' + this.screenHeightOccupied + 'px)';
   }
 }

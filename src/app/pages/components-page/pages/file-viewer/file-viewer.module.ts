@@ -10,6 +10,8 @@ import { C3FileViewerModule } from 'c3-components';
 import { ExampleViewerComponent } from 'src/app/components/example-viewer/example-viewer.component';
 import { BasicViewerComponent } from './components/basic-viewer/basic-viewer.component';
 import { CustomClientComponent } from './components/custom-client/custom-client.component';
+import { DialogViewerComponent } from './components/dialog-viewer/dialog-viewer.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { CustomClientComponent } from './components/custom-client/custom-client.
     FileViewerOverviewComponent,
     BasicViewerComponent,
     CustomClientComponent,
+    DialogViewerComponent,
   ],
   imports: [
     ComponentNavComponent,
@@ -25,6 +28,7 @@ import { CustomClientComponent } from './components/custom-client/custom-client.
     FileRoutingModule,
     C3FileViewerModule,
     ExampleViewerComponent,
+    MatButtonModule,
   ],
 })
 export class FileViewerModule {}

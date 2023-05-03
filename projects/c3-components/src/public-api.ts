@@ -23,7 +23,8 @@ export * from './lib/c3-dialog/c3-dialog.module';
 /**
  * File Viewer
  */
-export * from './lib/c3-file-viewer/components/c3-file-viewer/c3-file-viewer.component';
+export * from './lib/c3-file-viewer/components/public/c3-file-viewer/c3-file-viewer.component';
+export * from './lib/c3-file-viewer/components/public/c3-file-viewer-dialog/c3-file-viewer-dialog.component';
 export * from './lib/c3-file-viewer/directives/full-screen.directive';
 export * from './lib/c3-file-viewer/models/custom-file-event.model';
 export * from './lib/c3-file-viewer/models/file-viewer-config.model';
