@@ -3,6 +3,7 @@ import {
   CustomFileEvent,
   C3FileViewerConfig,
   FileMetadata,
+  C3FileViewer,
 } from 'c3-components';
 
 @Component({
@@ -25,7 +26,6 @@ export class BasicViewerComponent {
         'https://cdn.discordapp.com/attachments/346645203626491905/1096566281894907944/owl-g35ff5e73c_1920.jpg',
     },
   ];
-  public imageIndexOne = 0;
   public config: C3FileViewerConfig = {
     btnContainerClass: 'other',
     btnClass: 'btn btn-hover-primary px-1',
@@ -54,6 +54,11 @@ export class BasicViewerComponent {
     },
     customBtns: [],
   };
+
+  public fileViewer = new C3FileViewer({
+    files: this.images,
+    config: this.config,
+  });
 
   handleEvent(event: CustomFileEvent) {
     console.log(`${event?.name} has been clicked on img ${event?.fileUrl}`);
