@@ -1,0 +1,128 @@
+@use "sass:map";
+@use "sass:meta";
+@use "@angular/material" as mat;
+@use "utils" as utils;
+
+@mixin color-palette($theme) {
+  $config: mat.get-color-config($theme);
+  $is-dark: map.get($config, is-dark);
+
+  .white {
+    background-color: white;
+    color: black;
+  }
+
+  .black {
+    background-color: black;
+    color: white;
+  }
+
+  .primary {
+    $color: utils.get-color-from-palette(
+      map.get($config, primary),
+      if($is-dark, 500, 600)
+    );
+    background-color: $color;
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, primary),
+      if($is-dark, 500, 600)
+    );
+  }
+
+  .accent {
+    $color: utils.get-color-from-palette(
+      map.get($config, accent),
+      if($is-dark, 500, 700)
+    );
+    background-color: $color;
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, accent),
+      if($is-dark, 500, 700)
+    );
+  }
+
+  .warn {
+    $color: utils.get-color-from-palette(
+      map.get($config, warn),
+      if($is-dark, 500, 700)
+    );
+    background-color: $color;
+    color: utils.get-contrast-color-from-palette(
+      map.get($config, warn),
+      if($is-dark, 500, 700)
+    );
+  }
+
+  $colors-name: (
+    "red": mat.$red-palette,
+    "pink": mat.$pink-palette,
+    "purple": mat.$purple-palette,
+    "deep-purple": mat.$deep-purple-palette,
+    "indigo": mat.$indigo-palette,
+    "blue": mat.$blue-palette,
+    "light-blue": mat.$light-blue-palette,
+    "cyan": mat.$cyan-palette,
+    "teal": mat.$teal-palette,
+    "green": mat.$green-palette,
+    "light-green": mat.$light-green-palette,
+    "lime": mat.$lime-palette,
+    "yellow": mat.$yellow-palette,
+    "amber": mat.$amber-palette,
+    "orange": mat.$orange-palette,
+    "deep-orange": mat.$deep-orange-palette,
+    "brown": mat.$brown-palette,
+    "grey": mat.$grey-palette,
+    "blue-grey": mat.$blue-grey-palette,
+  );
+
+  $variante: "", 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, A100, A200,
+    A400, A700;
+
+  @each $name, $value in $colors-name {
+    .#{$name} {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
+      background-color: $color;
+      color: utils.get-contrast-color-from-palette(
+        $value,
+        if($is-dark, 500, 700)
+      );
+    }
+
+    .#{$name}-important {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
+      background-color: $color !important;
+      color: utils.get-contrast-color-from-palette(
+        $value,
+        if($is-dark, 500, 700)
+      ) !important;
+    }
+
+    @each $v in $variante {
+      .#{$name}#{$v} {
+        $color: utils.get-color-from-palette($value, $v);
+        background-color: $color;
+        color: utils.get-contrast-color-from-palette($value, $v);
+      }
+
+      .#{$name}#{$v}-important {
+        $color: utils.get-color-from-palette($value, $v);
+        background-color: $color !important;
+        color: utils.get-contrast-color-from-palette($value, $v) !important;
+      }
+    }
+  }
+
+  @each $name, $value in $colors-name {
+    .text-#{$name} {
+      $color: utils.get-color-from-palette($value, if($is-dark, 500, 700));
+      color: $color;
+    }
+
+    @each $v in $variante {
+      .text-#{$name}#{$v} {
+        $color: utils.get-color-from-palette($value, $v);
+        color: $color;
+      }
+    }
+  }
+}
