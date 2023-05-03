@@ -1,24 +1,82 @@
-# C3Components
+# C3-components
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+C3-components is an open-source component library that extends the [@angular/material](https://material.angular.io/) library. This collection of components aims to facilitate and accelerate the development of modern Angular applications by providing reusable and customizable components to meet specific needs.
 
-## Code scaffolding
+## Table of Contents
 
-Run `ng generate component component-name --project c3-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project c3-components`.
-> Note: Don't forget to add `--project c3-components` or else it will be added to the default project in your `angular.json` file. 
+- [Installation](#installation)
+- [Components](#components)
+- [Documentation](#documentation)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Build
+## Installation
 
-Run `ng build c3-components` to build the project. The build artifacts will be stored in the `dist/` directory.
+To install C3-components in your Angular project, run the following command:
 
-## Publishing
+```bash
+npm install C3-components
+```
 
-After building your library with `ng build c3-components`, go to the dist folder `cd dist/c3-components` and run `npm publish`.
+Also, make sure you have installed and configured @angular/material as per [their documentation](https://material.angular.io/guide/getting-started).
 
-## Running unit tests
+## Components
 
-Run `ng test c3-components` to execute the unit tests via [Karma](https://karma-runner.github.io).
+C3-components offer a variety of components that extend the functionality of @angular/material. Below is a table listing the available components and the progress status of their documentation:
 
-## Further help
+| Component      | Documentation Status                                                        |
+| -------------- | --------------------------------------------------------------------------- |
+| Dialog         | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
+| Dropdown       | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
+| File Upload    | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| File Viewer    | ![#ff9800](https://via.placeholder.com/15/ff9800/000000?text=+) In Progress |
+| Highlight Text | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
+| Menu           | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| Modal          | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| NavBar         | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| Pdf Dialog     | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| Rounded Title  | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| Tabs           | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Documentation
+
+Complete documentation for the C3-components is available on our [documentation website](https://C3-components.example.com/). You'll find usage examples, guides, and API references for each component.
+
+## Development
+
+If you'd like to contribute to the development of C3-components, follow the steps below to set up your development environment:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Kroenen62/C3-components.git
+```
+
+2. Install the dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm start
+```
+
+This will launch a local instance of the demo application to aid in the development and testing of the components.
+
+## Contributing
+
+...
+
+## Contributing
+
+This is my first contribution, and I am learning as I go. Please be understanding and patient as I work to improve this project.
+
+Before contributing, please read our [contribution guide](./CONTRIBUTING.md) for best practices and guidelines for our project.
+
+## License
+
+C3-components are licensed under the [MIT License](./LICENSE). You are free to use, modify, and distribute it, subject to the terms of this license.
