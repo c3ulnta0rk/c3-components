@@ -69,10 +69,6 @@ This will launch a local instance of the demo application to aid in the developm
 
 ## Contributing
 
-...
-
-## Contributing
-
 This is my first contribution, and I am learning as I go. Please be understanding and patient as I work to improve this project.
 
 Before contributing, please read our [contribution guide](./CONTRIBUTING.md) for best practices and guidelines for our project.
