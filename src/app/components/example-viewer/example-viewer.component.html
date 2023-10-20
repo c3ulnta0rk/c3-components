@@ -11,15 +11,13 @@
   <div class="example-viewer-source" *ngIf="sourceView">
     <mat-tab-group>
       <mat-tab label="HTML">
-        <display-html>
-          <ng-content select="[html]"></ng-content>
-        </display-html>
-      </mat-tab>
-      <mat-tab label="CSS">
-        <ng-content select="[css]"></ng-content>
+        <ng-content select="[html]"></ng-content>
       </mat-tab>
       <mat-tab label="TS">
         <ng-content select="[ts]"></ng-content>
+      </mat-tab>
+      <mat-tab label="CSS">
+        <ng-content select="[css]"></ng-content>
       </mat-tab>
     </mat-tab-group>
   </div>
@@ -27,3 +25,4 @@
   <div class="example-viewer-example">
     <ng-content select="[example]"></ng-content>
   </div>
+</div>

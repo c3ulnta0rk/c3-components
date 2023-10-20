@@ -8,15 +8,17 @@ import { DocsComponent } from './components/docs/docs.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
+import { HighlightJsModule } from 'ngx-highlight-js';
 
 @NgModule({
   declarations: [DocsComponent, HomeComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NavbarComponent,
+    BrowserModule,
     MatButtonModule,
+    NavbarComponent,
+    HighlightJsModule,
   ],
   providers: [],
   bootstrap: [DocsComponent],

@@ -1,10 +1,52 @@
-<p>This is a simple of a prebuilded dialog</p>
+<p class="my-1">This is a simple of a prebuilded dialog</p>
 
 <example-viewer class="mb-1">
   <h4 title>Prompt</h4>
 
   <ng-container example>
     <button mat-raised-button (click)="openPromptDialog()">Open dialog</button>
+  </ng-container>
+
+  <ng-container html>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+        <button mat-raised-button (click)="openPromptDialog()">Open dialog</button>
+      </textarea>
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Component } from '@angular/core';
+import { C3DialogService } from 'c3-components';
+
+@Component({
+  templateUrl: './dialog-prompt.component.html',
+  styleUrls: ['./dialog-prompt.component.sass'],
+})
+export class DialogPromptExampleComponent {
+  constructor(private _c3Dialog: C3DialogService) {}
+
+  openPromptDialog() {
+    this._c3Dialog
+      .prompt({
+        text: 'Enter your name',
+        defaultValue: 'John Doe',
+        placeholder: 'John Doe',
+        multiline: false,
+        validators: [],
+        required: true,
+      })
+      .then((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+}
+      </textarea>
+    </div>
   </ng-container>
 </example-viewer>
 
@@ -14,6 +56,47 @@
   <ng-container example>
     <button mat-raised-button (click)="openConfirmDialog()">Open dialog</button>
   </ng-container>
+
+  <ng-container html>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+        <button mat-raised-button (click)="openConfirmDialog()">Open dialog</button>
+      </textarea>
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Component } from '@angular/core';
+import { C3DialogService } from 'c3-components';
+
+@Component({
+  templateUrl: './dialog-confirm.component.html',
+  styleUrls: ['./dialog-confirm.component.sass'],
+})
+
+export class DialogConfirmExampleComponent {
+  constructor(private _c3Dialog: C3DialogService) {}
+
+  openConfirmDialog() {
+    this._c3Dialog
+      .confirm({
+        title: 'Confirm',
+        text: 'Are you sure?',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+      })
+      .then((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+}
+      </textarea>
+    </div>
+  </ng-container>
 </example-viewer>
 
 <example-viewer class="mb-1">
@@ -21,5 +104,50 @@
 
   <ng-container example>
     <button mat-raised-button (click)="openCustomDialog()">Open dialog</button>
+  </ng-container>
+
+  <ng-container html>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+        <button mat-raised-button (click)="openCustomDialog()">Open dialog</button>
+      </textarea>
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Component } from '@angular/core';
+import { C3DialogService } from 'c3-components';
+
+@Component({
+  template: '<p>example-custom-component-dialog works!</p>',
+})
+export class ExampleCustomComponentDialogComponent {}
+
+@Component({
+  templateUrl: './dialog-custom.component.html',
+  styleUrls: ['./dialog-custom.component.sass'],
+})
+export class DialogCustomExampleComponent {
+  constructor(private _c3Dialog: C3DialogService) {}
+
+  openCustomDialog() {
+    this._c3Dialog
+      .createDialgFromComponent<ExampleCustomComponentDialogComponent>({
+        data: {
+          component: ExampleCustomComponentDialogComponent,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+}
+      </textarea>
+    </div>
   </ng-container>
 </example-viewer>

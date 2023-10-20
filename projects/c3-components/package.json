@@ -1,6 +1,6 @@
 {
   "name": "c3-components",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "C3 Components Library",
   "author": "Kroenen62",
   "license": "MIT",
@@ -9,7 +9,10 @@
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",
     "@angular/cdk": "15.2.5",
-    "@angular/material": "15.2.5"
+    "@angular/material": "15.2.5",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"

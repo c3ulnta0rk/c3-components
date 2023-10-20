@@ -3,18 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { DisplayHtmlComponent } from '../display-html/display-html.component';
 
 @Component({
   selector: 'example-viewer',
   standalone: true,
-  imports: [
-    CommonModule,
-    DisplayHtmlComponent,
-    MatTabsModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule],
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.sass'],
   encapsulation: ViewEncapsulation.None,

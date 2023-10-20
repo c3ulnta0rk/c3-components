@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-const routes: Routes = [
+export const APP_ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
@@ -16,17 +16,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'not-found',
-    component: NotFoundComponent,
-  },
-  {
     path: '**',
-    redirectTo: 'not-found',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(APP_ROUTES)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { C3DialogService } from 'c3-components';
-import { ExampleCustomComponentDialogComponent } from '../../components/example-custom-component-dialog/example-custom-component-dialog.component';
+
+@Component({
+  template: '<p>example-custom-component-dialog works!</p>',
+})
+export class ExampleCustomComponentDialogComponent {}
 
 @Component({
   templateUrl: './overview.component.html',

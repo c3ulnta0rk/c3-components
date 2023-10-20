@@ -21,7 +21,7 @@ export interface ConfirmConfig {
     <mat-dialog-content>
       <div [innerHtml]="data.text"></div>
     </mat-dialog-content>
-    <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <mat-dialog-actions class="flex flex-row justify-end items-center">
       <button mat-button mat-dialog-close [color]="data.reject?.color">
         {{ data.reject?.text }}
       </button>

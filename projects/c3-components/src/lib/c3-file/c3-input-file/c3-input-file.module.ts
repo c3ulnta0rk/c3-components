@@ -6,7 +6,6 @@ import { C3InputFileDisplayerComponent } from './components/c3-input-file-displa
 import { C3InputFileTriggerDirective } from './directives/c3-input-file-trigger.directive';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { C3InputFileComponent } from './components/c3-input-file/c3-input-file.component';
@@ -19,13 +18,7 @@ import { C3InputFileComponent } from './components/c3-input-file/c3-input-file.c
     C3InputFileDisplayerComponent,
     C3InputFileTriggerDirective,
   ],
-  imports: [
-    CommonModule,
-    MatProgressBarModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, MatProgressBarModule, MatButtonModule, MatIconModule],
   exports: [
     C3InputFileComponent,
     C3InputFileTriggerComponent,

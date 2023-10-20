@@ -9,14 +9,13 @@ import { ComponentNavComponent } from 'src/app/components/component-nav/componen
 import { C3DialogModule } from 'c3-components';
 import { ExampleViewerComponent } from 'src/app/components/example-viewer/example-viewer.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ExampleCustomComponentDialogComponent } from './components/example-custom-component-dialog/example-custom-component-dialog.component';
+import { HighlightJsDirective } from 'ngx-highlight-js';
 
 @NgModule({
   declarations: [
     DialogOverviewComponent,
     DialogApiComponent,
     DialogExamplesComponent,
-    ExampleCustomComponentDialogComponent,
   ],
   imports: [
     C3DialogModule,
@@ -25,6 +24,7 @@ import { ExampleCustomComponentDialogComponent } from './components/example-cust
     DialogRoutingModule,
     ExampleViewerComponent,
     MatButtonModule,
+    HighlightJsDirective,
   ],
 })
 export class DialogModule {}

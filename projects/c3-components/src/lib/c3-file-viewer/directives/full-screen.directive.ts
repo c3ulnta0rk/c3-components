@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { BehaviorSubject, debounceTime, filter, skip, takeUntil } from 'rxjs';
+import { BehaviorSubject, debounceTime, filter, skip } from 'rxjs';
 
 @Directive({
   selector: '[C3FullScreen], [c3-full-screen]',
