@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "c3-components-docs:build:production"
+              "buildTarget": "c3-components-docs:build:production"
             },
             "development": {
-              "browserTarget": "c3-components-docs:build:development"
+              "buildTarget": "c3-components-docs:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "c3-components-docs:build"
+            "buildTarget": "c3-components-docs:build"
           }
         },
         "test": {

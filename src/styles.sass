@@ -1,7 +1,6 @@
 @use "@angular/material" as mat
 @use "./assets/theme" as theme
 @use "./assets/core" as *
-@import '@angular/material/theming'
 @tailwind base
 @tailwind components
 @tailwind utilities
@@ -18,30 +17,30 @@ body
 @media (prefers-color-scheme: light)
   @include mat.core()
   @include core(theme.$theme-light)
-  $primary: map-get(theme.$theme-light, primary)
-  $accent: map-get(theme.$theme-light, accent)
-  $warn: map-get(theme.$theme-light, warn)
-  $background: map-get(theme.$theme-light, background)
-  $foreground: map-get(theme.$theme-light, foreground)
+  $primary: mat.get-theme-color(theme.$theme-light, primary)
+  $accent: mat.get-theme-color(theme.$theme-light, accent)
+  $warn: mat.get-theme-color(theme.$theme-light, warn)
+  $bg-card: mat.get-theme-color(theme.$theme-light, background, card)
+  $color-text: mat.get-theme-color(theme.$theme-light, foreground, text)
 
   *
-    color: mat-color($foreground, text)
+    color: $color-text
   body
-    background: mat-color($background, card)
+    background: $bg-card
 
 @media (prefers-color-scheme: dark)
   @include mat.all-component-colors(theme.$theme-dark)
   @include mat.core()
   @include core(theme.$theme-dark)
-  $primary: map-get(theme.$theme-dark, primary)
-  $accent: map-get(theme.$theme-dark, accent)
-  $warn: map-get(theme.$theme-dark, warn)
-  $background: map-get(theme.$theme-dark, background)
-  $foreground: map-get(theme.$theme-dark, foreground)
+  $primary: mat.get-theme-color(theme.$theme-dark, primary)
+  $accent: mat.get-theme-color(theme.$theme-dark, accent)
+  $warn: mat.get-theme-color(theme.$theme-dark, warn)
+  $bg-card: mat.get-theme-color(theme.$theme-dark, background, card)
+  $color-text: mat.get-theme-color(theme.$theme-dark, foreground, text)
   *
-    color: mat-color($foreground, text)
+    color: $color-text
   body
-    background: mat-color($background, card)
+    background: $bg-card
 
 a.docs-navbar-item-selected
   background-color: rgba(0,0,0,.2)

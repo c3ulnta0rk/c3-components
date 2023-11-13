@@ -6,10 +6,10 @@
   "license": "MIT",
   "homepage": "https://github.com/Kroenen62/c3-components",
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0",
-    "@angular/cdk": "15.2.5",
-    "@angular/material": "15.2.5",
+    "@angular/common": ">17.0.0",
+    "@angular/core": ">17.0.0",
+    "@angular/cdk": ">17.0.0",
+    "@angular/material": ">17.0.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3"

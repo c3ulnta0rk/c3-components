@@ -1,16 +1,16 @@
 @use '@angular/material' as mat
-@import '@angular/material/theming'
 
 =c3-material-dropdown($theme)
-  $primary: map-get($theme, primary)
-  $accent: map-get($theme, accent)
-  $warn: map-get($theme, warn)
-  $background: map-get($theme, background)
-  $foreground: map-get($theme, foreground)
+  $is-dark-theme: mat.get-theme-type($theme) == dark
+  $primary: mat.get-theme-color($theme, primary)
+  $accent: mat.get-theme-color($theme, accent)
+  $warn: mat.get-theme-color($theme, warn)
+  $bg-card: mat.get-theme-color($theme, background, card)
+  $color-text: mat.get-theme-color($theme, foreground, text)
 
   .c3-dropdown-panel
-    background: mat-color($background, card)
-    color: mat-color($foreground, text)
+    background: $bg-card
+    color: $color-text
     border-radius: 4px
     min-width: 112px
     overflow: auto
