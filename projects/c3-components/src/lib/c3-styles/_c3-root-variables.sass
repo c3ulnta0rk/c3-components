@@ -1,7 +1,6 @@
 @use "sass:map"
 @use "sass:meta"
 @use "./utils" as utils
-@use "@angular/material" as mat
 
 =c3-root-variables($theme)
   :root
@@ -11,7 +10,7 @@
     $background-palette: map.get($theme, background)
     $foreground-palette: map.get($theme, foreground)
 
-    $is-dark-theme: map-get($theme, is-dark)
+    $is-dark-theme: map.get($theme, is-dark)
 
     $primary-color: map.get($primary-palette, 500)
     $primary-color-light: map.get($primary-palette, 300)

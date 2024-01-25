@@ -10,6 +10,9 @@ import { C3FileViewerDialog } from './c3-file-viewer-dialog';
 @Component({
   selector: 'c3-file-viewer-dialog',
   template: ` <ng-content /> `,
+  host: {
+    class: 'c3-file-viewer-dialog',
+  },
 })
 export class C3FileViewerDialogComponent {
   @Input()
