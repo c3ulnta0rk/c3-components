@@ -1,8 +1,11 @@
 @use "@angular/material" as mat
 @use "./assets/theme" as theme
 @use "./assets/core" as *
+<<<<<<< HEAD
 @use "sass:map"
 @use "./assets/utils" as utils
+=======
+>>>>>>> 0ae6cc7ac099dd1fee0ba6fd1fed8c149c9753de
 @tailwind base
 @tailwind components
 @tailwind utilities
@@ -19,29 +22,30 @@ body
 @media (prefers-color-scheme: light)
   @include mat.core()
   @include core(theme.$theme-light)
-  $background: map.get(theme.$theme-light, background)
-  $foreground: map.get(theme.$theme-light, foreground)
-  $background-color: utils.get-color-from-palette($background, card)
-  $foreground-color: utils.get-color-from-palette($foreground, text)
+  $primary: mat.get-theme-color(theme.$theme-light, primary)
+  $accent: mat.get-theme-color(theme.$theme-light, accent)
+  $warn: mat.get-theme-color(theme.$theme-light, warn)
+  $bg-card: mat.get-theme-color(theme.$theme-light, background, card)
+  $color-text: mat.get-theme-color(theme.$theme-light, foreground, text)
 
   *
-    color: $foreground-color
+    color: $color-text
   body
-    background: $background-color
+    background: $bg-card
 
 @media (prefers-color-scheme: dark)
   @include mat.all-component-colors(theme.$theme-dark)
   @include mat.core()
   @include core(theme.$theme-dark)
-  $background: map.get(theme.$theme-dark, background)
-  $foreground: map.get(theme.$theme-dark, foreground)
-  $background-color: utils.get-color-from-palette($background, card)
-  $foreground-color: utils.get-color-from-palette($foreground, text)
-
+  $primary: mat.get-theme-color(theme.$theme-dark, primary)
+  $accent: mat.get-theme-color(theme.$theme-dark, accent)
+  $warn: mat.get-theme-color(theme.$theme-dark, warn)
+  $bg-card: mat.get-theme-color(theme.$theme-dark, background, card)
+  $color-text: mat.get-theme-color(theme.$theme-dark, foreground, text)
   *
-    color: $foreground-color
+    color: $color-text
   body
-    background: $background-color
+    background: $bg-card
 
 a.docs-navbar-item-selected
   background-color: rgba(0,0,0,.2)
