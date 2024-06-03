@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { FileRoutingModule } from './file-viewer-routing.module';
 import { FileViewerApiComponent } from './pages/api/api.component';
@@ -24,7 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     ComponentNavComponent,
-    CommonModule,
     FileRoutingModule,
     C3FileViewerModule,
     ExampleViewerComponent,

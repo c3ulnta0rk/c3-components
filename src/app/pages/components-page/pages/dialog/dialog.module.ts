@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { DialogRoutingModule } from './dialog-routing.module';
 import { DialogOverviewComponent } from './pages/overview/overview.component';
@@ -20,7 +19,6 @@ import { HighlightJsDirective } from 'ngx-highlight-js';
   imports: [
     C3DialogModule,
     ComponentNavComponent,
-    CommonModule,
     DialogRoutingModule,
     ExampleViewerComponent,
     MatButtonModule,

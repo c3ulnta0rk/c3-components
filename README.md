@@ -56,13 +56,25 @@ git clone https://github.com/Kroenen62/C3-components.git
 2. Install the dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
-3. Start the development server:
+3. Build the library in watch mode:
 
 ```bash
-npm start
+bunx @angular/cli build c3-components --watch
+```
+
+4. (In a new cmd) Link the library to the demo application:
+
+```bash
+npm link c3-components 
+```
+
+5. Run the demo application:
+
+```bash
+bun start
 ```
 
 This will launch a local instance of the demo application to aid in the development and testing of the components.

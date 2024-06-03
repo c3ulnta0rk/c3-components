@@ -9,6 +9,13 @@ export const APP_ROUTES: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'getting-started',
+    loadComponent: () =>
+      import('./pages/gettting-started/gettting-started.component').then(
+        (m) => m.GetttingStartedComponent
+      ),
+  },
+  {
     path: 'components',
     loadChildren: () =>
       import('./pages/components-page/components.module').then(
@@ -25,7 +32,11 @@ export const APP_ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(APP_ROUTES)],
+  imports: [
+    RouterModule.forRoot(APP_ROUTES, {
+      anchorScrolling: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

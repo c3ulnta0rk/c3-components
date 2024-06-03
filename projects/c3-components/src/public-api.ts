@@ -37,3 +37,15 @@ export * from './lib/c3-file-viewer/c3-file-viewer.module';
  * Safe Url
  */
 export * from './lib/c3-safe-url/pipes/c3-safe-url.pipe';
+
+/**
+ * Expansion
+ */
+export * from './lib/c3-expansion/c3-expansion.module';
+export * from './lib/c3-expansion/components/c3-expansion/c3-expansion.component';
+export * from './lib/c3-expansion/components/c3-expansion-header/c3-expansion-header.component';
+
+/**
+ * Auto Animate
+ */
+export * from './lib/c3-auto-animate/C3AutoAnimate.directive';

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { DropdownRoutingModule } from './dropdown-routing.module';
 import { DropdownApiComponent } from './pages/api/api.component';
@@ -20,7 +19,6 @@ import { ExampleViewerComponent } from 'src/app/components/example-viewer/exampl
   ],
   imports: [
     C3DropdownModule,
-    CommonModule,
     ComponentNavComponent,
     DropdownRoutingModule,
     ExampleViewerComponent,

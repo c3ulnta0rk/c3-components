@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "sass:meta";
+@use "@angular/material" as mat;
+
+@mixin c3-expansion($theme) {
+  $config: mat.m2-get-color-config($theme);
+  $is-dark: map.get($config, is-dark);
+
+  $bg-toolbar: if(
+    $is-dark,
+    rgb(244 244 245 / var(--tw-bg-opacity)),
+    rgb(63 63 70 / var(--tw-bg-opacity))
+  );
+
+  .c3-expansion {
+    display: block;
+    width: 100%;
+
+    .mat-toolbar {
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $bg-toolbar;
+    }
+
+    .c3-expansion-header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      h4 {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div [class]="' mat-toolbar mat-elevation-z4 ' + headerClass()">
+  <ng-content select="c3-expansion-header">
+    <c3-expansion-header [c3Expansion]="this" />
+  </ng-content>
+</div>
+
+<div *ngIf="isExpanded()">
+  <ng-content></ng-content>
+</div>

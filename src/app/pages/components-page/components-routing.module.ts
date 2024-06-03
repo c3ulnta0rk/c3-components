@@ -80,6 +80,13 @@ const routes: Routes = [
           import('./pages/tabs/tabs.module').then((m) => m.TabsModule),
       },
       {
+        path: 'expansion',
+        loadChildren: () =>
+          import('./pages/expansion/expansion.module').then(
+            (m) => m.ExpansionModule
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'categories',
       },

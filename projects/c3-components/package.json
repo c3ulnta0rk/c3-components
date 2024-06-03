@@ -1,6 +1,6 @@
 {
   "name": "c3-components",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "C3 Components Library",
   "author": "Kroenen62",
   "license": "MIT",
@@ -11,8 +11,7 @@
     "@angular/cdk": ">=16.0.0",
     "@angular/material": ">=16.0.0",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "tailwindcss": ">=3.3.3"
+    "@formkit/auto-animate": "^0.8.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"

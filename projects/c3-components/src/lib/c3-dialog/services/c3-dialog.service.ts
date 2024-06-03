@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, Type, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {
   ConfirmConfig,
@@ -14,11 +14,11 @@ import {
   providedIn: 'root',
 })
 export class C3DialogService {
-  constructor(private dialog: MatDialog) {}
+  readonly #dialog = inject(MatDialog);
 
-  confirm(data: ConfirmConfig): Promise<boolean> {
+  public confirm(data: ConfirmConfig): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      const dialogRef = this.#dialog.open(ConfirmDialogComponent, {
         width: data.width || '250px',
         data: {
           text: data.text,
@@ -41,9 +41,9 @@ export class C3DialogService {
     });
   }
 
-  prompt<T = any>(data: PromptConfig): Promise<false | T> {
+  public prompt<T = any>(data: PromptConfig): Promise<false | T> {
     return new Promise((resolve, reject) => {
-      const dialogRef = this.dialog.open<C3PromptDialogComponent, any, T>(
+      const dialogRef = this.#dialog.open<C3PromptDialogComponent, any, T>(
         C3PromptDialogComponent,
         {
           width: data.width || '250px',
@@ -82,6 +82,6 @@ export class C3DialogService {
       data: { component: Type<T> };
     }
   ) {
-    return this.dialog.open(C3DialogEmbedChildComponent, config);
+    return this.#dialog.open(C3DialogEmbedChildComponent, config);
   }
 }

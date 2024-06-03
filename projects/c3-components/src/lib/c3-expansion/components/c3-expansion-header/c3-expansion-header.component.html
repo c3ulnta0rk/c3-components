@@ -1,0 +1,12 @@
+<h4 class="text-lg">
+  {{ title() }}
+</h4>
+<button
+  mat-icon-button
+  (click)="c3Expansion().toggleExpand()"
+  [matTooltip]="c3Expansion().isExpanded() ? 'Réduire' : 'Développer'"
+>
+  <mat-icon>{{
+    c3Expansion().isExpanded() ? "expand_less" : "expand_more"
+  }}</mat-icon>
+</button>
