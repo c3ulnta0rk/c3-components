@@ -13,7 +13,7 @@ import { type C3ExpansionComponent } from '../c3-expansion/c3-expansion.componen
 })
 export class C3ExpansionHeaderComponent {
   public title = input<string>();
-  public c3Expansion = input.required<C3ExpansionComponent>();
+  public c3Expansion = input<C3ExpansionComponent>();
 
   @HostBinding('class') get hostClass() {
     return 'c3-expansion-header';

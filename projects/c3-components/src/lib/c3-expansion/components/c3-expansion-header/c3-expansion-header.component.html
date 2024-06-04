@@ -3,12 +3,13 @@
     {{ title() }}
   </h4>
   <button
+    *ngIf="c3Expansion()"
     mat-icon-button
-    (click)="c3Expansion().toggleExpand()"
-    [matTooltip]="c3Expansion().isExpanded() ? 'Réduire' : 'Développer'"
+    (click)="c3Expansion()?.toggleExpand()"
+    [matTooltip]="c3Expansion()?.isExpanded() ? 'Réduire' : 'Développer'"
   >
     <mat-icon>{{
-      c3Expansion().isExpanded() ? "expand_less" : "expand_more"
+      c3Expansion()?.isExpanded() ? "expand_less" : "expand_more"
     }}</mat-icon>
   </button>
 </ng-content>
