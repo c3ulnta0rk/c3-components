@@ -12,7 +12,7 @@ import { type C3ExpansionComponent } from '../c3-expansion/c3-expansion.componen
   encapsulation: ViewEncapsulation.None,
 })
 export class C3ExpansionHeaderComponent {
-  public title = input<string>('Default Title');
+  public title = input<string>();
   public c3Expansion = input.required<C3ExpansionComponent>();
 
   @HostBinding('class') get hostClass() {
