@@ -7,8 +7,8 @@ import { DocsComponent } from './components/docs/docs.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MatButtonModule } from '@angular/material/button';
 import { HighlightJsModule } from 'ngx-highlight-js';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [DocsComponent, HomeComponent],
