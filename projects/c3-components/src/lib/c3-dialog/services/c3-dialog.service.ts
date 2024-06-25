@@ -125,9 +125,7 @@ export class C3DialogService {
     inputs: Partial<Record<keyof C, unknown>>,
     componentRef: ComponentRef<C>
   ) {
-    const inputProperties = this._getInputProperties(
-      componentRef.instance as Type<C>
-    );
+    const inputProperties = this._getInputProperties(component);
     for (const key of inputProperties) {
       if (inputs[key as keyof C]) {
         componentRef.setInput(key, inputs[key as keyof C]);
