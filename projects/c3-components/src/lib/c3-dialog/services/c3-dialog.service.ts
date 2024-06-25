@@ -1,4 +1,4 @@
-import { Injectable, Type, inject } from '@angular/core';
+import { ComponentRef, Injectable, Type, inject } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {
   ConfirmConfig,
@@ -103,20 +103,19 @@ export class C3DialogService {
     });
 
     // detect the inputs of the component
-    const { componentInstance } = dialog;
+    const { componentRef } = dialog;
+    if (!componentRef) return dialog;
 
-    if (_data.inputs)
-      this._setInputs(component, _data.inputs, componentInstance);
+    if (_data.inputs) this._setInputs(component, _data.inputs, componentRef);
 
     return dialog;
   }
 
-  private _getInputProperties<C>(component: Type<C>): Array<keyof C> {
-    const inputs: Array<keyof C> = [];
+  private _getInputProperties<C>(component: Type<C>) {
+    const inputs: string[] = [];
     const declaredInputs: Partial<Record<keyof C, string>> =
       component.prototype?.constructor['ɵcmp']?.declaredInputs;
-    for (const input of Object.keys(declaredInputs))
-      inputs.push(input as keyof C);
+    for (const input of Object.keys(declaredInputs)) inputs.push(input);
 
     return inputs;
   }
@@ -124,12 +123,14 @@ export class C3DialogService {
   private _setInputs<C>(
     component: Type<C>,
     inputs: Partial<Record<keyof C, unknown>>,
-    componentInstance: C
+    componentRef: ComponentRef<C>
   ) {
-    const inputProperties = this._getInputProperties(component);
+    const inputProperties = this._getInputProperties(
+      componentRef.instance as Type<C>
+    );
     for (const key of inputProperties) {
-      if (inputs[key]) {
-        componentInstance[key] = inputs[key] as any;
+      if (inputs[key as keyof C]) {
+        componentRef.setInput(key, inputs[key as keyof C]);
       }
     }
     return component;
