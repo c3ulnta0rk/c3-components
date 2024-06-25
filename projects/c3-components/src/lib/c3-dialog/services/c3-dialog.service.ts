@@ -113,18 +113,10 @@ export class C3DialogService {
 
   private _getInputProperties<C>(component: Type<C>): Array<keyof C> {
     const inputs: Array<keyof C> = [];
-    const proto = component.prototype;
-
-    for (const key of Object.keys(proto)) {
-      const meta = Reflect.getMetadata('propMetadata', component);
-      if (meta && meta[key]) {
-        for (const decorator of meta[key]) {
-          if (decorator.ngMetadataName === 'Input') {
-            inputs.push(key as keyof C);
-          }
-        }
-      }
-    }
+    const declaredInputs: Partial<Record<keyof C, string>> =
+      component.prototype?.constructor['ɵcmp']?.declaredInputs;
+    for (const input of Object.keys(declaredInputs))
+      inputs.push(input as keyof C);
 
     return inputs;
   }
