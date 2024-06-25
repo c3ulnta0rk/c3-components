@@ -86,19 +86,19 @@ export class C3DialogService {
     );
   }
 
-  createDialogFromComponent<Component>({
+  createDialogFromComponent<C>({
     data,
     ...config
   }: MatDialogConfig<{
-    component: ComponentType<Component>;
-    inputs?: Record<keyof Component, unknown | null>;
+    component: ComponentType<C>;
+    inputs?: Partial<Record<keyof C, unknown>>;
   }>) {
     if (!data?.component) {
       throw new Error('No component provided');
     }
 
     const { component, ..._data } = data;
-    const dialog = this.#dialog.open<Component>(component, {
+    const dialog = this.#dialog.open<C>(component, {
       ...config,
     });
 
@@ -111,10 +111,8 @@ export class C3DialogService {
     return dialog;
   }
 
-  private _getInputProperties<Component>(
-    component: Type<Component>
-  ): Array<keyof Component> {
-    const inputs: Array<keyof Component> = [];
+  private _getInputProperties<C>(component: Type<C>): Array<keyof C> {
+    const inputs: Array<keyof C> = [];
     const proto = component.prototype;
 
     for (const key of Object.keys(proto)) {
@@ -122,7 +120,7 @@ export class C3DialogService {
       if (meta && meta[key]) {
         for (const decorator of meta[key]) {
           if (decorator.ngMetadataName === 'Input') {
-            inputs.push(key as keyof Component);
+            inputs.push(key as keyof C);
           }
         }
       }
@@ -131,10 +129,10 @@ export class C3DialogService {
     return inputs;
   }
 
-  private _setInputs<Component>(
-    component: Type<Component>,
-    inputs: Record<keyof Component, unknown | null>,
-    componentInstance: Component
+  private _setInputs<C>(
+    component: Type<C>,
+    inputs: Partial<Record<keyof C, unknown>>,
+    componentInstance: C
   ) {
     const inputProperties = this._getInputProperties(component);
     for (const key of inputProperties) {
