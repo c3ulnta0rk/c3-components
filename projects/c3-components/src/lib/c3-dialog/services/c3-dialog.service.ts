@@ -4,13 +4,14 @@ import {
   ConfirmConfig,
   ConfirmDialogComponent,
 } from '../components/c3-dialog-confirm.component';
-import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
 import {
   PromptConfig,
   C3PromptDialogComponent,
 } from '../components/c3-dialog-prompt.component';
 import { C3ExtandedPromise } from '../../c3-extanded-promise';
 import { lastValueFrom, map } from 'rxjs';
+import { ComponentType } from '@angular/cdk/portal';
+import 'reflect-metadata';
 
 @Injectable({
   providedIn: 'root',
@@ -85,11 +86,62 @@ export class C3DialogService {
     );
   }
 
-  createDialgFromComponent<T>(
-    config: Partial<MatDialogConfig> & {
-      data: { component: Type<T> };
+  createDialogFromComponent<Component>({
+    data,
+    ...config
+  }: MatDialogConfig<{
+    component: ComponentType<Component>;
+    inputs?: Record<keyof Component, unknown | null>;
+  }>) {
+    if (!data?.component) {
+      throw new Error('No component provided');
     }
+
+    const { component, ..._data } = data;
+    const dialog = this.#dialog.open<Component>(component, {
+      ...config,
+    });
+
+    // detect the inputs of the component
+    const { componentInstance } = dialog;
+
+    if (_data.inputs)
+      this._setInputs(component, _data.inputs, componentInstance);
+
+    return dialog;
+  }
+
+  private _getInputProperties<Component>(
+    component: Type<Component>
+  ): Array<keyof Component> {
+    const inputs: Array<keyof Component> = [];
+    const proto = component.prototype;
+
+    for (const key of Object.keys(proto)) {
+      const meta = Reflect.getMetadata('propMetadata', component);
+      if (meta && meta[key]) {
+        for (const decorator of meta[key]) {
+          if (decorator.ngMetadataName === 'Input') {
+            inputs.push(key as keyof Component);
+          }
+        }
+      }
+    }
+
+    return inputs;
+  }
+
+  private _setInputs<Component>(
+    component: Type<Component>,
+    inputs: Record<keyof Component, unknown | null>,
+    componentInstance: Component
   ) {
-    return this.#dialog.open(C3DialogEmbedChildComponent, config);
+    const inputProperties = this._getInputProperties(component);
+    for (const key of inputProperties) {
+      if (inputs[key]) {
+        componentInstance[key] = inputs[key] as any;
+      }
+    }
+    return component;
   }
 }
