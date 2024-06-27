@@ -1,4 +1,4 @@
-import { Observable, Observer, Subscription } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 export class C3ExtandedPromise<T> extends Promise<T> {
   constructor(
@@ -11,14 +11,6 @@ export class C3ExtandedPromise<T> extends Promise<T> {
   }
 
   public toObservable(): Observable<T> {
-    return new Observable<T>((observer) => {
-      this.then((value) => {
-        observer.next(value);
-        observer.complete();
-      }).catch((err) => observer.error(err));
-    });
+    return from(this);
   }
-
-  public subscribe = this.toObservable().subscribe;
-  public pipe = this.toObservable().pipe;
 }
