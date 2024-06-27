@@ -19,21 +19,6 @@ export class C3ExtandedPromise<T> extends Promise<T> {
     });
   }
 
-  public subscribe(observer: Partial<Observer<T>>): Subscription;
-  public subscribe(
-    next?: (value: T) => void,
-    error?: (error: any) => void,
-    complete?: () => void
-  ): Subscription;
-  public subscribe(
-    nextOrObserver?: Partial<Observer<T>> | ((value: T) => void),
-    error?: (error: any) => void,
-    complete?: () => void
-  ): Subscription {
-    if (typeof nextOrObserver === 'function') {
-      return this.toObservable().subscribe(nextOrObserver, error, complete);
-    } else {
-      return this.toObservable().subscribe(nextOrObserver);
-    }
-  }
+  public subscribe = this.toObservable().subscribe;
+  public pipe = this.toObservable().pipe;
 }
