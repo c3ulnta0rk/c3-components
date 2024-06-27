@@ -42,9 +42,14 @@ export class C3DialogService {
       },
     });
 
-    return new C3ExtandedPromise<boolean>(() =>
-      lastValueFrom(dialogRef.afterClosed().pipe(map(Boolean)))
-    );
+    return new C3ExtandedPromise<boolean>((resolve, reject) => {
+      dialogRef.afterClosed().subscribe({
+        next: (value) => {
+          resolve(value);
+        },
+        error: reject,
+      });
+    });
   }
 
   /**
@@ -53,8 +58,8 @@ export class C3DialogService {
    * @param {PromptConfig} data Configuration options for the prompt dialog. See PromptConfig below.
    * @returns {C3ExtendedPromise<false | T>} A promise that resolves to the value entered by the user, or `false` if the user cancelled the prompt.
    */
-  public prompt<T = any>(data: PromptConfig): C3ExtandedPromise<false | T> {
-    const dialogRef = this.#dialog.open<C3PromptDialogComponent, any, T>(
+  public prompt(data: PromptConfig): C3ExtandedPromise<false | string> {
+    const dialogRef = this.#dialog.open<C3PromptDialogComponent, any, string>(
       C3PromptDialogComponent,
       {
         width: data.width || '250px',
@@ -79,10 +84,18 @@ export class C3DialogService {
       }
     );
 
-    return new C3ExtandedPromise<false>(() =>
-      lastValueFrom(
-        dialogRef.afterClosed().pipe(map((value) => value || false))
-      )
+    return new C3ExtandedPromise<string | false>((resolve, reject) => {
+      dialogRef.afterClosed().subscribe({
+        next: (value) => {
+          if (value === undefined) {
+            resolve(false);
+          } else {
+            resolve(value);
+          }
+        },
+        error: reject,
+      });
+    }
     );
   }
 
