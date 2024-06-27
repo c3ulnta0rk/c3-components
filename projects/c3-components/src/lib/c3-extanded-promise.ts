@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 
 export class C3ExtandedPromise<T> extends Promise<T> {
   constructor(
@@ -17,5 +17,23 @@ export class C3ExtandedPromise<T> extends Promise<T> {
         observer.complete();
       }).catch((err) => observer.error(err));
     });
+  }
+
+  public subscribe(observer: Partial<Observer<T>>): Subscription;
+  public subscribe(
+    next?: (value: T) => void,
+    error?: (error: any) => void,
+    complete?: () => void
+  ): Subscription;
+  public subscribe(
+    nextOrObserver?: Partial<Observer<T>> | ((value: T) => void),
+    error?: (error: any) => void,
+    complete?: () => void
+  ): Subscription {
+    if (typeof nextOrObserver === 'function') {
+      return this.toObservable().subscribe(nextOrObserver, error, complete);
+    } else {
+      return this.toObservable().subscribe(nextOrObserver);
+    }
   }
 }
