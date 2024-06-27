@@ -8,8 +8,6 @@ import {
   PromptConfig,
   C3PromptDialogComponent,
 } from '../components/c3-dialog-prompt.component';
-import { C3ExtandedPromise } from '../../c3-extanded-promise';
-import { lastValueFrom, map } from 'rxjs';
 import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
 
@@ -42,7 +40,7 @@ export class C3DialogService {
       },
     });
 
-    return new C3ExtandedPromise<boolean>((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       dialogRef.afterClosed().subscribe({
         next: (value) => {
           resolve(value);
@@ -58,7 +56,7 @@ export class C3DialogService {
    * @param {PromptConfig} data Configuration options for the prompt dialog. See PromptConfig below.
    * @returns {C3ExtendedPromise<false | T>} A promise that resolves to the value entered by the user, or `false` if the user cancelled the prompt.
    */
-  public prompt(data: PromptConfig): C3ExtandedPromise<false | string> {
+  public prompt(data: PromptConfig): Promise<false | string> {
     const dialogRef = this.#dialog.open<C3PromptDialogComponent, any, string>(
       C3PromptDialogComponent,
       {
@@ -84,7 +82,7 @@ export class C3DialogService {
       }
     );
 
-    return new C3ExtandedPromise<string | false>((resolve, reject) => {
+    return new Promise<string | false>((resolve, reject) => {
       dialogRef.afterClosed().subscribe({
         next: (value) => {
           if (value === undefined) {
