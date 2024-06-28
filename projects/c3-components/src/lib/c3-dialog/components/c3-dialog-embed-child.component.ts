@@ -30,11 +30,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <ng-template #target></ng-template>
     </mat-dialog-content>
   </mat-dialog-content>`,
-  styles: [],
+  styles: [
+    `
+      .mat-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          color: inherit;
+        }
+      }
+      .spacer {
+        flex: 1 1 auto;
+      }
+    `,
+  ],
 })
-export class C3DialogEmbedChildComponent<C>
-  implements AfterViewInit
-{
+export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;
 
   createdComponent?: ComponentRef<C>;
@@ -50,7 +62,7 @@ export class C3DialogEmbedChildComponent<C>
         closeBtn?: boolean;
         closeColor?: string;
         color?: string;
-      }
+      };
     },
     private _cdr: ChangeDetectorRef
   ) {}
@@ -61,7 +73,12 @@ export class C3DialogEmbedChildComponent<C>
     // detect the inputs of the component
     if (!this.createdComponent) this.dialogRef.close(false);
 
-    if (this.data.inputs) this._setInputs(this.data.component, this.data.inputs, this.createdComponent);
+    if (this.data.inputs)
+      this._setInputs(
+        this.data.component,
+        this.data.inputs,
+        this.createdComponent
+      );
 
     this._cdr.detectChanges();
   }
