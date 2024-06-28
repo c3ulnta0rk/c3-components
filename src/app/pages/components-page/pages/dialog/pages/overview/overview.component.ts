@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { C3DialogService } from 'c3-components';
+import 'highlight.js';
 
 @Component({
   template: '<p>example-custom-component-dialog works!</p>',
 })
 export class ExampleCustomComponentDialogComponent {}
+
+@Component({
+  template: '<p>{{ text() }}</p>',
+})
+export class ExampleCustomComponentWithInput {
+  public readonly text = input('Hello World');
+}
 
 @Component({
   templateUrl: './overview.component.html',
@@ -46,9 +54,48 @@ export class DialogOverviewComponent {
 
   openCustomDialog() {
     this._c3Dialog
-      .createDialgFromComponent<ExampleCustomComponentDialogComponent>({
+      .createDialogFromComponent<ExampleCustomComponentDialogComponent>({
         data: {
           component: ExampleCustomComponentDialogComponent,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+
+  openCustomDialogWithToolbar() {
+    this._c3Dialog
+      .createDialogFromComponent<ExampleCustomComponentDialogComponent>({
+        data: {
+          component: ExampleCustomComponentDialogComponent,
+          toolbar: {
+            title: 'Custom Dialog',
+            closeBtn: true,
+            closeColor: 'warn',
+            color: 'primary',
+          },
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+
+  openCustomDialogWithProvidedInputs() {
+    this._c3Dialog
+      .createDialogFromComponent({
+        data: {
+          component: ExampleCustomComponentWithInput,
+          inputs: {
+            text: 'Hello World modified!',
+          },
         },
       })
       .afterClosed()

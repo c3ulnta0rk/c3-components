@@ -151,3 +151,125 @@ export class DialogCustomExampleComponent {
     </div>
   </ng-container>
 </example-viewer>
+
+<example-viewer class="mb-1">
+  <h4 title>With toolbar action</h4>
+
+  <ng-container example>
+    <button mat-raised-button (click)="openCustomDialogWithToolbar()">
+      Open dialog
+    </button>
+  </ng-container>
+
+  <ng-container html>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+        <button mat-raised-button (click)="openCustomDialogWithToolbar()">Open dialog</button>
+      </textarea>
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Component } from '@angular/core';
+import { C3DialogService } from 'c3-components';
+
+@Component({
+  template: '<p>example-custom-component-dialog works!</p>',
+})
+export class ExampleCustomComponentDialogComponent {}
+
+@Component({
+  templateUrl: './dialog-custom.component.html',
+  styleUrls: ['./dialog-custom.component.sass'],
+})
+export class DialogCustomExampleComponent {
+  constructor(private _c3Dialog: C3DialogService) {}
+
+
+  openCustomDialogWithToolbar() {
+    this._c3Dialog
+      .createDialogFromComponent<ExampleCustomComponentDialogComponent>({
+        data: {
+          component: ExampleCustomComponentDialogComponent,
+          toolbar: {
+            title: 'Custom Dialog',
+            closeBtn: true,
+            closeColor: 'warn',
+            color: 'primary',
+          },
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+}
+      </textarea>
+    </div>
+  </ng-container>
+</example-viewer>
+
+<example-viewer class="mb-1">
+  <h4 title>With provided Inputs</h4>
+
+  <ng-container example>
+    <button mat-raised-button (click)="openCustomDialogWithProvidedInputs()">
+      Open dialog
+    </button>
+  </ng-container>
+
+  <ng-container html>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+        <button mat-raised-button (click)="openCustomDialogWithProvidedInputs()">Open dialog</button>
+      </textarea>
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-1">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Component, input } from '@angular/core';
+import { C3DialogService } from 'c3-components';
+
+@Component({
+  template: "&lt;p&gt;&#123;&#123; text() &#125;&#125;&lt;/p&gt;",
+})
+export class ExampleCustomComponentWithInput {
+  public readonly text = input('Hello World');
+}
+
+@Component({
+  templateUrl: './dialog-custom.component.html',
+  styleUrls: ['./dialog-custom.component.sass'],
+})
+export class DialogCustomExampleComponent {
+  constructor(private _c3Dialog: C3DialogService) {}
+
+  openCustomDialogWithProvidedInputs() {
+    this._c3Dialog
+      .createDialogFromComponent({
+        data: {
+          component: ExampleCustomComponentWithInput,
+          inputs: {
+            text: 'Hello World modified!',
+          },
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          console.log('result', result);
+        }
+      });
+  }
+}
+      </textarea>
+    </div>
+  </ng-container>
+</example-viewer>

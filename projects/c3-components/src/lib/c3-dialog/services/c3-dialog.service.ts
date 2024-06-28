@@ -10,6 +10,7 @@ import {
 } from '../components/c3-dialog-prompt.component';
 import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
+import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
 
 @Injectable({
   providedIn: 'root',
@@ -97,51 +98,27 @@ export class C3DialogService {
     );
   }
 
-  createDialogFromComponent<C>({
-    data,
-    ...config
-  }: MatDialogConfig<{
+  /**
+   * Opens a dialog with the provided component and inputs.
+   * @param {MatDialogConfig<{ component: ComponentType<C>; inputs?: Partial<Record<keyof C, unknown>>; }>} config Configuration options for the dialog. See MatDialogConfig below.
+   * @returns {MatDialogRef<C>} The dialog reference.
+   */
+  createDialogFromComponent<C>(config: MatDialogConfig<{
     component: ComponentType<C>;
     inputs?: Partial<Record<keyof C, unknown>>;
+    toolbar?: {
+      title: string;
+      closeBtn?: boolean;
+      closeColor?: string;
+      color?: string;
+    }
   }>) {
-    if (!data?.component) {
+    if (!config.data?.component) {
       throw new Error('No component provided');
     }
 
-    const { component, ..._data } = data;
-    const dialog = this.#dialog.open<C>(component, {
-      ...config,
-    });
-
-    // detect the inputs of the component
-    const { componentRef } = dialog;
-    if (!componentRef) return dialog;
-
-    if (_data.inputs) this._setInputs(component, _data.inputs, componentRef);
+    const dialog = this.#dialog.open(C3DialogEmbedChildComponent<C>, config);
 
     return dialog;
-  }
-
-  private _getInputProperties<C>(component: Type<C>) {
-    const inputs: string[] = [];
-    const declaredInputs: Partial<Record<keyof C, string>> =
-      component.prototype?.constructor['ɵcmp']?.declaredInputs;
-    for (const input of Object.keys(declaredInputs)) inputs.push(input);
-
-    return inputs;
-  }
-
-  private _setInputs<C>(
-    component: Type<C>,
-    inputs: Partial<Record<keyof C, unknown>>,
-    componentRef: ComponentRef<C>
-  ) {
-    const inputProperties = this._getInputProperties(component);
-    for (const key of inputProperties) {
-      if (inputs[key as keyof C]) {
-        componentRef.setInput(key, inputs[key as keyof C]);
-      }
-    }
-    return component;
   }
 }
