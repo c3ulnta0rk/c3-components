@@ -26,9 +26,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar>
-    <mat-dialog-content>
-      <ng-template #target></ng-template>
-    </mat-dialog-content>
+    <ng-template #target></ng-template>
   </mat-dialog-content>`,
   styles: [
     `
