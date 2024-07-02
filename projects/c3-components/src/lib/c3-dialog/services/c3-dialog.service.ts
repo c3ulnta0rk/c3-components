@@ -32,7 +32,10 @@ export type C3CreateDialogFromComponentResult<C> = MatDialogRef<
   C3DialogEmbedChildComponent<C>,
   any
 > & {
-  component: ComponentRef<C> | undefined;
+  componentRef: ComponentRef<C> | undefined;
+  componentInstance: C;
+  rootComponentRef: ComponentRef<C3DialogEmbedChildComponent<C>> | null;
+  rootComponentInstance: C3DialogEmbedChildComponent<C>;
 };
 
 @Injectable({
@@ -133,9 +136,7 @@ export class C3DialogService {
   }: C3CreateDialogFromComponentConfig<C>) {
     if (!component) throw new Error('No component provided');
 
-    const dialog: MatDialogRef<C3DialogEmbedChildComponent<C>, any> & {
-      component?: ComponentRef<C> | undefined;
-    } = this.#dialog.open(C3DialogEmbedChildComponent<C>, {
+    const dialog = this.#dialog.open(C3DialogEmbedChildComponent<C>, {
       ...config,
       data: {
         component,
@@ -144,8 +145,13 @@ export class C3DialogService {
       },
     });
 
-    dialog.component = dialog.componentInstance.createdComponent;
+    const newDialog = dialog as unknown as C3CreateDialogFromComponentResult<C>;
+    newDialog.rootComponentRef = dialog.componentRef;
+    (newDialog.componentRef as ComponentRef<C> | undefined) =
+      dialog.componentInstance.createdComponent;
+    (newDialog.componentInstance as C | undefined) =
+      dialog.componentInstance.createdComponent?.instance;
 
-    return dialog as C3CreateDialogFromComponentResult<C>;
+    return newDialog;
   }
 }
