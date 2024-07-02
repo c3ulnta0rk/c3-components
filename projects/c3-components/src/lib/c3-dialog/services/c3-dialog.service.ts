@@ -1,5 +1,9 @@
 import { ComponentRef, Injectable, Type, inject } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import {
   ConfirmConfig,
   ConfirmDialogComponent,
@@ -11,6 +15,25 @@ import {
 import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
+
+export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
+  Partial<Record<keyof C, unknown>>
+> & {
+  component: ComponentType<C>;
+  toolbar?: {
+    title: string;
+    closeBtn?: boolean;
+    closeColor?: string;
+    color?: string;
+  };
+};
+
+export type C3CreateDialogFromComponentResult<C> = MatDialogRef<
+  C3DialogEmbedChildComponent<C>,
+  any
+> & {
+  component: ComponentRef<C> | undefined;
+};
 
 @Injectable({
   providedIn: 'root',
@@ -99,27 +122,18 @@ export class C3DialogService {
 
   /**
    * Opens a dialog with the provided component and inputs.
-   * @param {MatDialogConfig<Partial<Record<keyof C, unknown>>> & { component:  ComponentType<C>; toolbar?: { title: string; closeBtn?: boolean; closeColor?: string; color?: string; }; }} config Configuration options for the dialog. See MatDialogConfig below.
+   * @param {C3CreateDialogFromComponentConfig<C>} config Configuration options for the dialog. See MatDialogConfig below.
    * @returns {MatDialogRef<C> & {component: ComponentRef<C> | undefined}} The dialog reference.
    */
-  createDialogFromComponent<C>(
-    config: MatDialogConfig<Partial<Record<keyof C, unknown>>> & {
-      component: ComponentType<C>;
-      toolbar?: {
-        title: string;
-        closeBtn?: boolean;
-        closeColor?: string;
-        color?: string;
-      };
-    }
-  ) {
+  createDialogFromComponent<C>(config: C3CreateDialogFromComponentConfig<C>) {
     if (!config.component) throw new Error('No component provided');
 
-    const dialog = this.#dialog.open(C3DialogEmbedChildComponent<C>, config);
+    const dialog: MatDialogRef<C3DialogEmbedChildComponent<C>, any> & {
+      component?: ComponentRef<C> | undefined;
+    } = this.#dialog.open(C3DialogEmbedChildComponent<C>, config);
 
-    return {
-      ...dialog,
-      component: dialog.componentInstance.createdComponent,
-    };
+    dialog.component = dialog.componentInstance.createdComponent;
+
+    return dialog as C3CreateDialogFromComponentResult<C>;
   }
 }
