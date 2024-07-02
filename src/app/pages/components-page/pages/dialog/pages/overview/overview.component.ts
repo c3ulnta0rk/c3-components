@@ -55,9 +55,7 @@ export class DialogOverviewComponent {
   openCustomDialog() {
     this._c3Dialog
       .createDialogFromComponent<ExampleCustomComponentDialogComponent>({
-        data: {
-          component: ExampleCustomComponentDialogComponent,
-        },
+        component: ExampleCustomComponentDialogComponent,
       })
       .afterClosed()
       .subscribe((result) => {
@@ -70,14 +68,12 @@ export class DialogOverviewComponent {
   openCustomDialogWithToolbar() {
     this._c3Dialog
       .createDialogFromComponent<ExampleCustomComponentDialogComponent>({
-        data: {
-          component: ExampleCustomComponentDialogComponent,
-          toolbar: {
-            title: 'Custom Dialog',
-            closeBtn: true,
-            closeColor: 'warn',
-            color: 'primary',
-          },
+        component: ExampleCustomComponentDialogComponent,
+        toolbar: {
+          title: 'Custom Dialog',
+          closeBtn: true,
+          closeColor: 'warn',
+          color: 'primary',
         },
       })
       .afterClosed()
@@ -91,11 +87,9 @@ export class DialogOverviewComponent {
   openCustomDialogWithProvidedInputs() {
     this._c3Dialog
       .createDialogFromComponent({
+        component: ExampleCustomComponentWithInput,
         data: {
-          component: ExampleCustomComponentWithInput,
-          inputs: {
-            text: 'Hello World modified!',
-          },
+          text: 'Hello World modified!',
         },
       })
       .afterClosed()

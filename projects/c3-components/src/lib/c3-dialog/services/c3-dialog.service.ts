@@ -125,12 +125,24 @@ export class C3DialogService {
    * @param {C3CreateDialogFromComponentConfig<C>} config Configuration options for the dialog. See MatDialogConfig below.
    * @returns {MatDialogRef<C> & {component: ComponentRef<C> | undefined}} The dialog reference.
    */
-  createDialogFromComponent<C>(config: C3CreateDialogFromComponentConfig<C>) {
-    if (!config.component) throw new Error('No component provided');
+  createDialogFromComponent<C>({
+    component,
+    toolbar,
+    data,
+    ...config
+  }: C3CreateDialogFromComponentConfig<C>) {
+    if (!component) throw new Error('No component provided');
 
     const dialog: MatDialogRef<C3DialogEmbedChildComponent<C>, any> & {
       component?: ComponentRef<C> | undefined;
-    } = this.#dialog.open(C3DialogEmbedChildComponent<C>, config);
+    } = this.#dialog.open(C3DialogEmbedChildComponent<C>, {
+      ...config,
+      data: {
+        component,
+        toolbar,
+        inputs: data,
+      },
+    });
 
     dialog.component = dialog.componentInstance.createdComponent;
 
