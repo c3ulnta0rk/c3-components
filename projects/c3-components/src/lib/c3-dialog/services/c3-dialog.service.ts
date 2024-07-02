@@ -94,31 +94,32 @@ export class C3DialogService {
         },
         error: reject,
       });
-    }
-    );
+    });
   }
 
   /**
    * Opens a dialog with the provided component and inputs.
-   * @param {MatDialogConfig<{ component: ComponentType<C>; inputs?: Partial<Record<keyof C, unknown>>; }>} config Configuration options for the dialog. See MatDialogConfig below.
-   * @returns {MatDialogRef<C>} The dialog reference.
+   * @param {MatDialogConfig<Partial<Record<keyof C, unknown>>> & { component:  ComponentType<C>; toolbar?: { title: string; closeBtn?: boolean; closeColor?: string; color?: string; }; }} config Configuration options for the dialog. See MatDialogConfig below.
+   * @returns {MatDialogRef<C> & {component: ComponentRef<C> | undefined}} The dialog reference.
    */
-  createDialogFromComponent<C>(config: MatDialogConfig<{
-    component: ComponentType<C>;
-    inputs?: Partial<Record<keyof C, unknown>>;
-    toolbar?: {
-      title: string;
-      closeBtn?: boolean;
-      closeColor?: string;
-      color?: string;
+  createDialogFromComponent<C>(
+    config: MatDialogConfig<Partial<Record<keyof C, unknown>>> & {
+      component: ComponentType<C>;
+      toolbar?: {
+        title: string;
+        closeBtn?: boolean;
+        closeColor?: string;
+        color?: string;
+      };
     }
-  }>) {
-    if (!config.data?.component) {
-      throw new Error('No component provided');
-    }
+  ) {
+    if (!config.component) throw new Error('No component provided');
 
     const dialog = this.#dialog.open(C3DialogEmbedChildComponent<C>, config);
 
-    return dialog;
+    return {
+      ...dialog,
+      component: dialog.componentInstance.createdComponent,
+    };
   }
 }
