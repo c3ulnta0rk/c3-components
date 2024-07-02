@@ -49,3 +49,8 @@ export * from './lib/c3-expansion/components/c3-expansion-header/c3-expansion-he
  * Auto Animate
  */
 export * from './lib/c3-auto-animate/C3AutoAnimate.directive';
+
+/**
+ * Select on Focus
+ */
+export * from './lib/c3-select-on-focus/c3-select-on-focus.directive';
