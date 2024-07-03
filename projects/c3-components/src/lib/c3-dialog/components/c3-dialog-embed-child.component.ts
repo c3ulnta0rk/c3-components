@@ -8,6 +8,7 @@ import {
   Type,
   ViewChild,
   ViewContainerRef,
+  signal,
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -47,7 +48,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;
 
-  createdComponent?: ComponentRef<C>;
+  createdComponent = signal<ComponentRef<C> | null>(null);
 
   constructor(
     public dialogRef: MatDialogRef<C3DialogEmbedChildComponent<C>>,
@@ -66,7 +67,7 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.createdComponent = this.target.createComponent(this.data.component);
+    this.createdComponent.set(this.target.createComponent(this.data.component));
 
     // detect the inputs of the component
     if (!this.createdComponent) this.dialogRef.close(false);
@@ -75,7 +76,7 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
       this._setInputs(
         this.data.component,
         this.data.inputs,
-        this.createdComponent
+        this.createdComponent()!
       );
 
     this._cdr.detectChanges();

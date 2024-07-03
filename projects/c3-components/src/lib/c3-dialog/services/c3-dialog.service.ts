@@ -1,8 +1,17 @@
-import { ComponentRef, Injectable, Type, inject } from '@angular/core';
+import {
+  ComponentRef,
+  Injectable,
+  Injector,
+  Type,
+  effect,
+  inject,
+} from '@angular/core';
 import {
   MatDialog,
   MatDialogConfig,
+  MatDialogContainer,
   MatDialogRef,
+  MatDialogState,
 } from '@angular/material/dialog';
 import {
   ConfirmConfig,
@@ -15,6 +24,7 @@ import {
 import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
+import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
 
 export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
   Partial<Record<keyof C, unknown>>
@@ -28,14 +38,26 @@ export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
   };
 };
 
-export type C3CreateDialogFromComponentResult<C> = MatDialogRef<
-  C3DialogEmbedChildComponent<C>,
-  any
-> & {
-  componentRef: ComponentRef<C> | undefined;
-  componentInstance: C;
+export type C3CreateDialogFromComponentResult<C> = {
+  _containerInstance: MatDialogContainer;
   rootComponentRef: ComponentRef<C3DialogEmbedChildComponent<C>> | null;
   rootComponentInstance: C3DialogEmbedChildComponent<C>;
+  componentRef: ComponentRef<C> | null;
+  componentInstance: C | undefined;
+  id: string;
+  disableClose: boolean;
+  close: (dialogResult?: C) => void;
+  afterClosed: () => Observable<C | null>;
+  afterOpened: () => Observable<void>;
+  beforeClosed: () => Observable<C | null>;
+  backdropClick: () => Observable<MouseEvent>;
+  getState: () => MatDialogState;
+  keydownEvents: () => Observable<KeyboardEvent>;
+  updateSize: () => void;
+  updatePosition: () => void;
+  addPanelClass: (className: string) => void;
+  removePanelClass: (className: string) => void;
+  afterComponentMounted: () => Observable<C3CreateDialogFromComponentResult<C>>;
 };
 
 @Injectable({
@@ -43,6 +65,7 @@ export type C3CreateDialogFromComponentResult<C> = MatDialogRef<
 })
 export class C3DialogService {
   readonly #dialog = inject(MatDialog);
+  private readonly _injector = inject(Injector);
 
   /**
    * Opens a confirm dialog and returns a promise that resolves to a boolean indicating whether the user accepted or rejected the confirmation.
@@ -145,13 +168,52 @@ export class C3DialogService {
       },
     });
 
-    const newDialog = dialog as unknown as C3CreateDialogFromComponentResult<C>;
-    newDialog.rootComponentRef = dialog.componentRef;
-    (newDialog.componentRef as ComponentRef<C> | undefined) =
-      dialog.componentInstance.createdComponent;
-    (newDialog.componentInstance as C | undefined) =
-      dialog.componentInstance.createdComponent?.instance;
+    return this.createC3DialogResult(dialog);
+  }
 
-    return newDialog;
+  private createC3DialogResult<C>(
+    dialog: MatDialogRef<C3DialogEmbedChildComponent<C>>
+  ) {
+    const _afterComponentMounted = new Subject<
+      C3CreateDialogFromComponentResult<C>
+    >();
+
+    const result: C3CreateDialogFromComponentResult<C> = {
+      _containerInstance: dialog._containerInstance,
+      rootComponentRef: dialog.componentRef,
+      rootComponentInstance: dialog.componentInstance,
+      componentRef: dialog.componentInstance.createdComponent(),
+      componentInstance: dialog.componentInstance.createdComponent()?.instance,
+      id: dialog.id,
+      disableClose: dialog.disableClose || false,
+      close: dialog.close.bind(dialog),
+      afterClosed: dialog.afterClosed.bind(dialog),
+      afterOpened: dialog.afterOpened.bind(dialog),
+      beforeClosed: dialog.beforeClosed.bind(dialog),
+      backdropClick: dialog.backdropClick.bind(dialog),
+      getState: dialog.getState.bind(dialog),
+      keydownEvents: dialog.keydownEvents.bind(dialog),
+      updateSize: dialog.updateSize.bind(dialog),
+      updatePosition: dialog.updatePosition.bind(dialog),
+      addPanelClass: dialog.addPanelClass.bind(dialog),
+      removePanelClass: dialog.removePanelClass.bind(dialog),
+      afterComponentMounted: () => _afterComponentMounted.asObservable(),
+    };
+
+    effect(
+      () => {
+        if (dialog.componentInstance.createdComponent()) {
+          result.componentRef = dialog.componentInstance.createdComponent();
+          result.componentInstance =
+            dialog.componentInstance.createdComponent()?.instance;
+          _afterComponentMounted.next(result);
+        }
+      },
+      {
+        injector: this._injector,
+      }
+    );
+
+    return result;
   }
 }

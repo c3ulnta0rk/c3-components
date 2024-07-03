@@ -85,18 +85,21 @@ export class DialogOverviewComponent {
   }
 
   openCustomDialogWithProvidedInputs() {
-    this._c3Dialog
-      .createDialogFromComponent({
-        component: ExampleCustomComponentWithInput,
-        data: {
-          text: 'Hello World modified!',
-        },
-      })
-      .afterClosed()
-      .subscribe((result) => {
-        if (result) {
-          console.log('result', result);
-        }
-      });
+    const dialog = this._c3Dialog.createDialogFromComponent({
+      component: ExampleCustomComponentWithInput,
+      data: {
+        text: 'Hello World modified!',
+      },
+    });
+
+    dialog.afterOpened().subscribe(() => {
+      console.log('dialog opened', dialog.componentInstance?.text());
+    });
+
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('result', result);
+      }
+    });
   }
 }
