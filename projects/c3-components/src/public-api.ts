@@ -54,3 +54,8 @@ export * from './lib/c3-auto-animate/C3AutoAnimate.directive';
  * Select on Focus
  */
 export * from './lib/c3-select-on-focus/c3-select-on-focus.directive';
+
+/**
+ * Toggle Signal
+ */
+export * from './lib/c3-signals/c3-toggle-signal';
