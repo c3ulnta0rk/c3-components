@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -24,10 +23,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: '**',
-    loadComponent: () =>
-      import('./pages/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent
-      ),
+    redirectTo: '',
   },
 ];
 
