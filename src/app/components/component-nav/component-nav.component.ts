@@ -7,7 +7,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, MatTabsModule, RouterModule],
   templateUrl: './component-nav.component.html',
-  styleUrls: ['./component-nav.component.sass'],
+  styleUrls: ['./component-nav.component.scss'],
 })
 export class ComponentNavComponent {
   public links: Array<{

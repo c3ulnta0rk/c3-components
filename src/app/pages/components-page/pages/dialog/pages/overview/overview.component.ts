@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { C3DialogService } from 'c3-components';
 import 'highlight.js';
+import { C3DialogService } from 'projects/c3-components/src/public-api';
 
 @Component({
   template: '<p>example-custom-component-dialog works!</p>',
@@ -9,6 +9,14 @@ export class ExampleCustomComponentDialogComponent {}
 
 @Component({
   template: '<p>{{ text() }}</p>',
+  styles: [
+    `
+      p {
+        margin: 0;
+        height: 250px;
+      }
+    `,
+  ],
 })
 export class ExampleCustomComponentWithInput {
   public readonly text = input('Hello World');
@@ -16,7 +24,7 @@ export class ExampleCustomComponentWithInput {
 
 @Component({
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.sass'],
+  styleUrls: ['./overview.component.scss'],
 })
 export class DialogOverviewComponent {
   constructor(private _c3Dialog: C3DialogService) {}
@@ -90,6 +98,14 @@ export class DialogOverviewComponent {
       data: {
         text: 'Hello World modified!',
       },
+      toolbar: {
+        title: 'Custom Dialog',
+        closeBtn: true,
+        closeColor: 'warn',
+        color: 'primary',
+      },
+      width: '300px',
+      height: '200px',
     });
 
     dialog.afterOpened().subscribe(() => {

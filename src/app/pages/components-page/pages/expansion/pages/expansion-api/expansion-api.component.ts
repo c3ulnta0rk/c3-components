@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './expansion-api.component.html',
-  styleUrl: './expansion-api.component.sass'
+  styleUrl: './expansion-api.component.scss',
 })
-export class ExpansionApiComponent {
-
-}
+export class ExpansionApiComponent {}

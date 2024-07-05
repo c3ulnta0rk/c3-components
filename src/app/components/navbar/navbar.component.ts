@@ -7,15 +7,11 @@ import { RouterModule } from '@angular/router';
   selector: 'app-navbar',
   standalone: true,
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.sass'],
+  styleUrls: ['./navbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'app-navbar px-1'
+    class: 'app-navbar px-1',
   },
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    RouterModule
-  ]
+  imports: [CommonModule, MatButtonModule, RouterModule],
 })
 export class NavbarComponent {}

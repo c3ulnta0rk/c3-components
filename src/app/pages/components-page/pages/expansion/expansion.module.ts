@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ExpansionRoutingModule } from './expansion-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ExpansionRoutingModule
-  ]
+  imports: [CommonModule, ExpansionRoutingModule],
 })
-export class ExpansionModule { }
+export class ExpansionModule {}

@@ -27,20 +27,35 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar>
-    <ng-template #target></ng-template>
+    <div class="dialog-content">
+      <ng-template #target></ng-template>
+    </div>
   </mat-dialog-content>`,
   styles: [
     `
-      .mat-toolbar {
+      mat-dialog-content {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        span {
-          color: inherit;
+        flex-direction: column;
+        height: 100%;
+
+        .dialog-content {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          overflow: auto;
+          flex-grow: 1;
         }
-      }
-      .spacer {
-        flex: 1 1 auto;
+        .mat-toolbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          span {
+            color: inherit;
+          }
+        }
+        .spacer {
+          flex: 1 1 auto;
+        }
       }
     `,
   ],

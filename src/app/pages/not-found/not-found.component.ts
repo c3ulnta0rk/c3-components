@@ -7,7 +7,7 @@ import { MatRippleModule } from '@angular/material/core';
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatRippleModule],
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.sass'],
+  styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent {
   public currentPath: string = window.location.pathname;

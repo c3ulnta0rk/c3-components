@@ -13,6 +13,6 @@ import { ComponentNavComponent } from 'src/app/components/component-nav/componen
     TabsApiComponent,
     TabsExamplesComponent,
   ],
-  imports: [CommonModule, ComponentNavComponent, TabsRoutingModule],
+  imports: [ComponentNavComponent, TabsRoutingModule],
 })
 export class TabsModule {}

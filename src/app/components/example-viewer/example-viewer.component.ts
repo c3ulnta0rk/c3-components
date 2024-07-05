@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule],
   templateUrl: './example-viewer.component.html',
-  styleUrls: ['./example-viewer.component.sass'],
+  styleUrls: ['./example-viewer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'example-viewer pa-1 rounded-sm stroked mat-elevation-z2',

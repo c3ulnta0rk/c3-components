@@ -1,0 +1,124 @@
+@use "sass:map";
+@use "sass:meta";
+@use "./utils" as utils;
+
+@mixin c3-root-variables($theme) {
+  :root {
+    $primary-palette: map.get($theme, primary);
+    $accent-palette: map.get($theme, accent);
+    $warn-palette: map.get($theme, warn);
+    $background-palette: map.get($theme, background);
+    $foreground-palette: map.get($theme, foreground);
+
+    $is-dark-theme: map.get($theme, is-dark);
+
+    $primary-color: map.get($primary-palette, 500);
+    $primary-color-light: map.get($primary-palette, 300);
+    $primary-color-dark: map.get($primary-palette, 700);
+
+    $accent-color: map.get($accent-palette, 500);
+    $accent-color-light: map.get($accent-palette, 300);
+    $accent-color-dark: map.get($accent-palette, 700);
+
+    $warn-color: map.get($warn-palette, 500);
+    $warn-color-light: map.get($warn-palette, 300);
+    $warn-color-dark: map.get($warn-palette, 700);
+
+    $background-status-bar: map.get($background-palette, status-bar);
+    $background-app-bar: map.get($background-palette, app-bar);
+    $background-background: map.get($background-palette, background);
+    $background-hover: map.get($background-palette, hover);
+    $background-card: map.get($background-palette, card);
+    $background-dialog: map.get($background-palette, dialog);
+    $background-disabled-button: map.get($background-palette, disabled-button);
+    $background-raised-button: map.get($background-palette, raised-button);
+    $background-focused-button: map.get($background-palette, focused-button);
+    $background-selected-button: map.get($background-palette, selected-button);
+    $background-selected-disabled-button: map.get(
+      $background-palette,
+      selected-disabled-button
+    );
+    $background-disabled-button-toggle: map.get(
+      $background-palette,
+      disabled-button-toggle
+    );
+    $background-unselected-chip: map.get($background-palette, unselected-chip);
+    $background-disabled-list-option: map.get(
+      $background-palette,
+      disabled-list-option
+    );
+    $background-tooltip: map.get($background-palette, tooltip);
+
+    $foreground-base: map.get($foreground-palette, base);
+    $foreground-divider: map.get($foreground-palette, divider);
+    $foreground-dividers: map.get($foreground-palette, dividers);
+    $foreground-disabled: map.get($foreground-palette, disabled);
+    $foreground-disabled-button: map.get($foreground-palette, disabled-button);
+    $foreground-disabled-text: map.get($foreground-palette, disabled-text);
+    $foreground-elevation: map.get($foreground-palette, elevation);
+    $foreground-hint-text: map.get($foreground-palette, hint-text);
+    $foreground-secondary-text: map.get($foreground-palette, secondary-text);
+    $foreground-icon: map.get($foreground-palette, icon);
+    $foreground-icons: map.get($foreground-palette, icons);
+    $foreground-text: map.get($foreground-palette, text);
+    $foreground-slider-min: map.get($foreground-palette, slider-min);
+    $foreground-slider-off: map.get($foreground-palette, slider-off);
+    $foreground-slider-off-active: map.get(
+      $foreground-palette,
+      slider-off-active
+    );
+
+    --primary-color: #{$primary-color};
+    --primary-color-light: #{$primary-color-light};
+    --primary-color-dark: #{$primary-color-dark};
+
+    --accent-color: #{$accent-color};
+    --accent-color-light: #{$accent-color-light};
+    --accent-color-dark: #{$accent-color-dark};
+
+    --warn-color: #{$warn-color};
+    --warn-color-light: #{$warn-color-light};
+    --warn-color-dark: #{$warn-color-dark};
+
+    --background-status-bar: #{$background-status-bar};
+    --background-app-bar: #{$background-app-bar};
+    --background-background: #{$background-background};
+    --background-hover: #{$background-hover};
+    --background-card: #{$background-card};
+    --background-dialog: #{$background-dialog};
+    --background-disabled-button: #{$background-disabled-button};
+    --background-raised-button: #{$background-raised-button};
+    --background-focused-button: #{$background-focused-button};
+    --background-selected-button: #{$background-selected-button};
+    --background-selected-disabled-button: #{$background-selected-disabled-button};
+    --background-disabled-button-toggle: #{$background-disabled-button-toggle};
+    --background-unselected-chip: #{$background-unselected-chip};
+    --background-disabled-list-option: #{$background-disabled-list-option};
+    --background-tooltip: #{$background-tooltip};
+
+    @if $is-dark-theme {
+      --background-card-table: #{utils.get-color-from-palette($accent-palette)};
+    } @else {
+      --background-card-table: #{utils.get-color-from-palette(
+          $accent-palette,
+          100
+        )};
+    }
+
+    --foreground-base: #{$foreground-base};
+    --foreground-divider: #{$foreground-divider};
+    --foreground-dividers: #{$foreground-dividers};
+    --foreground-disabled: #{$foreground-disabled};
+    --foreground-disabled-button: #{$foreground-disabled-button};
+    --foreground-disabled-text: #{$foreground-disabled-text};
+    --foreground-elevation: #{$foreground-elevation};
+    --foreground-hint-text: #{$foreground-hint-text};
+    --foreground-secondary-text: #{$foreground-secondary-text};
+    --foreground-icon: #{$foreground-icon};
+    --foreground-icons: #{$foreground-icons};
+    --foreground-text: #{$foreground-text};
+    --foreground-slider-min: #{$foreground-slider-min};
+    --foreground-slider-off: #{$foreground-slider-off};
+    --foreground-slider-off-active: #{$foreground-slider-off-active};
+  }
+}

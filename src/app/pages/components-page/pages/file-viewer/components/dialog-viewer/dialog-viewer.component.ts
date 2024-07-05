@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { C3FileViewer, C3FileViewerConfig, FileMetadata } from 'c3-components';
+import {
+  FileMetadata,
+  C3FileViewerConfig,
+  C3FileViewer,
+} from 'projects/c3-components/src/public-api';
 
 @Component({
   selector: 'dialog-viewer',
   templateUrl: './dialog-viewer.component.html',
-  styleUrls: ['./dialog-viewer.component.sass'],
+  styleUrls: ['./dialog-viewer.component.scss'],
 })
 export class DialogViewerComponent {
   public images: Array<FileMetadata> = [

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  CustomFileEvent,
-  C3FileViewerConfig,
   FileMetadata,
+  C3FileViewerConfig,
   C3FileViewer,
-} from 'c3-components';
+  CustomFileEvent,
+} from 'projects/c3-components/src/public-api';
 
 @Component({
   selector: 'basic-viewer',
   templateUrl: './basic-viewer.component.html',
-  styleUrls: ['./basic-viewer.component.sass'],
+  styleUrls: ['./basic-viewer.component.scss'],
 })
 export class BasicViewerComponent {
   public images: Array<FileMetadata> = [

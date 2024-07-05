@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './expansion-examples.component.html',
-  styleUrl: './expansion-examples.component.sass'
+  styleUrl: './expansion-examples.component.scss',
 })
-export class ExpansionExamplesComponent {
-
-}
+export class ExpansionExamplesComponent {}

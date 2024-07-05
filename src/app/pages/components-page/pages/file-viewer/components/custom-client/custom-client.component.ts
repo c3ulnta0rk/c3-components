@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { C3FileViewerConfig, FileMetadata } from 'c3-components';
+import {
+  FileMetadata,
+  C3FileViewerConfig,
+} from 'projects/c3-components/src/public-api';
 
 @Component({
   selector: 'custom-client',
   templateUrl: './custom-client.component.html',
-  styleUrls: ['./custom-client.component.sass'],
+  styleUrls: ['./custom-client.component.scss'],
 })
 export class CustomClientComponent {
   public images: Array<FileMetadata> = [
