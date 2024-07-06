@@ -1,18 +1,12 @@
 header {
   min-height: 420px;
   height: 100%;
+  width: 100%;
   position: relative;
-  background: radial-gradient(
-    ellipse 75vw 75vh at center 40vh,
-    oklch(0.51 0.21 29.2),
-    oklch(0.3 calc(1.5 * 15%) 29.2) 50%,
-    oklch(0.2 calc(0.75 * 15%) 29.2) 90%
-  );
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 5rem;
 
   .docs-header-section__nav {
     display: flex;
@@ -20,7 +14,8 @@ header {
     gap: 2rem;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
+    transform: translateY(-50%);
+
     h4 {
       font-size: 1.5rem;
       font-weight: 400;
@@ -36,15 +31,16 @@ header {
   }
 }
 header h1 {
+  width: 100%;
   font-size: 75px;
   font-weight: 700;
   margin-bottom: 0;
   color: white !important;
   text-shadow: 0 0 32px var(--color-primary);
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-items: center;
+  text-align: center;
+  min-height: 320px;
+  line-height: 320px;
+  background-color: var(--color-primary);
 }
 header h1,
 header h4 {

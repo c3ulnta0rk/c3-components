@@ -1,6 +1,6 @@
-# C3-components
+# c3-components
 
-C3-components is an open-source component library that extends the [@angular/material](https://material.angular.io/) library. This collection of components aims to facilitate and accelerate the development of modern Angular applications by providing reusable and customizable components to meet specific needs.
+c3-components is an open-source component library that extends the [@angular/material](https://material.angular.io/) library. This collection of components aims to facilitate and accelerate the development of modern Angular applications by providing reusable and customizable components to meet specific needs.
 
 ## Table of Contents
 
@@ -13,17 +13,17 @@ C3-components is an open-source component library that extends the [@angular/mat
 
 ## Installation
 
-To install C3-components in your Angular project, run the following command:
+To install c3-components in your Angular project, run the following command:
 
 ```bash
-npm install C3-components
+npm install c3-components
 ```
 
 Also, make sure you have installed and configured @angular/material as per [their documentation](https://material.angular.io/guide/getting-started).
 
 ## Components
 
-C3-components offer a variety of components that extend the functionality of @angular/material. Below is a table listing the available components and the progress status of their documentation:
+c3-components offer a variety of components that extend the functionality of @angular/material. Below is a table listing the available components and the progress status of their documentation:
 
 | Component      | Documentation Status                                                        |
 | -------------- | --------------------------------------------------------------------------- |
@@ -41,16 +41,16 @@ C3-components offer a variety of components that extend the functionality of @an
 
 ## Documentation
 
-Complete documentation for the C3-components is available on our [documentation website](https://c3ulnta0rk.github.io/c3-components/). You'll find usage examples, guides, and API references for each component.
+Complete documentation for the c3-components is available on our [documentation website](https://c3ulnta0rk.github.io/c3-components/). You'll find usage examples, guides, and API references for each component.
 
 ## Development
 
-If you'd like to contribute to the development of C3-components, follow the steps below to set up your development environment:
+If you'd like to contribute to the development of c3-components, follow the steps below to set up your development environment:
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Kroenen62/C3-components.git
+git clone https://github.com/Kroenen62/c3-components.git
 ```
 
 2. Install the dependencies:
@@ -68,7 +68,7 @@ bunx @angular/cli build c3-components --watch
 4. (In a new cmd) Link the library to the demo application:
 
 ```bash
-npm link c3-components 
+npm link c3-components
 ```
 
 5. Run the demo application:
@@ -87,4 +87,4 @@ Before contributing, please read our [contribution guide](./CONTRIBUTING.md) for
 
 ## License
 
-C3-components are licensed under the [MIT License](./LICENSE). You are free to use, modify, and distribute it, subject to the terms of this license.
+c3-components are licensed under the [MIT License](./LICENSE). You are free to use, modify, and distribute it, subject to the terms of this license.

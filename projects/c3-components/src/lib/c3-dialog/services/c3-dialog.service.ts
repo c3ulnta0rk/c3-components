@@ -24,7 +24,7 @@ import {
 import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
-import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
   Partial<Record<keyof C, unknown>>
@@ -129,7 +129,7 @@ export class C3DialogService {
             text: (data.accept && data.accept.text) || 'Accepter',
           },
         },
-      }
+      },
     );
 
     return new Promise<string | false>((resolve, reject) => {
@@ -172,7 +172,7 @@ export class C3DialogService {
   }
 
   private createC3DialogResult<C>(
-    dialog: MatDialogRef<C3DialogEmbedChildComponent<C>>
+    dialog: MatDialogRef<C3DialogEmbedChildComponent<C>>,
   ) {
     const _afterComponentMounted = new Subject<
       C3CreateDialogFromComponentResult<C>
@@ -211,7 +211,7 @@ export class C3DialogService {
       },
       {
         injector: this._injector,
-      }
+      },
     );
 
     return result;

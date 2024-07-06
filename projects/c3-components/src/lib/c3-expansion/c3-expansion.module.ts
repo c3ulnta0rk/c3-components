@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { C3AutoAnimateDirective } from '../c3-auto-animate/C3AutoAnimate.directive';
+import { C3AutoAnimateDirective } from '../c3-auto-animate/c3-auto-animate.directive';
 
 @NgModule({
   declarations: [C3ExpansionComponent, C3ExpansionHeaderComponent],
