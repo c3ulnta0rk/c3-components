@@ -50,7 +50,7 @@ If you'd like to contribute to the development of c3-components, follow the step
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Kroenen62/c3-components.git
+git clone https://github.com/c3ulnta0rk/c3-components.git
 ```
 
 2. Install the dependencies:

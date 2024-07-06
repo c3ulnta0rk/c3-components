@@ -41,7 +41,7 @@ C3-components offer a variety of components that extend the functionality of @an
 
 ## Documentation
 
-Complete documentation for the C3-components is available on our [documentation website](https://kroenen62.github.io/c3-components/). You'll find usage examples, guides, and API references for each component.
+Complete documentation for the C3-components is available on our [documentation website](https://c3ulnta0rk.github.io/c3-components/). You'll find usage examples, guides, and API references for each component.
 
 ## Development
 
@@ -50,7 +50,7 @@ If you'd like to contribute to the development of C3-components, follow the step
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Kroenen62/C3-components.git
+git clone https://github.com/c3ulnta0rk/C3-components.git
 ```
 
 2. Install the dependencies:

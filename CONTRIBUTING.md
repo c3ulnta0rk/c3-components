@@ -29,7 +29,7 @@ By participating in this project, you are expected to uphold our [Code of Conduc
 
 ## Reporting Issues
 
-If you encounter any issues or bugs, please report them on the [issue tracker](https://github.com/Kroenen62/c3-components/issues). When submitting an issue, make sure to:
+If you encounter any issues or bugs, please report them on the [issue tracker](https://github.com/c3ulnta0rk/c3-components/issues). When submitting an issue, make sure to:
 
 - Use a clear and descriptive title.
 - Provide a detailed description of the issue and steps to reproduce it.

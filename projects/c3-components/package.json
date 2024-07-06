@@ -2,9 +2,9 @@
   "name": "c3-components",
   "version": "0.0.45",
   "description": "C3 Components Library",
-  "author": "Kroenen62",
+  "author": "c3ulnta0rk",
   "license": "MIT",
-  "homepage": "https://github.com/Kroenen62/c3-components",
+  "homepage": "https://github.com/c3ulnta0rk/c3-components",
   "peerDependencies": {
     "@angular/common": ">=16.0.0",
     "@angular/core": ">=16.0.0",
