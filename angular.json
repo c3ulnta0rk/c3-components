@@ -18,7 +18,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/c3-components-docs"
+              "base": "docs",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
@@ -34,7 +35,8 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "baseHref": "/c3-components/"
           },
           "configurations": {
             "production": {
@@ -50,8 +52,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all",
-              "baseHref": "/c3-components/"
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,

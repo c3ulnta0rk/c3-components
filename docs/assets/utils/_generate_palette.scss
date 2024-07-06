@@ -1,6 +1,5 @@
 @use "sass:color";
 @use "sass:map";
-@import "@angular/material/theming";
 
 // Fonction pour générer une palette de couleurs
 @function generate-palette($primary-color) {
