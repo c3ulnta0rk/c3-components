@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin border($config-or-theme) {
+  $config: mat.m2-get-color-config($config-or-theme);
+  $foreground: map.get($config, foreground);
+
+  .stroked {
+    border: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .stroked-top {
+    border-top: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .stroked-bottom {
+    border-bottom: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .stroked-left {
+    border-left: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .stroked-right {
+    border-right: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .dashed {
+    border: 1px dashed mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .dashed-top {
+    border-top: 1px dashed mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .dashed-bottom {
+    border-bottom: 1px dashed mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .dashed-left {
+    border-left: 1px dashed mat.m2-get-color-from-palette($foreground, divider);
+  }
+
+  .dashed-right {
+    border-right: 1px dashed mat.m2-get-color-from-palette($foreground, divider);
+  }
+}
