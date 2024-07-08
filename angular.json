@@ -45,7 +45,7 @@
       },
       "root": "projects/c3-components-docs",
       "sourceRoot": "projects/c3-components-docs/src",
-      "prefix": "app",
+      "prefix": "c3",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",

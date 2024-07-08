@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+aside {
+  height: 100%;
+  background: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  overflow: auto;
+  padding: 1rem;
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+main {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}

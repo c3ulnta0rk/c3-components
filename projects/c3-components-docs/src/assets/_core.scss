@@ -1,15 +1,9 @@
 @use "./mat-color-palette.scss" as *;
-@use "./margin.scss" as *;
 @use "./customScrollbar.scss" as *;
 @use "../../../c3-components/src/index" as *;
-@use "./border.scss" as *;
-@use "./rounded.scss" as *;
 
 @mixin core($theme) {
   @include c3-core($theme);
   @include color-palette($theme);
-  @include margin();
   @include customScrollbar($theme);
-  @include border($theme);
-  @include rounded();
 }
