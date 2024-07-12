@@ -13,8 +13,8 @@ export const routes: Routes = [
       },
       {
         path: 'docs',
-        loadComponent: () =>
-          import('./pages/docs/docs.component').then((m) => m.DocsComponent),
+        loadChildren: () =>
+          import('./pages/docs/docs.module').then((m) => m.DocsModule),
       },
 
       {

@@ -3,6 +3,7 @@
 @use "./assets/core" as *;
 @use "sass:map";
 @use "./assets/utils" as utils;
+@use "./assets/material-icons/index";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
