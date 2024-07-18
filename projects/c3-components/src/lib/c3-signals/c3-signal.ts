@@ -1,5 +1,5 @@
 import { WritableSignal, effect, signal } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 class C3Signal<T> {
   private _signal: WritableSignal<T>;

@@ -5,7 +5,7 @@ import {
   input,
   model,
 } from '@angular/core';
-import { C3AutoAnimateDirective } from 'projects/c3-components/src/public-api';
+import { C3AutoAnimateDirective } from '../../../c3-auto-animate/c3-auto-animate.directive';
 
 @Component({
   selector: 'c3-expansion',
