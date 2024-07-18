@@ -24,6 +24,12 @@ const routes: Routes = [
       },
 
       {
+        path: 'dialog',
+        loadChildren: () =>
+          import('./pages/dialog/dialog.module').then((m) => m.DialogModule),
+      },
+
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: 'overview',

@@ -1,0 +1,29 @@
+<p class="my-4">This is a simple of a prebuilded dialog</p>
+
+<example-viewer class="mb-1 px-4 pb-2">
+  <h4 title>Prompt</h4>
+
+  <ng-container example>
+    <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+
+    @if (dialogResult() !== undefined) {
+      <p>You chose: {{ dialogResult() ? "true" : "false" }}</p>
+    }
+  </ng-container>
+
+  <ng-container html>
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+          <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+          @if (dialogResult() !== undefined) {
+            <p>You chose: {{ dialogResult() ? "true" : "false" }}</p>
+          }
+        </textarea
+      >
+    </div>
+  </ng-container>
+
+  <ng-container ts>
+    <div class="ma-4 p-4"></div>
+  </ng-container>
+</example-viewer>

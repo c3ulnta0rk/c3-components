@@ -1,0 +1,34 @@
+<div class="example-viewer-header">
+  <ng-content select="[title]"></ng-content>
+  <div class="example-viewer-header-buttons">
+    <button mat-icon-button (click)="toggleSourceView()">
+      <mat-icon>code</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="example-viewer-content">
+  <div class="example-viewer-source" *ngIf="sourceView">
+    <mat-tab-group>
+      <mat-tab label="HTML">
+        <div class="ma-4 p-4 hjls">
+          <ng-content select="[html]"></ng-content>
+        </div>
+      </mat-tab>
+      <mat-tab label="TS">
+        <div class="ma-4 p-4 hjls">
+          <ng-content select="[ts]"></ng-content>
+        </div>
+      </mat-tab>
+      <mat-tab label="CSS">
+        <div class="ma-4 p-4 hjls">
+          <ng-content select="[css]"></ng-content>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div class="example-viewer-example">
+    <ng-content select="[example]"></ng-content>
+  </div>
+</div>

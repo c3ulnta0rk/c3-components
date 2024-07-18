@@ -1,11 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Host, HostBinding } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'c3-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatDividerModule,
+    MatCardModule,
+    MatIconModule,
+    RouterModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  @HostBinding('class')
+  private class = 'p-4';
+}

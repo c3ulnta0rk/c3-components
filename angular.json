@@ -127,9 +127,12 @@
               }
             ],
             "styles": [
-              "projects/c3-components-docs/src/styles.scss"
+              "projects/c3-components-docs/src/styles.scss",
+              "node_modules/highlight.js/styles/atom-one-dark.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/highlight.js/lib/index.js"
+            ]
           }
         }
       }

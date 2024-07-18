@@ -4,6 +4,7 @@
 @use "sass:map";
 @use "./assets/utils" as utils;
 @use "./assets/material-icons/index";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,6 +22,7 @@ body {
 @media (prefers-color-scheme: light) {
   @include mat.core();
   @include core(theme.$theme-light);
+
   $primary: mat.get-theme-color(theme.$theme-light, primary);
   $accent: mat.get-theme-color(theme.$theme-light, accent);
   $warn: mat.get-theme-color(theme.$theme-light, warn);
