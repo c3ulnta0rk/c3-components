@@ -13,7 +13,7 @@ class C3Signal<T> {
     });
   }
 
-  get value() {
+  get() {
     return this._signal();
   }
 
