@@ -8,7 +8,7 @@ import { C3DialogService } from 'projects/c3-components/src/public-api';
 export class DialogExamplesComponent {
   private readonly dialogService = inject(C3DialogService);
   public dialogConfirmHtml = signal(
-    `<button mat-raised-button (click)="openDialog()">Open Dialog</button>`,
+    `<button mat-raised-button (click)="openDialog()">Open Dialog</button>`
   );
 
   public dialogResult = signal<boolean | undefined>(undefined);

@@ -7,8 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { C3DialogModule } from 'projects/c3-components/src/public-api';
 import { ComponentNavComponent } from 'projects/c3-components-docs/src/app/components/component-nav/component-nav.component';
 import { MatCardModule } from '@angular/material/card';
-import { HighlightJsDirective, HighlightJsModule } from 'ngx-highlight-js';
+import { HighlightJsDirective } from 'ngx-highlight-js';
 import { ExampleViewerComponent } from 'projects/c3-components-docs/src/app/components/example-viewer/example-viewer.component';
+import { ExampleViewerTabComponent } from 'projects/c3-components-docs/src/app/components/example-viewer/example-viewer-tab.component';
 
 @NgModule({
   declarations: [DialogApiComponent, DialogExamplesComponent],
@@ -19,6 +20,7 @@ import { ExampleViewerComponent } from 'projects/c3-components-docs/src/app/comp
     MatCardModule,
     MatButtonModule,
     ExampleViewerComponent,
+    ExampleViewerTabComponent,
     HighlightJsDirective,
   ],
 })

@@ -1,34 +1,24 @@
-<div class="example-viewer-header">
+<div class="header">
   <ng-content select="[title]"></ng-content>
-  <div class="example-viewer-header-buttons">
-    <button mat-icon-button (click)="toggleSourceView()">
+  <div class="header-buttons">
+    <button mat-icon-button (click)="sourceView.toggle()">
       <mat-icon>code</mat-icon>
     </button>
   </div>
 </div>
 
-<div class="example-viewer-content">
-  <div class="example-viewer-source" *ngIf="sourceView">
-    <mat-tab-group>
-      <mat-tab label="HTML">
-        <div class="ma-4 p-4 hjls">
-          <ng-content select="[html]"></ng-content>
-        </div>
-      </mat-tab>
-      <mat-tab label="TS">
-        <div class="ma-4 p-4 hjls">
-          <ng-content select="[ts]"></ng-content>
-        </div>
-      </mat-tab>
-      <mat-tab label="CSS">
-        <div class="ma-4 p-4 hjls">
-          <ng-content select="[css]"></ng-content>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
+<div class="content" c3AutoAnimate>
+  @if (sourceView.value) {
+  <mat-tab-group dynamicHeight>
+    @for (tab of tabs(); track $index) { @if(tab.template()) {
+    <mat-tab label="{{ tab.label() }}">
+      <ng-container [ngTemplateOutlet]="tab.template()!"></ng-container>
+    </mat-tab>
+    } }
+  </mat-tab-group>
+  }
 
-  <div class="example-viewer-example">
+  <div class="example">
     <ng-content select="[example]"></ng-content>
   </div>
 </div>

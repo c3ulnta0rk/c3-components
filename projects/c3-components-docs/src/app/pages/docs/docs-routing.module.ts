@@ -11,7 +11,7 @@ const routes: Routes = [
         path: 'overview',
         loadComponent: () =>
           import('./pages/overview/overview.component').then(
-            (m) => m.DocOverviewComponent,
+            (m) => m.DocOverviewComponent
           ),
       },
 
@@ -19,7 +19,7 @@ const routes: Routes = [
         path: 'getting-started',
         loadComponent: () =>
           import('./pages/getting-started/getting-started.component').then(
-            (m) => m.GettingStartedComponent,
+            (m) => m.GettingStartedComponent
           ),
       },
 
@@ -27,6 +27,14 @@ const routes: Routes = [
         path: 'dialog',
         loadChildren: () =>
           import('./pages/dialog/dialog.module').then((m) => m.DialogModule),
+      },
+
+      {
+        path: 'file-viewer',
+        loadChildren: () =>
+          import('./pages/file-viewer/file-viewer.module').then(
+            (m) => m.FileViewerModule
+          ),
       },
 
       {
