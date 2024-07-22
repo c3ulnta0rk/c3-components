@@ -4,10 +4,10 @@ import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
 import { CustomFileEvent } from './custom-file-event.model';
 import { FileMetadata } from './file-metadata';
-import { inject } from '@angular/core';
 
 export class C3FileViewer {
   private _config: C3FileViewerConfig = DEFAULT_CONFIG;
+  private client: HttpClient['get'] | undefined;
   get config(): C3FileViewerConfig {
     return this._config;
   }
@@ -50,9 +50,10 @@ export class C3FileViewer {
     this.index$.next(this.currentIndex);
 
     this.filesObjectUrl = value.map((file) => {
+      const objectUrl = file.objectUrl || this.createObjectURL(file);
       return {
         ...file,
-        objectUrl: file.objectUrl || this.createObjectURL(file),
+        objectUrl,
       };
     });
   }
@@ -65,7 +66,7 @@ export class C3FileViewer {
 
   public filesObjectUrl: Array<
     FileMetadata & {
-      objectUrl?: Observable<string>;
+      objectUrl: Observable<string>;
     }
   > = [];
 
@@ -79,12 +80,15 @@ export class C3FileViewer {
   constructor({
     config,
     files,
+    client,
   }: {
     config?: C3FileViewerConfig;
     files?: FileMetadata[];
+    client: HttpClient;
   }) {
     if (config) this.config = config;
     if (files) this.files = files;
+    if (client) this.client = client.get.bind(client);
 
     this.config$.subscribe((config) => {
       const { minHeight, maxHeight, minWidth, maxWidth, height, width } =
@@ -110,9 +114,7 @@ export class C3FileViewer {
   }
 
   getFile(location: string) {
-    const client =
-      this.config.customClient ||
-      inject(HttpClient).get.bind(inject(HttpClient));
+    const client = this.config.customClient || this.client;
     if (!client) {
       throw new Error(
         'No http client provided. Please provide a custom client or import HttpClientModule'

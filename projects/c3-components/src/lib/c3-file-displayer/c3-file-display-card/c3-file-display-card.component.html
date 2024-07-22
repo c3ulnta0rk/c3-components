@@ -1,0 +1,33 @@
+<button
+  class="file-card border"
+  [class.size-16]="size() === '16'"
+  [class.size-32]="size() === '32'"
+  [class.size-64]="size() === '64'"
+  [class.size-128]="size() === '128'"
+  [class.size-256]="size() === '256'"
+>
+  @if(deletable()) {
+  <div class="actions">
+    <button mat-icon-button color="red" (click)="onDelete.emit()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  } @if(fileObjectUrl()) { @if(fileObjectUrl()!.type.startsWith('image')) {
+  <img
+    class="h-full w-full object-cover"
+    [src]="(fileObjectUrl()!.objectUrl | async) || '/default-image.svg'"
+    [alt]="fileObjectUrl()!.name"
+  />
+  } @else if (fileObjectUrl()!.type.startsWith('application')) {
+  <mat-icon> file-pdf-box </mat-icon>
+  } @else if (fileObjectUrl()!.type.startsWith('video')) {
+  <mat-icon> video </mat-icon>
+  }
+
+  <div class="informations flex justify-between items-center">
+    <span class="text-xs text-white">
+      {{ fileObjectUrl()!.name }}
+    </span>
+  </div>
+  }
+</button>

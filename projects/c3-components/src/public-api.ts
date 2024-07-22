@@ -34,6 +34,11 @@ export * from './lib/c3-file-viewer/models/file-metadata';
 export * from './lib/c3-file-viewer/c3-file-viewer.module';
 
 /**
+ * File Displayer
+ */
+export * from './lib/c3-file-displayer/c3-file-displayer.module';
+
+/**
  * Safe Url
  */
 export * from './lib/c3-safe-url/pipes/c3-safe-url.pipe';

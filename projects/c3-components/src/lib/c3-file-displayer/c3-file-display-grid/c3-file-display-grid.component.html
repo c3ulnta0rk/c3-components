@@ -1,0 +1,11 @@
+<c3-file-viewer-dialog [fileViewer]="fileViewer">
+  <div class="c3-file-display-grid">
+    @for (file of files(); track $index) {
+    <c3-file-display-card
+      [fileObjectUrl]="fileViewer.filesObjectUrl[$index]"
+      (click)="openDialog($event, $index)"
+      (onDelete)="onDelete.emit(file)"
+    />
+    }
+  </div>
+</c3-file-viewer-dialog>

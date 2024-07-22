@@ -38,6 +38,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'file-displayer',
+        loadChildren: () =>
+          import('./pages/file-displayer/file-displayer.module').then(
+            (m) => m.FileDisplayerModule
+          ),
+      },
+
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: 'overview',

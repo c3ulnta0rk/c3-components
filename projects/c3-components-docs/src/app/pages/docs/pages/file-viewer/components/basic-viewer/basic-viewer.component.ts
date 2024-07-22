@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   C3FileViewerConfig,
   C3FileViewer,
   CustomFileEvent,
   C3FileViewerModule,
 } from 'projects/c3-components/src/public-api';
-import { crabbyImgs } from '../../files';
+import { configDemo, crabbyImgs } from '../../../../../../files-demo';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'basic-viewer',
@@ -15,38 +16,10 @@ import { crabbyImgs } from '../../files';
   styleUrls: ['./basic-viewer.component.scss'],
 })
 export class BasicViewerComponent {
-  public config: C3FileViewerConfig = {
-    btnContainerClass: 'other',
-    btnClass: 'btn btn-hover-primary px-1',
-    btnSubClass: 'material-icons font-size-xl',
-    zoomFactor: 0.1,
-    wheelZoom: true,
-    allowFullscreen: true,
-    allowKeyboardNavigation: true,
-    height: '640px',
-    btnShow: {
-      zoomIn: true,
-      zoomOut: true,
-      rotateClockwise: true,
-      rotateCounterClockwise: true,
-      next: false,
-      prev: false,
-      reset: true,
-    },
-    btnIcons: {
-      next: {
-        text: 'navigate_next',
-      },
-      prev: {
-        text: 'navigate_before',
-      },
-    },
-    customBtns: [],
-  };
-
   public fileViewer = new C3FileViewer({
     files: crabbyImgs,
-    config: this.config,
+    config: configDemo,
+    client: inject(HttpClient),
   });
 
   handleEvent(event: CustomFileEvent) {
