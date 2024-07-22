@@ -1,5 +1,5 @@
 <!-- header -->
-<div class="header border-b dark:border-gray-500">
+<div class="header">
   <div class="title full">
     <span>Nom</span>
   </div>
@@ -13,33 +13,29 @@
 <c3-file-viewer-dialog [fileViewer]="fileViewer">
   <div class="file-display-list">
     @for (file of files(); track $index) {
-    <button
-      class="flex w-full h-12 items-center border-b dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 text-start px-2"
-    >
-      <div class="basis-[56px] w-[56px]">
+    <button>
+      <div class="icon">
         <c3-file-display-icon [fileType]="file.type" />
       </div>
-      <div class="flex-auto basis-[304px] w-[304px]">
+      <div class="name">
         <span>{{ file.name }}</span>
       </div>
-      <div class="basis-[304px] w-[304px]">
+      <div class="date-label">
         <span>{{
           file.lastModified ? (file.lastModified | date : "medium") : "-"
         }}</span>
       </div>
-      <div class="basis-[48px] w-[48px]">
-        <button mat-icon-button>
-          <mat-icon>more_vert</mat-icon>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog($event, $index)">
+          Ouvrir
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="openDialog($event, $index)">
-            Ouvrir
-          </button>
-          @if (deletable()) {
-          <button mat-menu-item (click)="onDelete.emit(file)">Supprimer</button>
-          }
-        </mat-menu>
-      </div>
+        @if (deletable()) {
+        <button mat-menu-item (click)="onDelete.emit(file)">Supprimer</button>
+        }
+      </mat-menu>
     </button>
     }
   </div>
