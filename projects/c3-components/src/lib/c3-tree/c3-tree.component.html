@@ -1,0 +1,29 @@
+@if(isLoading()) {
+<div class="c3-tree-loader">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+}
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="children">
+    <button mat-ripple (click)="treeDataSelected.emit(node)">
+      {{ node.name }}
+    </button>
+  </mat-tree-node>
+  <mat-tree-node
+    *matTreeNodeDef="let node; when: hasChild"
+    matTreeNodePadding
+    class="has-children"
+  >
+    <button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+      </mat-icon>
+    </button>
+    <div class="mat-tree-node-content">
+      <ng-content>
+        <span>{{ node.name }}</span>
+      </ng-content>
+    </div>
+  </mat-tree-node>
+</mat-tree>

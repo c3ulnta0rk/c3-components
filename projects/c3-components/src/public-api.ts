@@ -68,3 +68,8 @@ export * from './lib/c3-select-on-focus/c3-select-on-focus.directive';
  * Toggle Signal
  */
 export * from './lib/c3-signals/c3-boolean-signal';
+
+/**
+ * C3 Tree
+ */
+export * from './lib/c3-tree/c3-tree.component';

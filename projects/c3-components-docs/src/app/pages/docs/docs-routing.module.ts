@@ -46,6 +46,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'dropdown',
+        loadChildren: () =>
+          import('./pages/dropdown/dropdown.module').then(
+            (m) => m.DropdownModule
+          ),
+      },
+
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: 'overview',
