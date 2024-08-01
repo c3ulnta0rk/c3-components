@@ -13,7 +13,7 @@ c3-components is an open-source component library that extends the [@angular/mat
 
 ## Installation
 
-To install c3-components in your Angular project, run the following command:
+To install [c3-components](https://www.npmjs.com/package/c3-components) in your Angular project, run the following command:
 
 ```bash
 npm install c3-components
