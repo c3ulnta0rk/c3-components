@@ -7,27 +7,29 @@
   [class.size-256]="size() === '256'"
 >
   @if(deletable()) {
-  <div class="actions">
-    <button mat-icon-button color="red" (click)="onDelete.emit()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
-  } @if(fileObjectUrl()) { @if(fileObjectUrl()!.type.startsWith('image')) {
-  <img
-    class="h-full w-full object-cover"
-    [src]="(fileObjectUrl()!.objectUrl | async) || '/default-image.svg'"
-    [alt]="fileObjectUrl()!.name"
-  />
-  } @else if (fileObjectUrl()!.type.startsWith('application')) {
-  <mat-icon> file-pdf-box </mat-icon>
-  } @else if (fileObjectUrl()!.type.startsWith('video')) {
-  <mat-icon> video </mat-icon>
-  }
+    <div class="actions">
+      <button mat-icon-button color="red" (click)="onDelete.emit()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  } @if(fileObjectUrl()) {
+    @switch (getFileType()) { @case ('image') {
+      <img
+        class="h-full w-full object-cover"
+        [src]="(getFileObjectUrl() | async) || '/default-image.svg'"
+        [alt]="getFileName()"
+      />
+      } @case ('application') {
+      <mat-icon> file-pdf-box </mat-icon>
+      } @case ('video') {
+      <mat-icon> video </mat-icon>
+      }
+    }
 
-  <div class="informations flex justify-between items-center">
-    <span class="text-xs text-white">
-      {{ fileObjectUrl()!.name }}
-    </span>
-  </div>
+    <div class="informations flex justify-between items-center">
+      <span class="text-xs text-white">
+        {{ getDisplayName() }}
+      </span>
+    </div>
   }
 </button>

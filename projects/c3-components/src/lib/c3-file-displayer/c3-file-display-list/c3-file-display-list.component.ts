@@ -43,6 +43,9 @@ export class C3FileDisplayListComponent {
     >
   >();
   public readonly config = input<C3FileViewerConfig>();
+  public readonly displayFn = input<
+    (file: FileMetadata & { location: string }) => string
+  >((file) => file.name);
 
   public readonly deletable = input<boolean>(false);
   public readonly onDelete = output<FileMetadata>();

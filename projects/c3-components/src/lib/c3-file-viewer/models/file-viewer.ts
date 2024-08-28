@@ -87,8 +87,8 @@ export class C3FileViewer {
     client: HttpClient;
   }) {
     if (config) this.config = config;
-    if (files) this.files = files;
     if (client) this.client = client.get.bind(client);
+    if (files) this.files = files;
 
     this.config$.subscribe((config) => {
       const { minHeight, maxHeight, minWidth, maxWidth, height, width } =

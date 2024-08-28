@@ -18,7 +18,7 @@
         <c3-file-display-icon [fileType]="file.type" />
       </div>
       <div class="name">
-        <span>{{ file.name }}</span>
+        <span>{{ displayFn()(file) }}</span>
       </div>
       <div class="date-label">
         <span>{{

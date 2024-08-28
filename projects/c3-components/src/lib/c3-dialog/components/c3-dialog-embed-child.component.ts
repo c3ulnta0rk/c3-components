@@ -15,7 +15,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'C3DialogEmbedChildComponent',
   template: `<mat-dialog-content>
-    <mat-toolbar *ngIf="data.toolbar" [color]="data.toolbar.color || 'default'">
+    <mat-toolbar
+      *ngIf="data.toolbar"
+      [color]="data.toolbar.color || 'default'"
+      class="py-1"
+    >
       <span>{{ data.toolbar.title }}</span>
       <span class="spacer"></span>
       <button
@@ -49,12 +53,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           display: flex;
           justify-content: space-between;
           align-items: center;
+          border-radius: 0.25rem;
           span {
             color: inherit;
           }
         }
         .spacer {
           flex: 1 1 auto;
+          min-width: 16px;
         }
       }
     `,

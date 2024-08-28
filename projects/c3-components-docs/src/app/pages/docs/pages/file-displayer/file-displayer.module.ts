@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { FileDisplayerRoutingModule } from './file-displayer-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    FileDisplayerRoutingModule
-  ]
+  imports: [FileDisplayerRoutingModule],
 })
-export class FileDisplayerModule { }
+export class FileDisplayerModule {}

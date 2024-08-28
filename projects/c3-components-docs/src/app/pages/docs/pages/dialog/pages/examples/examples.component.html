@@ -1,26 +1,20 @@
 <p class="my-4">This is a simple of a prebuilded dialog</p>
 
-<example-viewer class="mb-1 px-4 pb-2">
-  <h4 title>Prompt</h4>
+<example-viewer>
+  <h4 title>Confirm Dialog</h4>
 
   <ng-container example>
-    <button mat-raised-button (click)="openDialog()">Open Dialog</button>
-
-    @if (dialogResult() !== undefined) {
-    <p>You chose: {{ dialogResult() ? "true" : "false" }}</p>
-    }
+    <c3-confirm />
   </ng-container>
 
   <c3-example-viewer-tab label="HTML">
     <div>
       <textarea highlight-js [options]="{}" lang="html">
 <button mat-raised-button (click)="openDialog()">Open Dialog</button>
-@if (dialogResult() !== undefined) {
-  <p>You chose: {{ dialogResult() ? "true" : "false" }}</p>
-}
       </textarea>
     </div>
   </c3-example-viewer-tab>
+
   <c3-example-viewer-tab label="TypeScript">
     <div>
       <textarea highlight-js [options]="{}" lang="typescript">
@@ -55,6 +49,125 @@ export class DialogConfirmExampleComponent {
     });
 
     this.dialogResult.set(confirmResulst);
+  }
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Prompt</h4>
+
+  <ng-content example>
+    <c3-prompt />
+  </ng-content>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+        <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+import {
+  C3DialogModule,
+  C3DialogService,
+} from 'projects/c3-components/src/public-api';
+
+@Component({
+  selector: 'c3-prompt',
+  standalone: true,
+  imports: [CommonModule, C3DialogModule],
+  templateUrl: './prompt.component.html',
+  styleUrl: './prompt.component.scss',
+})
+export class PromptComponent {
+  private readonly dialogService = inject(C3DialogService);
+
+  public async openDialog() {
+    const promptResult = await this.dialogService.prompt({
+      text: 'How old are you ?',
+      reject: {
+        color: 'warn',
+        text: 'Cancel',
+      },
+      accept: {
+        color: 'primary',
+        text: 'Delete',
+      },
+    });
+
+    console.log('You have ' + promptResult.toString + 'years old ?');
+  }
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Embeded component</h4>
+
+  <ng-container example>
+    <c3-embeded-component />
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<button mat-raised-button (click)="openDialog()">Open Dialog</button>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+        import { CommonModule } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  C3DialogModule,
+  C3DialogService,
+} from 'projects/c3-components/src/public-api';
+
+@Component({
+  selector: 'c3-embded-component-example',
+  standalone: true,
+  template: `<p>Input value : &#123;&#123; exampleInput() &#125;&#125;</p>`,
+})
+export class EmbededExampleComponent {
+  public readonly exampleInput = input<string>();
+}
+
+@Component({
+  selector: 'c3-embeded-component',
+  standalone: true,
+  imports: [CommonModule, C3DialogModule, MatButtonModule],
+  templateUrl: './embededComponent.component.html',
+  styleUrl: './embededComponent.component.scss',
+})
+export class EmbededComponentComponent {
+  private readonly dialogService = inject(C3DialogService);
+
+  public async openDialog() {
+    this.dialogService.createDialogFromComponent({
+      component: EmbededExampleComponent,
+      data: {
+        exampleInput: 'Hello word',
+      },
+      toolbar: {
+        title: 'This is a mounted component',
+        closeBtn: true,
+      },
+    });
   }
 }
       </textarea>
