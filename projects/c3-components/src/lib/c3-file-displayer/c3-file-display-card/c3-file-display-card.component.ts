@@ -44,7 +44,7 @@ export class C3FileDisplayCardComponent {
 
   getFileName(): string {
     const file = this.fileObjectUrl();
-    return file ? file.name : '';
+    return file ? this.displayFn()(file) : '';
   }
 
   getDisplayName(): string {
