@@ -73,3 +73,8 @@ export * from './lib/c3-signals/c3-boolean-signal';
  * C3 Tree
  */
 export * from './lib/c3-tree/c3-tree.component';
+
+/**
+ * C3 flowing menu
+ */
+export * from './lib/c3-flowing-menu/c3-flowing-menu.module';

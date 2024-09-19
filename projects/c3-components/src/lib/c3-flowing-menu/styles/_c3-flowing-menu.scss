@@ -1,0 +1,86 @@
+@use "@angular/material" as mat;
+
+@mixin c3-flowing-menu($theme) {
+  $is-dark-theme: mat.get-theme-type($theme) == dark;
+  $menu-inactive: if($is-dark-theme, #9b9b9b, #dfdfdf);
+  $menu-active: if($is-dark-theme, #5f5f5f, #c0c0c0);
+  $menu-hover: if($is-dark-theme, #a5a5a5, #e7e7e7);
+  .c3-flowing-menu {
+    --menu-inactive: #{$menu-inactive};
+    --menu-active: #{$menu-active};
+    --menu-hover: #{$menu-hover};
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "menu contenu";
+    height: 100%;
+
+    .menu {
+      grid-area: menu;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 2rem 0;
+
+      > button {
+        position: relative;
+        margin: 0;
+        padding: 1rem;
+        background-color: var(--menu-inactive);
+        cursor: pointer;
+        min-width: 200px;
+        box-shadow: none;
+        border-radius: 0;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        color: black;
+
+        &:hover {
+          background-color: var(--menu-hover);
+        }
+
+        &.active {
+          background-color: var(--menu-active);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1;
+          &::before {
+            content: "";
+            position: absolute;
+
+            background-color: transparent;
+            bottom: -2rem;
+            right: 0;
+            height: 2rem;
+            width: 1rem;
+            border-top-right-radius: 1rem;
+            box-shadow: 0 -1rem 0 0 var(--menu-active);
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            top: -2rem;
+            right: 0;
+            height: 2rem;
+            width: 1rem;
+            border-bottom-right-radius: 1rem;
+            box-shadow: 0 1rem 0 0 var(--menu-active);
+          }
+        }
+      }
+    }
+
+    .contenu {
+      grid-area: contenu;
+      padding: 1rem;
+      height: 100%;
+      overflow: auto;
+      background-color: var(--menu-active);
+      border-radius: 1rem;
+      @include mat.elevation(8);
+
+      transition: all 0.2s;
+    }
+  }
+}

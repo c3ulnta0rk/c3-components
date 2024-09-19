@@ -52,6 +52,13 @@ const routes: Routes = [
             (m) => m.DropdownModule
           ),
       },
+      {
+        path: 'flowing-menu',
+        loadChildren: () =>
+          import('./pages/flowing-menu/flowing-menu.module').then(
+            (m) => m.FlowingMenuModule
+          ),
+      },
 
       {
         path: '**',

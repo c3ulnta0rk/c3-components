@@ -8,6 +8,11 @@
       "root": "projects/c3-components",
       "sourceRoot": "projects/c3-components/src",
       "prefix": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

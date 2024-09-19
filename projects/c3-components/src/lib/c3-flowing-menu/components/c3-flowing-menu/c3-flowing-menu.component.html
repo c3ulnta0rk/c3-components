@@ -1,0 +1,13 @@
+<aside class="menu">
+  @for(menu of c3FlowingMenu(); track menu; let i = $index) {
+    @if(menu.menuTpl()) {
+      <button (click)="selectMenu(i)" [class.active]="i === selectedIndex()">
+        <ng-container *ngTemplateOutlet="menu.menuTpl()!"></ng-container>
+      </button>
+    }
+  }
+</aside>
+
+<section class="contenu">
+  <ng-container #targetContent></ng-container>
+</section>

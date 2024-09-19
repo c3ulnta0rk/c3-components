@@ -1,0 +1,89 @@
+<p class="my-4">Component for display content with menu</p>
+
+<example-viewer class="mb-1 px-4 pb-2">
+  <h4 title>Example</h4>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { C3FlowingMenuModule } from 'projects/c3-components/src/public-api';
+
+@Component({
+  selector: 'c3-flowing-menu',
+  standalone: true,
+  imports: [CommonModule, C3FlowingMenuModule],
+  templateUrl: './flowing-menu.component.html',
+  styleUrl: './flowing-menu.component.scss',
+})
+export class FlowingMenuComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-flowing-menu>
+  <c3-flowing-menu-item>
+    <h4 menu-title>Menu 1</h4>
+    <c3-flowing-menu-item-content>
+      <h1>Contenu 1</h1>
+      <p>
+        1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <br />
+        2. Sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua.
+        <br />
+      </p>
+    </c3-flowing-menu-item-content>
+  </c3-flowing-menu-item>
+
+  <c3-flowing-menu-item>
+    <h4 menu-title>Menu 2</h4>
+    <c3-flowing-menu-item-content>
+      <h1>Contenu 2</h1>
+      <p>
+        1. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+        2. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur.
+      </p>
+    </c3-flowing-menu-item-content>
+  </c3-flowing-menu-item>
+</c3-flowing-menu>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+  <ng-container example>
+    <c3-flowing-menu>
+      <c3-flowing-menu-item>
+        <h4 menu-title>Menu 1</h4>
+        <c3-flowing-menu-item-content>
+          <h1>Contenu 1</h1>
+          <p>
+            1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <br />
+            2. Sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua.
+            <br />
+          </p>
+        </c3-flowing-menu-item-content>
+      </c3-flowing-menu-item>
+
+      <c3-flowing-menu-item>
+        <h4 menu-title>Menu 2</h4>
+        <c3-flowing-menu-item-content>
+          <h1>Contenu 2</h1>
+          <p>
+            1. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.
+            2. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </c3-flowing-menu-item-content>
+      </c3-flowing-menu-item>
+    </c3-flowing-menu>
+  </ng-container>
+</example-viewer>
