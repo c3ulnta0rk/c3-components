@@ -78,3 +78,6 @@ export * from './lib/c3-tree/c3-tree.component';
  * C3 flowing menu
  */
 export * from './lib/c3-flowing-menu/c3-flowing-menu.module';
+export * from './lib/c3-flowing-menu/components/c3-flowing-menu/c3-flowing-menu.component';
+export * from './lib/c3-flowing-menu/components/c3-flowing-menu-item/c3-flowing-menu-item.component';
+export * from './lib/c3-flowing-menu/components/c3-flowing-menu-item-content/c3-flowing-menu-item-content.component';
