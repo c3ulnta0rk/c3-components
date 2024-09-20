@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  inject,
   input,
   model,
 } from '@angular/core';
@@ -25,7 +26,7 @@ export class C3ExpansionComponent {
     return 'c3-expansion';
   }
 
-  constructor(public _elementRef: ElementRef) {}
+  public readonly _elementRef = inject(ElementRef);
 
   toggleExpand() {
     this.isExpanded.set(!this.isExpanded());

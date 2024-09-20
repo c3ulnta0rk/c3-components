@@ -2,9 +2,10 @@ import {
   Component,
   HostBinding,
   ViewEncapsulation,
+  inject,
   input,
 } from '@angular/core';
-import { type C3ExpansionComponent } from '../c3-expansion/c3-expansion.component';
+import { C3ExpansionComponent } from '../c3-expansion/c3-expansion.component';
 
 @Component({
   selector: 'c3-expansion-header',
@@ -13,7 +14,7 @@ import { type C3ExpansionComponent } from '../c3-expansion/c3-expansion.componen
 })
 export class C3ExpansionHeaderComponent {
   public title = input<string>();
-  public c3Expansion = input<C3ExpansionComponent>();
+  public c3Expansion = inject(C3ExpansionComponent);
 
   @HostBinding('class') get hostClass() {
     return 'c3-expansion-header';

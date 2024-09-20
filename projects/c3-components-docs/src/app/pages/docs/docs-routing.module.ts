@@ -59,6 +59,54 @@ const routes: Routes = [
             (m) => m.FlowingMenuModule
           ),
       },
+      {
+        path: 'expansion',
+        loadChildren: () =>
+          import('./pages/expansion/expansion.module').then(
+            (m) => m.ExpansionModule
+          ),
+      },
+      {
+        path: 'highlight-text',
+        loadChildren: () =>
+          import('./pages/highlight-text/highlight-text.module').then(
+            (m) => m.HighlightTextModule
+          ),
+      },
+      {
+        path: 'menu',
+        loadChildren: () =>
+          import('./pages/menu/menu.module').then((m) => m.MenuModule),
+      },
+      {
+        path: 'modal',
+        loadChildren: () =>
+          import('./pages/modal/modal.module').then((m) => m.ModalModule),
+      },
+      {
+        path: 'pdf-dialog',
+        loadChildren: () =>
+          import('./pages/pdf-dialog/pdf-dialog.module').then(
+            (m) => m.PdfDialogModule
+          ),
+      },
+      {
+        path: 'rounded-title',
+        loadChildren: () =>
+          import('./pages/rounded-title/rounded-title.module').then(
+            (m) => m.RoundedTitleModule
+          ),
+      },
+      {
+        path: 'tabs',
+        loadChildren: () =>
+          import('./pages/tabs/tabs.module').then((m) => m.TabsModule),
+      },
+      {
+        path: 'tree',
+        loadChildren: () =>
+          import('./pages/tree/tree.module').then((m) => m.TreeModule),
+      },
 
       {
         path: '**',
