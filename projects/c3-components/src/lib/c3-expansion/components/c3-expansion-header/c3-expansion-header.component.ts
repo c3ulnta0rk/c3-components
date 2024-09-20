@@ -2,10 +2,9 @@ import {
   Component,
   HostBinding,
   ViewEncapsulation,
-  inject,
   input,
+  output,
 } from '@angular/core';
-import { C3ExpansionComponent } from '../c3-expansion/c3-expansion.component';
 
 @Component({
   selector: 'c3-expansion-header',
@@ -14,7 +13,8 @@ import { C3ExpansionComponent } from '../c3-expansion/c3-expansion.component';
 })
 export class C3ExpansionHeaderComponent {
   public title = input<string>();
-  public c3Expansion = inject(C3ExpansionComponent);
+  public isExpanded = input<boolean>(false);
+  public toggleExpand = output();
 
   @HostBinding('class') get hostClass() {
     return 'c3-expansion-header';
