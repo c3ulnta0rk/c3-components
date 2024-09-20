@@ -1,2 +1,0 @@
-import{Kb as r,Lb as s,ad as m,dc as n,hc as a,ma as i}from"./chunk-SKJHGEYD.js";var f=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=i({type:e,selectors:[["c3-overview"]],standalone:!0,features:[a],decls:3,vars:0,template:function(o,d){o&1&&(r(0,"p"),n(1,"overview works!"),s(),n(2,`,
-`))},dependencies:[m],styles:["[_nghost-%COMP%]{display:block}"]});let t=e;return t})();export{f as DocOverviewComponent};
