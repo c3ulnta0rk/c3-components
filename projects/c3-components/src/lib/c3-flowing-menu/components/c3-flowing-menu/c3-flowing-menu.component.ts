@@ -2,7 +2,7 @@ import {
   Component,
   contentChildren,
   effect,
-  signal,
+  model,
   viewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -24,7 +24,7 @@ export class C3FlowingMenuComponent {
     read: ViewContainerRef,
   });
 
-  public readonly selectedIndex = signal(0);
+  public readonly selectedIndex = model(0);
 
   constructor() {
     effect(() => {
