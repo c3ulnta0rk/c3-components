@@ -81,3 +81,13 @@ export * from './lib/c3-flowing-menu/c3-flowing-menu.module';
 export * from './lib/c3-flowing-menu/components/c3-flowing-menu/c3-flowing-menu.component';
 export * from './lib/c3-flowing-menu/components/c3-flowing-menu-item/c3-flowing-menu-item.component';
 export * from './lib/c3-flowing-menu/components/c3-flowing-menu-item-content/c3-flowing-menu-item-content.component';
+
+/**
+ * C3 Trace Card
+ */
+export * from './lib/c3-trace-card/c3-trace-card.module';
+export * from './lib/c3-trace-card/components/c3-trace-card/c3-trace-card.component';
+export * from './lib/c3-trace-card/components/c3-trace-card-content/c3-trace-card-content.component';
+export * from './lib/c3-trace-card/components/c3-trace-card-title/c3-trace-card-title.component';
+export * from './lib/c3-trace-card/directives/align-left.directive';
+export * from './lib/c3-trace-card/directives/align-right.directive';

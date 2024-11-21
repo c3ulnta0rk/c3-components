@@ -107,6 +107,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/tree/tree.module').then((m) => m.TreeModule),
       },
+      {
+        path: 'trace-card',
+        loadChildren: () =>
+          import('./pages/trace-card/trace-card.module').then(
+            (m) => m.TraceCardModule
+          ),
+      },
 
       {
         path: '**',
