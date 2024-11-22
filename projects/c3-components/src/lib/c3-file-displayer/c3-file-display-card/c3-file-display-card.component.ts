@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FileMetadata } from '../../c3-file-viewer/models/file-metadata';
 import { Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
+export type C3FileCardSize = '16' | '32' | '64' | '128' | '256';
 
 @Component({
   selector: 'c3-file-display-card',
@@ -24,7 +26,7 @@ export class C3FileDisplayCardComponent {
   );
 
   public readonly deletable = input<boolean>(false);
-  public readonly size = input<'16' | '32' | '64' | '128' | '256'>('32');
+  public readonly size = input<C3FileCardSize>('32');
   public readonly onDelete = output();
 
   getFileType(): string {

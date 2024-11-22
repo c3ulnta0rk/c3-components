@@ -3,6 +3,7 @@
     @for (file of files(); track $index) {
     <c3-file-display-card
       [fileObjectUrl]="fileViewer.filesObjectUrl[$index]"
+      [size]="cardSize()"
       (click)="openDialog($event, $index)"
       (onDelete)="onDelete.emit(file)"
     />

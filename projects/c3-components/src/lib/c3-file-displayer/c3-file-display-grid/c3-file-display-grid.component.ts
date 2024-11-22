@@ -8,7 +8,10 @@ import {
   viewChild,
 } from '@angular/core';
 import { FileMetadata } from '../../c3-file-viewer/models/file-metadata';
-import { C3FileDisplayCardComponent } from '../c3-file-display-card/c3-file-display-card.component';
+import {
+  C3FileCardSize,
+  C3FileDisplayCardComponent,
+} from '../c3-file-display-card/c3-file-display-card.component';
 import { C3FileViewerModule } from '../../c3-file-viewer/c3-file-viewer.module';
 import { C3FileViewer } from '../../c3-file-viewer/models/file-viewer';
 import { HttpClient } from '@angular/common/http';
@@ -31,6 +34,7 @@ export class C3FileDisplayGridComponent {
     >
   >();
   public readonly config = input<C3FileViewerConfig>();
+  public readonly cardSize = input<C3FileCardSize>('32');
   public readonly displayFn = input<
     (file: FileMetadata & { location: string }) => string
   >((file) => file.name);

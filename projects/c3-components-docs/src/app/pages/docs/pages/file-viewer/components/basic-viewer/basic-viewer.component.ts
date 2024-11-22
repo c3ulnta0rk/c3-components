@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import {
-  C3FileViewerConfig,
   C3FileViewer,
   CustomFileEvent,
   C3FileViewerModule,

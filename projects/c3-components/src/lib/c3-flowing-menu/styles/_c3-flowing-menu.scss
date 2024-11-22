@@ -5,10 +5,12 @@
   $menu-inactive: if($is-dark-theme, #9b9b9b, #dfdfdf);
   $menu-active: if($is-dark-theme, #5f5f5f, #c0c0c0);
   $menu-hover: if($is-dark-theme, #a5a5a5, #e7e7e7);
+  $menu-border-color: if($is-dark-theme, #333, #ddd);
   .c3-flowing-menu {
     --menu-inactive: #{$menu-inactive};
     --menu-active: #{$menu-active};
     --menu-hover: #{$menu-hover};
+    --menu-border-color: #{$menu-border-color};
 
     display: grid;
     grid-template-columns: auto 1fr;
@@ -32,8 +34,9 @@
         min-width: 200px;
         box-shadow: none;
         border-radius: 0;
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        border-bottom: 1px solid var(--menu-border-color);
         color: black;
 
         &:hover {
