@@ -2,7 +2,6 @@ import {
   ComponentRef,
   Injectable,
   Injector,
-  Type,
   effect,
   inject,
 } from '@angular/core';
@@ -25,6 +24,10 @@ import { ComponentType } from '@angular/cdk/portal';
 import 'reflect-metadata';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
 import { Observable, Subject } from 'rxjs';
+import {
+  AlertConfig,
+  C3AlertDialogComponent,
+} from '../components/c3-dialog-alert.component';
 
 export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
   Partial<Record<keyof C, unknown>>
@@ -129,7 +132,7 @@ export class C3DialogService {
             text: (data.accept && data.accept.text) || 'Accepter',
           },
         },
-      },
+      }
     );
 
     return new Promise<string | false>((resolve, reject) => {
@@ -171,8 +174,19 @@ export class C3DialogService {
     return this.createC3DialogResult(dialog);
   }
 
+  public alert(text: string, data?: AlertConfig) {
+    const dialogRef = this.#dialog.open(C3AlertDialogComponent, {
+      data: {
+        ...data,
+        text,
+      },
+    });
+
+    return dialogRef.afterClosed();
+  }
+
   private createC3DialogResult<C>(
-    dialog: MatDialogRef<C3DialogEmbedChildComponent<C>>,
+    dialog: MatDialogRef<C3DialogEmbedChildComponent<C>>
   ) {
     const _afterComponentMounted = new Subject<
       C3CreateDialogFromComponentResult<C>
@@ -211,7 +225,7 @@ export class C3DialogService {
       },
       {
         injector: this._injector,
-      },
+      }
     );
 
     return result;

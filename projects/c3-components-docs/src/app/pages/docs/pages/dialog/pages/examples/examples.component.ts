@@ -7,6 +7,7 @@ import { ExampleViewerTabComponent } from 'projects/c3-components-docs/src/app/c
 import { PromptComponent } from '../../components/prompt/prompt.component';
 import { EmbededComponentComponent } from '../../components/embededComponent/embededComponent.component';
 import { MatButtonModule } from '@angular/material/button';
+import { AlertComponent } from '../../components/alert/alert.component';
 
 @Component({
   selector: 'dialog-example',
@@ -20,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     HighlightJsDirective,
     MatButtonModule,
     PromptComponent,
+    AlertComponent,
   ],
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
