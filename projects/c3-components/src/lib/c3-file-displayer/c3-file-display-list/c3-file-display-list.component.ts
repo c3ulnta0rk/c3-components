@@ -18,11 +18,13 @@ import { C3FileDisplayIconComponent } from '../c3-file-display-icon/c3-file-disp
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { C3StopPropagationDirective } from '../../c3-prevent-event';
 
 @Component({
   selector: 'c3-file-display-list',
   standalone: true,
   imports: [
+    C3StopPropagationDirective,
     C3FileViewerModule,
     C3FileDisplayIconComponent,
     CommonModule,

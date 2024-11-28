@@ -6,8 +6,8 @@
   <div class="title">
     <span>Date d'ajout</span>
   </div>
-  <div class="icon">
-    <mat-icon>more_vert</mat-icon>
+  <div class="actions">
+    <ng-content></ng-content>
   </div>
 </div>
 <c3-file-viewer-dialog [fileViewer]="fileViewer">
@@ -25,7 +25,7 @@
           file.lastModified ? (file.lastModified | date : "medium") : "-"
         }}</span>
       </div>
-      <button mat-icon-button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" c3-stop-click-propagation>
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">

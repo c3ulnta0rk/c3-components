@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, of, tap } from 'rxjs';
 import { DEFAULT_CONFIG } from '../consts/default.config';
 import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
@@ -70,6 +70,8 @@ export class C3FileViewer {
     }
   > = [];
 
+  private locationBlobMap = new Map<string, string>();
+
   private scale = 1;
   private rotation = 0;
   private translateX = 0;
@@ -107,8 +109,15 @@ export class C3FileViewer {
 
   createObjectURL(file: FileMetadata) {
     this.onLoadStart(file);
-    return this.getFile(file.location).pipe(
-      map((response) => URL.createObjectURL(response)),
+    return of(file.location).pipe(
+      mergeMap((location) =>
+        this.locationBlobMap.has(location)
+          ? of(this.locationBlobMap.get(location)!)
+          : this.getFile(location).pipe(
+              map((response) => URL.createObjectURL(response)),
+              tap((url) => this.locationBlobMap.set(location, url))
+            )
+      ),
       tap(() => this.onLoad(file))
     );
   }

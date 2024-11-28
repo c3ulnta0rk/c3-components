@@ -63,12 +63,12 @@ export class C3FileViewerComponent implements OnInit {
 
   @HostListener('mouseover')
   onMouseOver() {
-    this.fileViewer.hovered = true;
+    if (this.fileViewer) this.fileViewer.hovered = true;
   }
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    this.fileViewer.hovered = false;
+    if (this.fileViewer) this.fileViewer.hovered = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { FileMetadata } from '../../c3-file-viewer/models/file-metadata';
 import { Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +29,7 @@ export class C3FileDisplayCardComponent {
   public readonly size = input<C3FileCardSize>('32');
   public readonly onDelete = output();
 
-  getFileType(): string {
+  public readonly getFileType = computed(() => {
     const file = this.fileObjectUrl();
     if (file && file.type) {
       if (file.type.startsWith('image')) return 'image';
@@ -37,20 +37,20 @@ export class C3FileDisplayCardComponent {
       if (file.type.startsWith('video')) return 'video';
     }
     return 'unknown';
-  }
+  });
 
-  getFileObjectUrl(): Observable<string> | null {
+  public readonly getFileObjectUrl = computed((): Observable<string> | null => {
     const file = this.fileObjectUrl();
     return file && file.objectUrl ? file.objectUrl : null;
-  }
+  });
 
-  getFileName(): string {
+  public readonly getFileName = computed((): string => {
     const file = this.fileObjectUrl();
     return file ? this.displayFn()(file) : '';
-  }
+  });
 
-  getDisplayName(): string {
+  public readonly getDisplayName = computed((): string => {
     const file = this.fileObjectUrl();
     return file ? this.displayFn()(file) : '';
-  }
+  });
 }

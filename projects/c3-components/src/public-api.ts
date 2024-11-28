@@ -91,3 +91,8 @@ export * from './lib/c3-trace-card/components/c3-trace-card-content/c3-trace-car
 export * from './lib/c3-trace-card/components/c3-trace-card-title/c3-trace-card-title.component';
 export * from './lib/c3-trace-card/directives/align-left.directive';
 export * from './lib/c3-trace-card/directives/align-right.directive';
+
+/**
+ * C3 Prevent Event
+ */
+export * from './lib/c3-prevent-event/index';
