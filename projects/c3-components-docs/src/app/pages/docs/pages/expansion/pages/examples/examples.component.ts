@@ -9,19 +9,18 @@ import { ExampleViewerComponent } from 'projects/c3-components-docs/src/app/comp
 import { C3ExpansionModule } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-examples',
-  standalone: true,
-  imports: [
-    C3ExpansionModule,
-    CommonModule,
-    ExampleViewerComponent,
-    ExampleViewerTabComponent,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    HighlightJsDirective,
-  ],
-  templateUrl: './examples.component.html',
-  styleUrl: './examples.component.scss',
+    selector: 'c3-examples',
+    imports: [
+        C3ExpansionModule,
+        CommonModule,
+        ExampleViewerComponent,
+        ExampleViewerTabComponent,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        HighlightJsDirective,
+    ],
+    templateUrl: './examples.component.html',
+    styleUrl: './examples.component.scss'
 })
 export class ExamplesComponent {}

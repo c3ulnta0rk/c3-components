@@ -6,11 +6,10 @@ import {
 } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-alert',
-  standalone: true,
-  imports: [C3DialogModule, MatButtonModule],
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss',
+    selector: 'c3-alert',
+    imports: [C3DialogModule, MatButtonModule],
+    templateUrl: './alert.component.html',
+    styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
   private readonly dialogService = inject(C3DialogService);

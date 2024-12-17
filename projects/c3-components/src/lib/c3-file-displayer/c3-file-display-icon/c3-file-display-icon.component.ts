@@ -3,11 +3,10 @@ import { Component, computed, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'c3-file-display-icon',
-  standalone: true,
-  imports: [CommonModule, MatIconModule],
-  templateUrl: './c3-file-display-icon.component.html',
-  styleUrl: './c3-file-display-icon.component.scss',
+    selector: 'c3-file-display-icon',
+    imports: [CommonModule, MatIconModule],
+    templateUrl: './c3-file-display-icon.component.html',
+    styleUrl: './c3-file-display-icon.component.scss'
 })
 export class C3FileDisplayIconComponent {
   public readonly fileType = input.required<string>();

@@ -10,13 +10,14 @@ import {
 import { C3FlowingMenuItemComponent } from '../c3-flowing-menu-item/c3-flowing-menu-item.component';
 
 @Component({
-  selector: 'c3-flowing-menu',
-  templateUrl: './c3-flowing-menu.component.html',
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'c3-flowing-menu',
-    ngSkipHydration: 'true',
-  },
+    selector: 'c3-flowing-menu',
+    templateUrl: './c3-flowing-menu.component.html',
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'c3-flowing-menu',
+        ngSkipHydration: 'true',
+    },
+    standalone: false
 })
 export class C3FlowingMenuComponent {
   public readonly c3FlowingMenu = contentChildren(C3FlowingMenuItemComponent);

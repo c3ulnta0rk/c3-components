@@ -25,17 +25,16 @@ export interface FileNode<RawData> extends TreeType<RawData> {
 }
 
 @Component({
-  selector: 'c3-tree',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatTreeModule,
-    MatIconModule,
-    MatRippleModule,
-    MatProgressSpinnerModule,
-  ],
-  templateUrl: './c3-tree.component.html',
-  styleUrls: ['./c3-tree.component.scss'],
+    selector: 'c3-tree',
+    imports: [
+        CommonModule,
+        MatTreeModule,
+        MatIconModule,
+        MatRippleModule,
+        MatProgressSpinnerModule,
+    ],
+    templateUrl: './c3-tree.component.html',
+    styleUrls: ['./c3-tree.component.scss']
 })
 export class C3TreeComponent<
   RawData,

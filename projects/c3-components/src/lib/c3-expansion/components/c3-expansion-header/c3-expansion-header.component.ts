@@ -7,9 +7,10 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'c3-expansion-header',
-  templateUrl: './c3-expansion-header.component.html',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'c3-expansion-header',
+    templateUrl: './c3-expansion-header.component.html',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class C3ExpansionHeaderComponent {
   public title = input<string>();

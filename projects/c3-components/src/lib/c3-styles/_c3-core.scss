@@ -11,3 +11,7 @@
   @include c3-expansion($theme);
   @include c3-flowing-menu($theme);
 }
+
+@mixin c3-core-m3($theme) {
+  @include c3-material-dropdown-m3($theme);
+}

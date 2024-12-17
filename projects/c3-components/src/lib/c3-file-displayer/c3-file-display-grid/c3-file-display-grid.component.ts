@@ -19,11 +19,10 @@ import { C3FileViewerDialogComponent } from '../../c3-file-viewer/components/pub
 import { C3FileViewerConfig } from '../../c3-file-viewer/models/file-viewer-config.model';
 
 @Component({
-  selector: 'c3-file-display-grid',
-  standalone: true,
-  imports: [CommonModule, C3FileDisplayCardComponent, C3FileViewerModule],
-  templateUrl: './c3-file-display-grid.component.html',
-  styleUrl: './c3-file-display-grid.component.scss',
+    selector: 'c3-file-display-grid',
+    imports: [CommonModule, C3FileDisplayCardComponent, C3FileViewerModule],
+    templateUrl: './c3-file-display-grid.component.html',
+    styleUrl: './c3-file-display-grid.component.scss'
 })
 export class C3FileDisplayGridComponent {
   public readonly files = input.required<

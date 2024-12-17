@@ -4,6 +4,7 @@
 
 @mixin core($theme) {
   @include c3-core($theme);
+  // @include c3-core-m3($theme);
   @include color-palette($theme);
   @include customScrollbar($theme);
 }

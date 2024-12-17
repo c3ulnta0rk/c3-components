@@ -4,10 +4,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, MatTabsModule, RouterModule],
-  templateUrl: './component-nav.component.html',
-  styleUrls: ['./component-nav.component.scss'],
+    imports: [CommonModule, MatTabsModule, RouterModule],
+    templateUrl: './component-nav.component.html',
+    styleUrls: ['./component-nav.component.scss']
 })
 export class ComponentNavComponent {
   public links: Array<{

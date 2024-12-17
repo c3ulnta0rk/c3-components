@@ -10,19 +10,19 @@ import { C3InputFileTriggerDirective } from '../../directives/c3-input-file-trig
 import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
 
 @Component({
-  selector:
-    'c3-input-file-container, [c3InputFileContainer], [c3-input-file-container]',
-  template: ` <ng-content> </ng-content>
+    selector: 'c3-input-file-container, [c3InputFileContainer], [c3-input-file-container]',
+    template: ` <ng-content> </ng-content>
     <c3-input-file-displayer
       *ngIf="c3InputFile"
       [c3InputFile]="c3InputFile"
       [autoclose]="autoclose"
     ></c3-input-file-displayer>`,
-  styles: [],
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'c3-input-file-container',
-  },
+    styles: [],
+    encapsulation: ViewEncapsulation.None,
+    host: {
+        class: 'c3-input-file-container',
+    },
+    standalone: false
 })
 export class C3InputFileContainerComponent implements OnDestroy {
   @Input() autoclose?: boolean | number;

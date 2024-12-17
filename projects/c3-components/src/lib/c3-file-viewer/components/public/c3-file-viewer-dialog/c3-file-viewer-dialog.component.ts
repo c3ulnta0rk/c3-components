@@ -4,11 +4,12 @@ import { C3FileViewer } from '../../../models/file-viewer';
 import { C3FileViewerDialog } from './c3-file-viewer-dialog';
 
 @Component({
-  selector: 'c3-file-viewer-dialog',
-  template: ` <ng-content /> `,
-  host: {
-    class: 'c3-file-viewer-dialog',
-  },
+    selector: 'c3-file-viewer-dialog',
+    template: ` <ng-content /> `,
+    host: {
+        class: 'c3-file-viewer-dialog',
+    },
+    standalone: false
 })
 export class C3FileViewerDialogComponent {
   @Input()

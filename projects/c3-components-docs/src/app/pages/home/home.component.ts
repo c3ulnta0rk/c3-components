@@ -6,17 +6,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'c3-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatDividerModule,
-    MatCardModule,
-    MatIconModule,
-    RouterModule,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'c3-home',
+    imports: [
+        CommonModule,
+        MatDividerModule,
+        MatCardModule,
+        MatIconModule,
+        RouterModule,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   @HostBinding('class')

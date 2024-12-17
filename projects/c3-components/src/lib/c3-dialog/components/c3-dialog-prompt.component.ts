@@ -22,8 +22,8 @@ export interface PromptConfig {
 }
 
 @Component({
-  selector: 'PrompDialogComponent',
-  template: `
+    selector: 'PrompDialogComponent',
+    template: `
     <div mat-dialog-title>{{ data.text }}</div>
     <mat-dialog-content>
       <mat-form-field>
@@ -56,13 +56,14 @@ export interface PromptConfig {
       </button>
     </mat-dialog-actions>
   `,
-  styles: [
-    `
+    styles: [
+        `
       mat-form-field {
         width: 100%;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class C3PromptDialogComponent {
   result: FormControl;

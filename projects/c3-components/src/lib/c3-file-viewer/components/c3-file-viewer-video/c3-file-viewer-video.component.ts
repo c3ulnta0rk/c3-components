@@ -4,8 +4,9 @@ import { Subject, filter, mergeMap, tap } from 'rxjs';
 import { C3FileViewer } from '../../models/file-viewer';
 
 @Component({
-  selector: 'c3-file-viewer-video',
-  templateUrl: './c3-file-viewer-video.component.html',
+    selector: 'c3-file-viewer-video',
+    templateUrl: './c3-file-viewer-video.component.html',
+    standalone: false
 })
 export class C3FileViewerVideoComponent {
   @Input('file')

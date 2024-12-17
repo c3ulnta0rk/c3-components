@@ -13,8 +13,8 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'C3DialogEmbedChildComponent',
-  template: `<mat-dialog-content>
+    selector: 'C3DialogEmbedChildComponent',
+    template: `<mat-dialog-content>
     <mat-toolbar
       *ngIf="data.toolbar"
       [color]="data.toolbar.color || 'default'"
@@ -35,8 +35,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <ng-template #target></ng-template>
     </div>
   </mat-dialog-content>`,
-  styles: [
-    `
+    styles: [
+        `
       mat-dialog-content {
         display: flex;
         flex-direction: column;
@@ -64,7 +64,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         }
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;

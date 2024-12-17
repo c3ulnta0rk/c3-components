@@ -9,8 +9,8 @@ import { C3InputFile } from '../../class/c3-input-file';
 import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
 
 @Component({
-  selector: 'c3-input-file-displayer',
-  template: `
+    selector: 'c3-input-file-displayer',
+    template: `
     <ng-container *ngIf="files.length">
       <div class="c3-input-file-displayer mat-card">
         <div
@@ -59,8 +59,9 @@ import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
       </div>
     </ng-container>
   `,
-  styles: [],
-  encapsulation: ViewEncapsulation.None,
+    styles: [],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class C3InputFileDisplayerComponent implements AfterContentInit {
   @Input() c3InputFile!: C3InputFileComponent;

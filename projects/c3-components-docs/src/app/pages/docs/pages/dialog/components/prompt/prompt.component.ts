@@ -7,11 +7,10 @@ import {
 } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-prompt',
-  standalone: true,
-  imports: [CommonModule, C3DialogModule, MatButtonModule],
-  templateUrl: './prompt.component.html',
-  styleUrl: './prompt.component.scss',
+    selector: 'c3-prompt',
+    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    templateUrl: './prompt.component.html',
+    styleUrl: './prompt.component.scss'
 })
 export class PromptComponent {
   private readonly dialogService = inject(C3DialogService);

@@ -7,11 +7,10 @@ import {
 import { C3FileDisplayerModule } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-example-display-grid',
-  standalone: true,
-  imports: [CommonModule, C3FileDisplayerModule],
-  templateUrl: './example-display-grid.component.html',
-  styleUrl: './example-display-grid.component.scss',
+    selector: 'c3-example-display-grid',
+    imports: [CommonModule, C3FileDisplayerModule],
+    templateUrl: './example-display-grid.component.html',
+    styleUrl: './example-display-grid.component.scss'
 })
 export class ExampleDisplayGridComponent {
   public readonly files = signal(crabbyImgs);

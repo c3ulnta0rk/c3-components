@@ -7,17 +7,16 @@ import { DialogViewerComponent } from '../../components/dialog-viewer/dialog-vie
 import { HighlightJsDirective } from 'ngx-highlight-js';
 
 @Component({
-  selector: 'c3-examples',
-  standalone: true,
-  imports: [
-    BasicViewerComponent,
-    CommonModule,
-    DialogViewerComponent,
-    ExampleViewerComponent,
-    ExampleViewerTabComponent,
-    HighlightJsDirective,
-  ],
-  templateUrl: './examples.component.html',
-  styleUrl: './examples.component.scss',
+    selector: 'c3-examples',
+    imports: [
+        BasicViewerComponent,
+        CommonModule,
+        DialogViewerComponent,
+        ExampleViewerComponent,
+        ExampleViewerTabComponent,
+        HighlightJsDirective,
+    ],
+    templateUrl: './examples.component.html',
+    styleUrl: './examples.component.scss'
 })
 export class ExamplesComponent {}

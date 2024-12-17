@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
+@use "sass:color";
 @use "@angular/material" as mat;
 
 @function get-contrast-color-from-palette($palette, $hue) {
@@ -22,7 +23,10 @@
     @return $color;
   }
 
-  @return rgba($color, if($opacity == null, opacity($color), $opacity));
+  @if $opacity == null {
+    $opacity: color.channel($color, "alpha");
+  }
+  @return color.change($color, $alpha: $opacity);
 }
 
 @function get-color-config($theme, $default: null) {

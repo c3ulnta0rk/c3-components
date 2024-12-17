@@ -7,11 +7,10 @@ import {
 } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-confirm',
-  standalone: true,
-  imports: [CommonModule, C3DialogModule, MatButtonModule],
-  templateUrl: './confirm.component.html',
-  styleUrl: './confirm.component.scss',
+    selector: 'c3-confirm',
+    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    templateUrl: './confirm.component.html',
+    styleUrl: './confirm.component.scss'
 })
 export class ConfirmComponent {
   private readonly dialogService = inject(C3DialogService);

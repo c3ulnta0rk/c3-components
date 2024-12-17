@@ -1,8 +1,9 @@
 import { Component, signal, TemplateRef, viewChild } from '@angular/core';
 
 @Component({
-  selector: 'c3-flowing-menu-item',
-  templateUrl: './c3-flowing-menu-item.component.html',
+    selector: 'c3-flowing-menu-item',
+    templateUrl: './c3-flowing-menu-item.component.html',
+    standalone: false
 })
 export class C3FlowingMenuItemComponent {
   public readonly menuTpl = viewChild('menuTpl', {

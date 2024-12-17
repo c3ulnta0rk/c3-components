@@ -8,8 +8,8 @@ export interface AlertConfig {
 }
 
 @Component({
-  selector: 'AlertDialogComponent',
-  template: `
+    selector: 'AlertDialogComponent',
+    template: `
     <mat-dialog-content>
       <div [innerHtml]="data.text"></div>
     </mat-dialog-content>
@@ -19,6 +19,7 @@ export interface AlertConfig {
       </button>
     </mat-dialog-actions>
   `,
+    standalone: false
 })
 export class C3AlertDialogComponent {
   constructor(

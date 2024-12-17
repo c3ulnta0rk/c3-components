@@ -7,11 +7,10 @@ import {
 } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'custom-client',
-  standalone: true,
-  imports: [C3FileViewerModule],
-  templateUrl: './custom-client.component.html',
-  styleUrls: ['./custom-client.component.scss'],
+    selector: 'custom-client',
+    imports: [C3FileViewerModule],
+    templateUrl: './custom-client.component.html',
+    styleUrls: ['./custom-client.component.scss']
 })
 export class CustomClientComponent {
   public images: Array<FileMetadata> = [

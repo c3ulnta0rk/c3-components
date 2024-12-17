@@ -14,14 +14,15 @@ import { C3ExpansionHeaderComponent } from '../c3-expansion-header/c3-expansion-
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'c3-expansion',
-  templateUrl: './c3-expansion.component.html',
-  hostDirectives: [
-    {
-      directive: C3AutoAnimateDirective,
-      inputs: ['options'],
-    },
-  ],
+    selector: 'c3-expansion',
+    templateUrl: './c3-expansion.component.html',
+    hostDirectives: [
+        {
+            directive: C3AutoAnimateDirective,
+            inputs: ['options'],
+        },
+    ],
+    standalone: false
 })
 export class C3ExpansionComponent implements OnDestroy {
   public headerClass = input<string>('c3-expansion-header');

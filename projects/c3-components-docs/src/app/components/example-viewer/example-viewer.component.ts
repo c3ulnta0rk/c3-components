@@ -1,12 +1,5 @@
-import {
-  Component,
-  TemplateRef,
-  ViewEncapsulation,
-  contentChildren,
-  effect,
-  signal,
-} from '@angular/core';
-import { CommonModule, NgComponentOutlet } from '@angular/common';
+import { Component, ViewEncapsulation, contentChildren } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,14 +11,12 @@ import {
 
 @Component({
   selector: 'example-viewer',
-  standalone: true,
   imports: [
     CommonModule,
     C3AutoAnimateDirective,
     MatTabsModule,
     MatButtonModule,
     MatIconModule,
-    NgComponentOutlet,
   ],
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.scss'],

@@ -7,11 +7,10 @@ import {
 import { C3FileDisplayerModule, FileMetadata } from 'projects/c3-components/src/public-api';
 
 @Component({
-  selector: 'c3-example-display-list',
-  standalone: true,
-  imports: [CommonModule, C3FileDisplayerModule],
-  templateUrl: './example-display-list.component.html',
-  styleUrl: './example-display-list.component.scss',
+    selector: 'c3-example-display-list',
+    imports: [CommonModule, C3FileDisplayerModule],
+    templateUrl: './example-display-list.component.html',
+    styleUrl: './example-display-list.component.scss'
 })
 export class ExampleDisplayListComponent {
   public readonly files = signal(crabbyImgs);

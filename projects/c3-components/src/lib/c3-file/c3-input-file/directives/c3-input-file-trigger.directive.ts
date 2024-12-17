@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[c3InputFileTrigger], [c3-input-file-trigger]',
+    selector: '[c3InputFileTrigger], [c3-input-file-trigger]',
+    standalone: false
 })
 export class C3InputFileTriggerDirective implements AfterViewInit, OnDestroy {
   @Output() click: EventEmitter<MouseEvent> = new EventEmitter();

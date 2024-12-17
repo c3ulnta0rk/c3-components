@@ -10,20 +10,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { AlertComponent } from '../../components/alert/alert.component';
 
 @Component({
-  selector: 'dialog-example',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ConfirmComponent,
-    EmbededComponentComponent,
-    ExampleViewerComponent,
-    ExampleViewerTabComponent,
-    HighlightJsDirective,
-    MatButtonModule,
-    PromptComponent,
-    AlertComponent,
-  ],
-  templateUrl: './examples.component.html',
-  styleUrls: ['./examples.component.scss'],
+    selector: 'dialog-example',
+    imports: [
+        CommonModule,
+        ConfirmComponent,
+        EmbededComponentComponent,
+        ExampleViewerComponent,
+        ExampleViewerTabComponent,
+        HighlightJsDirective,
+        MatButtonModule,
+        PromptComponent,
+        AlertComponent,
+    ],
+    templateUrl: './examples.component.html',
+    styleUrls: ['./examples.component.scss']
 })
 export class DialogExamplesComponent {}

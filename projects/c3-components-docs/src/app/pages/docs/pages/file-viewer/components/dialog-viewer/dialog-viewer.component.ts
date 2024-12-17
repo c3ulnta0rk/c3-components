@@ -9,11 +9,10 @@ import { configDemo, crabbyImgs } from '../../../../../../files-demo';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'dialog-viewer',
-  standalone: true,
-  imports: [C3FileViewerModule, MatButtonModule],
-  templateUrl: './dialog-viewer.component.html',
-  styleUrls: ['./dialog-viewer.component.scss'],
+    selector: 'dialog-viewer',
+    imports: [C3FileViewerModule, MatButtonModule],
+    templateUrl: './dialog-viewer.component.html',
+    styleUrls: ['./dialog-viewer.component.scss']
 })
 export class DialogViewerComponent {
   public fileViewer = new C3FileViewer({

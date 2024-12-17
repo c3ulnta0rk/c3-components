@@ -8,11 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 export type C3FileCardSize = '16' | '32' | '64' | '128' | '256';
 
 @Component({
-  selector: 'c3-file-display-card',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
-  templateUrl: './c3-file-display-card.component.html',
-  styleUrl: './c3-file-display-card.component.scss',
+    selector: 'c3-file-display-card',
+    imports: [CommonModule, MatButtonModule, MatIconModule],
+    templateUrl: './c3-file-display-card.component.html',
+    styleUrl: './c3-file-display-card.component.scss'
 })
 export class C3FileDisplayCardComponent {
   public readonly fileObjectUrl = input.required<

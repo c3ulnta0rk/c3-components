@@ -16,11 +16,10 @@ export class EmbededExampleComponent {
 }
 
 @Component({
-  selector: 'c3-embeded-component',
-  standalone: true,
-  imports: [CommonModule, C3DialogModule, MatButtonModule],
-  templateUrl: './embededComponent.component.html',
-  styleUrl: './embededComponent.component.scss',
+    selector: 'c3-embeded-component',
+    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    templateUrl: './embededComponent.component.html',
+    styleUrl: './embededComponent.component.scss'
 })
 export class EmbededComponentComponent {
   private readonly dialogService = inject(C3DialogService);

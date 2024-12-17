@@ -20,7 +20,8 @@ body {
 @include mat.all-component-themes(theme.$theme-light);
 
 @media (prefers-color-scheme: light) {
-  @include mat.core();
+  @include mat.elevation-classes();
+  @include mat.app-background();
   @include core(theme.$theme-light);
 
   $primary: mat.get-theme-color(theme.$theme-light, primary);
@@ -41,7 +42,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
   @include mat.all-component-colors(theme.$theme-dark);
-  @include mat.core();
+  @include mat.elevation-classes();
+  @include mat.app-background();
   @include core(theme.$theme-dark);
   $primary: mat.get-theme-color(theme.$theme-dark, primary);
   $accent: mat.get-theme-color(theme.$theme-dark, accent);

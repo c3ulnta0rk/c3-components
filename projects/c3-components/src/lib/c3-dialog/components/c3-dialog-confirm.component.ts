@@ -16,8 +16,8 @@ export interface ConfirmConfig {
 }
 
 @Component({
-  selector: 'ConfirmDialogComponent',
-  template: `
+    selector: 'ConfirmDialogComponent',
+    template: `
     <mat-dialog-content>
       <div [innerHtml]="data.text"></div>
     </mat-dialog-content>
@@ -30,6 +30,7 @@ export interface ConfirmConfig {
       </button>
     </mat-dialog-actions>
   `,
+    standalone: false
 })
 export class ConfirmDialogComponent {
   constructor(

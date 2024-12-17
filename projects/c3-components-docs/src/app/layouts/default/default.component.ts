@@ -5,10 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'c3-default',
-  standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule],
-  templateUrl: './default.component.html',
-  styleUrl: './default.component.scss',
+    selector: 'c3-default',
+    imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule],
+    templateUrl: './default.component.html',
+    styleUrl: './default.component.scss'
 })
 export class DefaultComponent {}
