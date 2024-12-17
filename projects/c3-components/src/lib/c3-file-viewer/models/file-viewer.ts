@@ -3,7 +3,7 @@ import { DEFAULT_CONFIG } from '../consts/default.config';
 import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
 import { CustomFileEvent } from './custom-file-event.model';
-import { FileMetadata } from './file-metadata';
+import { FileMetadata, VariantFile } from './file-metadata';
 
 export class C3FileViewer {
   private _config: C3FileViewerConfig = DEFAULT_CONFIG;
@@ -44,18 +44,26 @@ export class C3FileViewer {
   public styleHeight = '100%';
   public hovered = false;
 
-  public set files(value: FileMetadata[]) {
-    this._files = value;
+  public set files(newFiles: FileMetadata[]) {
+    this._files = newFiles;
     this.currentIndex = 0;
     this.index$.next(this.currentIndex);
 
-    this.filesObjectUrl = value.map((file) => {
-      const objectUrl = file.objectUrl || this.createObjectURL(file);
-      return {
+    for (const file of newFiles) {
+      this.filesObjectUrl.push({
         ...file,
-        objectUrl,
-      };
-    });
+        objectUrl: file.objectUrl || this.createObjectURL(file),
+      });
+
+      if (file.alternativeVersions)
+        for (const alternativeVersion of file.alternativeVersions) {
+          this.filesObjectUrl.push({
+            ...file,
+            ...alternativeVersion,
+            objectUrl: this.createObjectURL(alternativeVersion),
+          });
+        }
+    }
   }
 
   public get files(): FileMetadata[] {
@@ -107,8 +115,8 @@ export class C3FileViewer {
     });
   }
 
-  createObjectURL(file: FileMetadata) {
-    this.onLoadStart(file);
+  createObjectURL(file: FileMetadata | VariantFile) {
+    this.onLoadStart();
     return of(file.location).pipe(
       mergeMap((location) =>
         this.locationBlobMap.has(location)
@@ -118,7 +126,7 @@ export class C3FileViewer {
               tap((url) => this.locationBlobMap.set(location, url))
             )
       ),
-      tap(() => this.onLoad(file))
+      tap(() => this.onLoad())
     );
   }
 
@@ -186,11 +194,11 @@ export class C3FileViewer {
     this.updateStyle();
   }
 
-  onLoad(file: FileMetadata) {
+  onLoad() {
     this.loading = false;
   }
 
-  onLoadStart(file: FileMetadata) {
+  onLoadStart() {
     this.loading = true;
   }
 

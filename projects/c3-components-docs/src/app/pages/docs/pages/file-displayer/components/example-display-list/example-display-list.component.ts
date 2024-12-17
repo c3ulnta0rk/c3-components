@@ -4,7 +4,7 @@ import {
   crabbyImgs,
   configDemo,
 } from 'projects/c3-components-docs/src/app/files-demo';
-import { C3FileDisplayerModule } from 'projects/c3-components/src/public-api';
+import { C3FileDisplayerModule, FileMetadata } from 'projects/c3-components/src/public-api';
 
 @Component({
   selector: 'c3-example-display-list',
@@ -16,4 +16,5 @@ import { C3FileDisplayerModule } from 'projects/c3-components/src/public-api';
 export class ExampleDisplayListComponent {
   public readonly files = signal(crabbyImgs);
   public readonly config = signal(configDemo);
+  public readonly displayFn = signal((file: FileMetadata) => (file.metadata ? file.metadata['originalName'] : file.name));
 }
