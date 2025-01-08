@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+  aside {
+    height: 100%;
+    background: var(--background-app-bar);
+    border-right: 1px solid var(--mat-divider-color);
+    overflow: auto;
+    padding: 1rem;
+    nav ul li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  > section {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+  }
+
+  a {
+    border: 2px solid transparent;
+    padding: 0rem 0.5rem;
+    display: block;
+    color: #00000096;
+    text-decoration: none;
+  }
+
+  a.active {
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  a:hover {
+    color: var(--primary-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a {
+      color: #ffffff96;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<!-- header -->
+<div class="header">
+  <div class="title full">
+    <span>Nom</span>
+  </div>
+  <div class="title">
+    <span>Date d'ajout</span>
+  </div>
+  <div class="actions">
+    <ng-content></ng-content>
+  </div>
+</div>
+<c3-file-viewer-dialog [fileViewer]="fileViewer">
+  <div class="file-display-list">
+    @for (file of files(); track $index) {
+    <button>
+      <div class="icon">
+        <c3-file-display-icon [fileType]="file.type" />
+      </div>
+      <div class="name">
+        <span>{{ displayFn()(file) }}</span>
+      </div>
+      <div class="date-label">
+        <span>{{
+          file.lastModified ? (file.lastModified | date : "medium") : "-"
+        }}</span>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" c3-stop-click-propagation>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog($event, $index)">
+          Ouvrir
+        </button>
+        @if (deletable()) {
+        <button mat-menu-item (click)="onDelete.emit(file)">Supprimer</button>
+        }
+      </mat-menu>
+    </button>
+    }
+  </div>
+</c3-file-viewer-dialog>

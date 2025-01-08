@@ -17,6 +17,7 @@ import {
       </div>
     </ng-template>
   `,
+  standalone: false,
 })
 export class C3DropdownComponent implements OnChanges {
   @ViewChild(TemplateRef) template!: TemplateRef<any>;

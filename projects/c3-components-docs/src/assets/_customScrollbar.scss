@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "sass:color";
+
+@mixin customScrollbar($theme) {
+  $primary: map.get($theme, primary);
+  $scrollBarBackground: color.adjust(
+    map.get($primary, default),
+    $lightness: -10%
+  );
+
+  * {
+    scrollbar-color: $scrollBarBackground hsla(0, 0%, 100%, 0);
+  }
+
+  html ::-webkit-scrollbar {
+    background-color: transparent;
+    width: 6px;
+  }
+
+  html ::-webkit-scrollbar-button:end:increment,
+  html ::-webkit-scrollbar-button:start:decrement {
+    background: transparent;
+    display: none;
+  }
+
+  html ::-webkit-scrollbar-thumb:horizontal,
+  html ::-webkit-scrollbar-thumb:vertical {
+    display: block;
+    background-color: $scrollBarBackground;
+    background-clip: content-box;
+  }
+
+  html ::-webkit-scrollbar-thumb:hover {
+    display: block;
+    background-clip: content-box;
+    background-color: color.adjust($scrollBarBackground, $lightness: 10%);
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-button:end:increment,
+  ::-webkit-scrollbar-button:start:decrement {
+    background: transparent;
+    display: none;
+  }
+
+  ::-webkit-scrollbar-thumb:horizontal,
+  ::-webkit-scrollbar-thumb:vertical {
+    border-radius: 3px;
+    display: block;
+  }
+}

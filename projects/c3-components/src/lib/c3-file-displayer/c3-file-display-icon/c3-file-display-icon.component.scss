@@ -1,0 +1,19 @@
+:host {
+  display: block;
+
+  .text-primary {
+    color: var(--primary-color);
+  }
+
+  .text-secondary {
+    color: var(--secondary-color);
+  }
+
+  .text-success {
+    color: var(--success-color);
+  }
+
+  .text-gray {
+    color: var(--gray-color);
+  }
+}

@@ -1,0 +1,24 @@
+<div class="header">
+  <ng-content select="[title]"></ng-content>
+  <div class="header-buttons">
+    <button mat-icon-button (click)="sourceView.toggle()">
+      <mat-icon>code</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="content" c3AutoAnimate>
+  @if (sourceView.value) {
+  <mat-tab-group dynamicHeight>
+    @for (tab of tabs(); track $index) { @if(tab.template()) {
+    <mat-tab label="{{ tab.label() }}">
+      <ng-container [ngTemplateOutlet]="tab.template()!"></ng-container>
+    </mat-tab>
+    } }
+  </mat-tab-group>
+  }
+
+  <div class="example">
+    <ng-content select="[example]"></ng-content>
+  </div>
+</div>

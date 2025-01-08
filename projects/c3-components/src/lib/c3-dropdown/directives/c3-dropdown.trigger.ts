@@ -41,6 +41,7 @@ export const MAT_DROPDOWN_VALUE_ACCESSOR: any = {
   selector: '[c3Dropdown]',
   exportAs: 'c3DropdownTrigger',
   providers: [MAT_DROPDOWN_VALUE_ACCESSOR],
+  standalone: false,
 })
 export class C3DropdownTrigger implements OnChanges, OnDestroy {
   private overlayRef?: OverlayRef | null;

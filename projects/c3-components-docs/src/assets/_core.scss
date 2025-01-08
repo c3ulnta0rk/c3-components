@@ -1,0 +1,10 @@
+@use "./mat-color-palette.scss" as *;
+@use "./customScrollbar.scss" as *;
+@use "../../../c3-components/src/index" as *;
+
+@mixin core($theme) {
+  @include c3-core($theme);
+  // @include c3-core-m3($theme);
+  @include color-palette($theme);
+  @include customScrollbar($theme);
+}

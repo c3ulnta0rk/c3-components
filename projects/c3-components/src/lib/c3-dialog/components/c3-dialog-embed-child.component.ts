@@ -13,9 +13,13 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'C3DialogEmbedChildComponent',
-  template: `<mat-dialog-content>
-    <mat-toolbar *ngIf="data.toolbar" [color]="data.toolbar.color || 'default'">
+    selector: 'C3DialogEmbedChildComponent',
+    template: `<mat-dialog-content>
+    <mat-toolbar
+      *ngIf="data.toolbar"
+      [color]="data.toolbar.color || 'default'"
+      class="py-1"
+    >
       <span>{{ data.toolbar.title }}</span>
       <span class="spacer"></span>
       <button
@@ -31,8 +35,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <ng-template #target></ng-template>
     </div>
   </mat-dialog-content>`,
-  styles: [
-    `
+    styles: [
+        `
       mat-dialog-content {
         display: flex;
         flex-direction: column;
@@ -49,16 +53,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           display: flex;
           justify-content: space-between;
           align-items: center;
+          border-radius: 0.25rem;
           span {
             color: inherit;
           }
         }
         .spacer {
           flex: 1 1 auto;
+          min-width: 16px;
         }
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;

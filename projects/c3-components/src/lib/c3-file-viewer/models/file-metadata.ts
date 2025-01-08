@@ -1,5 +1,12 @@
 import { Observable } from 'rxjs';
 
+export type VariantFile = {
+  size: number;
+  fileName: string;
+  contentType: string;
+  location: string;
+};
+
 export interface FileMetadata {
   name: string;
   size?: number;
@@ -10,4 +17,5 @@ export interface FileMetadata {
   location: string;
   objectUrl?: Observable<string>;
   metadata?: Record<string, any>;
+  alternativeVersions?: VariantFile[];
 }

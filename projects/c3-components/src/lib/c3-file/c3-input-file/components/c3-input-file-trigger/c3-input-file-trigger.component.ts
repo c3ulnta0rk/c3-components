@@ -6,12 +6,13 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'c3-input-file-trigger',
-  template: `
+    selector: 'c3-input-file-trigger',
+    template: `
     <button (click)="click($event)">Ajouter des fichiers....</button>
   `,
-  styles: [],
-  encapsulation: ViewEncapsulation.None,
+    styles: [],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class C3InputFileTriggerComponent {
   @Output('click') clicked: EventEmitter<MouseEvent> = new EventEmitter();

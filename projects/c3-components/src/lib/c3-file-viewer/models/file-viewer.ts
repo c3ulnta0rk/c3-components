@@ -1,13 +1,13 @@
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, of, tap } from 'rxjs';
 import { DEFAULT_CONFIG } from '../consts/default.config';
 import { C3FileViewerConfig } from './file-viewer-config.model';
 import { HttpClient } from '@angular/common/http';
 import { CustomFileEvent } from './custom-file-event.model';
-import { FileMetadata } from './file-metadata';
-import { inject } from '@angular/core';
+import { FileMetadata, VariantFile } from './file-metadata';
 
 export class C3FileViewer {
   private _config: C3FileViewerConfig = DEFAULT_CONFIG;
+  private client: HttpClient['get'] | undefined;
   get config(): C3FileViewerConfig {
     return this._config;
   }
@@ -44,17 +44,26 @@ export class C3FileViewer {
   public styleHeight = '100%';
   public hovered = false;
 
-  public set files(value: FileMetadata[]) {
-    this._files = value;
+  public set files(newFiles: FileMetadata[]) {
+    this._files = newFiles;
     this.currentIndex = 0;
     this.index$.next(this.currentIndex);
 
-    this.filesObjectUrl = value.map((file) => {
-      return {
+    for (const file of newFiles) {
+      this.filesObjectUrl.push({
         ...file,
         objectUrl: file.objectUrl || this.createObjectURL(file),
-      };
-    });
+      });
+
+      if (file.alternativeVersions)
+        for (const alternativeVersion of file.alternativeVersions) {
+          this.filesObjectUrl.push({
+            ...file,
+            ...alternativeVersion,
+            objectUrl: this.createObjectURL(alternativeVersion),
+          });
+        }
+    }
   }
 
   public get files(): FileMetadata[] {
@@ -65,9 +74,11 @@ export class C3FileViewer {
 
   public filesObjectUrl: Array<
     FileMetadata & {
-      objectUrl?: Observable<string>;
+      objectUrl: Observable<string>;
     }
   > = [];
+
+  private locationBlobMap = new Map<string, string>();
 
   private scale = 1;
   private rotation = 0;
@@ -79,11 +90,14 @@ export class C3FileViewer {
   constructor({
     config,
     files,
+    client,
   }: {
     config?: C3FileViewerConfig;
     files?: FileMetadata[];
+    client: HttpClient;
   }) {
     if (config) this.config = config;
+    if (client) this.client = client.get.bind(client);
     if (files) this.files = files;
 
     this.config$.subscribe((config) => {
@@ -101,18 +115,23 @@ export class C3FileViewer {
     });
   }
 
-  createObjectURL(file: FileMetadata) {
-    this.onLoadStart(file);
-    return this.getFile(file.location).pipe(
-      map((response) => URL.createObjectURL(response)),
-      tap(() => this.onLoad(file))
+  createObjectURL(file: FileMetadata | VariantFile) {
+    this.onLoadStart();
+    return of(file.location).pipe(
+      mergeMap((location) =>
+        this.locationBlobMap.has(location)
+          ? of(this.locationBlobMap.get(location)!)
+          : this.getFile(location).pipe(
+              map((response) => URL.createObjectURL(response)),
+              tap((url) => this.locationBlobMap.set(location, url))
+            )
+      ),
+      tap(() => this.onLoad())
     );
   }
 
   getFile(location: string) {
-    const client =
-      this.config.customClient ||
-      inject(HttpClient).get.bind(inject(HttpClient));
+    const client = this.config.customClient || this.client;
     if (!client) {
       throw new Error(
         'No http client provided. Please provide a custom client or import HttpClientModule'
@@ -175,11 +194,11 @@ export class C3FileViewer {
     this.updateStyle();
   }
 
-  onLoad(file: FileMetadata) {
+  onLoad() {
     this.loading = false;
   }
 
-  onLoadStart(file: FileMetadata) {
+  onLoadStart() {
     this.loading = true;
   }
 

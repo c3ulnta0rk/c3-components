@@ -1,17 +1,17 @@
 import { signal, WritableSignal } from '@angular/core';
 
 class BooleanSignal {
-  private _signal: WritableSignal<Boolean>;
+  private _signal: WritableSignal<boolean>;
 
-  constructor(initialValue: Boolean) {
-    this._signal = signal<Boolean>(initialValue);
+  constructor(initialValue: boolean) {
+    this._signal = signal<boolean>(initialValue);
   }
 
   get value() {
     return this._signal();
   }
 
-  set value(newValue: Boolean) {
+  set value(newValue: boolean) {
     this._signal.set(newValue);
   }
 

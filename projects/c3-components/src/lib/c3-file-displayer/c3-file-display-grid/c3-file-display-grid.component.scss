@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  .c3-file-display-grid {
+    display: flex;
+    flex-flow: wrap;
+    gap: 1rem;
+  }
+}

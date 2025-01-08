@@ -10,10 +10,11 @@ import {
 import { C3InputFile } from '../../class/c3-input-file';
 
 @Component({
-  selector: 'c3-input-file',
-  templateUrl: './c3-input-file.component.html',
-  styleUrls: ['./c3-input-file.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'c3-input-file',
+    templateUrl: './c3-input-file.component.html',
+    styleUrls: ['./c3-input-file.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class C3InputFileComponent {
   @Input() accept!: string;

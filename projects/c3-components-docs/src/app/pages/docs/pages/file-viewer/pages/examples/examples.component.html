@@ -1,0 +1,248 @@
+<p class="my-4">Component Viewer for file, video and pdf</p>
+
+<example-viewer class="mb-1 px-4 pb-2">
+  <h4 title>Basic viewer for images</h4>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component } from '@angular/core';
+import {
+  C3FileViewerConfig,
+  C3FileViewer,
+  CustomFileEvent,
+  C3FileViewerModule,
+} from 'c3-components';
+import { crabbyImgs } from '../../files';
+
+@Component({
+  selector: 'basic-viewer',
+  standalone: true,
+  imports: [C3FileViewerModule],
+  templateUrl: './basic-viewer.component.html',
+  styleUrls: ['./basic-viewer.component.scss'],
+})
+export class BasicViewerComponent {
+  public config: C3FileViewerConfig = {
+    btnContainerClass: 'other',
+    btnClass: 'btn btn-hover-primary px-1',
+    btnSubClass: 'material-icons font-size-xl',
+    zoomFactor: 0.1,
+    wheelZoom: true,
+    allowFullscreen: true,
+    allowKeyboardNavigation: true,
+    height: '640px',
+    btnShow: {
+      zoomIn: true,
+      zoomOut: true,
+      rotateClockwise: true,
+      rotateCounterClockwise: true,
+      next: false,
+      prev: false,
+      reset: true,
+    },
+    btnIcons: {
+      next: {
+        text: 'navigate_next',
+      },
+      prev: {
+        text: 'navigate_before',
+      },
+    },
+    customBtns: [],
+  };
+
+  public fileViewer = new C3FileViewer({
+    files: crabbyImgs,
+    config: this.config,
+  });
+
+  handleEvent(event: CustomFileEvent) {
+    console.log(`${event?.name} has been clicked on img ${event?.fileUrl}`);
+
+    switch (event?.name) {
+      case 'print':
+        console.log('run print logic');
+        break;
+    }
+  }
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-file-viewer
+  [fileViewer]="fileViewer"
+  [screenHeightOccupied]="0"
+  (customFileEvent)="handleEvent($event)"
+>
+</c3-file-viewer>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="CrabbyImg.ts">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { FileMetadata } from 'c3-components';
+
+export const crabbyImgs: Array<FileMetadata> = [
+  {
+    name: 'Crabby - 1',
+    type: 'image/png',
+    location: 'img/crabby-1.png',
+  },
+  {
+    name: 'Crabby - 2',
+    type: 'image/jpeg',
+    location: 'img/crabby-2.jpeg',
+  },
+  {
+    name: 'Crabby - 3',
+    type: 'image/png',
+    location: 'img/crabby-3.png',
+  },
+  {
+    name: 'Crabby - 4',
+    type: 'image/png',
+    location: 'img/crabby-4.png',
+  },
+  {
+    name: 'Crabby - 5',
+    type: 'image/png',
+    location: 'img/crabby-5.png',
+  },
+  {
+    name: 'Crabby - 6',
+    type: 'image/png',
+    location: 'img/crabby-6.png',
+  },
+];
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <ng-container example>
+    <basic-viewer></basic-viewer>
+  </ng-container>
+</example-viewer>
+
+<example-viewer class="mb-1 px-4 pb-2">
+  <h4 title>Dialog Viewer</h4>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  C3FileViewerConfig,
+  C3FileViewer,
+  C3FileViewerModule,
+} from 'c3-components';
+import { crabbyImgs } from '../../files';
+
+@Component({
+  selector: 'dialog-viewer',
+  standalone: true,
+  imports: [C3FileViewerModule, MatButtonModule],
+  templateUrl: './dialog-viewer.component.html',
+  styleUrls: ['./dialog-viewer.component.scss'],
+})
+export class DialogViewerComponent {
+  public config: C3FileViewerConfig = {
+    btnContainerClass: 'other',
+    btnClass: 'btn btn-hover-primary px-1',
+    btnSubClass: 'material-icons font-size-xl',
+    zoomFactor: 0.1,
+    wheelZoom: true,
+    allowFullscreen: true,
+    allowKeyboardNavigation: true,
+    height: '640px',
+    btnShow: {
+      zoomIn: true,
+      zoomOut: true,
+      rotateClockwise: true,
+      rotateCounterClockwise: true,
+      next: false,
+      prev: false,
+      reset: true,
+    },
+    btnIcons: {
+      next: {
+        text: 'navigate_next',
+      },
+      prev: {
+        text: 'navigate_before',
+      },
+    },
+    customBtns: [],
+  };
+
+  public fileViewer = new C3FileViewer({
+    files: crabbyImgs,
+    config: this.config,
+  });
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-file-viewer-dialog [fileViewer]="fileViewer">
+  <button mat-raised-button color="primary">Open Dialog</button>
+</c3-file-viewer-dialog>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="CrabbyImg.ts">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { FileMetadata } from 'c3-components';
+
+export const crabbyImgs: Array<FileMetadata> = [
+  {
+    name: 'Crabby - 1',
+    type: 'image/png',
+    location: 'img/crabby-1.png',
+  },
+  {
+    name: 'Crabby - 2',
+    type: 'image/jpeg',
+    location: 'img/crabby-2.jpeg',
+  },
+  {
+    name: 'Crabby - 3',
+    type: 'image/png',
+    location: 'img/crabby-3.png',
+  },
+  {
+    name: 'Crabby - 4',
+    type: 'image/png',
+    location: 'img/crabby-4.png',
+  },
+  {
+    name: 'Crabby - 5',
+    type: 'image/png',
+    location: 'img/crabby-5.png',
+  },
+  {
+    name: 'Crabby - 6',
+    type: 'image/png',
+    location: 'img/crabby-6.png',
+  },
+];
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <ng-container example>
+    <dialog-viewer></dialog-viewer>
+  </ng-container>
+</example-viewer>

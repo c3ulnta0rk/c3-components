@@ -1,0 +1,129 @@
+<example-viewer class="mb-2 px-4 pb-2">
+  <h4 title>Basic Expansion</h4>
+  
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { C3ExpansionModule } from 'c3-components';
+
+@Component({
+  selector: 'c3-example',
+  standalone: true,
+  imports: [
+    C3ExpansionModule,
+    CommonModule,
+  ],
+  templateUrl: './example.component.html',
+})
+export class ExampleComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-expansion>
+  <c3-expansion-header title="Example title" />
+
+  <div>
+    content
+  </div>
+</c3-expansion>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <ng-container example>
+    <c3-expansion class="rounded border">
+      <c3-expansion-header title="Example title" class="bg-blue-800 rounded" />
+
+      <div>
+        content
+      </div>
+    </c3-expansion>
+  </ng-container>
+</example-viewer>
+
+
+<example-viewer class="mb-2 px-4 pb-2"> 
+  <h4 title>Basic Expansion with custome header</h4>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { C3ExpansionModule } from 'c3-components';
+
+@Component({
+  selector: 'c3-example',
+  standalone: true,
+  imports: [
+    C3ExpansionModule,
+    CommonModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+  ],
+  templateUrl: './example.component.html',
+})
+export class ExampleComponent {}
+      </textarea>
+    </div>
+</c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-expansion #c3Expansion class="rounded border">
+  <c3-expansion-header>
+    <mat-toolbar
+      class="!justify-between gap-4 !bg-blue-800 rounded"
+      (click)="c3Expansion.toggleExpand()"
+    >
+      <span>Fichiers reçu</span>
+      <button mat-icon-button>
+        <mat-icon>{{
+          c3Expansion.isExpanded() ? "expand_less" : "expand_more"
+        }}</mat-icon>
+      </button>
+    </mat-toolbar>
+  </c3-expansion-header>
+
+  <div>
+    super content
+  </div>
+</c3-expansion>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <ng-container example>
+    <c3-expansion #c3Expansion class="rounded border">
+      <c3-expansion-header>
+        <mat-toolbar
+          class="!justify-between gap-4 !bg-blue-800 rounded"
+          (click)="c3Expansion.toggleExpand()"
+        >
+          <span>Fichiers reçu</span>
+          <button mat-icon-button>
+            <mat-icon>{{
+              c3Expansion.isExpanded() ? "expand_less" : "expand_more"
+            }}</mat-icon>
+          </button>
+        </mat-toolbar>
+      </c3-expansion-header>
+
+      <div>
+        super content
+      </div>
+    </c3-expansion>
+  </ng-container>
+</example-viewer>
