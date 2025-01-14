@@ -39,6 +39,15 @@ export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
     closeColor?: string;
     color?: string;
   };
+  classActions?: string;
+  classContainer?: string;
+  classContent?: string;
+  actions?: {
+    label: string;
+    color?: string;
+    apperance?: 'basic' | 'raised' | 'stroked' | 'flat';
+    action: () => void;
+  }[];
 };
 
 export type C3CreateDialogFromComponentResult<C> = {
@@ -158,6 +167,10 @@ export class C3DialogService {
     component,
     toolbar,
     data,
+    classContainer,
+    classContent,
+    classActions,
+    actions,
     ...config
   }: C3CreateDialogFromComponentConfig<C>) {
     if (!component) throw new Error('No component provided');
@@ -168,6 +181,10 @@ export class C3DialogService {
         component,
         toolbar,
         inputs: data,
+        classActions,
+        classContainer,
+        classContent,
+        actions
       },
     });
 

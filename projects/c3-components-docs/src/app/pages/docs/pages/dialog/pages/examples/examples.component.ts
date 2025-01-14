@@ -8,21 +8,23 @@ import { PromptComponent } from '../../components/prompt/prompt.component';
 import { EmbededComponentComponent } from '../../components/embededComponent/embededComponent.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AlertComponent } from '../../components/alert/alert.component';
+import { EmbededComponentWithActionsComponent } from "../../components/embededComponentWithActions/embededComponentWithActions.component";
 
 @Component({
-    selector: 'dialog-example',
-    imports: [
-        CommonModule,
-        ConfirmComponent,
-        EmbededComponentComponent,
-        ExampleViewerComponent,
-        ExampleViewerTabComponent,
-        HighlightJsDirective,
-        MatButtonModule,
-        PromptComponent,
-        AlertComponent,
-    ],
-    templateUrl: './examples.component.html',
-    styleUrls: ['./examples.component.scss']
+  selector: 'dialog-example',
+  imports: [
+    CommonModule,
+    ConfirmComponent,
+    EmbededComponentComponent,
+    ExampleViewerComponent,
+    ExampleViewerTabComponent,
+    HighlightJsDirective,
+    MatButtonModule,
+    PromptComponent,
+    AlertComponent,
+    EmbededComponentWithActionsComponent
+  ],
+  templateUrl: './examples.component.html',
+  styleUrls: ['./examples.component.scss']
 })
-export class DialogExamplesComponent {}
+export class DialogExamplesComponent { }

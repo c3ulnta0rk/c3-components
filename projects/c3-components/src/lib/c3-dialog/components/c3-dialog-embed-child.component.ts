@@ -13,34 +13,89 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    selector: 'C3DialogEmbedChildComponent',
-    template: `<mat-dialog-content>
-    <mat-toolbar
-      *ngIf="data.toolbar"
-      [color]="data.toolbar.color || 'default'"
-      class="py-1"
-    >
-      <span>{{ data.toolbar.title }}</span>
-      <span class="spacer"></span>
-      <button
-        *ngIf="data.toolbar.closeBtn"
-        mat-icon-button
-        mat-dialog-close
-        color="{{ data.toolbar.closeColor }}"
+  selector: 'C3DialogEmbedChildComponent',
+  template: `<div [class]="'dialog-content-container ' + (data.classContainer || '')">
+    @if(data.toolbar) {
+      <mat-toolbar
+        [color]="data.toolbar.color || 'default'"
+        class="py-1"
       >
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-toolbar>
-    <div class="dialog-content">
+        <span>{{ data.toolbar.title }}</span>
+        <span class="spacer"></span>
+        <button
+          *ngIf="data.toolbar.closeBtn"
+          mat-icon-button
+          mat-dialog-close
+          color="{{ data.toolbar.closeColor }}"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar>
+    }
+    <div [class]="'dialog-content '+ (data.classContent || '')">
       <ng-template #target></ng-template>
     </div>
-  </mat-dialog-content>`,
-    styles: [
-        `
-      mat-dialog-content {
+    @if(data.actions && data.actions.length > 0) {
+      <div [class]="'dialog-actions' + (data.classActions || '')">
+        @for(action of data.actions; track action.label) {
+          @switch (action.apperance) {
+            @case ('basic') {
+              <button
+                [class]="action.class"
+                (click)="action.action()"
+              >
+                {{ action.label }}
+              </button>
+            }
+            @case ('raised') {
+              <button
+                mat-raised-button
+                [class]="action.class"
+                (click)="action.action()"
+              >
+                {{ action.label }}
+              </button>
+            }
+            @case ('stroked') {
+              <button
+                mat-stroked-button
+                [class]="action.class"
+                (click)="action.action()"
+              >
+                {{ action.label }}
+              </button>
+            }
+            @case ('flat') {
+              <button
+                mat-flat-button
+                [class]="action.class"
+                (click)="action.action()"
+              >
+                {{ action.label }}
+              </button>
+            }
+            @default {
+              <button
+                mat-button
+                [class]="action.class"
+                (click)="action.action()"
+              >
+                {{ action.label }}
+              </button>
+            }
+          }
+        }
+      </div>
+    }
+  </div>`,
+  styles: [
+    `
+      .dialog-content-container {
         display: flex;
         flex-direction: column;
         height: 100%;
+        padding: 1rem;
+        overflow: auto;
 
         .dialog-content {
           display: flex;
@@ -63,9 +118,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           min-width: 16px;
         }
       }
+
+      .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
     `,
-    ],
-    standalone: false
+  ],
+  standalone: false
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;
@@ -78,15 +139,24 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
     public data: {
       component: ComponentType<C>;
       inputs?: Partial<Record<keyof C, unknown>>;
+      classActions?: string;
+      classContainer?: string;
+      classContent?: string;
       toolbar?: {
         title: string;
         closeBtn?: boolean;
         closeColor?: string;
         color?: string;
       };
+      actions?: {
+        label: string;
+        apperance?: 'basic' | 'raised' | 'stroked' | 'flat';
+        class?: string;
+        action: () => void;
+      }[];
     },
     private _cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngAfterViewInit() {
     this.createdComponent.set(this.target.createComponent(this.data.component));
