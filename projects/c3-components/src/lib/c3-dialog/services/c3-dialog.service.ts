@@ -44,7 +44,7 @@ export type C3CreateDialogFromComponentConfig<C> = MatDialogConfig<
   classContent?: string;
   actions?: {
     label: string;
-    color?: string;
+    class?: string;
     apperance?: 'basic' | 'raised' | 'stroked' | 'flat';
     action: () => void;
   }[];
