@@ -21,19 +21,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { C3StopPropagationDirective } from '../../c3-prevent-event';
 
 @Component({
-    selector: 'c3-file-display-list',
-    imports: [
-        C3StopPropagationDirective,
-        C3FileViewerModule,
-        C3FileDisplayIconComponent,
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        MatNativeDateModule,
-        MatMenuModule,
-    ],
-    templateUrl: './c3-file-display-list.component.html',
-    styleUrl: './c3-file-display-list.component.scss'
+  selector: 'c3-file-display-list',
+  imports: [
+    C3StopPropagationDirective,
+    C3FileViewerModule,
+    C3FileDisplayIconComponent,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatMenuModule,
+  ],
+  templateUrl: './c3-file-display-list.component.html',
+  styleUrl: './c3-file-display-list.component.scss'
 })
 export class C3FileDisplayListComponent {
   public readonly files = input.required<
@@ -60,18 +60,12 @@ export class C3FileDisplayListComponent {
     effect(
       () => {
         this.fileViewer.files = this.files();
-      },
-      {
-        allowSignalWrites: true,
       }
     );
 
     effect(
       () => {
         if (this.config()) this.fileViewer.config = this.config()!;
-      },
-      {
-        allowSignalWrites: true,
       }
     );
   }

@@ -16,14 +16,14 @@ import { HttpClient } from '@angular/common/http';
 import { C3FileViewer } from '../../../models/file-viewer';
 
 @Component({
-    selector: 'c3-file-viewer',
-    templateUrl: './c3-file-viewer.component.html',
-    styleUrls: [],
-    encapsulation: ViewEncapsulation.None,
-    host: {
-        class: 'c3-file-viewer',
-    },
-    standalone: false
+  selector: 'c3-file-viewer',
+  templateUrl: './c3-file-viewer.component.html',
+  styleUrls: ['./c3-file-viewer.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'c3-file-viewer',
+  },
+  standalone: false
 })
 export class C3FileViewerComponent implements OnInit {
   @Input()
@@ -44,7 +44,7 @@ export class C3FileViewerComponent implements OnInit {
   constructor(
     @Optional() @Inject('config') public moduleConfig: C3FileViewerConfig,
     public _http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.defineStyleHeight();
