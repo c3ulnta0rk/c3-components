@@ -76,10 +76,7 @@ export class DialogConfirmExampleComponent {
       <textarea highlight-js [options]="{}" lang="typescript">
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import {
-  C3DialogModule,
-  C3DialogService,
-} from 'projects/c3-components/src/public-api';
+import { C3DialogModule, C3DialogService } from 'c3-components';
 
 @Component({
   selector: 'c3-prompt',
@@ -133,10 +130,7 @@ export class PromptComponent {
         import { CommonModule } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  C3DialogModule,
-  C3DialogService,
-} from 'projects/c3-components/src/public-api';
+import { C3DialogModule, C3DialogService } from 'c3-components';
 
 @Component({
   selector: 'c3-embded-component-example',
@@ -192,8 +186,11 @@ export class EmbededComponentComponent {
 
   <c3-example-viewer-tab label="TypeScript">
     <div>
-      <textarea highlight-js [options]="{}" lang="typescript">
-        export class EmbededComponentWithActionsComponent {
+      <textarea highlight-js [options]="{}" lang="typescript">import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { C3DialogModule, C3DialogService } from 'c3-components';
+
+export class EmbededComponentWithActionsComponent {
   private readonly dialogService = inject(C3DialogService);
 
   public openDialog() {
@@ -235,4 +232,76 @@ export class EmbededComponentComponent {
   <ng-container example>
     <c3-alert />
   </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<button mat-raised-button (click)="openDialog()">Open Dialog</button>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { C3DialogModule, C3DialogService } from 'c3-components';
+
+@Component({
+    selector: 'c3-alert',
+    imports: [C3DialogModule, MatButtonModule],
+    templateUrl: './alert.component.html',
+    styleUrl: './alert.component.scss'
+})
+export class AlertComponent {
+  private readonly dialogService = inject(C3DialogService);
+
+  public async openDialog() {
+    this.dialogService.alert('Je suis une alerte').subscribe();
+  }
+}
+
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Template dialog</h4>
+
+  <ng-container example>
+    <c3-template-component />
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html"><button mat-raised-button [c3-dialog]="target">Open !</button>
+
+<c3-dialog-template #target >
+  <c3-inner-component />
+</c3-dialog-template>
+
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { C3DialogModule, C3DialogService } from 'c3-components';
+import { InnerComponentComponent } from "./inner-component/inner-component.component";
+
+@Component({
+  selector: 'c3-template-component',
+  imports: [C3DialogModule, MatButtonModule, InnerComponentComponent],
+  templateUrl: './templateComponent.component.html',
+  styleUrl: './templateComponent.component.scss',
+})
+export class TemplateComponentComponent { }
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
 </example-viewer>

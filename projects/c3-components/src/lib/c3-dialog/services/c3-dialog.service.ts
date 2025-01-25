@@ -2,6 +2,7 @@ import {
   ComponentRef,
   Injectable,
   Injector,
+  TemplateRef,
   effect,
   inject,
 } from '@angular/core';
@@ -189,6 +190,28 @@ export class C3DialogService {
     });
 
     return this.createC3DialogResult(dialog);
+  }
+
+  /**
+     * Ouvre un dialog à partir d'un TemplateRef.
+     * @param templateRef Le TemplateRef à afficher dans la boîte de dialogue.
+     * @param config (optionnel) Configuration pour le MatDialog (dimensions, position, etc.).
+     */
+  public createDialogFromTemplate(
+    templateRef: TemplateRef<any>,
+    config?: MatDialogConfig
+  ): C3CreateDialogFromComponentResult<unknown> {
+    // On ouvre le même composant hôte (C3DialogEmbedChildComponent)
+    // mais on lui passe un paramètre templateRef plutôt qu'un component.
+    const dialogRef = this.#dialog.open(C3DialogEmbedChildComponent<unknown>, {
+      ...config,
+      data: {
+        templateRef,
+      },
+    });
+
+    // On réutilise la méthode générique pour envelopper le MatDialogRef
+    return this.createC3DialogResult(dialogRef);
   }
 
   public alert(text: string, data?: AlertConfig) {

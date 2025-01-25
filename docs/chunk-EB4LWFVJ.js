@@ -1,2 +1,0 @@
-import{$c as m,Tb as i,Ub as r,mc as o,rb as n}from"./chunk-VX4SSQKW.js";var l=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=n({type:e,selectors:[["c3-overview"]],decls:3,vars:0,template:function(t,c){t&1&&(i(0,"p"),o(1,"overview works!"),r(),o(2,`,
-`))},dependencies:[m],styles:["[_nghost-%COMP%]{display:block}"]})}}return e})();export{l as DocOverviewComponent};

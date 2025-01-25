@@ -9,6 +9,7 @@ import { EmbededComponentComponent } from '../../components/embededComponent/emb
 import { MatButtonModule } from '@angular/material/button';
 import { AlertComponent } from '../../components/alert/alert.component';
 import { EmbededComponentWithActionsComponent } from "../../components/embededComponentWithActions/embededComponentWithActions.component";
+import { TemplateComponentComponent } from "../../components/templateComponent/templateComponent.component";
 
 @Component({
   selector: 'dialog-example',
@@ -22,7 +23,8 @@ import { EmbededComponentWithActionsComponent } from "../../components/embededCo
     MatButtonModule,
     PromptComponent,
     AlertComponent,
-    EmbededComponentWithActionsComponent
+    EmbededComponentWithActionsComponent,
+    TemplateComponentComponent
   ],
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss']

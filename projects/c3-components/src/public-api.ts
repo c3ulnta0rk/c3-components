@@ -14,10 +14,13 @@ export * from './lib/c3-dropdown/c3-dropdown.module';
 /**
  * Dialog
  */
+export * from './lib/c3-dialog/components/c3-dialog-alert.component'
 export * from './lib/c3-dialog/components/c3-dialog-confirm.component';
 export * from './lib/c3-dialog/components/c3-dialog-prompt.component';
 export * from './lib/c3-dialog/components/c3-dialog-embed-child.component';
+export * from './lib/c3-dialog/components/c3-dialog-template/c3-dialog-template.component';
 export * from './lib/c3-dialog/services/c3-dialog.service';
+export * from './lib/c3-dialog/directives/c3-open-dialog.directive';
 export * from './lib/c3-dialog/c3-dialog.module';
 
 /**

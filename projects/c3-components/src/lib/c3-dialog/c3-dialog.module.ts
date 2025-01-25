@@ -12,6 +12,8 @@ import { C3DialogService } from './services/c3-dialog.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { C3AlertDialogComponent } from './components/c3-dialog-alert.component';
+import { C3DialogTemplateComponent } from './components/c3-dialog-template/c3-dialog-template.component';
+import { C3OpenDialogDirective } from './directives/c3-open-dialog.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { C3AlertDialogComponent } from './components/c3-dialog-alert.component';
     ConfirmDialogComponent,
     C3PromptDialogComponent,
     C3DialogEmbedChildComponent,
+    C3DialogTemplateComponent,
+    C3OpenDialogDirective,
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,10 @@ import { C3AlertDialogComponent } from './components/c3-dialog-alert.component';
     MatToolbarModule,
     ReactiveFormsModule,
   ],
+  exports: [
+    C3DialogTemplateComponent,
+    C3OpenDialogDirective
+  ],
   providers: [C3DialogService],
 })
-export class C3DialogModule {}
+export class C3DialogModule { }

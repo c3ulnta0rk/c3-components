@@ -7,13 +7,6 @@ const routes: Routes = [
     loadComponent: () =>
       import('./docs.component').then((m) => m.DocsComponent),
     children: [
-      {
-        path: 'overview',
-        loadComponent: () =>
-          import('./pages/overview/overview.component').then(
-            (m) => m.DocOverviewComponent
-          ),
-      },
 
       {
         path: 'getting-started',
@@ -128,4 +121,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DocsRoutingModule {}
+export class DocsRoutingModule { }

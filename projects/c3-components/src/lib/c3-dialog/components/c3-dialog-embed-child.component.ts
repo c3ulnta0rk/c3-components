@@ -5,6 +5,8 @@ import {
   Component,
   ComponentRef,
   Inject,
+  Signal,
+  TemplateRef,
   Type,
   ViewChild,
   ViewContainerRef,
@@ -14,80 +16,93 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'C3DialogEmbedChildComponent',
-  template: `<div [class]="'dialog-content-container ' + (data.classContainer || '')">
-    @if(data.toolbar) {
-      <mat-toolbar
-        [color]="data.toolbar.color || 'default'"
-        class="py-1"
-      >
-        <span>{{ data.toolbar.title }}</span>
-        <span class="spacer"></span>
-        <button
-          *ngIf="data.toolbar.closeBtn"
-          mat-icon-button
-          mat-dialog-close
-          color="{{ data.toolbar.closeColor }}"
+  template: `
+    <div [class]="'dialog-content-container ' + (data.classContainer || '')">
+      @if (data.toolbar) {
+        <mat-toolbar
+          [color]="data.toolbar.color || 'default'"
+          class="py-1"
         >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-toolbar>
-    }
-    <div [class]="'dialog-content '+ (data.classContent || '')">
-      <ng-template #target></ng-template>
-    </div>
-    @if(data.actions && data.actions.length > 0) {
-      <div [class]="'dialog-actions' + (data.classActions || '')">
-        @for(action of data.actions; track action.label) {
-          @switch (action.apperance) {
-            @case ('basic') {
-              <button
-                [class]="action.class"
-                (click)="action.action()"
-              >
-                {{ action.label }}
-              </button>
-            }
-            @case ('raised') {
-              <button
-                mat-raised-button
-                [class]="action.class"
-                (click)="action.action()"
-              >
-                {{ action.label }}
-              </button>
-            }
-            @case ('stroked') {
-              <button
-                mat-stroked-button
-                [class]="action.class"
-                (click)="action.action()"
-              >
-                {{ action.label }}
-              </button>
-            }
-            @case ('flat') {
-              <button
-                mat-flat-button
-                [class]="action.class"
-                (click)="action.action()"
-              >
-                {{ action.label }}
-              </button>
-            }
-            @default {
-              <button
-                mat-button
-                [class]="action.class"
-                (click)="action.action()"
-              >
-                {{ action.label }}
-              </button>
-            }
-          }
+          <span>{{ data.toolbar.title }}</span>
+          <span class="spacer"></span>
+          <button
+            *ngIf="data.toolbar.closeBtn"
+            mat-icon-button
+            mat-dialog-close
+            color="{{ data.toolbar.closeColor }}"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-toolbar>
+      }
+
+      <div [class]="'dialog-content ' + (data.classContent || '')">
+        <!-- Si templateRef est présent, on l'affiche directement,
+             sinon on laisse la place au composant dynamique -->
+        @if (data.templateRef) {
+          <ng-container
+            *ngTemplateOutlet="data.templateRef"
+          ></ng-container>
+        }
+        @else {
+          <ng-template #target></ng-template>
         }
       </div>
-    }
-  </div>`,
+
+      @if (data.actions && data.actions.length > 0) {
+        <div [class]="'dialog-actions ' + (data.classActions || '')">
+          @for (action of data.actions; track action.label) {
+            @switch (action.apperance) {
+              @case ('basic') {
+                <button
+                  [class]="action.class"
+                  (click)="action.action()"
+                >
+                  {{ action.label }}
+                </button>
+              }
+              @case ('raised') {
+                <button
+                  mat-raised-button
+                  [class]="action.class"
+                  (click)="action.action()"
+                >
+                  {{ action.label }}
+                </button>
+              }
+              @case ('stroked') {
+                <button
+                  mat-stroked-button
+                  [class]="action.class"
+                  (click)="action.action()"
+                >
+                  {{ action.label }}
+                </button>
+              }
+              @case ('flat') {
+                <button
+                  mat-flat-button
+                  [class]="action.class"
+                  (click)="action.action()"
+                >
+                  {{ action.label }}
+                </button>
+              }
+              @default {
+                <button
+                  mat-button
+                  [class]="action.class"
+                  (click)="action.action()"
+                >
+                  {{ action.label }}
+                </button>
+              }
+            }
+          }
+        </div>
+      }
+    </div>
+  `,
   styles: [
     `
       .dialog-content-container {
@@ -126,28 +141,40 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       }
     `,
   ],
-  standalone: false
+  standalone: false,
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
-  @ViewChild('target', { read: ViewContainerRef }) target!: ViewContainerRef;
+  @ViewChild('target', { read: ViewContainerRef })
+  target!: ViewContainerRef;
 
+  // On utilise un signal pour stocker la référence du composant créé
   createdComponent = signal<ComponentRef<C> | null>(null);
 
   constructor(
     public dialogRef: MatDialogRef<C3DialogEmbedChildComponent<C>>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      component: ComponentType<C>;
+      // Soit component, soit templateRef, ou les deux (mais on utilise en priorité un templateRef si fourni)
+      component?: ComponentType<C>;
+      templateRef?: TemplateRef<any>;
+
+      // Pour les inputs du composant
       inputs?: Partial<Record<keyof C, unknown>>;
+
+      // Classes CSS
       classActions?: string;
       classContainer?: string;
       classContent?: string;
+
+      // Toolbar
       toolbar?: {
         title: string;
         closeBtn?: boolean;
         closeColor?: string;
         color?: string;
       };
+
+      // Boutons d’action
       actions?: {
         label: string;
         apperance?: 'basic' | 'raised' | 'stroked' | 'flat';
@@ -159,30 +186,54 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    this.createdComponent.set(this.target.createComponent(this.data.component));
+    // Si on a un composant, on le crée dynamiquement
+    if (this.data.component && !this.data.templateRef) {
+      const compRef = this.target.createComponent(this.data.component);
+      this.createdComponent.set(compRef);
 
-    // detect the inputs of the component
-    if (!this.createdComponent) this.dialogRef.close(false);
+      // Injecter les inputs dans le composant
+      if (this.data.inputs) {
+        this._setInputs(
+          this.data.component,
+          this.data.inputs,
+          compRef
+        );
+      }
+    }
+    // Si on a juste un templateRef, on ne crée pas de composant :
+    // l’affichage est déjà géré dans le template via <ng-template *ngTemplateOutlet="...">
+    else if (this.data.templateRef) {
+      this.createdComponent.set(null);
+    }
+    // Si on n’a rien, on ferme le dialog
+    else {
+      this.dialogRef.close(false);
+    }
 
-    if (this.data.inputs)
-      this._setInputs(
-        this.data.component,
-        this.data.inputs,
-        this.createdComponent()!
-      );
-
+    // Déclenche manuellement le cycle de détection pour actualiser l'affichage
     this._cdr.detectChanges();
   }
 
+  /**
+   * Retourne la référence du composant créé (s’il y en a un),
+   * utile pour le service ou l’appelant.
+   */
+  public createdComponentInstance(): ComponentRef<C> | null {
+    return this.createdComponent();
+  }
+
+  // Récupère la liste des @Input déclarés sur le composant
   private _getInputProperties<C>(component: Type<C>) {
     const inputs: string[] = [];
     const declaredInputs: Partial<Record<keyof C, string>> =
       component.prototype?.constructor['ɵcmp']?.declaredInputs;
-    for (const input of Object.keys(declaredInputs)) inputs.push(input);
-
+    for (const input of Object.keys(declaredInputs)) {
+      inputs.push(input);
+    }
     return inputs;
   }
 
+  // Assigne les inputs passés en configuration au composant dynamique
   private _setInputs<C>(
     component: Type<C>,
     inputs: Partial<Record<keyof C, unknown>>,
@@ -190,10 +241,9 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   ) {
     const inputProperties = this._getInputProperties(component);
     for (const key of inputProperties) {
-      if (inputs[key as keyof C]) {
+      if (inputs[key as keyof C] !== undefined) {
         componentRef.setInput(key, inputs[key as keyof C]);
       }
     }
-    return component;
   }
 }
