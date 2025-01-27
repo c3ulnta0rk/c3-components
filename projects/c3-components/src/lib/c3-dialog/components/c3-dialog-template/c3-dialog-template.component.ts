@@ -1,4 +1,5 @@
-import { Component, TemplateRef, viewChild } from '@angular/core';
+import { Component, signal, TemplateRef, viewChild } from '@angular/core';
+import { C3CreateDialogFromComponentResult } from '../../services/c3-dialog.service';
 
 @Component({
   selector: 'c3-dialog-template',
@@ -10,4 +11,6 @@ export class C3DialogTemplateComponent {
   public readonly templateRef = viewChild('internalTemplate', {
     read: TemplateRef,
   });
+
+  public readonly dialogRef = signal<C3CreateDialogFromComponentResult<unknown> | null>(null)
 }

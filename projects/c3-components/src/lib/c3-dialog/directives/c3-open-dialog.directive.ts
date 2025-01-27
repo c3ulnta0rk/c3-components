@@ -20,6 +20,7 @@ export class C3OpenDialogDirective {
   private openDialog($event: MouseEvent) {
     if (!this.template()?.templateRef()) return;
 
-    this._dialog.createDialogFromTemplate(this.template()!.templateRef()!)
+    const dialog = this._dialog.createDialogFromTemplate(this.template()!.templateRef()!)
+    this.template()?.dialogRef.set(dialog)
   }
 }
