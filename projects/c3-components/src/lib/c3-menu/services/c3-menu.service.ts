@@ -27,7 +27,6 @@ export class C3MenuService {
       })
     );
     this.isHeadless.set(this._ar.snapshot.queryParams['headless'] === 'true');
-    console.log(this.isHeadless());
   }
 
   public clickItem(event: any, route: string) {
