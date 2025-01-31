@@ -99,3 +99,10 @@ export * from './lib/c3-trace-card/directives/align-right.directive';
  * C3 Prevent Event
  */
 export * from './lib/c3-prevent-event/index';
+
+/**
+ * C3 Menu
+ */
+export * from './lib/c3-menu/c3-menu.module';
+export * from './lib/c3-menu/components/c3-menu/c3-menu.component';
+export * from './lib/c3-menu/components/c3-nav-item/c3-nav-item.component';

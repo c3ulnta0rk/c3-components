@@ -1,0 +1,6 @@
+<li #button>
+  <a matRipple matRippleColor="#ffffff66" [routerLink]="isExternal() ? null : route()" [href]="isExternal() ? route() : null">
+    <ng-content></ng-content>
+    <span> {{ itemTitle() }} </span>
+  </a>
+</li>

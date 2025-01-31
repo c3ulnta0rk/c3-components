@@ -3,6 +3,7 @@
 @use "../c3-file-viewer/styles/_c3-file-viewer" as *;
 @use "../c3-expansion/styles/_c3-expansion" as *;
 @use "../c3-flowing-menu/styles/c3-flowing-menu" as *;
+@use "../c3-menu/styles/c3-menu" as *;
 
 @mixin c3-core($theme) {
   @include c3-root-variables($theme);
@@ -10,6 +11,7 @@
   @include c3-file-viewer($theme);
   @include c3-expansion($theme);
   @include c3-flowing-menu($theme);
+  @include c3-menu-theme();
 }
 
 @mixin c3-core-m3($theme) {

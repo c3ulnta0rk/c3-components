@@ -1,0 +1,12 @@
+@if(!_c3Menu.isHeadless()) {
+  <div id="app-menu">
+    <div class="ui-scroll">
+      <ul>
+        <ng-content></ng-content>
+      </ul>
+    </div>
+  </div>
+}
+<div class="layout-main" [class.headless]="_c3Menu.isHeadless()">
+  <router-outlet></router-outlet>
+</div>

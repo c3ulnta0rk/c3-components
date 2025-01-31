@@ -14,12 +14,8 @@ const routes: Routes = [
         component: ApiComponent,
       },
       {
-        path: 'examples',
-        component: ExamplesComponent,
-      },
-      {
         path: '**',
-        redirectTo: 'examples',
+        component: ExamplesComponent,
       },
     ],
     data: {
@@ -41,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuRoutingModule {}
+export class MenuRoutingModule { }
