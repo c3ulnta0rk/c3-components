@@ -34,7 +34,6 @@ export class C3NavItemComponent {
           )
           .subscribe((url) => {
             const _regex = new RegExp(this.check() || this.route());
-            console.log(_regex, url);
             if (_regex.exec(url) && this.element())
               this._menu.setSelectedItem(this.element()!.nativeElement);
           })
@@ -44,25 +43,3 @@ export class C3NavItemComponent {
 
   }
 }
-// implements AfterViewInit {
-//   @Input("route") route;
-//   @Input("itemTitle") title;
-//   @Input("check") check: string | undefined;
-
-//   @ViewChild("button", { static: false }) element;
-
-//   constructor(public _menu: C3MenuService) { }
-
-//   ngAfterViewInit() {
-//     if (this.check)
-//       this._menu.currentRouteChange
-//         .pipe(
-//           startWith(this._menu.currentRoute),
-//           map((url) => url)
-//         )
-//         .subscribe((url) => {
-//           const _regex = new RegExp(this.check);
-//           if (_regex.exec(url))
-//             this._menu.setSelectedItem(this.element.nativeElement);
-//         });
-//   }

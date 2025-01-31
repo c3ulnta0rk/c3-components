@@ -29,14 +29,6 @@ export class C3MenuService {
     this.isHeadless.set(this._ar.snapshot.queryParams['headless'] === 'true');
   }
 
-  public clickItem(event: any, route: string) {
-    if (
-      this.selectedElement !== event.target.parentElement.parentElement &&
-      event.target.parentElement.parentElement.tagName === "LI"
-    )
-      this.setSelectedItem(event.target.parentElement.parentElement);
-  }
-
   public setSelectedItem(element: HTMLElement) {
     if (this.selectedElement)
       this.selectedElement.classList.remove("active-item");
