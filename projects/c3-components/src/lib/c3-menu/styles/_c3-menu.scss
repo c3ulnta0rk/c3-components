@@ -74,12 +74,11 @@
               position: absolute;
               right: 5px;
               top: 50%;
-              transform: translateY(-50%);
             }
 
             span {
               display: inline-block;
-              max-width: 240px;
+              max-width: 220px;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
