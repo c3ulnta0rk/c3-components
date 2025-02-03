@@ -23,7 +23,7 @@
   }
 
   @if $opacity == null {
-    $opacity: color.channel($color, "alpha");
+    $opacity: color.channel($color, "alpha", $space: rgb);
   }
   @return color.change($color, $alpha: $opacity);
 }
