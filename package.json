@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve c3-components-docs",
     "build": "ng build c3-components-docs --base-href=/c3-components/ --configuration=production",
+    "create-page": "bun run scripts/create-page.ts",
     "test": "ng test"
   },
   "private": true,

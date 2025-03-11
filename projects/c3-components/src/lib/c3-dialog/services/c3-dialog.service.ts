@@ -22,7 +22,6 @@ import {
   C3PromptDialogComponent,
 } from '../components/c3-dialog-prompt.component';
 import { ComponentType } from '@angular/cdk/portal';
-import 'reflect-metadata';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
 import { Observable, Subject } from 'rxjs';
 import {
