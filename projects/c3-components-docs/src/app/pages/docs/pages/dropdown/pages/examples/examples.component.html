@@ -24,7 +24,7 @@ export class DropdownExampleComponent {}
   <c3-example-viewer-tab label="HTML">
     <div>
       <textarea highlight-js [options]="{}" lang="html">
-<button mat-raised-button [c3Dropdown]="dropdown">Dropdown trigger</button>
+<button mat-raised-button [c3DropdownTrigger]="dropdown">Dropdown trigger</button>
 
 <c3-dropdown #dropdown>
   Dropdown content
@@ -34,7 +34,7 @@ export class DropdownExampleComponent {}
   </c3-example-viewer-tab>
 
   <ng-container example>
-    <button mat-raised-button [c3Dropdown]="dropdown">Dropdown trigger</button>
+    <button mat-raised-button [c3DropdownTrigger]="dropdown">Dropdown trigger</button>
 
     <c3-dropdown #dropdown> Dropdown content </c3-dropdown>
   </ng-container>
@@ -65,7 +65,7 @@ export class DropdownExampleComponent {}
   <c3-example-viewer-tab label="HTML">
     <div>
       <textarea highlight-js [options]="{}" lang="html">
-<button mat-raised-button [c3Dropdown]="dropdownTemplate">Dropdown trigger</button>
+<button mat-raised-button [c3DropdownTrigger]="dropdownTemplate">Dropdown trigger</button>
 
 <c3-dropdown #dropdownTemplate>
   <div class="pa-1">
@@ -80,7 +80,7 @@ export class DropdownExampleComponent {}
   </c3-example-viewer-tab>
 
   <ng-container example>
-    <button mat-raised-button [c3Dropdown]="dropdownTemplate">
+    <button mat-raised-button [c3DropdownTrigger]="dropdownTemplate">
       Dropdown trigger
     </button>
 
@@ -688,7 +688,7 @@ export class DropdownExampleComponent {}
   </c3-example-viewer-tab>
 
   <ng-container example>
-    <button mat-raised-button [c3Dropdown]="dropdownVeryLongTemplate">
+    <button mat-raised-button [c3DropdownTrigger]="dropdownVeryLongTemplate">
       Dropdown trigger
     </button>
 

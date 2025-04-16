@@ -1,40 +1,41 @@
 import {
-  ChangeDetectorRef,
   Component,
   TemplateRef,
-  ViewChild,
-  Input,
-  OnChanges,
-  SimpleChanges,
+  viewChild,
+  input,
+  inject,
+  ChangeDetectorRef,
+  effect,
+  signal,
 } from '@angular/core';
 
 @Component({
   selector: 'c3-dropdown',
   template: `
     <ng-template>
-      <div class="c3-dropdown-panel" [ngClass]="dropdownClass">
+      <div class="c3-dropdown-panel" [ngClass]="panelClass()">
         <ng-content></ng-content>
       </div>
     </ng-template>
   `,
   standalone: false,
 })
-export class C3DropdownComponent implements OnChanges {
-  @ViewChild(TemplateRef) template!: TemplateRef<any>;
+export class C3DropdownComponent {
+  public readonly panelClass = input<
+    string | string[] | Set<string> | { [key: string]: any }
+  >();
 
-  /** Classes to be added to the container of the content. Supports the same syntax as `ngClass`. */
-  @Input()
-  dropdownClass: string | string[] | Set<string> | { [key: string]: any } = '';
+  public readonly isOpen = signal(false);
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  public readonly template = viewChild.required(TemplateRef<unknown>);
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['dropdownClass']) {
-      this._markForCheck();
-    }
-  }
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
-  _markForCheck(): void {
-    this._changeDetectorRef.markForCheck();
+  constructor() {
+    effect(() => {
+      if (this.panelClass()) {
+        this._changeDetectorRef.markForCheck();
+      }
+    });
   }
 }

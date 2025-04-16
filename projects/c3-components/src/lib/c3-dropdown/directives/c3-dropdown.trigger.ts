@@ -3,11 +3,10 @@ import {
   forwardRef,
   ElementRef,
   ViewContainerRef,
-  Input,
   OnDestroy,
   HostListener,
-  OnChanges,
-  SimpleChanges,
+  input,
+  model,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
@@ -17,7 +16,6 @@ import {
   ConnectedPosition,
 } from '@angular/cdk/overlay';
 import { C3DropdownComponent } from '../components/c3-dropdown.component';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { merge, Subject, Subscription, takeUntil } from 'rxjs';
 
@@ -38,40 +36,27 @@ export const MAT_DROPDOWN_VALUE_ACCESSOR: any = {
  * object representing the CSS classes to be applied to the dropdown menu.
  */
 @Directive({
-  selector: '[c3Dropdown]',
-  exportAs: 'c3DropdownTrigger',
+  selector: '[c3DropdownTrigger]',
   providers: [MAT_DROPDOWN_VALUE_ACCESSOR],
   standalone: false,
 })
-export class C3DropdownTrigger implements OnChanges, OnDestroy {
+export class C3DropdownTrigger implements OnDestroy {
   private overlayRef?: OverlayRef | null;
   private _closingActionsSubscription: Subscription = Subscription.EMPTY;
   private _destroyed = new Subject<void>();
 
-  private _dropdownClass:
-    | string
-    | string[]
-    | Set<string>
-    | { [key: string]: any } = '';
-
-  private _dropdownDisabled: boolean = false;
-
   /** The dropdown menu instance */
-  @Input('c3Dropdown')
-  dropdown?: C3DropdownComponent;
+  public readonly dropdown = model.required<C3DropdownComponent>({
+    alias: 'c3DropdownTrigger',
+  });
 
   /** Whether the dropdown is disabled. */
-  @Input('c3DropdownDisabled')
-  get dropdownDisabled(): boolean {
-    return this._dropdownDisabled;
-  }
-  set dropdownDisabled(value: boolean) {
-    this._dropdownDisabled = coerceBooleanProperty(value);
-  }
+  public readonly dropdownDisabled = input<boolean>(false);
 
   /** Classes to be passed to the dropdown menu. Supports the same syntax as `ngClass`. */
-  @Input('c3DropdownClass')
-  dropdownClass: string | string[] | Set<string> | { [key: string]: any } = '';
+  public readonly dropdownClass = input<
+    string | string[] | Set<string> | { [key: string]: any }
+  >('');
 
   constructor(
     private _element: ElementRef<HTMLElement>,
@@ -84,13 +69,6 @@ export class C3DropdownTrigger implements OnChanges, OnDestroy {
     this.show();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['dropdownClass'] && this.dropdown) {
-      this.dropdown.dropdownClass = this._dropdownClass;
-      this.dropdown._markForCheck();
-    }
-  }
-
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();
@@ -99,11 +77,13 @@ export class C3DropdownTrigger implements OnChanges, OnDestroy {
   }
 
   public show(): void {
-    if (!this.dropdown) return;
+    if (!this.dropdown().template()) return;
+
+    this.dropdown().isOpen.set(true);
 
     const overlayRef = this._overlay.create(this._getOverlayConfig());
     const portal = new TemplatePortal(
-      this.dropdown.template,
+      this.dropdown().template(),
       this._viewContainerRef
     );
     overlayRef.attach(portal);
@@ -118,6 +98,8 @@ export class C3DropdownTrigger implements OnChanges, OnDestroy {
   public close(): void {
     if (this.overlayRef && this.overlayRef.hasAttached())
       this.overlayRef.detach();
+
+    this.dropdown().isOpen.set(false);
   }
 
   private _getOverlayConfig(): OverlayConfig {
