@@ -44,6 +44,8 @@ export * from './lib/c3-file-displayer/c3-file-display-list/c3-file-display-list
 export * from './lib/c3-file-displayer/c3-file-display-icon/c3-file-display-icon.component';
 export * from './lib/c3-file-displayer/c3-file-display-grid/c3-file-display-grid.component';
 export * from './lib/c3-file-displayer/c3-file-display-card/c3-file-display-card.component';
+export * from './lib/c3-file-displayer/c3-file-display-list/c3-file-display-list-column-def.directive';
+export * from './lib/c3-file-displayer/c3-file-display-list/tokens';
 
 /**
  * Safe Url
