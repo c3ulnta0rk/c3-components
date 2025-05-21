@@ -112,6 +112,6 @@ export * from './lib/c3-menu/components/c3-nav-item/c3-nav-item.component';
 /**
  * C3 PDF Viewer
  */
-export * from './lib/c3-pdf-viewer/pdf-viewer-container/pdf-viewer-container.component';
-export * from './lib/c3-pdf-viewer/pdf-viewer-content/pdf-viewer-content.component';
-export * from './lib/c3-pdf-viewer/pdf-viewer-header/pdf-viewer-header.component';
+// export * from './lib/c3-pdf-viewer/pdf-viewer-container/pdf-viewer-container.component';
+// export * from './lib/c3-pdf-viewer/pdf-viewer-content/pdf-viewer-content.component';
+// export * from './lib/c3-pdf-viewer/pdf-viewer-header/pdf-viewer-header.component';
