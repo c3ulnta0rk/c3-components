@@ -1,0 +1,8 @@
+<ng-content select="pdf-viewer-header">
+  @if (pdfViewer() && pdfDocument()) {
+    <pdf-viewer-header [pdfViewer]="pdfViewer()!" [pdfDocument]="pdfDocument()!"></pdf-viewer-header>
+  }
+</ng-content>
+<ng-content select="pdf-viewer-content">
+  <pdf-viewer-content [src]="src()" [(pdfViewer)]="pdfViewer" [(pdfDocument)]="pdfDocument"></pdf-viewer-content>
+</ng-content>

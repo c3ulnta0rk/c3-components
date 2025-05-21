@@ -1,0 +1,18 @@
+@use "pdfjs-dist/web/pdf_viewer.css";
+
+pdf-viewer-content {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  min-height: 500px;
+  min-width: 500px;
+  overflow: auto;
+  #viewerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

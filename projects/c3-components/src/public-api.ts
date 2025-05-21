@@ -14,7 +14,7 @@ export * from './lib/c3-dropdown/c3-dropdown.module';
 /**
  * Dialog
  */
-export * from './lib/c3-dialog/components/c3-dialog-alert.component'
+export * from './lib/c3-dialog/components/c3-dialog-alert.component';
 export * from './lib/c3-dialog/components/c3-dialog-confirm.component';
 export * from './lib/c3-dialog/components/c3-dialog-prompt.component';
 export * from './lib/c3-dialog/components/c3-dialog-embed-child.component';
@@ -106,3 +106,10 @@ export * from './lib/c3-prevent-event/index';
 export * from './lib/c3-menu/c3-menu.module';
 export * from './lib/c3-menu/components/c3-menu/c3-menu.component';
 export * from './lib/c3-menu/components/c3-nav-item/c3-nav-item.component';
+
+/**
+ * C3 PDF Viewer
+ */
+export * from './lib/c3-pdf-viewer/pdf-viewer-container/pdf-viewer-container.component';
+export * from './lib/c3-pdf-viewer/pdf-viewer-content/pdf-viewer-content.component';
+export * from './lib/c3-pdf-viewer/pdf-viewer-header/pdf-viewer-header.component';
