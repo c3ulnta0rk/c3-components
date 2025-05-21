@@ -7,16 +7,16 @@ import { ExampleDisplayGridComponent } from '../../components/example-display-gr
 import { ExampleDisplayListComponent } from '../../components/example-display-list/example-display-list.component';
 
 @Component({
-    selector: 'c3-examples',
-    imports: [
-        CommonModule,
-        ExampleDisplayGridComponent,
-        ExampleDisplayListComponent,
-        ExampleViewerComponent,
-        ExampleViewerTabComponent,
-        HighlightJsDirective,
-    ],
-    templateUrl: './examples.component.html',
-    styleUrl: './examples.component.scss'
+  selector: 'c3-examples',
+  imports: [
+    CommonModule,
+    ExampleDisplayGridComponent,
+    ExampleDisplayListComponent,
+    ExampleViewerComponent,
+    ExampleViewerTabComponent,
+    HighlightJsDirective,
+  ],
+  templateUrl: './examples.component.html',
+  styleUrl: './examples.component.scss',
 })
 export class ExamplesComponent {}

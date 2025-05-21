@@ -1,11 +1,20 @@
 <!-- header -->
 <div class="header">
-  <div class="title full">
-    <span>Nom</span>
-  </div>
-  <div class="title">
-    <span>Date d'ajout</span>
-  </div>
+  @for (columnName of columns(); track columnName) {
+    <div class="title" [class.full]="columnName === 'name'" [class.icon]="columnName === 'icon'">
+      @if (getColumnDef(columnName)?.headerCellDef()) {
+        <ng-container *ngTemplateOutlet="getColumnDef(columnName)!.headerCellDef()!.template"></ng-container>
+      } @else {
+        @if (columnName === 'icon') {
+          <span></span>
+        } @else if (columnName === 'name') {
+          <span>Nom</span>
+        } @else if (columnName === 'date') {
+          <span>Date d'ajout</span>
+        }
+      }
+    </div>
+  }
   <div class="actions">
     <ng-content></ng-content>
   </div>
@@ -14,17 +23,39 @@
   <div class="file-display-list">
     @for (file of files(); track $index) {
     <button>
-      <div class="icon">
-        <c3-file-display-icon [fileType]="file.type" />
-      </div>
-      <div class="name">
-        <span>{{ displayFn()(file) }}</span>
-      </div>
-      <div class="date-label">
-        <span>{{
-          file.lastModified ? (file.lastModified | date : "medium") : "-"
-        }}</span>
-      </div>
+      @for (columnName of columns(); track columnName) {
+        @if (columnName === 'name') {
+          <div class="name">
+            @if (getColumnDef(columnName)?.cellDef()) {
+              <ng-container *ngTemplateOutlet="getColumnDef(columnName)!.cellDef()!.template; context: { $implicit: file }"></ng-container>
+            } @else {
+              <span>{{ displayFn()(file) }}</span>
+            }
+          </div>
+        } @else if (columnName === 'icon') {
+          <div class="icon-cell">
+            @if (getColumnDef(columnName)?.cellDef()) {
+              <ng-container *ngTemplateOutlet="getColumnDef(columnName)!.cellDef()!.template; context: { $implicit: file }"></ng-container>
+            } @else {
+              <div class="icon">
+                <c3-file-display-icon [fileType]="file.type" />
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="cell">
+            @if (getColumnDef(columnName)?.cellDef()) {
+              <ng-container *ngTemplateOutlet="getColumnDef(columnName)!.cellDef()!.template; context: { $implicit: file }"></ng-container>
+            } @else {
+              @if (columnName === 'date') {
+                <div class="date-label">
+                  <span>{{ file.lastModified ? (file.lastModified | date:'medium') : '-' }}</span>
+                </div>
+              }
+            }
+          </div>
+        }
+      }
       <button mat-icon-button [matMenuTriggerFor]="menu" c3-stop-click-propagation>
         <mat-icon>more_vert</mat-icon>
       </button>

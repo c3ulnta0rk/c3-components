@@ -18,6 +18,12 @@
       &.full {
         flex: auto;
       }
+
+      &.icon {
+        flex: 0 0 auto;
+        width: 56px;
+        min-width: 56px;
+      }
     }
 
     .icon {
@@ -44,13 +50,29 @@
         background-color: var(--background-hover);
       }
 
-      .icon {
-        flex-basis: 56px;
+      .icon-cell {
+        flex: 0 0 auto;
         width: 56px;
+        min-width: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.5rem;
+
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
 
       .name {
         flex: auto;
+        flex-basis: 304px;
+        width: 304px;
+      }
+
+      .cell {
         flex-basis: 304px;
         width: 304px;
       }

@@ -1,1 +1,10 @@
-<c3-file-display-list [files]="files()" [config]="config()" [displayFn]="displayFn()" />
+<c3-file-display-list [files]="files()" [config]="config()" [displayFn]="displayFn()" [columns]="columns()">
+  <ng-container c3FileDisplayListColumnDef="examples">
+    <div *c3FileDisplayListHeaderCellDef>
+      <span>Mime Type</span>
+    </div>
+    <div *c3FileDisplayListCellDef="let file">
+      <span>{{ file.type }}</span>
+    </div>
+  </ng-container>
+</c3-file-display-list>
