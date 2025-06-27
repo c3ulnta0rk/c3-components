@@ -26,6 +26,7 @@ export interface C3FileViewerConfig {
     next?: boolean;
     prev?: boolean;
     reset?: boolean;
+    download?: boolean;
   };
 
   btnIcons?: {
@@ -37,6 +38,7 @@ export interface C3FileViewerConfig {
     prev?: MultiBtn['btn'];
     fullscreen?: MultiBtn['btn'];
     reset?: MultiBtn['btn'];
+    download?: MultiBtn['btn'];
   };
 
   customBtns?: Array<{

@@ -6,6 +6,7 @@
       [size]="cardSize()"
       (click)="openDialog($event, $index)"
       (onDelete)="onDelete.emit(file)"
+      (onDownload)="fileViewer.download(file)"
     />
     }
   </div>

@@ -1,1 +1,1 @@
-<video controls [src]="src" crossorigin="*"></video>
+<video controls [src]="fileViewer().currentFile.objectUrl | async | c3SafeUrl" crossorigin="*"></video>

@@ -1,13 +1,10 @@
-import {
-  C3FileViewerConfig,
-  FileMetadata,
-} from 'projects/c3-components/src/public-api';
+import { C3FileViewerConfig, FileMetadata } from 'projects/c3-components/src/public-api';
 
 export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 1',
     metadata: {
-      originalName: 'Crabby - 1'
+      originalName: 'Crabby - 1',
     },
     type: 'image/png',
     location: 'img/crabby-1.png',
@@ -16,7 +13,7 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 2',
     metadata: {
-      originalName: 'Crabby - 2'
+      originalName: 'Crabby - 2',
     },
     type: 'image/jpeg',
     location: 'img/crabby-2.jpeg',
@@ -25,7 +22,7 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 3',
     metadata: {
-      originalName: 'Crabby - 3'
+      originalName: 'Crabby - 3',
     },
     type: 'image/png',
     location: 'img/crabby-3.png',
@@ -34,7 +31,7 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 4',
     metadata: {
-      originalName: 'Crabby - 4'
+      originalName: 'Crabby - 4',
     },
     type: 'image/png',
     location: 'img/crabby-4.png',
@@ -43,7 +40,7 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 5',
     metadata: {
-      originalName: 'Crabby - 5'
+      originalName: 'Crabby - 5',
     },
     type: 'image/png',
     location: 'img/crabby-5.png',
@@ -51,7 +48,7 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-Crabby - 6',
     metadata: {
-      originalName: 'Crabby - 6'
+      originalName: 'Crabby - 6',
     },
     type: 'image/png',
     location: 'img/crabby-6.png',
@@ -59,10 +56,28 @@ export const crabbyImgs: Array<FileMetadata> = [
   {
     name: '123645-PDF',
     metadata: {
-      originalName: 'PDF'
+      originalName: 'PDF.pdf',
     },
     type: 'application/pdf',
     location: 'img/r.pdf',
+  },
+
+  {
+    location: 'zip/test.zip',
+    type: 'application/zip',
+    name: 'chelou-test.zip',
+    metadata: {
+      originalName: 'test.zip',
+    },
+  },
+
+  {
+    location: 'video/Crabe_ZZ_Top.mp4',
+    type: 'video/mp4',
+    name: 'Crabe_ZZ_Top.mp4',
+    metadata: {
+      originalName: 'Crabe_ZZ_Top.mp4',
+    },
   },
 ];
 
@@ -83,6 +98,7 @@ export const configDemo: C3FileViewerConfig = {
     next: false,
     prev: false,
     reset: true,
+    download: true,
   },
   btnIcons: {
     next: {

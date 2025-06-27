@@ -6,14 +6,14 @@ import { C3FileViewerActionsComponent } from './components/c3-file-viewer-action
 import { C3FileViewerImageComponent } from './components/c3-file-viewer-image/c3-file-viewer-image.component';
 import { C3FileViewerPdfComponent } from './components/c3-file-viewer-pdf/c3-file-viewer-pdf.component';
 import { C3FileViewerVideoComponent } from './components/c3-file-viewer-video/c3-file-viewer-video.component';
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { C3SafeUrlPipe } from '../../public-api';
 import { C3FileViewerDialogComponent } from './components/public/c3-file-viewer-dialog/c3-file-viewer-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { C3FileViewerDialog } from './components/public/c3-file-viewer-dialog/c3-file-viewer-dialog';
+import { C3FileViewerDefaultComponent } from './components/c3-file-viewer-default/c3-file-viewer-default.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -25,13 +25,10 @@ import { C3FileViewerDialog } from './components/public/c3-file-viewer-dialog/c3
     C3FileViewerVideoComponent,
     C3FileViewerDialogComponent,
     C3FileViewerDialog,
+    C3FileViewerDefaultComponent,
   ],
-  exports: [
-    FullScreenDirective,
-    C3FileViewerComponent,
-    C3FileViewerDialogComponent,
-  ],
-  imports: [CommonModule, C3SafeUrlPipe, MatDialogModule],
+  exports: [FullScreenDirective, C3FileViewerComponent, C3FileViewerDialogComponent],
+  imports: [CommonModule, C3SafeUrlPipe, MatDialogModule, MatIconModule, MatButtonModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class C3FileViewerModule {}

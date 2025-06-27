@@ -17,6 +17,7 @@ export const DEFAULT_CONFIG: C3FileViewerConfig = {
     next: true,
     prev: true,
     reset: true,
+    download: true,
   },
   btnIcons: {
     zoomIn: {
@@ -36,6 +37,9 @@ export const DEFAULT_CONFIG: C3FileViewerConfig = {
     },
     reset: {
       text: 'restore',
+    },
+    download: {
+      text: 'download',
     },
   },
 };

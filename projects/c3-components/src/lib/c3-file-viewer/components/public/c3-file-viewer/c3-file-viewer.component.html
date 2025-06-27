@@ -1,32 +1,40 @@
+@if (fileViewer) {
 <div
   class="c3-file-container"
-  *ngIf="fileViewer"
   [c3-full-screen]="fileViewer.fullscreen$ | async"
   [style.height]="fileViewer.styleHeight"
   [style.backgroundColor]="fileViewer.config.containerBackgroundColor"
   (wheel)="fileViewer.scrollZoom($event)"
   (dragover)="fileViewer.onDragOver($event)"
 >
-  <c3-file-viewer-image
-    *ngIf="fileViewer.currentFile.type.startsWith('image')"
-    [fileViewer]="fileViewer"
-    [style]="fileViewer.style"
-    (dragstart)="fileViewer.onDragStart($event)"
-  />
+  @if (fileViewer.currentFile.type.startsWith('image')) {
+    <c3-file-viewer-image
+      [fileViewer]="fileViewer"
+      [style]="fileViewer.style"
+      (dragstart)="fileViewer.onDragStart($event)"
+    />
+  } @else if (fileViewer.currentFile.type.startsWith('video')) {
+    <c3-file-viewer-video
+      [fileViewer]="fileViewer"
+    />
+  } @else if (fileViewer.currentFile.type.startsWith('application/pdf')) {
+    <c3-file-viewer-pdf
+      [fileViewer]="fileViewer"
+    />
+  } @else {
+    <c3-file-viewer-default
+      [fileViewer]="fileViewer"
+    />
+  }
 
-  <c3-file-viewer-video
-    *ngIf="fileViewer.currentFile.type.startsWith('video')"
-  />
-
-  <c3-file-viewer-pdf
-    *ngIf="fileViewer.currentFile.type.startsWith('application/pdf')"
-    [fileViewer]="fileViewer"
-  />
   <!-- Div below will be used to hide the 'ghost' image when dragging -->
   <div></div>
-  <div class="spinner-container" *ngIf="fileViewer.loading">
-    <div class="spinner"></div>
-  </div>
+  @if (fileViewer.loading) {
+    <div class="spinner-container">
+      <div class="spinner"></div>
+    </div>
+  }
 
-  <c3-file-viewer-actions [fileViewer]="fileViewer" />
-</div>
+    <c3-file-viewer-actions [fileViewer]="fileViewer" />
+  </div>
+}

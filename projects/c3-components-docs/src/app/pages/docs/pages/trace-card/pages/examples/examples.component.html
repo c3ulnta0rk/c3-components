@@ -1,9 +1,44 @@
+<p class="my-4">Composant pour afficher une carte avec un titre et un contenu connectés par une ligne horizontale</p>
+
+<example-viewer class="mb-1 px-4 pb-2">
+  <h4 title>Exemple </h4>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { C3TraceCardModule } from 'c3-components';
+
+@Component({
+  selector: 'c3-example-trace-card',
+  standalone: true,
+  imports: [CommonModule, C3TraceCardModule],
+  templateUrl: './example-trace-card.component.html',
+  styleUrl: './example-trace-card.component.scss',
+})
+export class ExampleTraceCardComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
 <c3-trace-card align-right>
   <c3-trace-card-title>
     coucou
   </c3-trace-card-title>
-  
+
   <c3-trace-card-content>
     content
   </c3-trace-card-content>
 </c3-trace-card>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <ng-container example>
+    <c3-example-trace-card-simple />
+  </ng-container>
+</example-viewer>

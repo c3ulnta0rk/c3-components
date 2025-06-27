@@ -8,6 +8,9 @@
 >
   @if(deletable()) {
     <div class="actions">
+      <button mat-icon-button (click)="onDownload.emit()">
+        <mat-icon>download</mat-icon>
+      </button>
       <button mat-icon-button color="red" (click)="onDelete.emit()">
         <mat-icon>delete</mat-icon>
       </button>

@@ -63,6 +63,7 @@
               <button mat-menu-item (click)="openDialog($event, $index)">
                 Ouvrir
               </button>
+              <button mat-menu-item (click)="fileViewer.download(file)">Télécharger</button>
               @if (deletable()) {
                 <button mat-menu-item (click)="onDelete.emit(file)">Supprimer</button>
               }

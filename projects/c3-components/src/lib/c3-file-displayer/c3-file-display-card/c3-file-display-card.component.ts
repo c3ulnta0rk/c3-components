@@ -8,10 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 export type C3FileCardSize = '16' | '32' | '64' | '128' | '256';
 
 @Component({
-    selector: 'c3-file-display-card',
-    imports: [CommonModule, MatButtonModule, MatIconModule],
-    templateUrl: './c3-file-display-card.component.html',
-    styleUrl: './c3-file-display-card.component.scss'
+  selector: 'c3-file-display-card',
+  imports: [CommonModule, MatButtonModule, MatIconModule],
+  templateUrl: './c3-file-display-card.component.html',
+  styleUrl: './c3-file-display-card.component.scss',
 })
 export class C3FileDisplayCardComponent {
   public readonly fileObjectUrl = input.required<
@@ -20,13 +20,12 @@ export class C3FileDisplayCardComponent {
       })
     | null
   >();
-  public readonly displayFn = input<(file: FileMetadata) => string>(
-    (file) => file.name
-  );
+  public readonly displayFn = input<(file: FileMetadata) => string>((file) => file.name);
 
   public readonly deletable = input<boolean>(false);
   public readonly size = input<C3FileCardSize>('32');
   public readonly onDelete = output();
+  public readonly onDownload = output();
 
   public readonly getFileType = computed(() => {
     const file = this.fileObjectUrl();
