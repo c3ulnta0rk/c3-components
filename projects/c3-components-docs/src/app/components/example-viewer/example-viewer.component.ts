@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ExampleViewerTabComponent } from './example-viewer-tab.component';
 import {
   C3AutoAnimateDirective,
-  booleanSignal,
 } from 'projects/c3-components/src/public-api';
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'example-viewer',
@@ -27,5 +27,5 @@ import {
 })
 export class ExampleViewerComponent {
   public tabs = contentChildren(ExampleViewerTabComponent);
-  public sourceView = booleanSignal(false);
+  public sourceView = signal(false);
 }

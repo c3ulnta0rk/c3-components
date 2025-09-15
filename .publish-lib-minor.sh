@@ -1,5 +1,7 @@
 #!/bin/bash
-bunx @angular/cli build --base-href /c3-components/ c3-components-docs 
+
+# build the doc and create x.y.0 version
+bunx @angular/cli build --base-href /c3-components/ c3-components-docs
 git add .
 git-cz
 git push

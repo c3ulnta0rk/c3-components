@@ -79,6 +79,16 @@ export const crabbyImgs: Array<FileMetadata> = [
       originalName: 'Crabe_ZZ_Top.mp4',
     },
   },
+
+  {
+    location:
+      'https://upload.wikimedia.org/wikipedia/commons/7/79/Terminator_in_Madame_Tussaud_London_%2833465711484%29.jpg',
+    type: 'image/jpeg',
+    name: 'Terminator_in_Madame_Tussaud_London.jpg',
+    metadata: {
+      originalName: 'Terminator_in_Madame_Tussaud_London.jpg',
+    },
+  },
 ];
 
 export const configDemo: C3FileViewerConfig = {
