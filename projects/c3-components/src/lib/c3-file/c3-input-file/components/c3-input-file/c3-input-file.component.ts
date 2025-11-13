@@ -1,11 +1,10 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
-  ViewChild,
+  input,
+  viewChild,
   ElementRef,
-  Output,
-  EventEmitter,
+  output,
 } from '@angular/core';
 import { C3InputFile } from '../../class/c3-input-file';
 
@@ -17,19 +16,18 @@ import { C3InputFile } from '../../class/c3-input-file';
     standalone: false
 })
 export class C3InputFileComponent {
-  @Input() accept!: string;
-  @Input() multiple: Boolean = false;
-  @Input() dest: string = 'api/upload';
-  @Input() baseUrl: string = 'localhost:3000';
-  @Input() method: string = 'POST';
-  @Input() headers?: Object;
+  public readonly accept = input.required<string>();
+  public readonly multiple = input<boolean>(false);
+  public readonly dest = input<string>('api/upload');
+  public readonly baseUrl = input<string>('localhost:3000');
+  public readonly method = input<string>('POST');
+  public readonly headers = input<Object | undefined>(undefined);
 
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  @Output()
-  fileAdded: EventEmitter<C3InputFile> = new EventEmitter<C3InputFile>();
+  public readonly fileInput = viewChild.required<ElementRef<HTMLInputElement>>('fileInput');
+  public readonly fileAdded = output<C3InputFile>();
 
   click() {
-    this.fileInput.nativeElement.click();
+    this.fileInput().nativeElement.click();
   }
 
   change({ target }: any) {
@@ -72,11 +70,12 @@ export class C3InputFileComponent {
       });
 
       // initialise le type de connection et l'url
-      xhr.open(this.method, `${this.baseUrl}/${this.dest}`);
+      xhr.open(this.method(), `${this.baseUrl()}/${this.dest()}`);
 
       // set header if data is transmitted
-      if (this.headers)
-        for (const [key, value] of Object.entries(this.headers))
+      const headers = this.headers();
+      if (headers)
+        for (const [key, value] of Object.entries(headers))
           xhr.setRequestHeader(key, value);
 
       // start upload

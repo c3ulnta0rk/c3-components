@@ -1,7 +1,7 @@
 <input
   type="file"
   #fileInput
-  [accept]="accept"
-  [multiple]="multiple"
+  [accept]="accept()"
+  [multiple]="multiple()"
   (change)="change($event)"
 />

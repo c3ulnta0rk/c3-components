@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { C3FileViewer } from '../../models/file-viewer';
 
 @Component({
@@ -7,9 +7,7 @@ import { C3FileViewer } from '../../models/file-viewer';
     standalone: false
 })
 export class C3FileViewerImageComponent {
-  @Input()
-  public fileViewer!: C3FileViewer;
+  public readonly fileViewer = input.required<C3FileViewer>();
 
-  @Output()
-  dragstart = new EventEmitter<DragEvent>();
+  public readonly dragstart = output<DragEvent>();
 }

@@ -1,8 +1,7 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { C3FileViewer } from '../../models/file-viewer';
@@ -18,9 +17,7 @@ import { C3FileViewer } from '../../models/file-viewer';
     standalone: false
 })
 export class C3FileViewerPdfComponent {
-  @Input()
-  public fileViewer!: C3FileViewer;
+  public readonly fileViewer = input.required<C3FileViewer>();
 
-  @Output()
-  dragstart = new EventEmitter<DragEvent>();
+  public readonly dragstart = output<DragEvent>();
 }
