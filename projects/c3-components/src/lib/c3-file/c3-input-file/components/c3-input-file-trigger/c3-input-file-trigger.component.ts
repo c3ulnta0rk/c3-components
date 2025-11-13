@@ -1,8 +1,7 @@
 import {
   Component,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
+  output,
 } from '@angular/core';
 
 @Component({
@@ -15,7 +14,7 @@ import {
     standalone: false
 })
 export class C3InputFileTriggerComponent {
-  @Output('click') clicked: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly clicked = output<MouseEvent>({ alias: 'click' });
 
   click($event: MouseEvent) {
     this.clicked.emit($event);

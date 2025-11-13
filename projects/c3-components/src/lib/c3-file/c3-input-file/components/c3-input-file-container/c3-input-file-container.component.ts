@@ -1,9 +1,10 @@
 import {
   Component,
   ViewEncapsulation,
-  ContentChild,
+  contentChild,
   OnDestroy,
-  Input,
+  input,
+  effect,
 } from '@angular/core';
 import { C3InputFileTriggerComponent } from '../c3-input-file-trigger/c3-input-file-trigger.component';
 import { C3InputFileTriggerDirective } from '../../directives/c3-input-file-trigger.directive';
@@ -12,11 +13,12 @@ import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
 @Component({
     selector: 'c3-input-file-container, [c3InputFileContainer], [c3-input-file-container]',
     template: ` <ng-content> </ng-content>
-    <c3-input-file-displayer
-      *ngIf="c3InputFile"
-      [c3InputFile]="c3InputFile"
-      [autoclose]="autoclose"
-    ></c3-input-file-displayer>`,
+    @if (c3InputFile(); as inputFile) {
+      <c3-input-file-displayer
+        [c3InputFile]="inputFile"
+        [autoclose]="autoclose()"
+      ></c3-input-file-displayer>
+    }`,
     styles: [],
     encapsulation: ViewEncapsulation.None,
     host: {
@@ -25,29 +27,41 @@ import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
     standalone: false
 })
 export class C3InputFileContainerComponent implements OnDestroy {
-  @Input() autoclose?: boolean | number;
+  public readonly autoclose = input<boolean | number | undefined>(undefined);
 
-  @ContentChild(C3InputFileComponent) c3InputFile?: C3InputFileComponent;
+  public readonly c3InputFile = contentChild(C3InputFileComponent);
 
-  @ContentChild(C3InputFileTriggerComponent)
-  c3Trigger?: C3InputFileTriggerComponent;
+  public readonly c3Trigger = contentChild(C3InputFileTriggerComponent);
 
-  @ContentChild(C3InputFileTriggerDirective)
-  c3TriggerDirective?: C3InputFileTriggerDirective;
+  public readonly c3TriggerDirective = contentChild(C3InputFileTriggerDirective);
+
+  constructor() {
+    effect(() => {
+      const trigger = this.c3Trigger();
+      const triggerDirective = this.c3TriggerDirective();
+      const inputFile = this.c3InputFile();
+
+      if (trigger) {
+        trigger.clicked.subscribe(($event) => {
+          inputFile?.click();
+        });
+      } else if (triggerDirective) {
+        triggerDirective.click.subscribe(($event) => {
+          inputFile?.click();
+        });
+      }
+    });
+  }
 
   ngAfterViewInit() {
-    if (this.c3Trigger)
-      this.c3Trigger.clicked.subscribe(($event) => {
-        this.c3InputFile?.click();
-      });
-    else if (this.c3TriggerDirective)
-      this.c3TriggerDirective.click.subscribe(($event) => {
-        this.c3InputFile?.click();
-      });
+    // Subscriptions now handled in constructor effect
   }
 
   ngOnDestroy() {
-    if (this.c3Trigger) this.c3Trigger.clicked.unsubscribe();
-    if (this.c3TriggerDirective) this.c3TriggerDirective.click.unsubscribe();
+    const trigger = this.c3Trigger();
+    const triggerDirective = this.c3TriggerDirective();
+
+    if (trigger) trigger.clicked.unsubscribe();
+    if (triggerDirective) triggerDirective.click.unsubscribe();
   }
 }
