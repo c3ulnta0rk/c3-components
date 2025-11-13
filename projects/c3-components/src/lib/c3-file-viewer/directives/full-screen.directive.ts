@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, input, effect } from '@angular/core';
 import { BehaviorSubject, debounceTime, filter, skip } from 'rxjs';
 
 @Directive({
@@ -6,19 +6,28 @@ import { BehaviorSubject, debounceTime, filter, skip } from 'rxjs';
     standalone: false
 })
 export class FullScreenDirective {
-  @Input('c3Screenfull')
-  set fullscreenState(value: Boolean | null) {
-    this._fullscreenState.next(value?.valueOf() || false);
-  }
-
-  @Input('c3-full-screen')
-  set fullscreenStateSetter(value: Boolean | null) {
-    this.fullscreenState = value;
-  }
+  public readonly fullscreenState = input<Boolean | null>(null, { alias: 'c3Screenfull' });
+  public readonly fullscreenStateSetter = input<Boolean | null>(null, { alias: 'c3-full-screen' });
 
   private _fullscreenState = new BehaviorSubject(false);
 
   constructor(private el: ElementRef) {
+    // Effect to handle fullscreenState changes
+    effect(() => {
+      const state = this.fullscreenState();
+      if (state !== null) {
+        this._fullscreenState.next(state.valueOf() || false);
+      }
+    });
+
+    // Effect to handle fullscreenStateSetter changes (alias for fullscreenState)
+    effect(() => {
+      const state = this.fullscreenStateSetter();
+      if (state !== null) {
+        this._fullscreenState.next(state.valueOf() || false);
+      }
+    });
+
     this._fullscreenState
       .pipe(
         filter((value) => value !== null),

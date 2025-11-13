@@ -1,40 +1,40 @@
-@if (fileViewer) {
+@if (fileViewer(); as viewer) {
 <div
   class="c3-file-container"
-  [c3-full-screen]="fileViewer.fullscreen$ | async"
-  [style.height]="fileViewer.styleHeight"
-  [style.backgroundColor]="fileViewer.config.containerBackgroundColor"
-  (wheel)="fileViewer.scrollZoom($event)"
-  (dragover)="fileViewer.onDragOver($event)"
+  [c3-full-screen]="viewer.fullscreen$ | async"
+  [style.height]="viewer.styleHeight"
+  [style.backgroundColor]="viewer.config.containerBackgroundColor"
+  (wheel)="viewer.scrollZoom($event)"
+  (dragover)="viewer.onDragOver($event)"
 >
-  @if (fileViewer.currentFile.type.startsWith('image')) {
+  @if (viewer.currentFile.type.startsWith('image')) {
     <c3-file-viewer-image
-      [fileViewer]="fileViewer"
-      [style]="fileViewer.style"
-      (dragstart)="fileViewer.onDragStart($event)"
+      [fileViewer]="viewer"
+      [style]="viewer.style"
+      (dragstart)="viewer.onDragStart($event)"
     />
-  } @else if (fileViewer.currentFile.type.startsWith('video')) {
+  } @else if (viewer.currentFile.type.startsWith('video')) {
     <c3-file-viewer-video
-      [fileViewer]="fileViewer"
+      [fileViewer]="viewer"
     />
-  } @else if (fileViewer.currentFile.type.startsWith('application/pdf')) {
+  } @else if (viewer.currentFile.type.startsWith('application/pdf')) {
     <c3-file-viewer-pdf
-      [fileViewer]="fileViewer"
+      [fileViewer]="viewer"
     />
   } @else {
     <c3-file-viewer-default
-      [fileViewer]="fileViewer"
+      [fileViewer]="viewer"
     />
   }
 
   <!-- Div below will be used to hide the 'ghost' image when dragging -->
   <div></div>
-  @if (fileViewer.loading) {
+  @if (viewer.loading) {
     <div class="spinner-container">
       <div class="spinner"></div>
     </div>
   }
 
-    <c3-file-viewer-actions [fileViewer]="fileViewer" />
+    <c3-file-viewer-actions [fileViewer]="viewer" />
   </div>
 }

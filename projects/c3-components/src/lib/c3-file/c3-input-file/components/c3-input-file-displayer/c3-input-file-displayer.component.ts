@@ -2,8 +2,9 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  Input,
+  input,
   AfterContentInit,
+  effect,
 } from '@angular/core';
 import { C3InputFile } from '../../class/c3-input-file';
 import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
@@ -64,9 +65,9 @@ import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
     standalone: false
 })
 export class C3InputFileDisplayerComponent implements AfterContentInit {
-  @Input() c3InputFile!: C3InputFileComponent;
+  public readonly c3InputFile = input.required<C3InputFileComponent>();
   files: Array<C3InputFile> = [];
-  @Input() autoclose?: boolean | number;
+  public readonly autoclose = input<boolean | number | undefined>(undefined);
 
   minimized: boolean = false;
 
@@ -74,21 +75,28 @@ export class C3InputFileDisplayerComponent implements AfterContentInit {
     return this.files.every(({ loaded, aborded }) => loaded || aborded);
   }
 
-  constructor() {}
+  constructor() {
+    effect(() => {
+      const inputFile = this.c3InputFile();
+      const autoCloseValue = this.autoclose();
+
+      inputFile.fileAdded.subscribe(
+        (newFile: C3InputFile) => {
+          this.files.push(newFile);
+          if (autoCloseValue)
+            if (newFile.loaded) this._autoclose();
+            else newFile.on('loaded', () => this._autoclose());
+        },
+        console.error,
+        () => {
+          console.log('completed');
+        }
+      );
+    });
+  }
 
   ngAfterContentInit(): void {
-    this.c3InputFile.fileAdded.subscribe(
-      (newFile: C3InputFile) => {
-        this.files.push(newFile);
-        if (this.autoclose)
-          if (newFile.loaded) this._autoclose();
-          else newFile.on('loaded', () => this._autoclose());
-      },
-      console.error,
-      () => {
-        console.log('completed');
-      }
-    );
+    // Subscription now handled in constructor effect
   }
 
   toggleMinimize() {
@@ -96,10 +104,12 @@ export class C3InputFileDisplayerComponent implements AfterContentInit {
   }
 
   _autoclose() {
-    if (this.closable)
-      if (typeof this.autoclose === 'number')
-        setTimeout(() => this.close(), 1000 * this.autoclose);
+    if (this.closable) {
+      const autoCloseValue = this.autoclose();
+      if (typeof autoCloseValue === 'number')
+        setTimeout(() => this.close(), 1000 * autoCloseValue);
       else this.close();
+    }
   }
 
   close() {

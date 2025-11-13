@@ -1,14 +1,14 @@
 import {
   Component,
-  EventEmitter,
   HostListener,
   Inject,
-  Input,
+  input,
   OnInit,
   Optional,
-  Output,
+  output,
   SimpleChanges,
   ViewEncapsulation,
+  effect,
 } from '@angular/core';
 import { C3FileViewerConfig } from '../../../models/file-viewer-config.model';
 import { CustomFileEvent } from '../../../models/custom-file-event.model';
@@ -26,69 +26,71 @@ import { C3FileViewer } from '../../../models/file-viewer';
   standalone: false
 })
 export class C3FileViewerComponent implements OnInit {
-  @Input()
-  public screenHeightOccupied?: 0; // In Px
+  public readonly screenHeightOccupied = input<number | undefined>(0); // In Px
 
-  @Input()
-  public fileViewer!: C3FileViewer;
+  public readonly fileViewer = input.required<C3FileViewer>();
 
-  @Output()
-  public indexChange: EventEmitter<number> = new EventEmitter();
+  public readonly indexChange = output<number>();
 
-  @Output()
-  public configChange: EventEmitter<C3FileViewerConfig> = new EventEmitter();
+  public readonly configChange = output<C3FileViewerConfig>();
 
-  @Output()
-  public customFileEvent: EventEmitter<CustomFileEvent> = new EventEmitter();
+  public readonly customFileEvent = output<CustomFileEvent>();
 
   constructor(
     @Optional() @Inject('config') public moduleConfig: C3FileViewerConfig,
     public _http: HttpClient
-  ) { }
+  ) {
+    // Setup subscriptions in constructor using effect
+    effect(() => {
+      const viewer = this.fileViewer();
+
+      viewer.customFile$.subscribe((event) => {
+        this.customFileEvent.emit(event);
+      });
+
+      viewer.index$.subscribe((index) => {
+        this.indexChange.emit(index);
+      });
+
+      viewer.config$.subscribe((config) => {
+        this.configChange.emit(config);
+      });
+    });
+  }
 
   ngOnInit() {
     this.defineStyleHeight();
-
-    this.fileViewer.customFile$.subscribe((event) => {
-      this.customFileEvent.emit(event);
-    });
-
-    this.fileViewer.index$.subscribe((index) => {
-      this.indexChange.emit(index);
-    });
-
-    this.fileViewer.config$.subscribe((config) => {
-      this.configChange.emit(config);
-    });
   }
 
   @HostListener('mouseover')
   onMouseOver() {
-    if (this.fileViewer) this.fileViewer.hovered = true;
+    const viewer = this.fileViewer();
+    if (viewer) viewer.hovered = true;
   }
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    if (this.fileViewer) this.fileViewer.hovered = false;
+    const viewer = this.fileViewer();
+    if (viewer) viewer.hovered = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['screenHeightOccupied'] && this.fileViewer)
+    if (changes['screenHeightOccupied'] && this.fileViewer())
       this.defineStyleHeight();
   }
 
   @HostListener('window:keyup.ArrowRight', ['$event'])
   next(event: KeyboardEvent) {
-    this.fileViewer.nextImage(event);
+    this.fileViewer().nextImage(event);
   }
 
   @HostListener('window:keyup.ArrowLeft', ['$event'])
   previous(event: KeyboardEvent) {
-    this.fileViewer.previousImage(event);
+    this.fileViewer().previousImage(event);
   }
 
   defineStyleHeight() {
-    this.fileViewer.styleHeight =
-      'calc(100% - ' + this.screenHeightOccupied + 'px)';
+    this.fileViewer().styleHeight =
+      'calc(100% - ' + this.screenHeightOccupied() + 'px)';
   }
 }

@@ -8,7 +8,7 @@ import {
   Signal,
   TemplateRef,
   Type,
-  ViewChild,
+  viewChild,
   ViewContainerRef,
   signal,
 } from '@angular/core';
@@ -144,8 +144,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   standalone: false,
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
-  @ViewChild('target', { read: ViewContainerRef })
-  target!: ViewContainerRef;
+  public readonly target = viewChild.required<ViewContainerRef>('target', { read: ViewContainerRef });
 
   // On utilise un signal pour stocker la référence du composant créé
   createdComponent = signal<ComponentRef<C> | null>(null);
@@ -188,7 +187,7 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   ngAfterViewInit() {
     // Si on a un composant, on le crée dynamiquement
     if (this.data.component && !this.data.templateRef) {
-      const compRef = this.target.createComponent(this.data.component);
+      const compRef = this.target().createComponent(this.data.component);
       this.createdComponent.set(compRef);
 
       // Injecter les inputs dans le composant
@@ -201,11 +200,11 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
       }
     }
     // Si on a juste un templateRef, on ne crée pas de composant :
-    // l’affichage est déjà géré dans le template via <ng-template *ngTemplateOutlet="...">
+    // l'affichage est déjà géré dans le template via <ng-template *ngTemplateOutlet="...">
     else if (this.data.templateRef) {
       this.createdComponent.set(null);
     }
-    // Si on n’a rien, on ferme le dialog
+    // Si on n'a rien, on ferme le dialog
     else {
       this.dialogRef.close(false);
     }

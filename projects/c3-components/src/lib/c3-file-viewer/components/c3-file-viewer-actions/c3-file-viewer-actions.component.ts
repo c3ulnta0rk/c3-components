@@ -1,4 +1,4 @@
-import { Component, Host, Input } from '@angular/core';
+import { Component, Host, input } from '@angular/core';
 import { C3FileViewer } from '../../models/file-viewer';
 
 @Component({
@@ -7,10 +7,9 @@ import { C3FileViewer } from '../../models/file-viewer';
     standalone: false
 })
 export class C3FileViewerActionsComponent {
-  @Input()
-  fileViewer!: C3FileViewer;
+  public readonly fileViewer = input.required<C3FileViewer>();
 
   get config() {
-    return this.fileViewer.config;
+    return this.fileViewer().config;
   }
 }

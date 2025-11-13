@@ -1,7 +1,6 @@
 import {
   Directive,
-  Output,
-  EventEmitter,
+  output,
   ElementRef,
   AfterViewInit,
   OnDestroy,
@@ -12,7 +11,7 @@ import {
     standalone: false
 })
 export class C3InputFileTriggerDirective implements AfterViewInit, OnDestroy {
-  @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
+  public readonly click = output<MouseEvent>();
   constructor(private elementRef: ElementRef) {}
 
   ngAfterViewInit() {
