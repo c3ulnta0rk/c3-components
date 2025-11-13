@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, input } from '@angular/core';
 import autoAnimate, {
   AutoAnimateOptions,
   AutoAnimationPlugin,
@@ -9,10 +9,10 @@ import autoAnimate, {
   standalone: true,
 })
 export class C3AutoAnimateDirective implements AfterViewInit {
-  @Input() options?: Partial<AutoAnimateOptions> | AutoAnimationPlugin;
+  public readonly options = input<Partial<AutoAnimateOptions> | AutoAnimationPlugin | undefined>(undefined);
   constructor(private el: ElementRef) {}
 
   ngAfterViewInit(): void {
-    autoAnimate(this.el.nativeElement, this.options);
+    autoAnimate(this.el.nativeElement, this.options());
   }
 }
