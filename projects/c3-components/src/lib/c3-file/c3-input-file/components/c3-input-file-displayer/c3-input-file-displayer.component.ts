@@ -12,54 +12,61 @@ import { C3InputFileComponent } from '../c3-input-file/c3-input-file.component';
 @Component({
     selector: 'c3-input-file-displayer',
     template: `
-    <ng-container *ngIf="files.length">
+    @if (files.length) {
       <div class="c3-input-file-displayer mat-card">
         <div
           class="title-bar mat-elevation-z4"
           fxLayout="row"
           fxLayoutAlign="space-between center"
-        >
+          >
           <span>Liste des téléversement</span>
           <div>
             <button mat-icon-button (click)="toggleMinimize()">
-              <mat-icon *ngIf="minimized">open_in_full</mat-icon>
-              <mat-icon *ngIf="!minimized">close_fullscreen</mat-icon>
+              @if (minimized) {
+                <mat-icon>open_in_full</mat-icon>
+              }
+              @if (!minimized) {
+                <mat-icon>close_fullscreen</mat-icon>
+              }
             </button>
             <button mat-icon-button [disabled]="!closable" (click)="close()">
               <mat-icon>close</mat-icon>
             </button>
           </div>
         </div>
-        <div class="container-list" *ngIf="!minimized">
-          <div class="item" *ngFor="let item of files">
-            <div class="title">{{ item.fileName }}</div>
-            <div
-              fxLayout="row"
-              fxLayoutAlign="space-around center"
-              fxLayoutGap="4px"
-            >
-              <mat-progress-bar
-                fxFlex
-                [color]="item.aborded ? 'warn' : 'primary'"
-                [mode]="item.aborded ? 'determinate' : 'buffer'"
-                [value]="item.progression"
-                [bufferValue]="0"
-              >
-              </mat-progress-bar>
-
-              <button
-                mat-icon-button
-                [disabled]="item.aborded || item.loaded"
-                (click)="item.abord()"
-              >
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </div>
+        @if (!minimized) {
+          <div class="container-list">
+            @for (item of files; track item) {
+              <div class="item">
+                <div class="title">{{ item.fileName }}</div>
+                <div
+                  fxLayout="row"
+                  fxLayoutAlign="space-around center"
+                  fxLayoutGap="4px"
+                  >
+                  <mat-progress-bar
+                    fxFlex
+                    [color]="item.aborded ? 'warn' : 'primary'"
+                    [mode]="item.aborded ? 'determinate' : 'buffer'"
+                    [value]="item.progression"
+                    [bufferValue]="0"
+                    >
+                  </mat-progress-bar>
+                  <button
+                    mat-icon-button
+                    [disabled]="item.aborded || item.loaded"
+                    (click)="item.abord()"
+                    >
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </div>
+              </div>
+            }
           </div>
-        </div>
+        }
       </div>
-    </ng-container>
-  `,
+    }
+    `,
     styles: [],
     encapsulation: ViewEncapsulation.None,
     standalone: false

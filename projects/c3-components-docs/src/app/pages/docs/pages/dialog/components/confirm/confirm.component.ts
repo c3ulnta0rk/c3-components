@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -8,7 +8,7 @@ import {
 
 @Component({
     selector: 'c3-confirm',
-    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    imports: [C3DialogModule, MatButtonModule],
     templateUrl: './confirm.component.html',
     styleUrl: './confirm.component.scss'
 })

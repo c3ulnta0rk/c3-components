@@ -4,6 +4,8 @@
   </ng-content>
 </div>
 
-<div *ngIf="isExpanded()">
-  <ng-content></ng-content>
-</div>
+@if (isExpanded()) {
+  <div>
+    <ng-content></ng-content>
+  </div>
+}

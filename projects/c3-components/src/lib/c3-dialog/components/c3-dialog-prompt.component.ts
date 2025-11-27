@@ -27,19 +27,23 @@ export interface PromptConfig {
     <div mat-dialog-title>{{ data.text }}</div>
     <mat-dialog-content>
       <mat-form-field>
-        <mat-label *ngIf="data.placeholder">{{ data.placeholder }}</mat-label>
-        <input
-          *ngIf="!data.multiline"
-          matInput
-          [formControl]="result"
-          (keydown.enter)="dialogRef.close(result.value)"
-        />
-        <textarea
-          *ngIf="data.multiline"
-          matInput
-          [formControl]="result"
-          cdkTextareaAutosize
-        ></textarea>
+        @if (data.placeholder) {
+          <mat-label>{{ data.placeholder }}</mat-label>
+        }
+        @if (!data.multiline) {
+          <input
+            matInput
+            [formControl]="result"
+            (keydown.enter)="dialogRef.close(result.value)"
+            />
+        }
+        @if (data.multiline) {
+          <textarea
+            matInput
+            [formControl]="result"
+            cdkTextareaAutosize
+          ></textarea>
+        }
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions align="center">
@@ -51,11 +55,11 @@ export interface PromptConfig {
         [disabled]="result.invalid || (data.required && !result.value)"
         [class]="data.accept?.color"
         [mat-dialog-close]="result.value"
-      >
+        >
         {{ data.accept?.text }}
       </button>
     </mat-dialog-actions>
-  `,
+    `,
     styles: [
         `
       mat-form-field {

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   effect,
@@ -20,7 +20,7 @@ import { C3FileViewerConfig } from '../../c3-file-viewer/models/file-viewer-conf
 
 @Component({
   selector: 'c3-file-display-grid',
-  imports: [CommonModule, C3FileDisplayCardComponent, C3FileViewerModule],
+  imports: [C3FileDisplayCardComponent, C3FileViewerModule],
   templateUrl: './c3-file-display-grid.component.html',
   styleUrl: './c3-file-display-grid.component.scss'
 })

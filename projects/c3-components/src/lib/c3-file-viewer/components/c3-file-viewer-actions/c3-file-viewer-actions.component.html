@@ -5,207 +5,209 @@
       [class]="config.btnClass"
       (click)="fileViewer().previousImage($event)"
       [disabled]="fileViewer().currentIndex === 0"
-    >
+      >
       @if (config.btnIcons?.prev?.classes) {
-      <span [class]="config.btnIcons?.prev?.classes"></span>
+        <span [class]="config.btnIcons?.prev?.classes"></span>
       }
     </button>
-  @if (config.btnIcons?.prev?.text) {
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().previousImage($event)"
-    >
+    @if (config.btnIcons?.prev?.text) {
+      <a
+        [class]="config.btnClass"
+        (click)="fileViewer().previousImage($event)"
+        >
         <span [class]="config.btnSubClass">{{ config.btnIcons?.prev?.text }}</span>
       </a>
     }
   }
   @if (config.btnShow?.next) {
-  <button
-    type="button"
-    [class]="config.btnClass"
-    (click)="fileViewer().nextImage($event)"
-    [disabled]="fileViewer().currentIndex === fileViewer().files.length - 1"
-  >
-    <span [class]="config.btnIcons?.next?.classes"></span>
-  </button>
+    <button
+      type="button"
+      [class]="config.btnClass"
+      (click)="fileViewer().nextImage($event)"
+      [disabled]="fileViewer().currentIndex === fileViewer().files.length - 1"
+      >
+      <span [class]="config.btnIcons?.next?.classes"></span>
+    </button>
   }
 
   @if (config.btnIcons?.next?.text) {
     <a
       [class]="config.btnClass"
       (click)="fileViewer().nextImage($event)"
-    >
+      >
       <span [class]="config.btnSubClass">{{ config.btnIcons?.next?.text }}</span>
     </a>
   }
 </div>
 
 @if (fileViewer().currentFile.type.startsWith('image')) {
-<!-- Button Container -->
-<div
-  class="btn-container"
-  [class]="config.btnContainerClass"
->
-  <!-- Rotate Counter Clockwise -->
-  @if (config.btnShow?.rotateCounterClockwise) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().rotateCounterClockwise()"
-      *ngIf="config.btnIcons?.rotateCounterClockwise?.classes"
+  <!-- Button Container -->
+  <div
+    class="btn-container"
+    [class]="config.btnContainerClass"
     >
-      <span [class]="config.btnIcons?.rotateCounterClockwise?.classes"></span>
-    </button>
-    <a
-      [class]="config.btnClass"
-      *ngIf="config.btnIcons?.rotateCounterClockwise?.text"
-      (click)="fileViewer().rotateCounterClockwise()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.rotateCounterClockwise?.text
-      }}</span>
-    </a>
-  }
+    <!-- Rotate Counter Clockwise -->
+    @if (config.btnShow?.rotateCounterClockwise) {
+      @if (config.btnIcons?.rotateCounterClockwise?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().rotateCounterClockwise()"
+          >
+          <span [class]="config.btnIcons?.rotateCounterClockwise?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.rotateCounterClockwise?.text) {
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().rotateCounterClockwise()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.rotateCounterClockwise?.text
+          }}</span>
+        </a>
+      }
+    }
 
-  <!-- Rotate Clockwise -->
-  @if (config.btnShow?.rotateClockwise) {
-    @if (config.btnIcons?.rotateClockwise?.classes) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().rotateClockwise()"
-    >
-      <span [class]="config.btnIcons?.rotateClockwise?.classes"></span>
-    </button>
+    <!-- Rotate Clockwise -->
+    @if (config.btnShow?.rotateClockwise) {
+      @if (config.btnIcons?.rotateClockwise?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().rotateClockwise()"
+          >
+          <span [class]="config.btnIcons?.rotateClockwise?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.rotateClockwise?.text) {
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().rotateClockwise()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.rotateClockwise?.text
+          }}</span>
+        </a>
+      }
     }
-    @if (config.btnIcons?.rotateClockwise?.text) {
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().rotateClockwise()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.rotateClockwise?.text
-      }}</span>
-    </a>
-    }
-  }
 
-  <!-- Zoom Out -->
-  @if (config.btnShow?.zoomOut) {
-    @if (config.btnIcons?.zoomOut?.classes) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().zoomOut()"
-    >
-      <span [class]="config.btnIcons?.zoomOut?.classes"></span>
-    </button>
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().zoomOut()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.zoomOut?.text
-      }}</span>
-    </a>
+    <!-- Zoom Out -->
+    @if (config.btnShow?.zoomOut) {
+      @if (config.btnIcons?.zoomOut?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().zoomOut()"
+          >
+          <span [class]="config.btnIcons?.zoomOut?.classes"></span>
+        </button>
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().zoomOut()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.zoomOut?.text
+          }}</span>
+        </a>
+      }
     }
-  }
 
-  <!-- Zoom In -->
-  @if (config.btnShow?.zoomIn) {
-    @if (config.btnIcons?.zoomIn?.classes) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().zoomIn()"
-    >
-      <span [class]="config.btnIcons?.zoomIn?.classes"></span>
-    </button>
+    <!-- Zoom In -->
+    @if (config.btnShow?.zoomIn) {
+      @if (config.btnIcons?.zoomIn?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().zoomIn()"
+          >
+          <span [class]="config.btnIcons?.zoomIn?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.zoomIn?.text) {
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().zoomIn()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.zoomIn?.text
+          }}</span>
+        </a>
+      }
     }
-    @if (config.btnIcons?.zoomIn?.text) {
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().zoomIn()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.zoomIn?.text
-      }}</span>
-    </a>
-    }
-  }
 
-  <!-- Fullscreen -->
-  @if (config.allowFullscreen) {
-    @if (config.btnIcons?.fullscreen?.classes) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().toggleFullscreen()"
-    >
-      <span [class]="config.btnIcons?.fullscreen?.classes"></span>
-    </button>
+    <!-- Fullscreen -->
+    @if (config.allowFullscreen) {
+      @if (config.btnIcons?.fullscreen?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().toggleFullscreen()"
+          >
+          <span [class]="config.btnIcons?.fullscreen?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.fullscreen?.text) {
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().toggleFullscreen()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.fullscreen?.text
+          }}</span>
+        </a>
+      }
     }
-    @if (config.btnIcons?.fullscreen?.text) {
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().toggleFullscreen()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.fullscreen?.text
-      }}</span>
-    </a>
-    }
-  }
 
-  <!-- Reset -->
-  @if (config.btnShow?.reset) {
-    @if (config.btnIcons?.reset?.classes) {
-    <button
-      type="button"
-      [class]="config.btnClass"
-      (click)="fileViewer().reset()"
-    >
-      <span [class]="config.btnIcons?.reset?.classes"></span>
-    </button>
+    <!-- Reset -->
+    @if (config.btnShow?.reset) {
+      @if (config.btnIcons?.reset?.classes) {
+        <button
+          type="button"
+          [class]="config.btnClass"
+          (click)="fileViewer().reset()"
+          >
+          <span [class]="config.btnIcons?.reset?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.reset?.text) {
+        <a
+          [class]="config.btnClass"
+          (click)="fileViewer().reset()"
+          >
+          <span [class]="config.btnSubClass">{{
+            config.btnIcons?.reset?.text
+          }}</span>
+        </a>
+      }
     }
-    @if (config.btnIcons?.reset?.text) {
-    <a
-      [class]="config.btnClass"
-      (click)="fileViewer().reset()"
-    >
-      <span [class]="config.btnSubClass">{{
-        config.btnIcons?.reset?.text
-      }}</span>
-    </a>
-    }
-  }
 
-  <!-- Download -->
-  @if (config.btnShow?.download) {
-    @if (config.btnIcons?.download?.classes) {
-    <button type="button" [class]="config.btnClass" (click)="fileViewer().download()">
-      <span [class]="config.btnIcons?.download?.classes"></span>
-    </button>
+    <!-- Download -->
+    @if (config.btnShow?.download) {
+      @if (config.btnIcons?.download?.classes) {
+        <button type="button" [class]="config.btnClass" (click)="fileViewer().download()">
+          <span [class]="config.btnIcons?.download?.classes"></span>
+        </button>
+      }
+      @if (config.btnIcons?.download?.text) {
+        <a [class]="config.btnClass" (click)="fileViewer().download()">
+          <span [class]="config.btnSubClass">{{ config.btnIcons?.download?.text }}</span>
+        </a>
+      }
     }
-    @if (config.btnIcons?.download?.text) {
-    <a [class]="config.btnClass" (click)="fileViewer().download()">
-      <span [class]="config.btnSubClass">{{ config.btnIcons?.download?.text }}</span>
-    </a>
-    }
-  }
 
-  <!-- Custom Buttons -->
-  @for (cBtn of config.customBtns; track cBtn.icon.text) {
-    @if (cBtn.icon.classes) {
-    <button type="button" [class]="config.btnClass">
-      <span [class]="cBtn.icon.classes"></span>
-    </button>
+    <!-- Custom Buttons -->
+    @for (cBtn of config.customBtns; track cBtn.icon.text) {
+      @if (cBtn.icon.classes) {
+        <button type="button" [class]="config.btnClass">
+          <span [class]="cBtn.icon.classes"></span>
+        </button>
+      }
+      @if (cBtn.icon.text) {
+        <a [class]="config.btnClass">
+          <span [class]="config.btnSubClass">{{ cBtn.icon.text }}</span>
+        </a>
+      }
     }
-    @if (cBtn.icon.text) {
-    <a [class]="config.btnClass">
-        <span [class]="config.btnSubClass">{{ cBtn.icon.text }}</span>
-      </a>
-    }
-  }
   </div>
 }

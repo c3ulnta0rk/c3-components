@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ExampleViewerTabComponent } from 'projects/c3-components-docs/src/app/components/example-viewer/example-viewer-tab.component';
 import { ExampleViewerComponent } from 'projects/c3-components-docs/src/app/components/example-viewer/example-viewer.component';
@@ -9,13 +9,12 @@ import { HighlightJsDirective } from 'ngx-highlight-js';
 @Component({
     selector: 'c3-examples',
     imports: [
-        BasicViewerComponent,
-        CommonModule,
-        DialogViewerComponent,
-        ExampleViewerComponent,
-        ExampleViewerTabComponent,
-        HighlightJsDirective,
-    ],
+    BasicViewerComponent,
+    DialogViewerComponent,
+    ExampleViewerComponent,
+    ExampleViewerTabComponent,
+    HighlightJsDirective
+],
     templateUrl: './examples.component.html',
     styleUrl: './examples.component.scss'
 })

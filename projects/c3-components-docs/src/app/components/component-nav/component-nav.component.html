@@ -3,18 +3,19 @@
   [tabPanel]="tabPanel"
   mat-stretch-tabs="false"
   mat-align-tabs="start"
->
-  <a
-    mat-tab-link
-    *ngFor="let link of links"
-    [routerLink]="[link.url]"
-    [relativeTo]="parentRoute"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
   >
-    {{ link.label }}
-  </a>
+  @for (link of links; track link) {
+    <a
+      mat-tab-link
+      [routerLink]="[link.url]"
+      [relativeTo]="parentRoute"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      >
+      {{ link.label }}
+    </a>
+  }
 </nav>
 <mat-tab-nav-panel #tabPanel>
   <div class="m-4">

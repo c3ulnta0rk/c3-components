@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { HighlightJsDirective } from 'ngx-highlight-js';
 import { ConfirmComponent } from '../../components/confirm/confirm.component';
@@ -14,7 +14,6 @@ import { TemplateComponentComponent } from "../../components/templateComponent/t
 @Component({
   selector: 'dialog-example',
   imports: [
-    CommonModule,
     ConfirmComponent,
     EmbededComponentComponent,
     ExampleViewerComponent,
@@ -25,7 +24,7 @@ import { TemplateComponentComponent } from "../../components/templateComponent/t
     AlertComponent,
     EmbededComponentWithActionsComponent,
     TemplateComponentComponent
-  ],
+],
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss']
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { EmbededExampleComponent } from '../embededComponent/embededComponent.component';
@@ -6,7 +6,7 @@ import { C3DialogModule, C3DialogService } from 'projects/c3-components/src/publ
 
 @Component({
   selector: 'c3-embeded-component-with-actions',
-  imports: [CommonModule, C3DialogModule, MatButtonModule],
+  imports: [C3DialogModule, MatButtonModule],
   templateUrl: './embededComponentWithActions.component.html',
   styleUrl: './embededComponentWithActions.component.scss',
 })

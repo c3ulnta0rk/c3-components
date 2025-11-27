@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -17,7 +17,7 @@ export class EmbededExampleComponent {
 
 @Component({
     selector: 'c3-embeded-component',
-    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    imports: [C3DialogModule, MatButtonModule],
     templateUrl: './embededComponent.component.html',
     styleUrl: './embededComponent.component.scss'
 })

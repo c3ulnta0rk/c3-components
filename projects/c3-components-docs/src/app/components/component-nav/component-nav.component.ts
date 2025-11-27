@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
-    imports: [CommonModule, MatTabsModule, RouterModule],
+    imports: [MatTabsModule, RouterModule],
     templateUrl: './component-nav.component.html',
     styleUrls: ['./component-nav.component.scss']
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Host, HostBinding } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -8,12 +8,11 @@ import { RouterModule } from '@angular/router';
 @Component({
     selector: 'c3-home',
     imports: [
-        CommonModule,
-        MatDividerModule,
-        MatCardModule,
-        MatIconModule,
-        RouterModule,
-    ],
+    MatDividerModule,
+    MatCardModule,
+    MatIconModule,
+    RouterModule
+],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })

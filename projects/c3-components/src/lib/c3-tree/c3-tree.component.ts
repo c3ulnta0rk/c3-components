@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, model, output } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,12 +27,11 @@ export interface FileNode<RawData> extends TreeType<RawData> {
 @Component({
     selector: 'c3-tree',
     imports: [
-        CommonModule,
-        MatTreeModule,
-        MatIconModule,
-        MatRippleModule,
-        MatProgressSpinnerModule,
-    ],
+    MatTreeModule,
+    MatIconModule,
+    MatRippleModule,
+    MatProgressSpinnerModule
+],
     templateUrl: './c3-tree.component.html',
     styleUrls: ['./c3-tree.component.scss']
 })

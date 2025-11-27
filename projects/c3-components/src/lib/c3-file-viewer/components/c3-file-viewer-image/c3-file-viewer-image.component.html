@@ -1,7 +1,8 @@
-<img
-  *ngIf="fileViewer().currentFile.objectUrl"
-  [src]="fileViewer().currentFile.objectUrl | async | c3SafeUrl"
-  [ngStyle]="fileViewer().style"
-  alt="Image not found..."
-  (dragstart)="dragstart.emit($event)"
-/>
+@if (fileViewer().currentFile.objectUrl) {
+  <img
+    [src]="fileViewer().currentFile.objectUrl | async | c3SafeUrl"
+    [ngStyle]="fileViewer().style"
+    alt="Image not found..."
+    (dragstart)="dragstart.emit($event)"
+    />
+}

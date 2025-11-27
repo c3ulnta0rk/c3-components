@@ -272,7 +272,7 @@ export class C3FileViewer {
   download(file: FileMetadata = this.currentFile) {
     const client = this.config.customClient || this.client;
 
-    const originalName = this.getOriginalName();
+    const originalName = this.getOriginalName(file);
 
     // Si le fichier est déjà en blob (petit fichier déjà chargé)
     if (file.objectUrl && this.locationBlobMap.has(file.location)) {

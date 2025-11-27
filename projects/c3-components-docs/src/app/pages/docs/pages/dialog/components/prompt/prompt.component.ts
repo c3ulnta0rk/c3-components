@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -8,7 +8,7 @@ import {
 
 @Component({
     selector: 'c3-prompt',
-    imports: [CommonModule, C3DialogModule, MatButtonModule],
+    imports: [C3DialogModule, MatButtonModule],
     templateUrl: './prompt.component.html',
     styleUrl: './prompt.component.scss'
 })

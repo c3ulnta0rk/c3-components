@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   Component,
   TemplateRef,
@@ -9,7 +9,7 @@ import {
 
 @Component({
     selector: '[c3ExampleViewerTab], c3-example-viewer-tab',
-    imports: [CommonModule],
+    imports: [],
     template: `
     <ng-template>
       <ng-content></ng-content>
