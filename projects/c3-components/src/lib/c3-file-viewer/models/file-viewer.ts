@@ -127,13 +127,70 @@ export class C3FileViewer {
     );
   }
 
+  /**
+   * Encode une URL de manière sûre pour éviter les problèmes avec les caractères spéciaux
+   * comme +, espaces, etc.
+   * Cette fonction encode correctement les segments du chemin et les paramètres de requête.
+   */
+  private encodeUrl(url: string): string {
+    try {
+      // Si l'URL est relative, on doit encoder manuellement
+      if (!url.includes('://')) {
+        // Pour les URLs relatives, on sépare le chemin et les paramètres de requête
+        const [path, query] = url.split('?');
+        // Encoder chaque segment du chemin (sauf les séparateurs /)
+        const encodedPath = path
+          .split('/')
+          .map((segment) => (segment ? encodeURIComponent(segment) : ''))
+          .join('/');
+
+        if (query) {
+          // Pour les paramètres de requête, encoder chaque clé et valeur
+          const params = query.split('&');
+          const encodedParams = params.map((param) => {
+            const [key, ...valueParts] = param.split('=');
+            const value = valueParts.join('=');
+            return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+          });
+          return `${encodedPath}?${encodedParams.join('&')}`;
+        }
+
+        return encodedPath;
+      }
+
+      // Pour les URLs absolues, utiliser le constructeur URL pour parser
+      const urlObj = new URL(url);
+
+      // Encoder chaque segment du chemin
+      const encodedPath = urlObj.pathname
+        .split('/')
+        .map((segment) => (segment ? encodeURIComponent(segment) : ''))
+        .join('/');
+
+      // Les searchParams sont déjà gérés correctement par URLSearchParams
+      // mais on doit s'assurer que les valeurs sont encodées
+      const searchParams = new URLSearchParams();
+      urlObj.searchParams.forEach((value, key) => {
+        searchParams.append(key, value);
+      });
+      const encodedSearch = searchParams.toString() ? `?${searchParams.toString()}` : '';
+
+      return `${urlObj.protocol}//${urlObj.host}${encodedPath}${encodedSearch}${urlObj.hash}`;
+    } catch (e) {
+      // Si le parsing échoue (URL malformée ou relative sans base),
+      // encoder avec encodeURI qui préserve la structure de l'URL
+      return encodeURI(url);
+    }
+  }
+
   getFile(location: string) {
     const client = this.config.customClient || this.client;
     if (!client) {
       throw new Error('No http client provided. Please provide a custom client or import HttpClientModule');
     }
 
-    return client(location, {
+    const encodedLocation = this.encodeUrl(location);
+    return client(encodedLocation, {
       responseType: 'blob',
     });
   }
@@ -298,7 +355,8 @@ export class C3FileViewer {
 
   private downloadWithClient(file: FileMetadata, client: HttpClient['get'], originalName: string) {
     // Utiliser le client fourni pour récupérer le fichier
-    client(file.location, {
+    const encodedLocation = this.encodeUrl(file.location);
+    client(encodedLocation, {
       responseType: 'blob',
     }).subscribe({
       next: (blob: Blob) => {
