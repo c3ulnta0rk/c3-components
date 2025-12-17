@@ -29,17 +29,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           }
         </mat-toolbar>
       }
-    
+
       <div [class]="'dialog-content ' + (data.classContent || '')">
         <!-- Si templateRef est présent, on l'affiche directement,
         sinon on laisse la place au composant dynamique -->
         @if (data.templateRef) {
           <ng-container *ngTemplateOutlet="data.templateRef"></ng-container>
         } @else {
-          <ng-template #target></ng-template>
+          <ng-container #target></ng-container>
         }
       </div>
-    
+
       @if (data.actions && data.actions.length > 0) {
         <div [class]="'dialog-actions ' + (data.classActions || '')">
           @for (action of data.actions; track action.label) {
@@ -74,7 +74,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         </div>
       }
     </div>
-    `,
+  `,
   styles: [
     `
       .dialog-content-container {
@@ -116,7 +116,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   standalone: false,
 })
 export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
-  public readonly target = viewChild.required<ViewContainerRef>('target');
+  public readonly target = viewChild('target', {
+    read: ViewContainerRef,
+  });
 
   // On utilise un signal pour stocker la référence du composant créé
   createdComponent = signal<ComponentRef<C> | null>(null);
@@ -159,7 +161,12 @@ export class C3DialogEmbedChildComponent<C> implements AfterViewInit {
   ngAfterViewInit() {
     // Si on a un composant, on le crée dynamiquement
     if (this.data.component && !this.data.templateRef) {
-      const compRef = this.target().createComponent(this.data.component);
+      const targetRef = this.target();
+      if (!targetRef) {
+        console.error('ViewContainerRef not found');
+        return;
+      }
+      const compRef = targetRef.createComponent(this.data.component);
       this.createdComponent.set(compRef);
 
       // Injecter les inputs dans le composant

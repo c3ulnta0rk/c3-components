@@ -16,7 +16,7 @@ export const crabbyImgs: Array<FileMetadata> = [
       originalName: 'Crabby - 2',
     },
     type: 'image/jpeg',
-    location: 'img/crabby-2.jpeg',
+    location: 'img/crabby+2.jpeg',
     lastModified: new Date(),
   },
   {
