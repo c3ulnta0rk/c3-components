@@ -23,6 +23,17 @@
   }
 }
 
+.docs-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  padding-top: 3rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
