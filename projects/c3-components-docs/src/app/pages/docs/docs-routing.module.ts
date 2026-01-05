@@ -13,6 +13,13 @@ const routes: Routes = [
           import('./pages/getting-started/getting-started.component').then((m) => m.GettingStartedComponent),
       },
 
+      // Components Overview
+      {
+        path: 'components',
+        loadComponent: () =>
+          import('./pages/components-overview/components-overview.component').then((m) => m.ComponentsOverviewComponent),
+      },
+
       // Components
       {
         path: 'dialog',

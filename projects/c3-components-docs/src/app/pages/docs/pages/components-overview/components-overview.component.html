@@ -1,0 +1,89 @@
+<div class="components-overview">
+  <!-- Header -->
+  <header class="overview-header">
+    <h1 class="overview-title">Components</h1>
+    <p class="overview-subtitle">
+      Discover all {{ totalComponents() }} available components, directives and utilities.
+    </p>
+  </header>
+
+  <!-- Search -->
+  <div class="search-container">
+    <div class="search-box">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search components..."
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+      />
+      @if (searchQuery()) {
+        <button class="search-clear" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    @for (category of filteredCategories(); track category.id; let catIndex = $index) {
+      <section class="category" [style.animation-delay]="catIndex * 100 + 'ms'">
+        <!-- Category Header -->
+        <button
+          class="category-header"
+          (click)="toggleCategory(category.id)"
+          [attr.aria-expanded]="category.expanded"
+        >
+          <div class="category-info">
+            <mat-icon class="category-icon">{{ category.icon }}</mat-icon>
+            <h2 class="category-name">{{ category.name }}</h2>
+            <span class="category-count">{{ category.items.length }}</span>
+          </div>
+          <mat-icon class="expand-icon" [class.rotated]="!category.expanded">
+            expand_more
+          </mat-icon>
+        </button>
+
+        <!-- Category Grid -->
+        @if (category.expanded) {
+          <div class="category-grid">
+            @for (item of category.items; track item.path; let itemIndex = $index) {
+              <a
+                [routerLink]="item.path"
+                class="component-card"
+                [style.animation-delay]="(catIndex * 100 + itemIndex * 50) + 'ms'"
+              >
+                <div class="card-icon">
+                  <mat-icon>{{ item.icon }}</mat-icon>
+                </div>
+                <div class="card-content">
+                  <div class="card-header">
+                    <h3 class="card-title">{{ item.name }}</h3>
+                    @if (item.badge) {
+                      <span class="card-badge" [class]="'badge-' + item.badge">
+                        {{ item.badge }}
+                      </span>
+                    }
+                  </div>
+                  <p class="card-description">{{ item.description }}</p>
+                </div>
+                <mat-icon class="card-arrow">arrow_forward</mat-icon>
+              </a>
+            }
+          </div>
+        }
+      </section>
+    }
+
+    @if (filteredCategories().length === 0) {
+      <div class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No components found for "{{ searchQuery() }}"</p>
+        <button mat-button (click)="clearSearch()">Clear search</button>
+      </div>
+    }
+  </div>
+</div>
+

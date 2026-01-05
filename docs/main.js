@@ -1,47 +1,43 @@
 import {
-  AUTO_STYLE,
-  AnimationGroupPlayer,
-  AnimationMetadataType,
-  NoopAnimationPlayer,
-  sequence,
-  style,
-  ɵPRE_STYLE
-} from "./chunk-6ZIKHCO3.js";
-import {
-  MatButtonModule,
-  MatIconButton,
   MatTooltip,
   MatTooltipModule
-} from "./chunk-HJOU2AGX.js";
-import "./chunk-HCQT5YPP.js";
+} from "./chunk-B3LRXQVS.js";
+import "./chunk-MNEDZF6X.js";
+import {
+  HighlightJsModule
+} from "./chunk-CP5TLJ4H.js";
+import {
+  MatButtonModule,
+  MatIconButton
+} from "./chunk-CKAG3KXZ.js";
+import "./chunk-56K62WNN.js";
 import {
   DefaultValueAccessor,
   FormsModule,
-  HighlightJsModule,
   NgControlStatus,
   NgModel
-} from "./chunk-H2OJKUSB.js";
+} from "./chunk-PSEOTE3Z.js";
 import {
   RouterLink,
   RouterLinkActive,
   RouterModule,
   RouterOutlet,
   provideRouter
-} from "./chunk-DYF2Z4RC.js";
+} from "./chunk-ECYVAQNN.js";
 import {
   MatIcon,
   MatIconModule
-} from "./chunk-XOJCRGWO.js";
-import "./chunk-2WQUS347.js";
+} from "./chunk-2ZSYRDPT.js";
+import "./chunk-WFVQUGYK.js";
 import {
   BrowserModule,
   DomRendererFactory2,
   bootstrapApplication
-} from "./chunk-OUHP5ZTC.js";
+} from "./chunk-L4M3OWUD.js";
 import {
   CommonModule,
   isPlatformBrowser
-} from "./chunk-DXGZR3PZ.js";
+} from "./chunk-HVHU2I45.js";
 import {
   ANIMATION_MODULE_TYPE,
   Component,
@@ -78,7 +74,6 @@ import {
   ɵɵlistener,
   ɵɵnextContext,
   ɵɵproperty,
-  ɵɵpureFunction0,
   ɵɵrepeater,
   ɵɵrepeaterCreate,
   ɵɵresetView,
@@ -86,10 +81,9 @@ import {
   ɵɵstyleProp,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-PMKCWKFR.js";
+} from "./chunk-MBD4SKAO.js";
 
 // projects/c3-components-docs/src/app/components/header/header.component.ts
-var _c0 = () => ({ exact: true });
 function HeaderComponent_Conditional_19_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
@@ -183,7 +177,7 @@ var _HeaderComponent = class _HeaderComponent {
 _HeaderComponent.\u0275fac = function HeaderComponent_Factory(__ngFactoryType__) {
   return new (__ngFactoryType__ || _HeaderComponent)();
 };
-_HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderComponent, selectors: [["c3-header"]], decls: 26, vars: 9, consts: [["searchInput", ""], [1, "c3-header"], [1, "header-content"], ["routerLink", "/home", 1, "brand"], [1, "logo"], [1, "logo-icon"], [1, "brand-text"], [1, "nav-links"], ["routerLink", "/docs/getting-started", "routerLinkActive", "active", 1, "nav-link"], ["routerLink", "/docs", "routerLinkActive", "active", 1, "nav-link", 3, "routerLinkActiveOptions"], ["href", "https://github.com", "target", "_blank", "rel", "noopener", 1, "nav-link", "nav-link-external"], [1, "external-icon"], [1, "header-actions"], [1, "search-container"], ["type", "text", "placeholder", "Search components...", 1, "search-input", 3, "ngModel"], ["mat-icon-button", "", 1, "action-btn", 3, "click", "matTooltip"], ["mat-icon-button", "", 1, "action-btn", "theme-toggle", 3, "click", "matTooltip"], ["type", "text", "placeholder", "Search components...", 1, "search-input", 3, "ngModelChange", "keyup.enter", "keyup.escape", "ngModel"]], template: function HeaderComponent_Template(rf, ctx) {
+_HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _HeaderComponent, selectors: [["c3-header"]], decls: 26, vars: 7, consts: [["searchInput", ""], [1, "c3-header"], [1, "header-content"], ["routerLink", "/home", 1, "brand"], [1, "logo"], [1, "logo-icon"], [1, "brand-text"], [1, "nav-links"], ["routerLink", "/docs/getting-started", "routerLinkActive", "active", 1, "nav-link"], ["routerLink", "/docs/components", "routerLinkActive", "active", 1, "nav-link"], ["href", "https://github.com", "target", "_blank", "rel", "noopener", 1, "nav-link", "nav-link-external"], [1, "external-icon"], [1, "header-actions"], [1, "search-container"], ["type", "text", "placeholder", "Search components...", 1, "search-input", 3, "ngModel"], ["mat-icon-button", "", 1, "action-btn", 3, "click", "matTooltip"], ["mat-icon-button", "", 1, "action-btn", "theme-toggle", 3, "click", "matTooltip"], ["type", "text", "placeholder", "Search components...", 1, "search-input", 3, "ngModelChange", "keyup.enter", "keyup.escape", "ngModel"]], template: function HeaderComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "header", 1)(1, "div", 2)(2, "a", 3)(3, "div", 4)(4, "span", 5);
     \u0275\u0275text(5, "\u{1F980}");
@@ -220,9 +214,7 @@ _HeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type:
     \u0275\u0275elementEnd()()()()();
   }
   if (rf & 2) {
-    \u0275\u0275advance(11);
-    \u0275\u0275property("routerLinkActiveOptions", \u0275\u0275pureFunction0(8, _c0));
-    \u0275\u0275advance(7);
+    \u0275\u0275advance(18);
     \u0275\u0275classProp("search-open", ctx.searchOpen());
     \u0275\u0275advance();
     \u0275\u0275conditional(ctx.searchOpen() ? 19 : -1);
@@ -255,7 +247,7 @@ var HeaderComponent = _HeaderComponent;
       <a routerLink="/docs/getting-started" routerLinkActive="active" class="nav-link">
         Docs
       </a>
-      <a routerLink="/docs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+      <a routerLink="/docs/components" routerLinkActive="active" class="nav-link">
         Components
       </a>
       <a href="https://github.com" target="_blank" rel="noopener" class="nav-link nav-link-external">
@@ -709,7 +701,7 @@ var routes = [
       },
       {
         path: "docs",
-        loadChildren: () => import("./chunk-7RQCMZKQ.js").then((m) => m.DocsModule)
+        loadChildren: () => import("./chunk-WTH4KARH.js").then((m) => m.DocsModule)
       },
       {
         path: "**",
@@ -719,6 +711,253 @@ var routes = [
     ]
   }
 ];
+
+// node_modules/@angular/animations/fesm2022/private_export.mjs
+var AnimationMetadataType;
+(function(AnimationMetadataType2) {
+  AnimationMetadataType2[AnimationMetadataType2["State"] = 0] = "State";
+  AnimationMetadataType2[AnimationMetadataType2["Transition"] = 1] = "Transition";
+  AnimationMetadataType2[AnimationMetadataType2["Sequence"] = 2] = "Sequence";
+  AnimationMetadataType2[AnimationMetadataType2["Group"] = 3] = "Group";
+  AnimationMetadataType2[AnimationMetadataType2["Animate"] = 4] = "Animate";
+  AnimationMetadataType2[AnimationMetadataType2["Keyframes"] = 5] = "Keyframes";
+  AnimationMetadataType2[AnimationMetadataType2["Style"] = 6] = "Style";
+  AnimationMetadataType2[AnimationMetadataType2["Trigger"] = 7] = "Trigger";
+  AnimationMetadataType2[AnimationMetadataType2["Reference"] = 8] = "Reference";
+  AnimationMetadataType2[AnimationMetadataType2["AnimateChild"] = 9] = "AnimateChild";
+  AnimationMetadataType2[AnimationMetadataType2["AnimateRef"] = 10] = "AnimateRef";
+  AnimationMetadataType2[AnimationMetadataType2["Query"] = 11] = "Query";
+  AnimationMetadataType2[AnimationMetadataType2["Stagger"] = 12] = "Stagger";
+})(AnimationMetadataType || (AnimationMetadataType = {}));
+var AUTO_STYLE = "*";
+function sequence(steps, options = null) {
+  return { type: AnimationMetadataType.Sequence, steps, options };
+}
+function style(tokens) {
+  return { type: AnimationMetadataType.Style, styles: tokens, offset: null };
+}
+var NoopAnimationPlayer = class {
+  _onDoneFns = [];
+  _onStartFns = [];
+  _onDestroyFns = [];
+  _originalOnDoneFns = [];
+  _originalOnStartFns = [];
+  _started = false;
+  _destroyed = false;
+  _finished = false;
+  _position = 0;
+  parentPlayer = null;
+  totalTime;
+  constructor(duration = 0, delay = 0) {
+    this.totalTime = duration + delay;
+  }
+  _onFinish() {
+    if (!this._finished) {
+      this._finished = true;
+      this._onDoneFns.forEach((fn) => fn());
+      this._onDoneFns = [];
+    }
+  }
+  onStart(fn) {
+    this._originalOnStartFns.push(fn);
+    this._onStartFns.push(fn);
+  }
+  onDone(fn) {
+    this._originalOnDoneFns.push(fn);
+    this._onDoneFns.push(fn);
+  }
+  onDestroy(fn) {
+    this._onDestroyFns.push(fn);
+  }
+  hasStarted() {
+    return this._started;
+  }
+  init() {
+  }
+  play() {
+    if (!this.hasStarted()) {
+      this._onStart();
+      this.triggerMicrotask();
+    }
+    this._started = true;
+  }
+  /** @internal */
+  triggerMicrotask() {
+    queueMicrotask(() => this._onFinish());
+  }
+  _onStart() {
+    this._onStartFns.forEach((fn) => fn());
+    this._onStartFns = [];
+  }
+  pause() {
+  }
+  restart() {
+  }
+  finish() {
+    this._onFinish();
+  }
+  destroy() {
+    if (!this._destroyed) {
+      this._destroyed = true;
+      if (!this.hasStarted()) {
+        this._onStart();
+      }
+      this.finish();
+      this._onDestroyFns.forEach((fn) => fn());
+      this._onDestroyFns = [];
+    }
+  }
+  reset() {
+    this._started = false;
+    this._finished = false;
+    this._onStartFns = this._originalOnStartFns;
+    this._onDoneFns = this._originalOnDoneFns;
+  }
+  setPosition(position) {
+    this._position = this.totalTime ? position * this.totalTime : 1;
+  }
+  getPosition() {
+    return this.totalTime ? this._position / this.totalTime : 1;
+  }
+  /** @internal */
+  triggerCallback(phaseName) {
+    const methods = phaseName == "start" ? this._onStartFns : this._onDoneFns;
+    methods.forEach((fn) => fn());
+    methods.length = 0;
+  }
+};
+var AnimationGroupPlayer = class {
+  _onDoneFns = [];
+  _onStartFns = [];
+  _finished = false;
+  _started = false;
+  _destroyed = false;
+  _onDestroyFns = [];
+  parentPlayer = null;
+  totalTime = 0;
+  players;
+  constructor(_players) {
+    this.players = _players;
+    let doneCount = 0;
+    let destroyCount = 0;
+    let startCount = 0;
+    const total = this.players.length;
+    if (total == 0) {
+      queueMicrotask(() => this._onFinish());
+    } else {
+      this.players.forEach((player) => {
+        player.onDone(() => {
+          if (++doneCount == total) {
+            this._onFinish();
+          }
+        });
+        player.onDestroy(() => {
+          if (++destroyCount == total) {
+            this._onDestroy();
+          }
+        });
+        player.onStart(() => {
+          if (++startCount == total) {
+            this._onStart();
+          }
+        });
+      });
+    }
+    this.totalTime = this.players.reduce((time, player) => Math.max(time, player.totalTime), 0);
+  }
+  _onFinish() {
+    if (!this._finished) {
+      this._finished = true;
+      this._onDoneFns.forEach((fn) => fn());
+      this._onDoneFns = [];
+    }
+  }
+  init() {
+    this.players.forEach((player) => player.init());
+  }
+  onStart(fn) {
+    this._onStartFns.push(fn);
+  }
+  _onStart() {
+    if (!this.hasStarted()) {
+      this._started = true;
+      this._onStartFns.forEach((fn) => fn());
+      this._onStartFns = [];
+    }
+  }
+  onDone(fn) {
+    this._onDoneFns.push(fn);
+  }
+  onDestroy(fn) {
+    this._onDestroyFns.push(fn);
+  }
+  hasStarted() {
+    return this._started;
+  }
+  play() {
+    if (!this.parentPlayer) {
+      this.init();
+    }
+    this._onStart();
+    this.players.forEach((player) => player.play());
+  }
+  pause() {
+    this.players.forEach((player) => player.pause());
+  }
+  restart() {
+    this.players.forEach((player) => player.restart());
+  }
+  finish() {
+    this._onFinish();
+    this.players.forEach((player) => player.finish());
+  }
+  destroy() {
+    this._onDestroy();
+  }
+  _onDestroy() {
+    if (!this._destroyed) {
+      this._destroyed = true;
+      this._onFinish();
+      this.players.forEach((player) => player.destroy());
+      this._onDestroyFns.forEach((fn) => fn());
+      this._onDestroyFns = [];
+    }
+  }
+  reset() {
+    this.players.forEach((player) => player.reset());
+    this._destroyed = false;
+    this._finished = false;
+    this._started = false;
+  }
+  setPosition(p) {
+    const timeAtPosition = p * this.totalTime;
+    this.players.forEach((player) => {
+      const position = player.totalTime ? Math.min(1, timeAtPosition / player.totalTime) : 1;
+      player.setPosition(position);
+    });
+  }
+  getPosition() {
+    const longestPlayer = this.players.reduce((longestSoFar, player) => {
+      const newPlayerIsLongest = longestSoFar === null || player.totalTime > longestSoFar.totalTime;
+      return newPlayerIsLongest ? player : longestSoFar;
+    }, null);
+    return longestPlayer != null ? longestPlayer.getPosition() : 0;
+  }
+  beforeDestroy() {
+    this.players.forEach((player) => {
+      if (player.beforeDestroy) {
+        player.beforeDestroy();
+      }
+    });
+  }
+  /** @internal */
+  triggerCallback(phaseName) {
+    const methods = phaseName == "start" ? this._onStartFns : this._onDoneFns;
+    methods.forEach((fn) => fn());
+    methods.length = 0;
+  }
+};
+var \u0275PRE_STYLE = "!";
 
 // node_modules/@angular/animations/fesm2022/util.mjs
 var LINE_START = "\n - ";
@@ -5109,6 +5348,7 @@ var RootComponent = _RootComponent;
 bootstrapApplication(RootComponent, appConfig).catch((err) => console.error(err));
 /*! Bundled license information:
 
+@angular/animations/fesm2022/private_export.mjs:
 @angular/animations/fesm2022/util.mjs:
 @angular/animations/fesm2022/browser.mjs:
 @angular/platform-browser/fesm2022/animations.mjs:
