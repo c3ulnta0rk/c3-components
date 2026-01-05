@@ -1,1 +1,32 @@
-<p>api works!</p>
+<h1>Highlight Text API</h1>
+
+<section class="api-section">
+  <h2>Status</h2>
+  <div class="status-notice status-notice--coming-soon">
+    <p><strong>Coming Soon</strong></p>
+    <p>
+      This component is currently in development. The module <code>C3HighlightTextModule</code> is available but does
+      not yet export any components.
+    </p>
+  </div>
+</section>
+
+<section class="api-section">
+  <h2>Planned Features</h2>
+  <ul class="notes-list">
+    <li>Text highlighting pipe or directive</li>
+    <li>Search term highlighting</li>
+    <li>Customizable highlight styles</li>
+    <li>Case-insensitive matching</li>
+    <li>Multiple term support</li>
+  </ul>
+</section>
+
+<section class="api-section">
+  <h2>Planned Usage</h2>
+  <pre ngNonBindable><code>&lt;!-- As a pipe --&gt;
+&lt;p [innerHTML]="text | c3HighlightText: searchTerm"&gt;&lt;/p&gt;
+
+&lt;!-- As a directive --&gt;
+&lt;p [c3HighlightText]="searchTerm"&gt;{{ text }}&lt;/p&gt;</code></pre>
+</section>

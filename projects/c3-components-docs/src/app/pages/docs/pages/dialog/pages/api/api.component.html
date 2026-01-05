@@ -1,1 +1,406 @@
-<p>api works!</p>
+<h1>Dialog API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3DialogService,
+  C3DialogModule,
+  C3DialogTemplateComponent,
+  C3OpenDialogDirective
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3DialogService</h2>
+  <p>Injectable service for creating and managing dialogs.</p>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>confirm(data)</code></td>
+        <td><code>ConfirmConfig</code></td>
+        <td><code>Promise&lt;boolean&gt;</code></td>
+        <td>Opens a confirmation dialog. Resolves to <code>true</code> if accepted, <code>false</code> otherwise.</td>
+      </tr>
+      <tr>
+        <td><code>prompt(data)</code></td>
+        <td><code>PromptConfig</code></td>
+        <td><code>Promise&lt;string | false&gt;</code></td>
+        <td>Opens a prompt dialog. Resolves to the entered value or <code>false</code> if cancelled.</td>
+      </tr>
+      <tr>
+        <td><code>alert(text, data?)</code></td>
+        <td><code>string, AlertConfig?</code></td>
+        <td><code>Observable&lt;void&gt;</code></td>
+        <td>Opens an alert dialog with the given text.</td>
+      </tr>
+      <tr>
+        <td><code>createDialogFromComponent(config)</code></td>
+        <td><code>C3CreateDialogFromComponentConfig&lt;C&gt;</code></td>
+        <td><code>C3CreateDialogFromComponentResult&lt;C&gt;</code></td>
+        <td>Opens a dialog with a custom component.</td>
+      </tr>
+      <tr>
+        <td><code>createDialogFromTemplate(templateRef, config?)</code></td>
+        <td><code>TemplateRef&lt;any&gt;, MatDialogConfig?</code></td>
+        <td><code>C3CreateDialogFromComponentResult&lt;unknown&gt;</code></td>
+        <td>Opens a dialog from a TemplateRef.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>ConfirmConfig</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>The confirmation message (supports HTML).</td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Dialog width. Default: <code>'250px'</code></td>
+      </tr>
+      <tr>
+        <td><code>reject</code></td>
+        <td><code>&#123; color?: string; text?: string &#125;</code></td>
+        <td>No</td>
+        <td>Configuration for reject button. Default text: <code>'Annuler'</code></td>
+      </tr>
+      <tr>
+        <td><code>accept</code></td>
+        <td><code>&#123; color?: string; text: string &#125;</code></td>
+        <td>No</td>
+        <td>Configuration for accept button. Default: <code>&#123; color: 'primary', text: 'Accepter' &#125;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>PromptConfig</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>The prompt title/message.</td>
+      </tr>
+      <tr>
+        <td><code>defaultValue</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Default value for the input field.</td>
+      </tr>
+      <tr>
+        <td><code>placeholder</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Placeholder text for the input field.</td>
+      </tr>
+      <tr>
+        <td><code>multiline</code></td>
+        <td><code>boolean</code></td>
+        <td>No</td>
+        <td>If <code>true</code>, displays a textarea instead of an input.</td>
+      </tr>
+      <tr>
+        <td><code>validators</code></td>
+        <td><code>ValidatorFn | ValidatorFn[]</code></td>
+        <td>No</td>
+        <td>Angular form validators to apply.</td>
+      </tr>
+      <tr>
+        <td><code>required</code></td>
+        <td><code>boolean</code></td>
+        <td>No</td>
+        <td>Whether the input is required.</td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Dialog width. Default: <code>'250px'</code></td>
+      </tr>
+      <tr>
+        <td><code>maxWidth</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Maximum dialog width. Default: <code>'100vw'</code></td>
+      </tr>
+      <tr>
+        <td><code>reject</code></td>
+        <td><code>&#123; color: string; text: string &#125;</code></td>
+        <td>No</td>
+        <td>Configuration for reject button.</td>
+      </tr>
+      <tr>
+        <td><code>accept</code></td>
+        <td><code>&#123; color: string; text: string &#125;</code></td>
+        <td>No</td>
+        <td>Configuration for accept button.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>AlertConfig</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>The alert message (supports HTML).</td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Dialog width.</td>
+      </tr>
+      <tr>
+        <td><code>acceptText</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Text for the OK button. Default: <code>'ok'</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3CreateDialogFromComponentConfig&lt;C&gt;</h2>
+  <p>Extends <code>MatDialogConfig</code> with additional properties:</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>component</code></td>
+        <td><code>ComponentType&lt;C&gt;</code></td>
+        <td>Yes</td>
+        <td>The component to display in the dialog.</td>
+      </tr>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>Partial&lt;Record&lt;keyof C, unknown&gt;&gt;</code></td>
+        <td>No</td>
+        <td>Input values to pass to the component.</td>
+      </tr>
+      <tr>
+        <td><code>toolbar</code></td>
+        <td><code>&#123; title: string; closeBtn?: boolean; closeColor?: string; color?: string &#125;</code></td>
+        <td>No</td>
+        <td>Configuration for the dialog toolbar.</td>
+      </tr>
+      <tr>
+        <td><code>classContainer</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>CSS class for the dialog container.</td>
+      </tr>
+      <tr>
+        <td><code>classContent</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>CSS class for the dialog content area.</td>
+      </tr>
+      <tr>
+        <td><code>classActions</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>CSS class for the actions area.</td>
+      </tr>
+      <tr>
+        <td><code>actions</code></td>
+        <td><code>Array&lt;&#123; label: string; class?: string; apperance?: 'basic' | 'raised' | 'stroked' | 'flat'; action: () =&gt; void &#125;&gt;</code></td>
+        <td>No</td>
+        <td>Action buttons to display at the bottom of the dialog.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3CreateDialogFromComponentResult&lt;C&gt;</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property/Method</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>componentRef</code></td>
+        <td><code>ComponentRef&lt;C&gt; | null</code></td>
+        <td>Reference to the created component.</td>
+      </tr>
+      <tr>
+        <td><code>componentInstance</code></td>
+        <td><code>C | undefined</code></td>
+        <td>Instance of the created component.</td>
+      </tr>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>string</code></td>
+        <td>Unique ID of the dialog.</td>
+      </tr>
+      <tr>
+        <td><code>close(result?)</code></td>
+        <td><code>(dialogResult?: C) =&gt; void</code></td>
+        <td>Closes the dialog with an optional result.</td>
+      </tr>
+      <tr>
+        <td><code>afterClosed()</code></td>
+        <td><code>Observable&lt;C | null&gt;</code></td>
+        <td>Observable that emits when the dialog closes.</td>
+      </tr>
+      <tr>
+        <td><code>afterOpened()</code></td>
+        <td><code>Observable&lt;void&gt;</code></td>
+        <td>Observable that emits when the dialog opens.</td>
+      </tr>
+      <tr>
+        <td><code>beforeClosed()</code></td>
+        <td><code>Observable&lt;C | null&gt;</code></td>
+        <td>Observable that emits before the dialog closes.</td>
+      </tr>
+      <tr>
+        <td><code>backdropClick()</code></td>
+        <td><code>Observable&lt;MouseEvent&gt;</code></td>
+        <td>Observable that emits when the backdrop is clicked.</td>
+      </tr>
+      <tr>
+        <td><code>keydownEvents()</code></td>
+        <td><code>Observable&lt;KeyboardEvent&gt;</code></td>
+        <td>Observable for keydown events in the dialog.</td>
+      </tr>
+      <tr>
+        <td><code>afterComponentMounted()</code></td>
+        <td><code>Observable&lt;C3CreateDialogFromComponentResult&lt;C&gt;&gt;</code></td>
+        <td>Observable that emits after the component is mounted.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3DialogTemplateComponent</h2>
+  <p>Selector: <code>c3-dialog-template</code></p>
+  <p>Component wrapper for template-based dialogs.</p>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>templateRef</code></td>
+        <td><code>Signal&lt;TemplateRef&lt;any&gt; | undefined&gt;</code></td>
+        <td>Reference to the internal template.</td>
+      </tr>
+      <tr>
+        <td><code>dialogRef</code></td>
+        <td><code>Signal&lt;C3CreateDialogFromComponentResult&lt;unknown&gt; | null&gt;</code></td>
+        <td>Reference to the dialog result when opened.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3OpenDialogDirective</h2>
+  <p>Selector: <code>[c3-dialog]</code></p>
+  <p>Directive to open a dialog on click.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Alias</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>template</code></td>
+        <td><code>c3-dialog</code></td>
+        <td><code>C3DialogTemplateComponent</code></td>
+        <td>Reference to the dialog template component.</td>
+      </tr>
+      <tr>
+        <td><code>config</code></td>
+        <td><code>c3-dialog-config</code></td>
+        <td><code>MatDialogConfig</code></td>
+        <td>Configuration for the MatDialog.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The <code>C3DialogService</code> is provided at root level and can be injected anywhere.</li>
+    <li>For simple use cases, use <code>confirm()</code>, <code>prompt()</code>, or <code>alert()</code>.</li>
+    <li>For complex dialogs with custom components, use <code>createDialogFromComponent()</code>.</li>
+    <li>For template-based dialogs, use <code>C3DialogTemplateComponent</code> with <code>[c3-dialog]</code> directive.</li>
+    <li>The service automatically injects inputs into dynamically created components.</li>
+  </ul>
+</section>

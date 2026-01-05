@@ -1,1 +1,229 @@
-<p>api works!</p>
+<h1>Tree API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3TreeComponent,
+  TreeType,
+  FileNode
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3TreeComponent&lt;RawData, T&gt;</h2>
+  <p>Selector: <code>c3-tree</code></p>
+  <p>A tree component built on top of Angular Material's <code>MatTree</code> with automatic flattening and loading state support.</p>
+
+  <h3>Type Parameters</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Constraint</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>RawData</code></td>
+        <td>-</td>
+        <td>The type of the raw data associated with each tree node.</td>
+      </tr>
+      <tr>
+        <td><code>T</code></td>
+        <td><code>extends TreeType&lt;RawData&gt;</code></td>
+        <td>The tree node type. Defaults to <code>TreeType&lt;RawData&gt;</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>treeData</code></td>
+        <td><code>T[]</code></td>
+        <td><em>required</em></td>
+        <td>The hierarchical tree data to display. Uses <code>model.required()</code>.</td>
+      </tr>
+      <tr>
+        <td><code>isLoading</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Shows a loading spinner when <code>true</code>. Uses <code>model()</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>treeDataSelected</code></td>
+        <td><code>T</code></td>
+        <td>Emits when a tree node is selected.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Public Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>treeControl</code></td>
+        <td><code>FlatTreeControl&lt;FileNode&lt;RawData&gt;&gt;</code></td>
+        <td>The Angular CDK tree control for managing expansion state.</td>
+      </tr>
+      <tr>
+        <td><code>dataSource</code></td>
+        <td><code>MatTreeFlatDataSource</code></td>
+        <td>The data source for the Material tree.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>hasChild</code></td>
+        <td><code>index: number, node: T</code></td>
+        <td><code>boolean</code></td>
+        <td>Determines if a node has children (is expandable).</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>TreeType&lt;T&gt;</h2>
+  <p>Interface representing a tree node structure.</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>number</code></td>
+        <td>Yes</td>
+        <td>Unique identifier for the node.</td>
+      </tr>
+      <tr>
+        <td><code>level</code></td>
+        <td><code>number</code></td>
+        <td>Yes</td>
+        <td>Depth level of the node in the tree.</td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>Display name of the node.</td>
+      </tr>
+      <tr>
+        <td><code>ancestorId</code></td>
+        <td><code>number</code></td>
+        <td>No</td>
+        <td>ID of the parent node.</td>
+      </tr>
+      <tr>
+        <td><code>ancestor</code></td>
+        <td><code>TreeType&lt;T&gt;</code></td>
+        <td>No</td>
+        <td>Reference to the parent node.</td>
+      </tr>
+      <tr>
+        <td><code>children</code></td>
+        <td><code>TreeType&lt;T&gt;[]</code></td>
+        <td>Yes</td>
+        <td>Array of child nodes.</td>
+      </tr>
+      <tr>
+        <td><code>rawData</code></td>
+        <td><code>T</code></td>
+        <td>Yes</td>
+        <td>The original raw data associated with this node.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>FileNode&lt;RawData&gt;</h2>
+  <p>Interface extending <code>TreeType</code> with flattening metadata.</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>expandable</code></td>
+        <td><code>boolean</code></td>
+        <td>Whether the node can be expanded (has children).</td>
+      </tr>
+      <tr>
+        <td colspan="3"><em>...plus all properties from TreeType&lt;RawData&gt;</em></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;c3-tree
+  [treeData]="myTreeData"
+  [isLoading]="loading"
+  (treeDataSelected)="onNodeSelected($event)"
+&gt;&lt;/c3-tree&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Dependencies</h2>
+  <p>This component requires the following Angular Material modules:</p>
+  <ul class="notes-list">
+    <li><code>&#64;angular/material/tree</code> - MatTreeModule</li>
+    <li><code>&#64;angular/material/icon</code> - MatIconModule</li>
+    <li><code>&#64;angular/material/core</code> - MatRippleModule</li>
+    <li><code>&#64;angular/material/progress-spinner</code> - MatProgressSpinnerModule</li>
+  </ul>
+</section>

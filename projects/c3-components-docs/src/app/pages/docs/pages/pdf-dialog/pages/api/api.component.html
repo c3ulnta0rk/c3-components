@@ -1,1 +1,103 @@
-<p>api works!</p>
+<h1>PDF Dialog API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123; PdfViewerContainerComponent &#125; from 'c3-components';</code></pre>
+  <p class="note"><em>Note: This component is currently exported from the internal path and may change in future versions.</em></p>
+</section>
+
+<section class="api-section">
+  <h2>Overview</h2>
+  <p>The PDF Dialog functionality uses the <code>PdfViewerContainerComponent</code> in combination with 
+  <code>C3DialogService</code> to display PDF files in a dialog window.</p>
+</section>
+
+<section class="api-section">
+  <h2>PdfViewerContainerComponent</h2>
+  <p>Selector: <code>pdf-viewer-container</code></p>
+  <p>A container component for rendering PDF files using PDF.js.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>src</code></td>
+        <td><code>string</code></td>
+        <td>URL or path to the PDF file. <em>Required.</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Signals</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pdfViewer</code></td>
+        <td><code>Signal&lt;PDFViewer | null&gt;</code></td>
+        <td>Reference to the PDF.js viewer instance.</td>
+      </tr>
+      <tr>
+        <td><code>pdfDocument</code></td>
+        <td><code>Signal&lt;PDFDocumentProxy | null&gt;</code></td>
+        <td>Reference to the loaded PDF document.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage in Dialog</h2>
+  <pre><code>import &#123; C3DialogService &#125; from 'c3-components';
+
+// Open PDF in a dialog
+openPdfDialog(pdfUrl: string) &#123;
+  this.dialog.createDialogFromComponent(&#123;
+    component: PdfViewerContainerComponent,
+    data: &#123; src: pdfUrl &#125;,
+    width: '80vw',
+    height: '90vh',
+    panelClass: 'pdf-dialog'
+  &#125;);
+&#125;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Sub-components</h2>
+
+  <h3>PdfViewerHeaderComponent</h3>
+  <p>Selector: <code>pdf-viewer-header</code></p>
+  <p>Provides navigation controls (page navigation, zoom).</p>
+
+  <h3>PdfViewerContentComponent</h3>
+  <p>Selector: <code>pdf-viewer-content</code></p>
+  <p>Renders the actual PDF pages.</p>
+</section>
+
+<section class="api-section">
+  <h2>Dependencies</h2>
+  <p>This component requires <code>pdfjs-dist</code> to be installed:</p>
+  <pre><code>npm install pdfjs-dist</code></pre>
+  <p>Configure the worker file path in your application.</p>
+</section>
+
+<section class="api-section">
+  <h2>Related</h2>
+  <ul class="notes-list">
+    <li>See <a href="/docs/pdf-viewer">PDF Viewer</a> for standalone PDF viewing.</li>
+    <li>See <a href="/docs/file-viewer">File Viewer</a> for multi-format file viewing including PDFs.</li>
+  </ul>
+</section>

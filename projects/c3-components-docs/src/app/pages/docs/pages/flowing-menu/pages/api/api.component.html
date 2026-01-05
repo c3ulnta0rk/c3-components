@@ -1,1 +1,179 @@
-<p>api works!</p>,
+<h1>Flowing Menu API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3FlowingMenuModule,
+  C3FlowingMenuComponent,
+  C3FlowingMenuItemComponent,
+  C3FlowingMenuItemContentComponent
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3FlowingMenuComponent</h2>
+  <p>Selector: <code>c3-flowing-menu</code></p>
+  <p>Host Class: <code>c3-flowing-menu</code></p>
+  <p>A tabbed menu component that displays content from the selected menu item with smooth transitions.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>selectedIndex</code></td>
+        <td><code>number</code></td>
+        <td><code>0</code></td>
+        <td>Index of the currently selected menu item. Two-way bindable with <code>[(selectedIndex)]</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>selectMenu(index)</code></td>
+        <td><code>number</code></td>
+        <td>Programmatically select a menu item by index.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Content Children</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Query</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>c3FlowingMenu</code></td>
+        <td><code>QueryList&lt;C3FlowingMenuItemComponent&gt;</code></td>
+        <td>Collection of menu item children.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FlowingMenuItemComponent</h2>
+  <p>Selector: <code>c3-flowing-menu-item</code></p>
+  <p>Individual menu item containing both the menu label and associated content.</p>
+
+  <h3>Signals</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>active</code></td>
+        <td><code>Signal&lt;boolean&gt;</code></td>
+        <td>Whether this menu item is currently active.</td>
+      </tr>
+      <tr>
+        <td><code>menuTpl</code></td>
+        <td><code>Signal&lt;TemplateRef | undefined&gt;</code></td>
+        <td>Reference to the menu label template.</td>
+      </tr>
+      <tr>
+        <td><code>contentTpl</code></td>
+        <td><code>Signal&lt;TemplateRef | undefined&gt;</code></td>
+        <td>Reference to the content template.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Content Projection</h3>
+  <p>Use <code>ng-template</code> with the following markers:</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Template Ref</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>#menuTpl</code></td>
+        <td>Template for the menu label/tab.</td>
+      </tr>
+      <tr>
+        <td><code>#contentTpl</code></td>
+        <td>Template for the content displayed when this item is selected.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FlowingMenuItemContentComponent</h2>
+  <p>Selector: <code>c3-flowing-menu-item-content</code></p>
+  <p>Wrapper component for menu item content. Used inside <code>c3-flowing-menu-item</code>.</p>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;c3-flowing-menu [(selectedIndex)]="activeTab"&gt;
+  &lt;c3-flowing-menu-item&gt;
+    &lt;ng-template #menuTpl&gt;
+      &lt;span&gt;Tab 1&lt;/span&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template #contentTpl&gt;
+      &lt;c3-flowing-menu-item-content&gt;
+        &lt;p&gt;Content for Tab 1&lt;/p&gt;
+      &lt;/c3-flowing-menu-item-content&gt;
+    &lt;/ng-template&gt;
+  &lt;/c3-flowing-menu-item&gt;
+
+  &lt;c3-flowing-menu-item&gt;
+    &lt;ng-template #menuTpl&gt;
+      &lt;span&gt;Tab 2&lt;/span&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template #contentTpl&gt;
+      &lt;c3-flowing-menu-item-content&gt;
+        &lt;p&gt;Content for Tab 2&lt;/p&gt;
+      &lt;/c3-flowing-menu-item-content&gt;
+    &lt;/ng-template&gt;
+  &lt;/c3-flowing-menu-item&gt;
+&lt;/c3-flowing-menu&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>Import styles from:</p>
+  <pre><code>&#64;use 'c3-components/lib/c3-flowing-menu/styles/c3-flowing-menu';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The component uses <code>ngSkipHydration</code> for SSR compatibility.</li>
+    <li>Content is dynamically rendered using <code>ViewContainerRef.createEmbeddedView()</code>.</li>
+    <li>Menu items are queried using <code>contentChildren()</code>.</li>
+    <li>Use <code>[(selectedIndex)]</code> for two-way binding of the active tab.</li>
+    <li>The selected content is displayed in a designated content area.</li>
+  </ul>
+</section>

@@ -1,1 +1,175 @@
-<p>api works!</p>,
+<h1>Dropdown API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3DropdownModule,
+  C3DropdownComponent,
+  C3DropdownTrigger
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3DropdownComponent</h2>
+  <p>Selector: <code>c3-dropdown</code></p>
+  <p>Container for dropdown menu content. Must be used with <code>C3DropdownTrigger</code>.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>panelClass</code></td>
+        <td><code>string | string[] | Set&lt;string&gt; | &#123; [key: string]: any &#125;</code></td>
+        <td><code>undefined</code></td>
+        <td>CSS classes to apply to the dropdown panel. Supports ngClass syntax.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Signals</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>isOpen</code></td>
+        <td><code>Signal&lt;boolean&gt;</code></td>
+        <td>Whether the dropdown is currently open.</td>
+      </tr>
+      <tr>
+        <td><code>template</code></td>
+        <td><code>Signal&lt;TemplateRef&lt;unknown&gt;&gt;</code></td>
+        <td>Reference to the dropdown content template.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3DropdownTrigger</h2>
+  <p>Selector: <code>[c3DropdownTrigger]</code></p>
+  <p>Export As: <code>c3DropdownTrigger</code></p>
+  <p>Directive that triggers the display of a dropdown menu on click.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Alias</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>dropdown</code></td>
+        <td><code>c3DropdownTrigger</code></td>
+        <td><code>C3DropdownComponent</code></td>
+        <td><em>required</em></td>
+        <td>Reference to the dropdown component. Uses <code>model.required()</code>.</td>
+      </tr>
+      <tr>
+        <td><code>dropdownDisabled</code></td>
+        <td>-</td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether the trigger is disabled.</td>
+      </tr>
+      <tr>
+        <td><code>dropdownClass</code></td>
+        <td>-</td>
+        <td><code>string | string[] | Set&lt;string&gt; | &#123; [key: string]: any &#125;</code></td>
+        <td><code>''</code></td>
+        <td>CSS classes for the dropdown menu.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>show()</code></td>
+        <td>Programmatically open the dropdown.</td>
+      </tr>
+      <tr>
+        <td><code>close()</code></td>
+        <td>Programmatically close the dropdown.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Overlay Positioning</h2>
+  <p>The dropdown uses Angular CDK Overlay with the following positions:</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primary</td>
+        <td>Below the trigger, aligned to start</td>
+      </tr>
+      <tr>
+        <td>Fallback</td>
+        <td>Above the trigger if no space below</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;button [c3DropdownTrigger]="myDropdown"&gt;
+  Open Menu
+&lt;/button&gt;
+
+&lt;c3-dropdown #myDropdown [panelClass]="'my-custom-panel'"&gt;
+  &lt;div class="dropdown-item"&gt;Option 1&lt;/div&gt;
+  &lt;div class="dropdown-item"&gt;Option 2&lt;/div&gt;
+  &lt;div class="dropdown-item"&gt;Option 3&lt;/div&gt;
+&lt;/c3-dropdown&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>The dropdown panel has the class <code>c3-dropdown-panel</code> by default.</p>
+  <p>Import styles from:</p>
+  <pre><code>&#64;use 'c3-components/lib/c3-dropdown/styles/c3-dropdown';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The dropdown automatically closes when clicking outside or on the backdrop.</li>
+    <li>Uses a transparent backdrop that captures clicks.</li>
+    <li>Implements <code>NG_VALUE_ACCESSOR</code> for form integration.</li>
+    <li>The trigger listens to click events by default.</li>
+  </ul>
+</section>

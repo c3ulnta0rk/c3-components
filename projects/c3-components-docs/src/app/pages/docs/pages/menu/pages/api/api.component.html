@@ -1,1 +1,153 @@
-<p>api works!</p>
+<h1>Menu API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3MenuModule,
+  C3MenuComponent,
+  C3NavItemComponent
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3MenuComponent</h2>
+  <p>Selector: <code>c3-menu</code></p>
+  <p>Container component for navigation menu items. Works with the <code>C3MenuService</code> to track active routes.</p>
+
+  <h3>Usage</h3>
+  <pre><code>&lt;c3-menu&gt;
+  &lt;c3-nav-item route="/home" itemTitle="Home"&gt;&lt;/c3-nav-item&gt;
+  &lt;c3-nav-item route="/about" itemTitle="About"&gt;&lt;/c3-nav-item&gt;
+&lt;/c3-menu&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3NavItemComponent</h2>
+  <p>Selector: <code>c3-nav-item</code></p>
+  <p>Individual navigation item within a menu.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>route</code></td>
+        <td><code>string</code></td>
+        <td><em>required</em></td>
+        <td>The router link path for navigation.</td>
+      </tr>
+      <tr>
+        <td><code>itemTitle</code></td>
+        <td><code>string</code></td>
+        <td><em>required</em></td>
+        <td>Display text for the menu item.</td>
+      </tr>
+      <tr>
+        <td><code>check</code></td>
+        <td><code>string | null</code></td>
+        <td><code>null</code></td>
+        <td>Regex pattern to check if this item is active. If not provided, uses the <code>route</code> value.</td>
+      </tr>
+      <tr>
+        <td><code>isExternal</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>If <code>true</code>, treats the route as an external link.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3MenuService</h2>
+  <p>Injectable service for managing menu state and navigation tracking.</p>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>currentRoute</code></td>
+        <td><code>Signal&lt;string&gt;</code></td>
+        <td>Signal containing the current route URL.</td>
+      </tr>
+      <tr>
+        <td><code>currentRouteChange</code></td>
+        <td><code>Observable&lt;string&gt;</code></td>
+        <td>Observable that emits when the route changes.</td>
+      </tr>
+      <tr>
+        <td><code>selectedElement</code></td>
+        <td><code>HTMLElement | null</code></td>
+        <td>Reference to the currently selected menu item element.</td>
+      </tr>
+      <tr>
+        <td><code>isHeadless</code></td>
+        <td><code>Signal&lt;boolean&gt;</code></td>
+        <td>Signal indicating if the menu is in headless mode (based on <code>?headless=true</code> query param).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>setSelectedItem(element)</code></td>
+        <td><code>HTMLElement</code></td>
+        <td>Sets the given element as the active menu item, adding the <code>active-item</code> CSS class.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>The menu system uses the following CSS classes:</p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Applied To</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.active-item</code></td>
+        <td>Active nav item</td>
+        <td>Applied to the currently active navigation item.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The menu automatically tracks the current route and highlights the matching nav item.</li>
+    <li>Use the <code>check</code> input for regex-based route matching (useful for nested routes).</li>
+    <li>The <code>isHeadless</code> property can be used to hide the menu when embedded in an iframe.</li>
+    <li>Import styles from <code>c3-components/_index.scss</code> for proper menu styling.</li>
+  </ul>
+</section>

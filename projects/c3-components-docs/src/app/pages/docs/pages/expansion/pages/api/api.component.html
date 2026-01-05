@@ -1,1 +1,168 @@
-<p>api works!</p>
+<h1>Expansion API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3ExpansionModule,
+  C3ExpansionComponent,
+  C3ExpansionHeaderComponent
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3ExpansionComponent</h2>
+  <p>Selector: <code>c3-expansion</code></p>
+  <p>Host Class: <code>c3-expansion</code></p>
+  <p>An expandable panel component with smooth animations powered by <code>C3AutoAnimateDirective</code>.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>headerClass</code></td>
+        <td><code>string</code></td>
+        <td><code>'c3-expansion-header'</code></td>
+        <td>CSS class for the header section.</td>
+      </tr>
+      <tr>
+        <td><code>isExpanded</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Controls the expanded state. Two-way bindable with <code>[(isExpanded)]</code>.</td>
+      </tr>
+      <tr>
+        <td><code>options</code></td>
+        <td><code>AutoAnimateOptions | AutoAnimationPlugin</code></td>
+        <td><code>undefined</code></td>
+        <td>Animation options passed to the auto-animate directive.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>toggleExpand()</code></td>
+        <td>Toggles the expanded state.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Content Projection</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>c3-expansion-header</code></td>
+        <td>The clickable header section.</td>
+      </tr>
+      <tr>
+        <td>Default content</td>
+        <td>The expandable body content.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3ExpansionHeaderComponent</h2>
+  <p>Selector: <code>c3-expansion-header</code></p>
+  <p>Host Class: <code>c3-expansion-header</code></p>
+  <p>Header component that triggers expansion on click.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>title</code></td>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>Optional title text for the header.</td>
+      </tr>
+      <tr>
+        <td><code>isExpanded</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Current expanded state (for styling purposes).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>toggleExpand</code></td>
+        <td><code>void</code></td>
+        <td>Emits when the header is clicked to toggle expansion.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;c3-expansion [(isExpanded)]="panelOpen"&gt;
+  &lt;c3-expansion-header [title]="'Click to expand'"&gt;
+    &lt;!-- Optional custom header content --&gt;
+    &lt;mat-icon&gt;expand_more&lt;/mat-icon&gt;
+  &lt;/c3-expansion-header&gt;
+
+  &lt;!-- Expandable content --&gt;
+  &lt;div class="panel-content"&gt;
+    &lt;p&gt;This content is shown when expanded.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/c3-expansion&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>Import styles from:</p>
+  <pre><code>&#64;use 'c3-components/lib/c3-expansion/styles/c3-expansion';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The expansion animation is powered by <code>&#64;formkit/auto-animate</code>.</li>
+    <li>The header automatically subscribes to toggle the expansion state.</li>
+    <li>Use <code>[(isExpanded)]</code> for two-way binding of the expanded state.</li>
+    <li>The component uses <code>C3AutoAnimateDirective</code> as a host directive.</li>
+    <li>Content is conditionally rendered based on the expanded state.</li>
+  </ul>
+</section>

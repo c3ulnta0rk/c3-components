@@ -1,1 +1,476 @@
-<p>api works!</p>,
+<h1>File Viewer API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3FileViewerModule,
+  C3FileViewerComponent,
+  C3FileViewerDialogComponent,
+  C3FileViewer,
+  C3FileViewerConfig,
+  FileMetadata,
+  FullScreenDirective
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3FileViewerComponent</h2>
+  <p>Selector: <code>c3-file-viewer</code></p>
+  <p>Main component for displaying and navigating through files (images, videos, PDFs).</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileViewer</code></td>
+        <td><code>C3FileViewer</code></td>
+        <td><em>required</em></td>
+        <td>The file viewer instance that manages files and state.</td>
+      </tr>
+      <tr>
+        <td><code>screenHeightOccupied</code></td>
+        <td><code>number</code></td>
+        <td><code>0</code></td>
+        <td>Height in pixels to subtract from the viewer height.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>indexChange</code></td>
+        <td><code>number</code></td>
+        <td>Emits when the current file index changes.</td>
+      </tr>
+      <tr>
+        <td><code>configChange</code></td>
+        <td><code>C3FileViewerConfig</code></td>
+        <td>Emits when the configuration changes.</td>
+      </tr>
+      <tr>
+        <td><code>customFileEvent</code></td>
+        <td><code>CustomFileEvent</code></td>
+        <td>Emits custom file events (e.g., imageNotFound).</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileViewerDialogComponent</h2>
+  <p>Selector: <code>c3-file-viewer-dialog</code></p>
+  <p>Wrapper component that opens the file viewer in a Material dialog.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileViewer</code></td>
+        <td><code>C3FileViewer</code></td>
+        <td><em>required</em></td>
+        <td>The file viewer instance.</td>
+      </tr>
+      <tr>
+        <td><code>dialogConfig</code></td>
+        <td><code>Partial&lt;MatDialogConfig&gt;</code></td>
+        <td><code>&#123; panelClass: 'c3-file-viewer-dialog', width: '80%', height: '80%' &#125;</code></td>
+        <td>Configuration for the Material dialog.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>openDialog()</code></td>
+        <td>Opens the file viewer dialog. Also triggered on click.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileViewer Class</h2>
+  <p>Core class that manages file viewing state, navigation, and transformations.</p>
+
+  <h3>Constructor</h3>
+  <pre><code>new C3FileViewer(&#123;
+  client: HttpClient,
+  config?: C3FileViewerConfig,
+  files?: FileMetadata[]
+&#125;)</code></pre>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>config</code></td>
+        <td><code>C3FileViewerConfig</code></td>
+        <td>Current configuration (getter/setter).</td>
+      </tr>
+      <tr>
+        <td><code>config$</code></td>
+        <td><code>BehaviorSubject&lt;C3FileViewerConfig&gt;</code></td>
+        <td>Observable for config changes.</td>
+      </tr>
+      <tr>
+        <td><code>files</code></td>
+        <td><code>FileMetadata[]</code></td>
+        <td>Array of files to display (getter/setter).</td>
+      </tr>
+      <tr>
+        <td><code>filesObjectUrl</code></td>
+        <td><code>Array&lt;FileMetadata & &#123; objectUrl?: Observable&lt;string&gt; &#125;&gt;</code></td>
+        <td>Files with generated object URLs.</td>
+      </tr>
+      <tr>
+        <td><code>currentFile</code></td>
+        <td><code>FileMetadata</code></td>
+        <td>Currently displayed file (getter).</td>
+      </tr>
+      <tr>
+        <td><code>currentIndex</code></td>
+        <td><code>number</code></td>
+        <td>Index of the current file.</td>
+      </tr>
+      <tr>
+        <td><code>index$</code></td>
+        <td><code>BehaviorSubject&lt;number&gt;</code></td>
+        <td>Observable for index changes.</td>
+      </tr>
+      <tr>
+        <td><code>fullscreen$</code></td>
+        <td><code>BehaviorSubject&lt;Boolean&gt;</code></td>
+        <td>Observable for fullscreen state.</td>
+      </tr>
+      <tr>
+        <td><code>customFile$</code></td>
+        <td><code>BehaviorSubject&lt;any&gt;</code></td>
+        <td>Observable for custom file events.</td>
+      </tr>
+      <tr>
+        <td><code>loading</code></td>
+        <td><code>boolean</code></td>
+        <td>Whether a file is currently loading.</td>
+      </tr>
+      <tr>
+        <td><code>hovered</code></td>
+        <td><code>boolean</code></td>
+        <td>Whether the viewer is hovered (for keyboard nav).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>nextImage(event)</code></td>
+        <td><code>KeyboardEvent | MouseEvent</code></td>
+        <td>Navigate to the next file.</td>
+      </tr>
+      <tr>
+        <td><code>previousImage(event)</code></td>
+        <td><code>KeyboardEvent | MouseEvent</code></td>
+        <td>Navigate to the previous file.</td>
+      </tr>
+      <tr>
+        <td><code>zoomIn()</code></td>
+        <td>-</td>
+        <td>Zoom in by the configured zoom factor.</td>
+      </tr>
+      <tr>
+        <td><code>zoomOut()</code></td>
+        <td>-</td>
+        <td>Zoom out by the configured zoom factor.</td>
+      </tr>
+      <tr>
+        <td><code>rotateClockwise()</code></td>
+        <td>-</td>
+        <td>Rotate the image 90° clockwise.</td>
+      </tr>
+      <tr>
+        <td><code>rotateCounterClockwise()</code></td>
+        <td>-</td>
+        <td>Rotate the image 90° counter-clockwise.</td>
+      </tr>
+      <tr>
+        <td><code>toggleFullscreen()</code></td>
+        <td>-</td>
+        <td>Toggle fullscreen mode.</td>
+      </tr>
+      <tr>
+        <td><code>reset()</code></td>
+        <td>-</td>
+        <td>Reset zoom, rotation, and position.</td>
+      </tr>
+      <tr>
+        <td><code>download(file?)</code></td>
+        <td><code>FileMetadata</code></td>
+        <td>Download the current or specified file.</td>
+      </tr>
+      <tr>
+        <td><code>getOriginalName(file?)</code></td>
+        <td><code>FileMetadata</code></td>
+        <td>Get the original filename from metadata.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>FileMetadata</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>Display name of the file.</td>
+      </tr>
+      <tr>
+        <td><code>type</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>MIME type of the file.</td>
+      </tr>
+      <tr>
+        <td><code>location</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>URL or path to fetch the file.</td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><code>number</code></td>
+        <td>No</td>
+        <td>File size in bytes.</td>
+      </tr>
+      <tr>
+        <td><code>lastModified</code></td>
+        <td><code>Date</code></td>
+        <td>No</td>
+        <td>Last modification date.</td>
+      </tr>
+      <tr>
+        <td><code>created</code></td>
+        <td><code>Date</code></td>
+        <td>No</td>
+        <td>Creation date.</td>
+      </tr>
+      <tr>
+        <td><code>extension</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>File extension.</td>
+      </tr>
+      <tr>
+        <td><code>objectUrl</code></td>
+        <td><code>Observable&lt;string&gt;</code></td>
+        <td>No</td>
+        <td>Pre-loaded object URL.</td>
+      </tr>
+      <tr>
+        <td><code>metadata</code></td>
+        <td><code>Record&lt;string, any&gt;</code></td>
+        <td>No</td>
+        <td>Custom metadata (e.g., originalName).</td>
+      </tr>
+      <tr>
+        <td><code>alternativeVersions</code></td>
+        <td><code>VariantFile[]</code></td>
+        <td>No</td>
+        <td>Alternative versions of the file.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileViewerConfig</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>zoomFactor</code></td>
+        <td><code>number</code></td>
+        <td>Zoom increment factor.</td>
+      </tr>
+      <tr>
+        <td><code>wheelZoom</code></td>
+        <td><code>boolean</code></td>
+        <td>Enable zoom with mouse wheel.</td>
+      </tr>
+      <tr>
+        <td><code>allowFullscreen</code></td>
+        <td><code>boolean</code></td>
+        <td>Enable fullscreen mode.</td>
+      </tr>
+      <tr>
+        <td><code>allowKeyboardNavigation</code></td>
+        <td><code>boolean</code></td>
+        <td>Enable arrow key navigation.</td>
+      </tr>
+      <tr>
+        <td><code>customClient</code></td>
+        <td><code>HttpClient['get']</code></td>
+        <td>Custom HTTP client for fetching files.</td>
+      </tr>
+      <tr>
+        <td><code>width / height</code></td>
+        <td><code>number | string</code></td>
+        <td>Viewer dimensions.</td>
+      </tr>
+      <tr>
+        <td><code>minWidth / maxWidth</code></td>
+        <td><code>number | string</code></td>
+        <td>Width constraints.</td>
+      </tr>
+      <tr>
+        <td><code>minHeight / maxHeight</code></td>
+        <td><code>number | string</code></td>
+        <td>Height constraints.</td>
+      </tr>
+      <tr>
+        <td><code>btnShow</code></td>
+        <td><code>object</code></td>
+        <td>Toggle visibility of control buttons.</td>
+      </tr>
+      <tr>
+        <td><code>btnIcons</code></td>
+        <td><code>object</code></td>
+        <td>Customize button icons.</td>
+      </tr>
+      <tr>
+        <td><code>customBtns</code></td>
+        <td><code>Array</code></td>
+        <td>Add custom action buttons.</td>
+      </tr>
+      <tr>
+        <td><code>btnContainerClass</code></td>
+        <td><code>string</code></td>
+        <td>CSS class for button container.</td>
+      </tr>
+      <tr>
+        <td><code>containerBackgroundColor</code></td>
+        <td><code>string</code></td>
+        <td>Background color of the viewer.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>FullScreenDirective</h2>
+  <p>Selectors: <code>[C3FullScreen]</code>, <code>[c3-full-screen]</code></p>
+  <p>Directive to enable fullscreen mode on an element.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Alias</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fullscreenState</code></td>
+        <td><code>c3Screenfull</code></td>
+        <td><code>Boolean | null</code></td>
+        <td>Controls fullscreen state.</td>
+      </tr>
+      <tr>
+        <td><code>fullscreenStateSetter</code></td>
+        <td><code>c3-full-screen</code></td>
+        <td><code>Boolean | null</code></td>
+        <td>Alternative input for fullscreen state.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>// Component
+fileViewer = new C3FileViewer(&#123;
+  client: inject(HttpClient),
+  config: &#123;
+    wheelZoom: true,
+    allowKeyboardNavigation: true
+  &#125;,
+  files: [
+    &#123; name: 'photo.jpg', type: 'image/jpeg', location: '/api/files/1' &#125;
+  ]
+&#125;);
+
+// Template
+&lt;c3-file-viewer [fileViewer]="fileViewer"&gt;&lt;/c3-file-viewer&gt;
+
+// Or with dialog
+&lt;c3-file-viewer-dialog [fileViewer]="fileViewer"&gt;
+  Click to open viewer
+&lt;/c3-file-viewer-dialog&gt;</code></pre>
+</section>

@@ -5,6 +5,7 @@
 @use "./assets/theme" as theme;
 @use "./assets/core" as *;
 @use "./assets/design-system" as ds;
+@use "./assets/api-documentation";
 @use "sass:map";
 
 // Include design system

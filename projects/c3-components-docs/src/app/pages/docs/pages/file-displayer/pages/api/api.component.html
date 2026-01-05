@@ -1,1 +1,400 @@
-<p>api works!</p>,
+<h1>File Displayer API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3FileDisplayerModule,
+  C3FileDisplayListComponent,
+  C3FileDisplayGridComponent,
+  C3FileDisplayCardComponent,
+  C3FileDisplayIconComponent,
+  C3FileDisplayListColumnDefDirective,
+  C3FileDisplayListHeaderCellDefDirective,
+  C3FileDisplayListCellDefDirective
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3FileDisplayListComponent</h2>
+  <p>Selector: <code>c3-file-display-list</code></p>
+  <p>Displays files in a list/table format with customizable columns.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>files</code></td>
+        <td><code>Array&lt;FileMetadata & &#123; location: string &#125;&gt;</code></td>
+        <td><em>required</em></td>
+        <td>Array of files to display.</td>
+      </tr>
+      <tr>
+        <td><code>config</code></td>
+        <td><code>C3FileViewerConfig</code></td>
+        <td><code>undefined</code></td>
+        <td>Configuration for the file viewer.</td>
+      </tr>
+      <tr>
+        <td><code>displayFn</code></td>
+        <td><code>(file: FileMetadata & &#123; location: string &#125;) =&gt; string</code></td>
+        <td><code>(file) =&gt; file.name</code></td>
+        <td>Function to generate display name for files.</td>
+      </tr>
+      <tr>
+        <td><code>columns</code></td>
+        <td><code>string[]</code></td>
+        <td><code>['icon', 'name', 'date']</code></td>
+        <td>Column names to display.</td>
+      </tr>
+      <tr>
+        <td><code>deletable</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether files can be deleted.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>onDelete</code></td>
+        <td><code>FileMetadata</code></td>
+        <td>Emits when a file is deleted.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>openDialog(event, index)</code></td>
+        <td><code>MouseEvent, number</code></td>
+        <td>Opens the file viewer dialog for the specified file.</td>
+      </tr>
+      <tr>
+        <td><code>getColumnDef(columnName)</code></td>
+        <td><code>string</code></td>
+        <td>Returns the column definition for the specified column name.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileDisplayGridComponent</h2>
+  <p>Selector: <code>c3-file-display-grid</code></p>
+  <p>Displays files in a grid of cards.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>files</code></td>
+        <td><code>Array&lt;FileMetadata & &#123; location: string &#125;&gt;</code></td>
+        <td><em>required</em></td>
+        <td>Array of files to display.</td>
+      </tr>
+      <tr>
+        <td><code>config</code></td>
+        <td><code>C3FileViewerConfig</code></td>
+        <td><code>undefined</code></td>
+        <td>Configuration for the file viewer.</td>
+      </tr>
+      <tr>
+        <td><code>cardSize</code></td>
+        <td><code>C3FileCardSize</code></td>
+        <td><code>'32'</code></td>
+        <td>Size of the card thumbnails.</td>
+      </tr>
+      <tr>
+        <td><code>displayFn</code></td>
+        <td><code>(file: FileMetadata & &#123; location: string &#125;) =&gt; string</code></td>
+        <td><code>(file) =&gt; file.name</code></td>
+        <td>Function to generate display name for files.</td>
+      </tr>
+      <tr>
+        <td><code>deletable</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether files can be deleted.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>onDelete</code></td>
+        <td><code>FileMetadata</code></td>
+        <td>Emits when a file is deleted.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileDisplayCardComponent</h2>
+  <p>Selector: <code>c3-file-display-card</code></p>
+  <p>Individual file card with thumbnail preview.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileObjectUrl</code></td>
+        <td><code>(FileMetadata & &#123; objectUrl?: Observable&lt;string&gt; &#125;) | null</code></td>
+        <td><em>required</em></td>
+        <td>The file metadata with optional object URL for preview.</td>
+      </tr>
+      <tr>
+        <td><code>displayFn</code></td>
+        <td><code>(file: FileMetadata) =&gt; string</code></td>
+        <td><code>(file) =&gt; file.name</code></td>
+        <td>Function to generate display name.</td>
+      </tr>
+      <tr>
+        <td><code>deletable</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether the delete button is shown.</td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><code>C3FileCardSize</code></td>
+        <td><code>'32'</code></td>
+        <td>Size of the card.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>onDelete</code></td>
+        <td><code>void</code></td>
+        <td>Emits when the delete button is clicked.</td>
+      </tr>
+      <tr>
+        <td><code>onDownload</code></td>
+        <td><code>void</code></td>
+        <td>Emits when the download button is clicked.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Computed Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>getFileType</code></td>
+        <td><code>'image' | 'application' | 'video' | 'unknown'</code></td>
+        <td>Returns the file type category.</td>
+      </tr>
+      <tr>
+        <td><code>getFileObjectUrl</code></td>
+        <td><code>Observable&lt;string&gt; | null</code></td>
+        <td>Returns the object URL observable for the file.</td>
+      </tr>
+      <tr>
+        <td><code>getFileName</code></td>
+        <td><code>string</code></td>
+        <td>Returns the computed file name.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3FileDisplayIconComponent</h2>
+  <p>Selector: <code>c3-file-display-icon</code></p>
+  <p>Displays an appropriate icon based on file MIME type.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileType</code></td>
+        <td><code>string</code></td>
+        <td><em>required</em></td>
+        <td>MIME type of the file (e.g., <code>'image/png'</code>, <code>'application/pdf'</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Icon Mapping</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>MIME Type</th>
+        <th>Icon</th>
+        <th>Color Class</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>image/*</code></td>
+        <td><code>image</code></td>
+        <td><code>text-primary</code></td>
+      </tr>
+      <tr>
+        <td><code>video/*</code></td>
+        <td><code>play_circle</code></td>
+        <td><code>text-secondary</code></td>
+      </tr>
+      <tr>
+        <td><code>application/pdf</code></td>
+        <td><code>picture_as_pdf</code></td>
+        <td><code>text-error</code></td>
+      </tr>
+      <tr>
+        <td><code>application/msword</code></td>
+        <td><code>description</code></td>
+        <td><code>text-success</code></td>
+      </tr>
+      <tr>
+        <td>Other</td>
+        <td><code>content_copy</code></td>
+        <td><code>text-gray</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Column Definition Directives</h2>
+  <p>Use these directives to define custom columns in <code>c3-file-display-list</code>.</p>
+
+  <h3>C3FileDisplayListColumnDefDirective</h3>
+  <p>Selector: <code>[c3FileDisplayListColumnDef]</code></p>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>c3FileDisplayListColumnDef</code></td>
+        <td><code>string</code></td>
+        <td>The column title/name (required).</td>
+      </tr>
+      <tr>
+        <td><code>classList</code></td>
+        <td><code>string[]</code></td>
+        <td>CSS classes to apply to the column.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>C3FileDisplayListHeaderCellDefDirective</h3>
+  <p>Selector: <code>[c3FileDisplayListHeaderCellDef]</code></p>
+  <p>Template for the column header cell.</p>
+
+  <h3>C3FileDisplayListCellDefDirective</h3>
+  <p>Selector: <code>[c3FileDisplayListCellDef]</code></p>
+  <p>Template for each row cell in the column.</p>
+</section>
+
+<section class="api-section">
+  <h2>C3FileCardSize</h2>
+  <p>Type definition for card sizes:</p>
+  <pre><code>type C3FileCardSize = '16' | '32' | '64' | '128' | '256';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre ngNonBindable><code>&lt;!-- Grid Display --&gt;
+&lt;c3-file-display-grid
+  [files]="files"
+  [cardSize]="'64'"
+  [deletable]="true"
+  (onDelete)="handleDelete($event)"
+&gt;&lt;/c3-file-display-grid&gt;
+
+&lt;!-- List Display with Custom Columns --&gt;
+&lt;c3-file-display-list
+  [files]="files"
+  [columns]="['icon', 'name', 'size', 'date']"
+&gt;
+  &lt;ng-container c3FileDisplayListColumnDef="size"&gt;
+    &lt;ng-template c3FileDisplayListHeaderCellDef&gt;Size&lt;/ng-template&gt;
+    &lt;ng-template c3FileDisplayListCellDef let-file&gt;
+      &#123;&#123; file.size | number &#125;&#125; bytes
+    &lt;/ng-template&gt;
+  &lt;/ng-container&gt;
+&lt;/c3-file-display-list&gt;</code></pre>
+</section>

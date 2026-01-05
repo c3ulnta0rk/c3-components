@@ -1,1 +1,39 @@
-<p>api works!</p>
+<h1>Modal API</h1>
+
+<section class="api-section">
+  <h2>Status</h2>
+  <div class="status-notice status-notice--coming-soon">
+    <p><strong>Coming Soon</strong></p>
+    <p>This component is currently in development. The module <code>C3ModalModule</code> is available but does not yet export any components.</p>
+  </div>
+</section>
+
+<section class="api-section">
+  <h2>Planned Features</h2>
+  <ul class="notes-list">
+    <li>Lightweight modal component</li>
+    <li>Backdrop and close button support</li>
+    <li>Animation options</li>
+    <li>Configurable size and positioning</li>
+  </ul>
+</section>
+
+<section class="api-section">
+  <h2>Alternative</h2>
+  <p>In the meantime, consider using:</p>
+  <ul class="notes-list">
+    <li><code>C3DialogService</code> for dialog-based modals with full functionality</li>
+    <li>Angular Material <code>MatDialogModule</code> directly</li>
+  </ul>
+  <pre><code>// Using C3DialogService
+import &#123; C3DialogService &#125; from 'c3-components';
+
+constructor(private dialog: C3DialogService) &#123;&#125;
+
+openModal() &#123;
+  this.dialog.createDialogFromComponent(&#123;
+    component: MyModalComponent,
+    width: '500px'
+  &#125;);
+&#125;</code></pre>
+</section>

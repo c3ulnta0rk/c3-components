@@ -1,1 +1,167 @@
-<p>api works!</p>
+<h1>Trace Card API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3TraceCardModule,
+  C3TraceCardComponent,
+  C3TraceCardContentComponent,
+  C3TraceCardTitleComponent,
+  C3TraceCardAlignLeftDirective,
+  C3TraceCardAlignRightDirective
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3TraceCardComponent</h2>
+  <p>Selector: <code>c3-trace-card</code></p>
+  <p>Host Class: <code>c3-trace-card</code></p>
+  <p>A card component designed for displaying trace/timeline-like content with left or right alignment.</p>
+
+  <h3>Signals</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>align</code></td>
+        <td><code>Signal&lt;'left' | 'right'&gt;</code></td>
+        <td><code>'left'</code></td>
+        <td>Alignment of the card. Controlled via directives.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Host Bindings</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.align-left</code></td>
+        <td>When <code>align() === 'left'</code></td>
+      </tr>
+      <tr>
+        <td><code>.align-right</code></td>
+        <td>When <code>align() === 'right'</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Content Projection</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>c3-trace-card-title</code></td>
+        <td>Title section of the card.</td>
+      </tr>
+      <tr>
+        <td><code>c3-trace-card-content</code></td>
+        <td>Main content section of the card.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3TraceCardTitleComponent</h2>
+  <p>Selector: <code>c3-trace-card-title</code></p>
+  <p>Title component for the trace card. Typically displays a heading or label.</p>
+</section>
+
+<section class="api-section">
+  <h2>C3TraceCardContentComponent</h2>
+  <p>Selector: <code>c3-trace-card-content</code></p>
+  <p>Content component for the trace card. Contains the main body of the card.</p>
+</section>
+
+<section class="api-section">
+  <h2>Alignment Directives</h2>
+
+  <h3>C3TraceCardAlignLeftDirective</h3>
+  <p>Selector: <code>c3-trace-card[align-left]</code></p>
+  <p>Sets the card alignment to left.</p>
+
+  <h3>C3TraceCardAlignRightDirective</h3>
+  <p>Selector: <code>c3-trace-card[align-right]</code></p>
+  <p>Sets the card alignment to right.</p>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;!-- Left-aligned card (default) --&gt;
+&lt;c3-trace-card&gt;
+  &lt;c3-trace-card-title&gt;
+    Event Title
+  &lt;/c3-trace-card-title&gt;
+  &lt;c3-trace-card-content&gt;
+    &lt;p&gt;Event description and details...&lt;/p&gt;
+  &lt;/c3-trace-card-content&gt;
+&lt;/c3-trace-card&gt;
+
+&lt;!-- Right-aligned card --&gt;
+&lt;c3-trace-card align-right&gt;
+  &lt;c3-trace-card-title&gt;
+    Another Event
+  &lt;/c3-trace-card-title&gt;
+  &lt;c3-trace-card-content&gt;
+    &lt;p&gt;This card is aligned to the right.&lt;/p&gt;
+  &lt;/c3-trace-card-content&gt;
+&lt;/c3-trace-card&gt;
+
+&lt;!-- Explicit left alignment --&gt;
+&lt;c3-trace-card align-left&gt;
+  &lt;c3-trace-card-title&gt;
+    Third Event
+  &lt;/c3-trace-card-title&gt;
+  &lt;c3-trace-card-content&gt;
+    &lt;p&gt;Explicitly aligned left.&lt;/p&gt;
+  &lt;/c3-trace-card-content&gt;
+&lt;/c3-trace-card&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Timeline Example</h2>
+  <pre><code>&lt;div class="timeline"&gt;
+  &lt;c3-trace-card align-left&gt;
+    &lt;c3-trace-card-title&gt;January 2024&lt;/c3-trace-card-title&gt;
+    &lt;c3-trace-card-content&gt;Project started&lt;/c3-trace-card-content&gt;
+  &lt;/c3-trace-card&gt;
+
+  &lt;c3-trace-card align-right&gt;
+    &lt;c3-trace-card-title&gt;March 2024&lt;/c3-trace-card-title&gt;
+    &lt;c3-trace-card-content&gt;First milestone&lt;/c3-trace-card-content&gt;
+  &lt;/c3-trace-card&gt;
+
+  &lt;c3-trace-card align-left&gt;
+    &lt;c3-trace-card-title&gt;June 2024&lt;/c3-trace-card-title&gt;
+    &lt;c3-trace-card-content&gt;Release v1.0&lt;/c3-trace-card-content&gt;
+  &lt;/c3-trace-card&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>The alignment directives are standalone and can be imported individually.</li>
+    <li>The <code>align</code> signal is automatically set by the directives in the constructor.</li>
+    <li>Use CSS to style the timeline connector line between cards.</li>
+    <li>Both <code>align-left</code> and <code>align-right</code> are attribute directives.</li>
+  </ul>
+</section>
