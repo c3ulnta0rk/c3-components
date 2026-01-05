@@ -28,7 +28,19 @@ export class HeaderComponent {
       const savedTheme = localStorage.getItem('c3-theme') as Theme | null;
       if (savedTheme) {
         this.theme.set(savedTheme);
+      } else {
+        // Apply theme immediately on first load
+        this.applyTheme(this.theme());
       }
+
+      // Listen to system theme changes when theme is 'system'
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleSystemThemeChange = () => {
+        if (this.theme() === 'system') {
+          this.applyTheme('system');
+        }
+      };
+      mediaQuery.addEventListener('change', handleSystemThemeChange);
     }
 
     // Apply theme changes
@@ -87,7 +99,9 @@ export class HeaderComponent {
 
     if (theme === 'system') {
       root.removeAttribute('data-theme');
-      root.style.colorScheme = '';
+      // Use system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.style.colorScheme = prefersDark ? 'dark' : 'light';
     } else {
       root.setAttribute('data-theme', theme);
       root.style.colorScheme = theme;

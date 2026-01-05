@@ -22,7 +22,28 @@ body {
 // Material Theme
 @include mat.all-component-themes(theme.$theme-light);
 
+// Light theme (default or when data-theme="light")
 @media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    @include mat.elevation-classes();
+    @include mat.app-background();
+    @include core(theme.$theme-light);
+
+    $primary: mat.get-theme-color(theme.$theme-light, primary);
+    $accent: mat.get-theme-color(theme.$theme-light, accent);
+    $warn: mat.get-theme-color(theme.$theme-light, warn);
+    $bg-card: mat.get-theme-color(theme.$theme-light, background, card);
+    $color-text: mat.get-theme-color(theme.$theme-light, foreground, text);
+
+    body {
+      background: var(--surface-ground);
+    }
+  }
+}
+
+// Force light theme when data-theme="light" (override system preference)
+:root[data-theme="light"] {
+  @include mat.all-component-themes(theme.$theme-light);
   @include mat.elevation-classes();
   @include mat.app-background();
   @include core(theme.$theme-light);
@@ -38,7 +59,27 @@ body {
   }
 }
 
+// Dark theme (system preference or when data-theme="dark")
 @media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include mat.all-component-colors(theme.$theme-dark);
+    @include mat.elevation-classes();
+    @include mat.app-background();
+    @include core(theme.$theme-dark);
+    $primary: mat.get-theme-color(theme.$theme-dark, primary);
+    $accent: mat.get-theme-color(theme.$theme-dark, accent);
+    $warn: mat.get-theme-color(theme.$theme-dark, warn);
+    $bg-card: mat.get-theme-color(theme.$theme-dark, background, card);
+    $color-text: mat.get-theme-color(theme.$theme-dark, foreground, text);
+
+    body {
+      background: var(--surface-ground);
+    }
+  }
+}
+
+// Force dark theme when data-theme="dark" (override system preference)
+:root[data-theme="dark"] {
   @include mat.all-component-colors(theme.$theme-dark);
   @include mat.elevation-classes();
   @include mat.app-background();
