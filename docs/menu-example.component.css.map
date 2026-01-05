@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/c3-components-docs/src/app/pages/docs/pages/menu/components/menu-example/menu-example.component.scss", "projects/c3-components-docs/src/app/pages/docs/pages/menu/components/menu-example/menu-example.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n  position: relative;\n  min-height: 600px;\n  width: 100%;\n  overflow: hidden;\n}\n", ":host {\n  display: block;\n  position: relative;\n  min-height: 600px;\n  width: 100%;\n  overflow: hidden;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMtZG9jcy9zcmMvYXBwL3BhZ2VzL2RvY3MvcGFnZXMvbWVudS9jb21wb25lbnRzL21lbnUtZXhhbXBsZS9tZW51LWV4YW1wbGUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtaW4taGVpZ2h0OiA2MDBweDtcbiAgd2lkdGg6IDEwMCU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG59XG4iXX0= */"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,YAAA;AACA,cAAA;AACA,SAAA;AACA,YAAA;ACCF;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/c3-components/src/lib/c3-dialog/components/c3-dialog-template/c3-dialog-template.component.scss", "projects/c3-components/src/lib/c3-dialog/components/c3-dialog-template/c3-dialog-template.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n", ":host {\n  display: block;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMvc3JjL2xpYi9jMy1kaWFsb2cvY29tcG9uZW50cy9jMy1kaWFsb2ctdGVtcGxhdGUvYzMtZGlhbG9nLXRlbXBsYXRlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuIl19 */"],
-  "mappings": ";AAAA;AACE,WAAA;ACCF;",
-  "names": []
-}

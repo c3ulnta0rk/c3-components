@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/c3-components-docs/src/app/pages/docs/pages/dialog/components/templateComponent/inner-component/inner-component.component.scss", "projects/c3-components-docs/src/app/pages/docs/pages/dialog/components/templateComponent/inner-component/inner-component.component.scss"],
-  "sourcesContent": [":host {\n  display: block;\n}\n", ":host {\n  display: block;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMtZG9jcy9zcmMvYXBwL3BhZ2VzL2RvY3MvcGFnZXMvZGlhbG9nL2NvbXBvbmVudHMvdGVtcGxhdGVDb21wb25lbnQvaW5uZXItY29tcG9uZW50L2lubmVyLWNvbXBvbmVudC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcbn1cbiJdfQ== */"],
-  "mappings": ";AAAA;AACE,WAAA;ACCF;",
-  "names": []
-}

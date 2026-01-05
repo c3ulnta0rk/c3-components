@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["projects/c3-components-docs/src/app/layouts/default/default.component.scss", "projects/c3-components-docs/src/app/layouts/default/default.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background: var(--surface-ground);\n}\n\n.main-content {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n", ":host {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n  background: var(--surface-ground);\n}\n\n.main-content {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMtZG9jcy9zcmMvYXBwL2xheW91dHMvZGVmYXVsdC9kZWZhdWx0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7OztBQUdGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBtaW4taGVpZ2h0OiAxMDB2aDtcbiAgYmFja2dyb3VuZDogdmFyKC0tc3VyZmFjZS1ncm91bmQpO1xufVxuXG4ubWFpbi1jb250ZW50IHtcbiAgZmxleDogMTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn1cbiJdfQ== */"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;AACA,cAAA;AACA,cAAA,IAAA;ACCF;ADEA,CAAA;AACE,QAAA;AACA,WAAA;AACA,kBAAA;ACCF;",
-  "names": []
-}
