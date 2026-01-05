@@ -1,39 +1,138 @@
-<h1 class="text-4xl font-bold text-center text-blue-600">
-  Welcome to C3 Components
-</h1>
-<p class="text-lg text-gray-700 mt-4">
-  This site is a component list extension for Angular Material, created solely
-  by me.
-</p>
-<mat-divider class="my-4"></mat-divider>
-<mat-card class="shadow-lg">
-  <mat-card-header class="bg-blue-100">
-    <mat-card-title class="text-xl font-semibold"
-      >Available Components</mat-card-title
-    >
-    <mat-card-subtitle class="text-gray-600"
-      >Explore the various available components</mat-card-subtitle
-    >
-  </mat-card-header>
-</mat-card>
-<mat-divider class="my-4"></mat-divider>
-<div class="button-container flex justify-center gap-4 mt-6">
-  <button
-    mat-raised-button
-    color="accent"
-    routerLink="/docs/overview"
-    class="flex items-center space-x-2 bg-green-500 text-white py-2 px-4 rounded"
-  >
-    <mat-icon>visibility</mat-icon>
-    <span>Overview</span>
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    routerLink="/docs/getting-started"
-    class="flex items-center space-x-2 bg-blue-500 text-white py-2 px-4 rounded"
-  >
-    <mat-icon>arrow_forward</mat-icon>
-    <span>Get Started</span>
-  </button>
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+      <div class="wave wave-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge animate-fadeInDown animate-delay-1">
+        <span class="badge-icon">🦀</span>
+        <span>C3 Components</span>
+      </div>
+
+      <h1 class="hero-title animate-fadeInUp animate-delay-2">
+        Angular Components
+        <span class="hero-highlight">That Just Work</span>
+      </h1>
+
+      <p class="hero-description animate-fadeInUp animate-delay-3">
+        A curated collection of UI components extending Angular Material.
+        Built for developers who value simplicity and power.
+      </p>
+
+      <div class="hero-actions animate-fadeInUp animate-delay-4">
+        <a routerLink="/docs/getting-started" class="btn-primary">
+          <mat-icon>rocket_launch</mat-icon>
+          <span>Get Started</span>
+        </a>
+        <a routerLink="/docs" class="btn-secondary">
+          <mat-icon>widgets</mat-icon>
+          <span>Explore Components</span>
+        </a>
+      </div>
+
+      <div class="hero-stats animate-fadeInUp animate-delay-5">
+        <div class="stat">
+          <span class="stat-value">20+</span>
+          <span class="stat-label">Components</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">TypeScript</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">A11y</span>
+          <span class="stat-label">Accessible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="section-header">
+      <h2 class="section-title">Why C3 Components?</h2>
+      <p class="section-subtitle">Everything you need to build modern Angular applications.</p>
+    </div>
+
+    <div class="features-grid">
+      @for (feature of features; track feature.title; let i = $index) {
+        <div class="feature-card animate-fadeInUp" [style.animation-delay]="(i * 100) + 'ms'">
+          <div class="feature-icon">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+          </div>
+          <h3 class="feature-title">{{ feature.title }}</h3>
+          <p class="feature-description">{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Popular Components -->
+  <section class="components-showcase">
+    <div class="section-header">
+      <h2 class="section-title">Popular Components</h2>
+      <p class="section-subtitle">Start with our most used components.</p>
+    </div>
+
+    <div class="components-grid">
+      @for (component of popularComponents; track component.name; let i = $index) {
+        <a
+          [routerLink]="component.path"
+          class="component-card animate-fadeInUp"
+          [style.animation-delay]="(i * 100) + 'ms'"
+        >
+          <div class="component-icon">
+            <mat-icon>{{ component.icon }}</mat-icon>
+          </div>
+          <div class="component-content">
+            <h3 class="component-name">{{ component.name }}</h3>
+            <p class="component-description">{{ component.description }}</p>
+          </div>
+          <mat-icon class="component-arrow">arrow_forward</mat-icon>
+        </a>
+      }
+    </div>
+
+    <div class="view-all">
+      <a routerLink="/docs" class="view-all-link">
+        View all components
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to dive in?</h2>
+      <p class="cta-description">
+        Get started with C3 Components in minutes.
+      </p>
+      <div class="cta-code">
+        <code>npm install c3-components</code>
+        <button mat-icon-button class="copy-btn" aria-label="Copy command">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-logo">🦀</span>
+        <span class="footer-name">C3 Components</span>
+      </div>
+      <p class="footer-text">
+        Built with ❤️ for the Angular community.
+      </p>
+    </div>
+  </footer>
 </div>

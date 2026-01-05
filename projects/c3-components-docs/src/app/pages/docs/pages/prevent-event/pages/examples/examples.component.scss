@@ -1,0 +1,18 @@
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.note {
+  padding: 1rem;
+  background: var(--surface-elevated);
+  border-left: 3px solid var(--c3-accent);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  margin: 0;
+
+  code {
+    font-size: var(--text-sm);
+  }
+}
+

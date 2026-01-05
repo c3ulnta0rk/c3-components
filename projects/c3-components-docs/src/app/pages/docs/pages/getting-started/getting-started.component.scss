@@ -1,3 +1,115 @@
-:host {
-  display: block;
+.getting-started {
+  max-width: 800px;
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .lead {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin: 0 0 2rem 0;
+  }
+}
+
+.section {
+  margin-bottom: 3rem;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+
+    .mat-icon {
+      color: var(--c3-primary);
+    }
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+
+    code {
+      font-size: var(--text-sm);
+    }
+  }
+
+  pre {
+    background: var(--code-bg);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+    overflow-x: auto;
+
+    code, textarea {
+      color: var(--code-text);
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      padding: 0;
+      border: none;
+      resize: none;
+      width: 100%;
+    }
+
+    textarea {
+      display: block;
+      white-space: pre;
+    }
+  }
+}
+
+.next-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.next-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--c3-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .mat-icon {
+    color: var(--c3-primary);
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+  }
+
+  p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+  }
 }

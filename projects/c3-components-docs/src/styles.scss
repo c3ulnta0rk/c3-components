@@ -1,11 +1,14 @@
+// Tailwind must be first
+@use 'tailwindcss';
+
 @use "@angular/material" as mat;
 @use "./assets/theme" as theme;
 @use "./assets/core" as *;
+@use "./assets/design-system" as ds;
 @use "sass:map";
-@use "./assets/utils" as utils;
-@use "./assets/material-icons/index";
 
-@use 'tailwindcss';
+// Include design system
+@include ds.design-system;
 
 html,
 body {
@@ -13,8 +16,10 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background: var(--surface-ground);
 }
 
+// Material Theme
 @include mat.all-component-themes(theme.$theme-light);
 
 @media (prefers-color-scheme: light) {
@@ -28,13 +33,8 @@ body {
   $bg-card: mat.get-theme-color(theme.$theme-light, background, card);
   $color-text: mat.get-theme-color(theme.$theme-light, foreground, text);
 
-  * {
-    color: $color-text;
-    --color-primary: oklch(41% 87% 40deg);
-  }
-
   body {
-    background: $bg-card;
+    background: var(--surface-ground);
   }
 }
 
@@ -49,27 +49,94 @@ body {
   $bg-card: mat.get-theme-color(theme.$theme-dark, background, card);
   $color-text: mat.get-theme-color(theme.$theme-dark, foreground, text);
 
-  * {
-    color: $color-text;
-  }
-
   body {
-    background: $bg-card;
+    background: var(--surface-ground);
   }
 }
 
 body,
-app-root {
+app-root,
+c3-root {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
+// Code highlighting styles
 pre.hljs {
   padding: 1rem;
+  border-radius: var(--border-radius-md);
+  background: var(--code-bg) !important;
+  margin: 0;
 }
 
+// Example viewer spacing
 example-viewer {
-  padding: 1rem;
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+// Smooth scroll
+html {
+  scroll-behavior: smooth;
+}
+
+// Selection color
+::selection {
+  background: var(--c3-primary);
+  color: white;
+}
+
+// Focus styles
+:focus-visible {
+  outline: 2px solid var(--c3-accent);
+  outline-offset: 2px;
+}
+
+// Material overrides for consistency
+.mat-mdc-card {
+  background: var(--surface-card) !important;
+  border: 1px solid var(--border-color);
+}
+
+.mat-mdc-tab-group {
+  .mat-mdc-tab-header {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+}
+
+// Material icons alignment
+.mat-icon {
+  vertical-align: middle;
+}
+
+// Scrollbar styling (applied globally)
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-hover) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }

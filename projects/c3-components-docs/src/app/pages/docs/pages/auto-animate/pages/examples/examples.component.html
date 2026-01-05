@@ -1,0 +1,89 @@
+<h1>Auto Animate</h1>
+<p class="description">
+  A directive that automatically animates DOM changes using
+  <a href="https://auto-animate.formkit.com/" target="_blank" rel="noopener">FormKit AutoAnimate</a>.
+  Simply add the directive to a parent element and any additions, removals, or moves of child elements
+  will be animated smoothly.
+</p>
+
+<example-viewer>
+  <h4 title>Basic List Animation</h4>
+
+  <ng-container example>
+    <div class="demo-actions">
+      <button mat-raised-button color="primary" (click)="addItem()">Add Item</button>
+      <button mat-raised-button (click)="shuffleItems()">Shuffle</button>
+    </div>
+
+    <ul class="demo-list" c3AutoAnimate>
+      @for (itm of items(); track itm; let i = $index) {
+        <li class="demo-item">
+          <span>{{ itm }}</span>
+          <button mat-icon-button (click)="removeItem(i)" aria-label="Remove">×</button>
+        </li>
+      }
+    </ul>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+&lt;ul c3AutoAnimate&gt;
+  &#64;for (item of items(); track item; let i = $index) &#123;
+    &lt;li&gt;
+      &lt;span&gt;&#123;&#123; item &#125;&#125;&lt;/span&gt;
+      &lt;button (click)="removeItem(i)"&gt;×&lt;/button&gt;
+    &lt;/li&gt;
+  &#125;
+&lt;/ul&gt;
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import &#123; Component, signal &#125; from '&#64;angular/core';
+import &#123; C3AutoAnimateDirective &#125; from 'c3-components';
+
+&#64;Component(&#123;
+  selector: 'app-example',
+  standalone: true,
+  imports: [C3AutoAnimateDirective],
+  templateUrl: './example.component.html',
+&#125;)
+export class ExampleComponent &#123;
+  items = signal&lt;string[]&gt;(['Item 1', 'Item 2', 'Item 3']);
+
+  addItem(): void &#123;
+    this.items.update(items =&gt; [...items, `Item $&#123;items.length + 1&#125;`]);
+  &#125;
+
+  removeItem(index: number): void &#123;
+    this.items.update(items =&gt; items.filter((_, i) =&gt; i !== index));
+  &#125;
+&#125;
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>With Custom Options</h4>
+
+  <ng-container example>
+    <div class="demo-box" c3AutoAnimate [options]="{ duration: 500, easing: 'ease-in-out' }">
+      <p>This container has custom animation duration and easing.</p>
+    </div>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+&lt;div c3AutoAnimate [options]="&#123; duration: 500, easing: 'ease-in-out' &#125;"&gt;
+  &lt;!-- Content here will animate with custom settings --&gt;
+&lt;/div&gt;
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

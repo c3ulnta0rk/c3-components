@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/c3-components/src/lib/c3-file-displayer/c3-file-display-grid/c3-file-display-grid.component.scss", "projects/c3-components/src/lib/c3-file-displayer/c3-file-display-grid/c3-file-display-grid.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n\n  .c3-file-display-grid {\n    display: flex;\n    flex-flow: wrap;\n    gap: 1rem;\n  }\n}\n", ":host {\n  display: block;\n}\n:host .c3-file-display-grid {\n  display: flex;\n  flex-flow: wrap;\n  gap: 1rem;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMvc3JjL2xpYi9jMy1maWxlLWRpc3BsYXllci9jMy1maWxlLWRpc3BsYXktZ3JpZC9jMy1maWxlLWRpc3BsYXktZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFOztBQUVBO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xuICBkaXNwbGF5OiBibG9jaztcblxuICAuYzMtZmlsZS1kaXNwbGF5LWdyaWQge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1mbG93OiB3cmFwO1xuICAgIGdhcDogMXJlbTtcbiAgfVxufVxuIl19 */"],
+  "mappings": ";AAAA;AACE,WAAA;ACCF;ADCE,MAAA,CAAA;AACE,WAAA;AACA,aAAA;AACA,OAAA;ACCJ;",
+  "names": []
+}

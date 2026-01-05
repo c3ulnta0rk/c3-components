@@ -1,0 +1,78 @@
+<h1>Auto Animate API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123; C3AutoAnimateDirective &#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Selector</h2>
+  <p><code>[c3AutoAnimate]</code></p>
+</section>
+
+<section class="api-section">
+  <h2>Inputs</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>options</code></td>
+        <td><code>AutoAnimateOptions | AutoAnimationPlugin</code></td>
+        <td><code>undefined</code></td>
+        <td>Configuration options for the animation behavior.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>AutoAnimateOptions</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>duration</code></td>
+        <td><code>number</code></td>
+        <td><code>250</code></td>
+        <td>Animation duration in milliseconds.</td>
+      </tr>
+      <tr>
+        <td><code>easing</code></td>
+        <td><code>string</code></td>
+        <td><code>'ease-in-out'</code></td>
+        <td>CSS easing function for the animation.</td>
+      </tr>
+      <tr>
+        <td><code>disrespectUserMotionPreference</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether to ignore user's reduced motion preference.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
+  <ul class="notes-list">
+    <li>Apply the directive to a parent element that contains dynamic children.</li>
+    <li>Works with <code>&#64;for</code>, <code>*ngFor</code>, and <code>&#64;if</code> structural directives.</li>
+    <li>Animations are automatically triggered when children are added, removed, or reordered.</li>
+    <li>Respects <code>prefers-reduced-motion</code> media query by default.</li>
+  </ul>
+</section>
+

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/c3-components/src/lib/c3-dialog/components/c3-dialog-prompt.component.ts", "c3-dialog-prompt.component.ts"],
+  "sourcesContent": ["\n      mat-form-field {\n        width: 100%;\n      }\n    ", "mat-form-field {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMvc3JjL2xpYi9jMy1kaWFsb2cvY29tcG9uZW50cy9jMy1kaWFsb2ctcHJvbXB0LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDTTtFQUNFIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBtYXQtZm9ybS1maWVsZCB7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgfVxuICAgICJdfQ== */"],
+  "mappings": ";AACM;AACE,SAAA;ACAR;",
+  "names": []
+}

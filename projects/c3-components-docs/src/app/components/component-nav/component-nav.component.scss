@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+nav[mat-tab-nav-bar] {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--surface-elevated);
+  margin: -2rem -2rem 2rem -2rem;
+  padding: 0 2rem;
+
+  .mat-mdc-tab-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+  }
+}
+
+mat-tab-nav-panel {
+  display: block;
+}
+
+.m-4 {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  nav[mat-tab-nav-bar] {
+    margin: -1rem -1rem 1rem -1rem;
+    padding: 0 1rem;
+  }
+}
+

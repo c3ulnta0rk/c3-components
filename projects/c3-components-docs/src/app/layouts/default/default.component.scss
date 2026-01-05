@@ -1,22 +1,12 @@
 :host {
   display: flex;
-  flex-direction: row;
-  height: 100vh;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--surface-ground);
 }
 
-aside {
-  height: 100%;
-  background: var(--background-app-bar);
-  border-right: 1px solid var(--mat-divider-color);
-  overflow: auto;
-  padding: 1rem;
-  nav ul li {
-    margin-bottom: 0.5rem;
-  }
-}
-
-main {
+.main-content {
   flex: 1;
-  height: 100%;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }

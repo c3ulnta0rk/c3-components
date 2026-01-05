@@ -1,0 +1,95 @@
+<h1>Prevent Event API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3PreventClickDirective,
+  C3StopPropagationDirective,
+  C3PreventKeyboardEventDirective
+&#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3PreventClickDirective</h2>
+  <p>Selector: <code>[c3-prevent-click]</code></p>
+  <p>
+    Prevents the default action and stops event propagation on click events.
+    Useful for links or buttons that should not trigger their default behavior.
+  </p>
+
+  <h3>Behavior</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>click</code></td>
+        <td><code>preventDefault()</code> + <code>stopPropagation()</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3StopPropagationDirective</h2>
+  <p>Selector: <code>[c3-stop-click-propagation]</code></p>
+  <p>
+    Only stops immediate propagation of click events, without preventing the default action.
+    Allows the element to perform its default action while not bubbling to parents.
+  </p>
+
+  <h3>Behavior</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>click</code></td>
+        <td><code>stopImmediatePropagation()</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3PreventKeyboardEventDirective</h2>
+  <p>Selector: <code>[c3-prevent-keyboard]</code></p>
+  <p>
+    Prevents default action and stops propagation for keyboard events.
+  </p>
+
+  <h3>Behavior</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>keydown</code></td>
+        <td><code>preventDefault()</code> + <code>stopPropagation()</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Use Cases</h2>
+  <ul class="use-cases">
+    <li>Preventing navigation on anchor elements used as buttons</li>
+    <li>Stopping click events from bubbling to parent containers</li>
+    <li>Creating overlay close buttons that don't trigger underlying elements</li>
+    <li>Preventing keyboard shortcuts from triggering default browser behavior</li>
+  </ul>
+</section>
+

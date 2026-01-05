@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/c3-components/src/lib/c3-menu/components/c3-menu/c3-menu.component.scss", "projects/c3-components/src/lib/c3-menu/components/c3-menu/c3-menu.component.scss"],
+  "sourcesContent": [":host {\n  display: block;\n}\n", ":host {\n  display: block;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMvc3JjL2xpYi9jMy1tZW51L2NvbXBvbmVudHMvYzMtbWVudS9jMy1tZW51LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuIl19 */"],
+  "mappings": ";AAAA;AACE,WAAA;ACCF;",
+  "names": []
+}

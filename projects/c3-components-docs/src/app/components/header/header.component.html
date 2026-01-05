@@ -1,0 +1,63 @@
+<header class="c3-header">
+  <div class="header-content">
+    <!-- Logo & Brand -->
+    <a routerLink="/home" class="brand">
+      <div class="logo">
+        <span class="logo-icon">🦀</span>
+      </div>
+      <span class="brand-text">C3 Components</span>
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links">
+      <a routerLink="/docs/getting-started" routerLinkActive="active" class="nav-link">
+        Docs
+      </a>
+      <a routerLink="/docs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+        Components
+      </a>
+      <a href="https://github.com" target="_blank" rel="noopener" class="nav-link nav-link-external">
+        GitHub
+        <mat-icon class="external-icon">open_in_new</mat-icon>
+      </a>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="header-actions">
+      <!-- Search -->
+      <div class="search-container" [class.search-open]="searchOpen()">
+        @if (searchOpen()) {
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search components..."
+            [ngModel]="searchQuery()"
+            (ngModelChange)="searchQuery.set($event)"
+            (keyup.enter)="onSearch()"
+            (keyup.escape)="toggleSearch()"
+            #searchInput
+          />
+        }
+        <button
+          mat-icon-button
+          class="action-btn"
+          (click)="toggleSearch()"
+          [matTooltip]="searchOpen() ? 'Close search' : 'Search'"
+        >
+          <mat-icon>{{ searchOpen() ? 'close' : 'search' }}</mat-icon>
+        </button>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button
+        mat-icon-button
+        class="action-btn theme-toggle"
+        (click)="toggleTheme()"
+        [matTooltip]="getThemeTooltip()"
+      >
+        <mat-icon>{{ getThemeIcon() }}</mat-icon>
+      </button>
+    </div>
+  </div>
+</header>
+

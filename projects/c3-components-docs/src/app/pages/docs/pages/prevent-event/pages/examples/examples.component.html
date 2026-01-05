@@ -1,0 +1,97 @@
+<h1>Prevent Event Directives</h1>
+<p class="description">
+  A collection of directives to prevent default browser actions and stop event propagation.
+  Useful for preventing unwanted navigation or event bubbling in complex UI scenarios.
+</p>
+
+<example-viewer>
+  <h4 title>Prevent Click</h4>
+
+  <ng-container example>
+    <p class="note">
+      The <code>c3-prevent-click</code> directive prevents the default action and stops propagation.
+    </p>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<!-- Prevents link navigation and stops propagation -->
+<a href="https://google.com" c3-prevent-click>
+  Click me - I won't navigate!
+</a>
+
+<!-- Useful inside clickable containers -->
+<div (click)="onContainerClick()">
+  <button c3-prevent-click>
+    Click me - Parent won't receive the event
+  </button>
+</div>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component } from '@angular/core';
+import { C3PreventClickDirective } from 'c3-components';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [C3PreventClickDirective],
+  template: `
+    <a href="https://google.com" c3-prevent-click>
+      Click me - I won't navigate!
+    </a>
+  `
+})
+export class ExampleComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Stop Click Propagation</h4>
+
+  <ng-container example>
+    <p class="note">
+      The <code>c3-stop-click-propagation</code> directive only stops immediate propagation,
+      without preventing the default action.
+    </p>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<!-- Stops propagation but allows default action -->
+<div (click)="onParentClick()">
+  Parent container
+  <a href="/docs" c3-stop-click-propagation>
+    Click me - I'll navigate, but parent won't be notified
+  </a>
+</div>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { Component } from '@angular/core';
+import { C3StopPropagationDirective } from 'c3-components';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [C3StopPropagationDirective],
+  template: `...`
+})
+export class ExampleComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+

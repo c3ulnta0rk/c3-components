@@ -1,0 +1,185 @@
+<h1>File Input API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123; C3InputFileModule, C3DownloadService &#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3InputFileComponent</h2>
+  <p>Selector: <code>c3-input-file</code></p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>accept</code></td>
+        <td><code>string</code></td>
+        <td><em>required</em></td>
+        <td>File types to accept (e.g., 'image/*', '.pdf').</td>
+      </tr>
+      <tr>
+        <td><code>multiple</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether to allow multiple file selection.</td>
+      </tr>
+      <tr>
+        <td><code>baseUrl</code></td>
+        <td><code>string</code></td>
+        <td><code>'localhost:3000'</code></td>
+        <td>Base URL for the upload endpoint.</td>
+      </tr>
+      <tr>
+        <td><code>dest</code></td>
+        <td><code>string</code></td>
+        <td><code>'api/upload'</code></td>
+        <td>Destination path for uploads.</td>
+      </tr>
+      <tr>
+        <td><code>method</code></td>
+        <td><code>string</code></td>
+        <td><code>'POST'</code></td>
+        <td>HTTP method for the upload request.</td>
+      </tr>
+      <tr>
+        <td><code>headers</code></td>
+        <td><code>Object</code></td>
+        <td><code>undefined</code></td>
+        <td>Custom headers to include in the upload request.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Outputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileAdded</code></td>
+        <td><code>EventEmitter&lt;C3InputFile&gt;</code></td>
+        <td>Emitted when a file is added and upload starts.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>click()</code></td>
+        <td>Programmatically open the file picker dialog.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3InputFile Class</h2>
+  <p>Represents an uploaded file with progress tracking.</p>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fileName</code></td>
+        <td><code>string</code></td>
+        <td>Original file name.</td>
+      </tr>
+      <tr>
+        <td><code>mimetype</code></td>
+        <td><code>string</code></td>
+        <td>MIME type of the file.</td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><code>number</code></td>
+        <td>File size in bytes.</td>
+      </tr>
+      <tr>
+        <td><code>progression</code></td>
+        <td><code>number</code></td>
+        <td>Upload progress (0-100).</td>
+      </tr>
+      <tr>
+        <td><code>progressionChange</code></td>
+        <td><code>Subject&lt;number&gt;</code></td>
+        <td>Observable for progress changes.</td>
+      </tr>
+      <tr>
+        <td><code>response</code></td>
+        <td><code>any</code></td>
+        <td>Server response after upload completes.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>emit('abord')</code></td>
+        <td>Cancel the ongoing upload.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>C3DownloadService</h2>
+  <p>Service for downloading files as Blobs.</p>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>download</code></td>
+        <td><code>url: string</code></td>
+        <td><code>Observable&lt;Blob&gt;</code></td>
+        <td>Downloads a file from the given URL.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+

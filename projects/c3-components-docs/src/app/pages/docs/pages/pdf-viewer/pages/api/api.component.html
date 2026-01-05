@@ -1,0 +1,73 @@
+<h1>PDF Viewer API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123; PdfViewerContainerComponent &#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Components</h2>
+
+  <h3>PdfViewerContainerComponent</h3>
+  <p>Selector: <code>pdf-viewer-container</code></p>
+
+  <h4>Inputs</h4>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>src</code></td>
+        <td><code>string</code></td>
+        <td>URL or path to the PDF file to display. <em>Required.</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Signals</h4>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pdfViewer</code></td>
+        <td><code>Signal&lt;PDFViewer | null&gt;</code></td>
+        <td>Reference to the PDF.js viewer instance.</td>
+      </tr>
+      <tr>
+        <td><code>pdfDocument</code></td>
+        <td><code>Signal&lt;PDFDocumentProxy | null&gt;</code></td>
+        <td>Reference to the loaded PDF document.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Sub-components</h2>
+
+  <h3>PdfViewerHeaderComponent</h3>
+  <p>Selector: <code>pdf-viewer-header</code></p>
+  <p>Provides navigation controls (page navigation, zoom).</p>
+
+  <h3>PdfViewerContentComponent</h3>
+  <p>Selector: <code>pdf-viewer-content</code></p>
+  <p>Renders the actual PDF pages.</p>
+</section>
+
+<section class="api-section">
+  <h2>Dependencies</h2>
+  <p>This component requires <code>pdfjs-dist</code> to be installed:</p>
+  <pre><code>npm install pdfjs-dist</code></pre>
+</section>
+

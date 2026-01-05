@@ -1,24 +1,55 @@
-<div class="header">
-  <ng-content select="[title]"></ng-content>
-  <div class="header-buttons">
-    <button mat-icon-button (click)="sourceView.set(!sourceView())">
-      <mat-icon>code</mat-icon>
-    </button>
+<div class="example-viewer-card">
+  <!-- Header -->
+  <div class="example-header">
+    <div class="example-title">
+      <ng-content select="[title]"></ng-content>
+    </div>
+    <div class="example-actions">
+      @if (sourceView() && tabs().length > 0) {
+        <button
+          mat-icon-button
+          class="action-btn"
+          (click)="copyCode()"
+          [matTooltip]="copied() ? 'Copied!' : 'Copy code'"
+        >
+          <mat-icon>{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
+        </button>
+      }
+      <button
+        mat-icon-button
+        class="action-btn"
+        (click)="toggleSourceView()"
+        [matTooltip]="sourceView() ? 'Hide code' : 'View code'"
+        [class.active]="sourceView()"
+      >
+        <mat-icon>code</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="content" c3AutoAnimate>
-  @if (sourceView()) {
-  <mat-tab-group dynamicHeight>
-    @for (tab of tabs(); track $index) { @if(tab.template()) {
-    <mat-tab label="{{ tab.label() }}">
-      <ng-container [ngTemplateOutlet]="tab.template()!"></ng-container>
-    </mat-tab>
-    } }
-  </mat-tab-group>
-  }
-
-  <div class="example">
+  <!-- Example Preview -->
+  <div class="example-preview" c3AutoAnimate>
     <ng-content select="[example]"></ng-content>
   </div>
+
+  <!-- Source Code -->
+  @if (sourceView() && tabs().length > 0) {
+    <div class="example-source animate-fadeInUp">
+      <mat-tab-group
+        dynamicHeight
+        animationDuration="200ms"
+        (selectedIndexChange)="onTabChange($event)"
+      >
+        @for (tab of tabs(); track $index) {
+          @if (tab.template()) {
+            <mat-tab [label]="tab.label()">
+              <div class="code-container">
+                <ng-container [ngTemplateOutlet]="tab.template()!"></ng-container>
+              </div>
+            </mat-tab>
+          }
+        }
+      </mat-tab-group>
+    </div>
+  }
 </div>

@@ -1,44 +1,46 @@
 :host {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
+}
 
-  aside {
-    height: 100%;
-    background: var(--background-app-bar);
-    border-right: 1px solid var(--mat-divider-color);
-    overflow: auto;
+.docs-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface-page);
+}
+
+.docs-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+
+  @media (max-width: 640px) {
     padding: 1rem;
-    nav ul li {
-      margin-bottom: 0.5rem;
-    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mobile sidebar toggle
+@media (max-width: 1024px) {
+  :host {
+    position: relative;
   }
 
-  > section {
-    flex: 1;
-    height: 100%;
-    overflow: auto;
-  }
-
-  a {
-    border: 2px solid transparent;
-    padding: 0rem 0.5rem;
-    display: block;
-    color: #00000096;
-    text-decoration: none;
-  }
-
-  a.active {
-    border-bottom: 2px solid var(--primary-color);
-  }
-
-  a:hover {
-    color: var(--primary-color);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    a {
-      color: #ffffff96;
-    }
+  .docs-content {
+    width: 100%;
   }
 }

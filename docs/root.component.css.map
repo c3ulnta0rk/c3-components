@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/c3-components-docs/src/app/root/root.component.scss", "projects/c3-components-docs/src/app/root/root.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n}\n", ":host {\n  display: flex;\n  flex-direction: column;\n  height: 100vh;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJmaWxlOi8vL2hvbWUva3JvZW5lbi9Eb2N1bWVudHMvUHJvZ3JhbW1lcy9jMy1jb21wb25lbnRzL3Byb2plY3RzL2MzLWNvbXBvbmVudHMtZG9jcy9zcmMvYXBwL3Jvb3Qvcm9vdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgaGVpZ2h0OiAxMDB2aDtcbn1cbiJdfQ== */"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;AACA,UAAA;ACCF;",
+  "names": []
+}

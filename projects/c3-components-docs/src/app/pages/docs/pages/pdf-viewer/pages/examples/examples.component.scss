@@ -1,0 +1,37 @@
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.note {
+  padding: 1rem;
+  background: var(--surface-elevated);
+  border-left: 3px solid var(--c3-accent);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.setup-steps {
+  p {
+    margin: 1rem 0 0.5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  pre {
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    overflow-x: auto;
+
+    code {
+      color: var(--code-text);
+      background: transparent;
+      font-size: var(--text-sm);
+    }
+  }
+}
+

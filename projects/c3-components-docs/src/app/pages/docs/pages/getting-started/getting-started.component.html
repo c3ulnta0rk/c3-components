@@ -1,36 +1,84 @@
-<div class="getting-started p-4">
-  <h1 class="text-2xl font-bold mb-4">Welcome to C3 Components</h1>
-  <p class="mb-4">To get started with C3 Components, follow the steps below:</p>
-
-  <h2 class="text-xl font-semibold mb-2">Installation</h2>
-  <p class="mb-4">
-    You can install C3 Components via npm using the following command:
+<div class="getting-started">
+  <h1>Getting Started</h1>
+  <p class="lead">
+    Get up and running with C3 Components in just a few minutes.
   </p>
-  <pre class="rounded mb-4 overflow-auto shadow-xl"><textarea highlight-js [options]="{}" lang="typescript">npm install c3-components</textarea></pre>
 
-  <h2 class="text-xl font-semibold mb-2">Usage</h2>
-  <p class="mb-4">
-    After installation, you can import and use the components in your Angular
-    application:
-  </p>
-  <pre class="rounded mb-4 overflow-auto shadow-xl"><textarea highlight-js [options]="{}" lang="typescript">
-import { C3ButtonModule } from 'c3-components';
+  <section class="section">
+    <h2>
+      <mat-icon>download</mat-icon>
+      Installation
+    </h2>
+    <p>Install C3 Components via npm:</p>
+    <pre><code>npm install c3-components</code></pre>
+  </section>
 
-@NgModule({
-  imports: [
-    C3ButtonModule,
-    // other modules
-  ],
-  // other configurations
+  <section class="section">
+    <h2>
+      <mat-icon>settings</mat-icon>
+      Setup
+    </h2>
+    <p>C3 Components works alongside Angular Material. Make sure you have Angular Material installed:</p>
+    <pre><code>ng add @angular/material</code></pre>
+
+    <p>Import the styles in your <code>styles.scss</code>:</p>
+    <pre><textarea highlight-js [options]="{}" lang="scss">@use 'c3-components/styles' as c3;
+
+// Include the core styles
+@include c3.c3-core($your-theme);</textarea></pre>
+  </section>
+
+  <section class="section">
+    <h2>
+      <mat-icon>code</mat-icon>
+      Basic Usage
+    </h2>
+    <p>Import the components you need in your Angular module or standalone component:</p>
+    <pre><textarea highlight-js [options]="{}" lang="typescript">import { Component } from '@angular/core';
+import { C3DialogModule, C3DialogService } from 'c3-components';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [C3DialogModule],
+  template: `<button (click)="openDialog()">Open Dialog</button>`
 })
-export class AppModule {}
-  </textarea></pre>
+export class ExampleComponent {
+  constructor(private dialogService: C3DialogService) {}
 
-  <h2 class="text-xl font-semibold mb-2">Documentation</h2>
-  <p class="mb-4">
-    For more information on using the components, refer to the
-    <a href="https://c3-components-docs.com" class="text-blue-500 underline"
-      >official documentation</a
-    >.
-  </p>
+  openDialog() {
+    this.dialogService.alert('Hello from C3!');
+  }
+}</textarea></pre>
+  </section>
+
+  <section class="section">
+    <h2>
+      <mat-icon>explore</mat-icon>
+      Next Steps
+    </h2>
+    <div class="next-steps">
+      <a routerLink="/docs/dialog" class="next-step-card">
+        <mat-icon>chat_bubble</mat-icon>
+        <div>
+          <h3>Dialog</h3>
+          <p>Alert, confirm, prompt and custom dialogs</p>
+        </div>
+      </a>
+      <a routerLink="/docs/file-viewer" class="next-step-card">
+        <mat-icon>preview</mat-icon>
+        <div>
+          <h3>File Viewer</h3>
+          <p>Preview images, PDFs and videos</p>
+        </div>
+      </a>
+      <a routerLink="/docs/auto-animate" class="next-step-card">
+        <mat-icon>animation</mat-icon>
+        <div>
+          <h3>Auto Animate</h3>
+          <p>Automatic animations for DOM changes</p>
+        </div>
+      </a>
+    </div>
+  </section>
 </div>
