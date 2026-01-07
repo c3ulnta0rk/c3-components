@@ -87,18 +87,12 @@ export class C3InputFileDisplayerComponent implements AfterContentInit {
       const inputFile = this.c3InputFile();
       const autoCloseValue = this.autoclose();
 
-      inputFile.fileAdded.subscribe(
-        (newFile: C3InputFile) => {
-          this.files.push(newFile);
-          if (autoCloseValue)
-            if (newFile.loaded) this._autoclose();
-            else newFile.on('loaded', () => this._autoclose());
-        },
-        console.error,
-        () => {
-          console.log('completed');
-        }
-      );
+      inputFile.fileAdded.subscribe((newFile: C3InputFile) => {
+        this.files.push(newFile);
+        if (autoCloseValue)
+          if (newFile.loaded) this._autoclose();
+          else newFile.on('loaded', () => this._autoclose());
+      });
     });
   }
 

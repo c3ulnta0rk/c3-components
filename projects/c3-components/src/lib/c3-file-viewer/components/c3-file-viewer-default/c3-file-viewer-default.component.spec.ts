@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { C3FileViewerActionsComponent } from './c3-file-viewer-actions.component';
+import { C3FileViewerDefaultComponent } from './c3-file-viewer-default.component';
 import { C3FileViewer } from '../../models/file-viewer';
-import { C3FileViewerModule } from '../../c3-file-viewer.module';
 
-describe('C3FileViewerActionsComponent', () => {
-  let component: C3FileViewerActionsComponent;
-  let fixture: ComponentFixture<C3FileViewerActionsComponent>;
+describe('C3FileViewerDefaultComponent', () => {
+  let component: C3FileViewerDefaultComponent;
+  let fixture: ComponentFixture<C3FileViewerDefaultComponent>;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let mockFileViewer: C3FileViewer;
 
@@ -16,8 +15,15 @@ describe('C3FileViewerActionsComponent', () => {
     httpClientSpy.get.and.returnValue(of(new Blob(['test'])));
 
     mockFileViewer = new C3FileViewer({ client: httpClientSpy as HttpClient });
-    mockFileViewer.config = { zoomFactor: 0.1, wheelZoom: true };
+    // Ensure currentFile is defined to avoid metadata errors
     mockFileViewer.files = [
+      {
+        name: 'test.jpg',
+        type: 'image/jpeg',
+        location: 'https://example.com/test.jpg',
+      },
+    ];
+    mockFileViewer.filesObjectUrl = [
       {
         name: 'test.jpg',
         type: 'image/jpeg',
@@ -26,10 +32,10 @@ describe('C3FileViewerActionsComponent', () => {
     ];
 
     await TestBed.configureTestingModule({
-      imports: [C3FileViewerModule],
+      declarations: [C3FileViewerDefaultComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(C3FileViewerActionsComponent);
+    fixture = TestBed.createComponent(C3FileViewerDefaultComponent);
     component = fixture.componentInstance;
   });
 
@@ -45,22 +51,8 @@ describe('C3FileViewerActionsComponent', () => {
 
     expect(component.fileViewer()).toBe(mockFileViewer);
   });
-
-  it('should return config from fileViewer', () => {
-    fixture.componentRef.setInput('fileViewer', mockFileViewer);
-    fixture.detectChanges();
-
-    expect(component.config).toBe(mockFileViewer.config);
-    expect(component.config.zoomFactor).toBe(0.1);
-    expect(component.config.wheelZoom).toBe(true);
-  });
-
-  it('should update config when fileViewer config changes', () => {
-    fixture.componentRef.setInput('fileViewer', mockFileViewer);
-    fixture.detectChanges();
-
-    mockFileViewer.config = { zoomFactor: 0.2 };
-
-    expect(component.config.zoomFactor).toBe(0.2);
-  });
 });
+
+
+
+

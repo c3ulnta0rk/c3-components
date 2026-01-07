@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'c3-file-display-icon',
+    standalone: true,
     imports: [CommonModule, MatIconModule],
     templateUrl: './c3-file-display-icon.component.html',
     styleUrl: './c3-file-display-icon.component.scss'

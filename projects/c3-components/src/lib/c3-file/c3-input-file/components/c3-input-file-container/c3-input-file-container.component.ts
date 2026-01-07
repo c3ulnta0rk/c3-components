@@ -5,6 +5,7 @@ import {
   OnDestroy,
   input,
   effect,
+  OutputRefSubscription,
 } from '@angular/core';
 import { C3InputFileTriggerComponent } from '../c3-input-file-trigger/c3-input-file-trigger.component';
 import { C3InputFileTriggerDirective } from '../../directives/c3-input-file-trigger.directive';
@@ -35,18 +36,25 @@ export class C3InputFileContainerComponent implements OnDestroy {
 
   public readonly c3TriggerDirective = contentChild(C3InputFileTriggerDirective);
 
+  private _triggerSubscription?: OutputRefSubscription;
+  private _triggerDirectiveSubscription?: OutputRefSubscription;
+
   constructor() {
     effect(() => {
       const trigger = this.c3Trigger();
       const triggerDirective = this.c3TriggerDirective();
       const inputFile = this.c3InputFile();
 
+      // Cleanup previous subscriptions
+      this._triggerSubscription?.unsubscribe();
+      this._triggerDirectiveSubscription?.unsubscribe();
+
       if (trigger) {
-        trigger.clicked.subscribe(($event) => {
+        this._triggerSubscription = trigger.clicked.subscribe(($event) => {
           inputFile?.click();
         });
       } else if (triggerDirective) {
-        triggerDirective.click.subscribe(($event) => {
+        this._triggerDirectiveSubscription = triggerDirective.click.subscribe(($event) => {
           inputFile?.click();
         });
       }
@@ -58,10 +66,7 @@ export class C3InputFileContainerComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    const trigger = this.c3Trigger();
-    const triggerDirective = this.c3TriggerDirective();
-
-    if (trigger) trigger.clicked.unsubscribe();
-    if (triggerDirective) triggerDirective.click.unsubscribe();
+    this._triggerSubscription?.unsubscribe();
+    this._triggerDirectiveSubscription?.unsubscribe();
   }
 }

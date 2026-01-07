@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { C3TraceCardContentComponent } from './c3-trace-card-content.component';
 
 describe('C3TraceCardContentComponent', () => {
@@ -8,10 +7,9 @@ describe('C3TraceCardContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [C3TraceCardContentComponent]
-    })
-    .compileComponents();
-    
+      declarations: [C3TraceCardContentComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(C3TraceCardContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,5 +17,18 @@ describe('C3TraceCardContentComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have c3-trace-card-content class on host', () => {
+    const hostElement = fixture.nativeElement;
+    expect(hostElement.classList.contains('c3-trace-card-content')).toBe(true);
+  });
+
+  it('should project content', () => {
+    const testContent = document.createTextNode('Test Content');
+    fixture.nativeElement.appendChild(testContent);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('Test Content');
   });
 });

@@ -27,6 +27,7 @@ import { C3_FILE_DISPLAY_LIST } from './tokens';
 import { C3FileDisplayListColumnDefDirective } from './c3-file-display-list-column-def.directive';
 @Component({
   selector: 'c3-file-display-list',
+  standalone: true,
   imports: [
     C3StopPropagationDirective,
     C3FileViewerModule,

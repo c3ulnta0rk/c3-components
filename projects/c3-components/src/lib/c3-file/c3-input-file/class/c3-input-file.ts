@@ -1,7 +1,8 @@
 import { Subject } from 'rxjs';
-import { EventEmitter } from 'events';
 
-export class C3InputFile<ResponseType = any> extends EventEmitter {
+type EventListener = (...args: any[]) => void;
+
+export class C3InputFile<ResponseType = any> {
   name?: string;
   id?: number;
   fileName: string;
@@ -14,6 +15,8 @@ export class C3InputFile<ResponseType = any> extends EventEmitter {
   aborded: boolean = false;
   response?: ResponseType;
 
+  private _listeners: Map<string | symbol, Set<EventListener>> = new Map();
+
   constructor({
     fileName,
     mimetype,
@@ -23,7 +26,6 @@ export class C3InputFile<ResponseType = any> extends EventEmitter {
     mimetype: string;
     size: number;
   }) {
-    super();
     this.fileName = fileName;
     this.mimetype = mimetype;
     this.size = size;
@@ -43,16 +45,29 @@ export class C3InputFile<ResponseType = any> extends EventEmitter {
     return this._progression;
   }
 
-  override on(event: string | symbol, listener: (...args: any[]) => void) {
-    return super.on(event, listener);
+  on(event: string | symbol, listener: EventListener): this {
+    if (!this._listeners.has(event)) {
+      this._listeners.set(event, new Set());
+    }
+    this._listeners.get(event)!.add(listener);
+    return this;
   }
 
-  override emit(event: string | symbol, ...args: any[]): boolean {
-    return super.emit(event, args);
+  emit(event: string | symbol, ...args: any[]): boolean {
+    const listeners = this._listeners.get(event);
+    if (!listeners || listeners.size === 0) {
+      return false;
+    }
+    listeners.forEach((listener) => listener(...args));
+    return true;
   }
 
-  override off(event: string | symbol, listener: (...args: any[]) => void) {
-    return super.off(event, listener);
+  off(event: string | symbol, listener: EventListener): this {
+    const listeners = this._listeners.get(event);
+    if (listeners) {
+      listeners.delete(listener);
+    }
+    return this;
   }
 
   abord() {
