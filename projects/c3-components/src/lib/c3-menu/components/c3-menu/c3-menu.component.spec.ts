@@ -3,45 +3,66 @@ import { C3MenuComponent } from './c3-menu.component';
 import { C3MenuService } from '../../services/c3-menu.service';
 import { C3MenuModule } from '../../c3-menu.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { signal } from '@angular/core';
-import { of } from 'rxjs';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+@Component({
+  standalone: false,
+  template: `
+    <c3-menu>
+      <c3-nav-item route="/home" itemTitle="Home"></c3-nav-item>
+      <c3-nav-item route="/about" itemTitle="About"></c3-nav-item>
+    </c3-menu>
+  `
+})
+class TestHostComponent { }
 
 describe('C3MenuComponent', () => {
-  let component: C3MenuComponent;
-  let fixture: ComponentFixture<C3MenuComponent>;
-  let menuServiceSpy: jasmine.SpyObj<C3MenuService>;
+  let fixture: ComponentFixture<TestHostComponent>;
+  let menuService: C3MenuService;
 
   beforeEach(async () => {
-    TestBed.resetTestingModule();
-    menuServiceSpy = jasmine.createSpyObj('C3MenuService', ['setSelectedItem'], {
-      currentRoute: signal('/'),
-      isHeadless: signal(false),
-      currentRouteChange: of('/'),
-      selectedElement: null,
-    });
-
     await TestBed.configureTestingModule({
+      declarations: [TestHostComponent],
       imports: [C3MenuModule, RouterTestingModule],
-      providers: [{ provide: C3MenuService, useValue: menuServiceSpy }],
+      providers: [C3MenuService],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(C3MenuComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestHostComponent);
+    menuService = TestBed.inject(C3MenuService);
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create and project content', () => {
+    const menuComponent = fixture.debugElement.query(By.directive(C3MenuComponent));
+    expect(menuComponent).toBeTruthy();
+
+    const navItems = fixture.debugElement.queryAll(By.css('c3-nav-item'));
+    expect(navItems.length).toBe(2);
+    expect(navItems[0].nativeElement.textContent).toContain('Home');
+    expect(navItems[1].nativeElement.textContent).toContain('About');
   });
 
-  it('should inject C3MenuService', () => {
-    expect(component._c3Menu).toBeTruthy();
-    expect(component._c3Menu).toBe(menuServiceSpy);
+  it('should hide menu when headless mode is true', () => {
+    menuService.isHeadless.set(true);
+    fixture.detectChanges();
+
+    const menuContainer = fixture.debugElement.query(By.css('#app-menu'));
+    expect(menuContainer).toBeFalsy();
+
+    const mainLayout = fixture.debugElement.query(By.css('.layout-main'));
+    expect(mainLayout.classes['headless']).toBeTrue();
   });
 
-  it('should have access to menu service properties', () => {
-    expect(component._c3Menu.currentRoute()).toBe('/');
-    expect(component._c3Menu.isHeadless()).toBe(false);
+  it('should show menu when headless mode is false', () => {
+    menuService.isHeadless.set(false);
+    fixture.detectChanges();
+
+    const menuContainer = fixture.debugElement.query(By.css('#app-menu'));
+    expect(menuContainer).toBeTruthy();
+
+    const mainLayout = fixture.debugElement.query(By.css('.layout-main'));
+    expect(mainLayout.classes['headless']).toBeFalsy();
   });
 });
 

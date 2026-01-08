@@ -5,25 +5,27 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface PromptConfig {
   text: string;
   defaultValue?: string;
+  value?: string;
   placeholder?: string;
   multiline?: boolean;
+  rows?: number;
   validators?: ValidatorFn | ValidatorFn[];
   required?: boolean;
   reject?: {
-    color: string;
-    text: string;
+    color?: string;
+    text?: string;
   };
   accept?: {
-    color: string;
-    text: string;
+    color?: string;
+    text?: string;
   };
   width?: string;
   maxWidth?: string;
 }
 
 @Component({
-    selector: 'PrompDialogComponent',
-    template: `
+  selector: 'PrompDialogComponent',
+  template: `
     <div mat-dialog-title>{{ data.text }}</div>
     <mat-dialog-content>
       <mat-form-field>
@@ -60,14 +62,14 @@ export interface PromptConfig {
       </button>
     </mat-dialog-actions>
     `,
-    styles: [
-        `
+  styles: [
+    `
       mat-form-field {
         width: 100%;
       }
     `,
-    ],
-    standalone: false
+  ],
+  standalone: false
 })
 export class C3PromptDialogComponent {
   result: FormControl;

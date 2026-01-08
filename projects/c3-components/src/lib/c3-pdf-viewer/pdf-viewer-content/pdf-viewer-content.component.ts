@@ -16,10 +16,7 @@ import {
   PDFScriptingManager,
 } from 'pdfjs-dist/web/pdf_viewer.mjs';
 
-const SANDBOX_BUNDLE_SRC = new URL(
-  'pdfjs/pdf.worker.sandbox.mjs',
-  window.location.origin
-);
+
 
 @Component({
   selector: 'pdf-viewer-content',
@@ -29,15 +26,27 @@ const SANDBOX_BUNDLE_SRC = new URL(
   encapsulation: ViewEncapsulation.None,
 })
 export class PdfViewerContentComponent {
+  /** Source URL of the PDF to display. */
   public src = input.required<string>();
+
+  /** Path to the PDF.js worker file. Defaults to 'pdfjs/pdf.worker.min.mjs'. */
+  public workerSrc = input<string>('pdfjs/pdf.worker.min.mjs');
+
+  /** Path to the PDF.js sandbox bundle. Defaults to 'pdfjs/pdf.worker.sandbox.mjs'. */
+  public sandboxSrc = input<string>('pdfjs/pdf.worker.sandbox.mjs');
+
   public pdfViewer = model<PDFViewer | null>(null);
   public pdfDocument = model<pdfjs.PDFDocumentProxy | null>(null);
 
   public content = viewChild<ElementRef<HTMLDivElement>>('content');
 
   constructor() {
-    pdfjs.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.min.mjs';
     effect(() => {
+      // Set worker source (global)
+      if (this.workerSrc()) {
+        pdfjs.GlobalWorkerOptions.workerSrc = this.workerSrc();
+      }
+
       if (this.src()) {
         this.loadPdf();
       }
@@ -55,9 +64,14 @@ export class PdfViewerContentComponent {
     // (Optionnel) controller de recherche
     const findController = new PDFFindController({ eventBus, linkService });
 
+    const sandboxBundleSrc = new URL(
+      this.sandboxSrc(),
+      window.location.origin
+    );
+
     const scriptingManager = new PDFScriptingManager({
       eventBus,
-      sandboxBundleSrc: SANDBOX_BUNDLE_SRC.toString(),
+      sandboxBundleSrc: sandboxBundleSrc.toString(),
     });
 
     const container = this.content()!.nativeElement;

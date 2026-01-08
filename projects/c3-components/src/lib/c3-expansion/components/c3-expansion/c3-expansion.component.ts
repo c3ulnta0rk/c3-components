@@ -13,6 +13,11 @@ import { C3AutoAnimateDirective } from '../../../c3-auto-animate/c3-auto-animate
 import { C3ExpansionHeaderComponent } from '../c3-expansion-header/c3-expansion-header.component';
 import { Subscription } from 'rxjs';
 
+/**
+ * C3ExpansionComponent
+ * A style-agnostic expansion panel. Provides the expansion logic and animation 
+ * (via c3-auto-animate) but leaves styling to the consumer.
+ */
 @Component({
   selector: 'c3-expansion',
   templateUrl: './c3-expansion.component.html',
@@ -25,7 +30,10 @@ import { Subscription } from 'rxjs';
   standalone: false
 })
 export class C3ExpansionComponent implements OnDestroy {
+  /** Class to apply to the header element. Defaults to 'c3-expansion-header'. */
   public headerClass = input<string>('c3-expansion-header');
+
+  /** Whether the panel is expanded. Two-way binding supported. */
   public isExpanded = model<boolean>(false);
 
   @HostBinding('class') get hostClass() {

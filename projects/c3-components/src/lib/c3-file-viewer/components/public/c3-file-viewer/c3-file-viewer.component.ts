@@ -26,14 +26,19 @@ import { C3FileViewer } from '../../../models/file-viewer';
   standalone: false
 })
 export class C3FileViewerComponent implements OnInit {
+  /** Height in pixels occupied by other elements (e.g. header), used to calculate viewer height. Defaults to 0. */
   public readonly screenHeightOccupied = input<number | undefined>(0); // In Px
 
+  /** The C3FileViewer instance to control the viewer. */
   public readonly fileViewer = input.required<C3FileViewer>();
 
+  /** Emits when the current file index changes. */
   public readonly indexChange = output<number>();
 
+  /** Emits configuration changes. */
   public readonly configChange = output<C3FileViewerConfig>();
 
+  /** Emits custom events from the file viewer. */
   public readonly customFileEvent = output<CustomFileEvent>();
 
   constructor(
@@ -80,13 +85,13 @@ export class C3FileViewerComponent implements OnInit {
   }
 
   @HostListener('window:keyup.ArrowRight', ['$event'])
-  next(event: KeyboardEvent) {
-    this.fileViewer().nextImage(event);
+  next(event: Event) {
+    this.fileViewer().nextImage(event as KeyboardEvent);
   }
 
   @HostListener('window:keyup.ArrowLeft', ['$event'])
-  previous(event: KeyboardEvent) {
-    this.fileViewer().previousImage(event);
+  previous(event: Event) {
+    this.fileViewer().previousImage(event as KeyboardEvent);
   }
 
   defineStyleHeight() {

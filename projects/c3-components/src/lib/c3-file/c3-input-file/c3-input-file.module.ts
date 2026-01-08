@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { C3DefaultFileUploaderService, C3FileUploaderService } from './services/c3-file-uploader.service';
 import { C3InputFileTriggerComponent } from './components/c3-input-file-trigger/c3-input-file-trigger.component';
 import { C3InputFileContainerComponent } from './components/c3-input-file-container/c3-input-file-container.component';
 import { C3InputFileDisplayerComponent } from './components/c3-input-file-displayer/c3-input-file-displayer.component';
@@ -26,5 +27,8 @@ import { C3InputFileComponent } from './components/c3-input-file/c3-input-file.c
     C3InputFileDisplayerComponent,
     C3InputFileTriggerDirective,
   ],
+  providers: [
+    { provide: C3FileUploaderService, useClass: C3DefaultFileUploaderService }
+  ]
 })
-export class C3InputFileModule {}
+export class C3InputFileModule { }

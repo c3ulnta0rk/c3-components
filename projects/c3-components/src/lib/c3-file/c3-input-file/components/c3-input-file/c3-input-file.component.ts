@@ -5,15 +5,17 @@ import {
   viewChild,
   ElementRef,
   output,
+  inject,
 } from '@angular/core';
 import { C3InputFile } from '../../class/c3-input-file';
+import { C3FileUploaderService } from '../../services/c3-file-uploader.service';
 
 @Component({
-    selector: 'c3-input-file',
-    templateUrl: './c3-input-file.component.html',
-    styleUrls: ['./c3-input-file.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'c3-input-file',
+  templateUrl: './c3-input-file.component.html',
+  styleUrls: ['./c3-input-file.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class C3InputFileComponent {
   public readonly accept = input.required<string>();
@@ -21,10 +23,12 @@ export class C3InputFileComponent {
   public readonly dest = input<string>('api/upload');
   public readonly baseUrl = input<string>('localhost:3000');
   public readonly method = input<string>('POST');
-  public readonly headers = input<Object | undefined>(undefined);
+  public readonly headers = input<{ [key: string]: string } | undefined>(undefined);
 
   public readonly fileInput = viewChild.required<ElementRef<HTMLInputElement>>('fileInput');
   public readonly fileAdded = output<C3InputFile>();
+
+  private readonly _uploader = inject(C3FileUploaderService);
 
   click() {
     this.fileInput().nativeElement.click();
@@ -34,62 +38,30 @@ export class C3InputFileComponent {
     const files = Array.from(target.files as FileList);
 
     files.forEach((file) => {
-      const formData = new FormData();
-      const xhr = new XMLHttpRequest();
-
-      formData.append('upload', file);
-
-      // ecoute la progression de l'upload
-      xhr.upload.addEventListener(
-        'progress',
-        (progress) => {
-          _file.progression = Math.round(
-            (progress.loaded / progress.total) * 100
-          );
-        },
-        false
-      );
-
-      // ecoute si une erreur survient lors de l'upload
-      xhr.addEventListener('error', (event) => console.log(event), false);
-
-      // ecoute si l'utilisateur annul l'upload en cours
-      xhr.addEventListener('abort', (event) => console.log(event), false);
-
-      xhr.addEventListener('readystatechange', (ev) => {
-        if (xhr.readyState === 4) {
-          const data = JSON.parse(xhr.response);
-          _file.name = data.name;
-          _file.id = data.id;
-          _file.path = data.path;
-          _file.response = data;
-          if (_file.progression !== 100) _file.progression = 100;
-          _file.progressionChange.complete();
-          _file.emit('completed');
-        }
-      });
-
-      // initialise le type de connection et l'url
-      xhr.open(this.method(), `${this.baseUrl()}/${this.dest()}`);
-
-      // set header if data is transmitted
-      const headers = this.headers();
-      if (headers)
-        for (const [key, value] of Object.entries(headers))
-          xhr.setRequestHeader(key, value);
-
-      // start upload
-      xhr.send(formData);
-
+      // Configuration de l'objet C3InputFile
       const _file: C3InputFile = new C3InputFile({
         fileName: file.name,
         mimetype: file.type,
         size: file.size,
       });
 
-      _file.on('abord', () => {
-        xhr.abort();
+      // Construction de l'URL complète
+      // Note: Utilisation de baseUrl + dest. Si baseUrl est vide, utiliser '/' ou laisser tel quel.
+      const url = this.baseUrl() ? `${this.baseUrl()}/${this.dest()}` : this.dest();
+
+      // Démarrage de l'upload via le service
+      const subscription = this._uploader.upload(_file, file, {
+        url,
+        method: this.method(),
+        headers: this.headers()
       });
+
+      // Gestion de l'annulation
+      _file.on('abord', () => {
+        subscription.unsubscribe();
+        _file.emit('aborted'); // Optionnel, si on veut notifier
+      });
+
       this.fileAdded.emit(_file);
     });
   }

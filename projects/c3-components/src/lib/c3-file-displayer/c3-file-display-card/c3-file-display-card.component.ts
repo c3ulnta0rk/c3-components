@@ -14,17 +14,32 @@ export type C3FileCardSize = '16' | '32' | '64' | '128' | '256';
   styleUrl: './c3-file-display-card.component.scss',
 })
 export class C3FileDisplayCardComponent {
+  /**
+   * The file object/metadata to display. Can include an observable for the object URL.
+   */
   public readonly fileObjectUrl = input.required<
     | (FileMetadata & {
-        objectUrl?: Observable<string>;
-      })
+      objectUrl?: Observable<string>;
+    })
     | null
   >();
+
+  /**
+   * Function to extract the display name from the file metadata.
+   * Defaults to returning `file.name`.
+   */
   public readonly displayFn = input<(file: FileMetadata) => string>((file) => file.name);
 
+  /** Whether the file can be deleted. Defaults to false. */
   public readonly deletable = input<boolean>(false);
+
+  /** Size of the card. Options: '16', '32', '64', '128', '256'. Defaults to '32'. */
   public readonly size = input<C3FileCardSize>('32');
+
+  /** Emits when the delete button is clicked. */
   public readonly onDelete = output();
+
+  /** Emits when the download button/action is triggered. */
   public readonly onDownload = output();
 
   public readonly getFileType = computed(() => {

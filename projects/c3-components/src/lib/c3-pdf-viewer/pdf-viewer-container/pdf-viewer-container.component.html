@@ -4,5 +4,5 @@
   }
 </ng-content>
 <ng-content select="pdf-viewer-content">
-  <pdf-viewer-content [src]="src()" [(pdfViewer)]="pdfViewer" [(pdfDocument)]="pdfDocument"></pdf-viewer-content>
+  <pdf-viewer-content [src]="src()" [workerSrc]="workerSrc()" [sandboxSrc]="sandboxSrc()" [(pdfViewer)]="pdfViewer" [(pdfDocument)]="pdfDocument"></pdf-viewer-content>
 </ng-content>

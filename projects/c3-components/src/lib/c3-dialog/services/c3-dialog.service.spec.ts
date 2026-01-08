@@ -8,6 +8,9 @@ import { ConfirmDialogComponent } from '../components/c3-dialog-confirm.componen
 import { C3PromptDialogComponent } from '../components/c3-dialog-prompt.component';
 import { C3AlertDialogComponent } from '../components/c3-dialog-alert.component';
 import { C3DialogEmbedChildComponent } from '../components/c3-dialog-embed-child.component';
+import { C3ConfirmService } from './c3-confirm.service';
+import { C3PromptService } from './c3-prompt.service';
+import { C3AlertService } from './c3-alert.service';
 
 // Mock component for testing createDialogFromComponent
 @Component({
@@ -65,6 +68,9 @@ describe('C3DialogService', () => {
     TestBed.configureTestingModule({
       providers: [
         C3DialogService,
+        C3ConfirmService,
+        C3PromptService,
+        C3AlertService,
         { provide: MatDialog, useValue: matDialogSpy },
       ],
     });

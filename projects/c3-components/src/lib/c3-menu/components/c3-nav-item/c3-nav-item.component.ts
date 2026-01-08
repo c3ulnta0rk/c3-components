@@ -10,9 +10,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './c3-nav-item.component.scss',
 })
 export class C3NavItemComponent {
+  /** The router link path for this navigation item. */
   public readonly route = input.required<string>();
+
+  /** The title/label of the navigation item. */
   public readonly itemTitle = input.required<string>();
+
+  /** Optional regex string to check if the item is active based on URL. If null, defaults to `route`. */
   public readonly check = input<string | null>(null);
+
+  /** Whether the link is external (opens in new tab/window). Defaults to false. */
   public readonly isExternal = input<boolean>(false);
 
   private readonly element = viewChild('button', {
