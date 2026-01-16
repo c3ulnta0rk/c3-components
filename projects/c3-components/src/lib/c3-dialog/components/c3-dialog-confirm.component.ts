@@ -13,11 +13,12 @@ export interface ConfirmConfig {
     text: string;
   };
   width?: string;
+  maxWidth?: string;
 }
 
 @Component({
-    selector: 'ConfirmDialogComponent',
-    template: `
+  selector: 'ConfirmDialogComponent',
+  template: `
     <mat-dialog-content>
       <div [innerHtml]="data.text"></div>
     </mat-dialog-content>
@@ -30,14 +31,14 @@ export interface ConfirmConfig {
       </button>
     </mat-dialog-actions>
   `,
-    standalone: false
+  standalone: false
 })
 export class ConfirmDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: ConfirmConfig
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();

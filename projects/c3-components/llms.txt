@@ -1,0 +1,52 @@
+# c3-components
+
+## Overview
+c3-components is an open-source Angular component library that extends `@angular/material` to provide reusable, customizable, and modern UI components. It uses TailwindCSS for styling and follows a modular architecture.
+
+## Tech Stack
+- **Framework**: Angular
+- **Styling**: TailwindCSS, SCSS
+- **Core Dependency**: `@angular/material`
+
+## Project Structure
+- `projects/c3-components`: Root directory of the library.
+- `projects/c3-components/src/lib`: Source code for components, services, and directives.
+- `projects/c3-components/src/public-api.ts`: Public API exports.
+
+## Key Components
+The library exports the following main modules and components:
+
+### Dialogs (`lib/c3-dialog`)
+- `C3DialogService`: Service to open dialogs.
+- `C3DialogAlertComponent`: Simple alert dialog.
+- `C3DialogConfirmComponent`: Confirmation dialog.
+- `C3DialogPromptComponent`: Input prompt dialog.
+- `C3DialogTemplateComponent`: Customizable template dialog.
+
+### File Viewer (`lib/c3-file-viewer`)
+- `C3FileViewerComponent`: Main component to view files (PDF, images).
+- `C3FileViewerDialogComponent`: Dialog wrapper for file viewer.
+
+### File Displayer (`lib/c3-file-displayer`)
+- `C3FileDisplayListComponent`: Display files in a list.
+- `C3FileDisplayGridComponent`: Display files in a grid.
+- `C3FileDisplayCardComponent`: Card view for files.
+
+### Menus & Dropdowns
+- `C3MenuComponent` (`lib/c3-menu`): Standard menu component.
+- `C3FlowingMenuComponent` (`lib/c3-flowing-menu`): Floating/adaptive menu.
+- `C3DropdownComponent` (`lib/c3-dropdown`): Custom dropdown implementation.
+
+### Other Components
+- `C3ExpansionComponent` (`lib/c3-expansion`): Expansion panel/accordion.
+- `C3TraceCardComponent` (`lib/c3-trace-card`): Traceability or timeline card.
+- `C3TreeComponent` (`lib/c3-tree`): Tree visualization.
+
+## Utilities
+- **Directives**: `C3AutoAnimateDirective`, `C3SelectOnFocusDirective`, `FullScreenDirective`.
+- **Pipes**: `C3SafeUrlPipe`.
+
+## Development Commands
+- **Start Dev Server**: `npm start` (Serves `c3-components-docs`)
+- **Build Docs**: `npm run build`
+- **Run Tests**: `npm run test`
