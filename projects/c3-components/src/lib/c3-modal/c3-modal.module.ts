@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { C3ModalComponent } from './c3-modal.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  imports: [C3ModalComponent],
+  exports: [C3ModalComponent],
 })
 export class C3ModalModule {}

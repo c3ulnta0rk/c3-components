@@ -1,28 +1,149 @@
 <h1>Tabs API</h1>
 
 <section class="api-section">
-  <h2>Status</h2>
-  <div class="status-notice status-notice--coming-soon">
-    <p><strong>Coming Soon</strong></p>
-    <p>This component is currently in development. The module <code>C3TabsModule</code> is available but does not yet export any components.</p>
-  </div>
+  <h2>Import</h2>
+  <pre><code>import &#123;
+  C3TabsComponent,
+  C3TabComponent,
+  C3TabsModule
+&#125; from 'c3-components';</code></pre>
 </section>
 
 <section class="api-section">
-  <h2>Planned Features</h2>
-  <ul class="notes-list">
-    <li>Tabbed navigation component</li>
-    <li>Support for lazy loading tab content</li>
-    <li>Keyboard navigation</li>
-    <li>Customizable tab styling</li>
-  </ul>
+  <h2>C3TabsComponent</h2>
+  <p>Selector: <code>c3-tabs, [c3-tabs]</code></p>
+  <p>A pill-shaped tab bar with an animated sliding background indicator.
+    Integrates with Angular Router to auto-detect the active tab based on <code>RouterLink</code> directives.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ignoreQueryParams</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>If <code>true</code>, query parameters are ignored when matching the active route.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>selectedItem</code></td>
+        <td><code>C3TabComponent | undefined</code></td>
+        <td>Reference to the currently selected tab.</td>
+      </tr>
+      <tr>
+        <td><code>btnBackgroundOffset</code></td>
+        <td><code>number | string</code></td>
+        <td>Left offset of the sliding background indicator.</td>
+      </tr>
+      <tr>
+        <td><code>btnWidth</code></td>
+        <td><code>number | string</code></td>
+        <td>Width of the sliding background indicator.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Methods</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Parameters</th>
+        <th>Returns</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>setSelectedItem</code></td>
+        <td><code>index: number = 0</code></td>
+        <td><code>void</code></td>
+        <td>Selects a tab by its index and updates the indicator position.</td>
+      </tr>
+      <tr>
+        <td><code>getLeftPositionElement</code></td>
+        <td><code>element: Element</code></td>
+        <td><code>number</code></td>
+        <td>Gets the left position of an element relative to the viewport. Returns 0 on server.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <section class="api-section">
-  <h2>Alternative</h2>
-  <p>In the meantime, consider using:</p>
+  <h2>C3TabComponent</h2>
+  <p>Selector: <code>c3-tab, [c3-tab]</code></p>
+  <p>A single tab item used inside <code>c3-tabs</code>. Provides a ripple effect and wraps projected content.</p>
+
+  <h3>Properties</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>elementRef</code></td>
+        <td><code>ElementRef</code></td>
+        <td>Reference to the host element, used by <code>C3TabsComponent</code> for positioning.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre ngNonBindable><code>&lt;!-- With router links (auto-detection of active tab) --&gt;
+&lt;c3-tabs&gt;
+  &lt;c3-tab&gt;&lt;a routerLink="/page-a"&gt;Page A&lt;/a&gt;&lt;/c3-tab&gt;
+  &lt;c3-tab&gt;&lt;a routerLink="/page-b"&gt;Page B&lt;/a&gt;&lt;/c3-tab&gt;
+  &lt;c3-tab&gt;&lt;a routerLink="/page-c"&gt;Page C&lt;/a&gt;&lt;/c3-tab&gt;
+&lt;/c3-tabs&gt;
+
+&lt;!-- Without router (manual selection) --&gt;
+&lt;c3-tabs #tabs&gt;
+  &lt;c3-tab (click)="tabs.setSelectedItem(0)"&gt;Tab 1&lt;/c3-tab&gt;
+  &lt;c3-tab (click)="tabs.setSelectedItem(1)"&gt;Tab 2&lt;/c3-tab&gt;
+  &lt;c3-tab (click)="tabs.setSelectedItem(2)"&gt;Tab 3&lt;/c3-tab&gt;
+&lt;/c3-tabs&gt;
+
+&lt;!-- Ignoring query params for route matching --&gt;
+&lt;c3-tabs [ignoreQueryParams]="true"&gt;
+  &lt;c3-tab&gt;&lt;a routerLink="/search" [queryParams]="&#123; q: 'test' &#125;"&gt;Search&lt;/a&gt;&lt;/c3-tab&gt;
+&lt;/c3-tabs&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>How It Works</h2>
   <ul class="notes-list">
-    <li><code>C3FlowingMenuComponent</code> for tabbed content display</li>
-    <li>Angular Material <code>MatTabsModule</code> for full-featured tabs</li>
+    <li>The component listens to <code>Router.events</code> (filtered for <code>NavigationEnd</code>) to auto-detect active tabs.</li>
+    <li>Active route matching uses <code>Router.isActive()</code> with configurable query param handling.</li>
+    <li>When multiple routes match, the one with the most query parameters wins (most specific match).</li>
+    <li>A sliding background indicator animates between tabs using absolute positioning.</li>
+    <li>Without <code>RouterLink</code> directives, the first tab is selected by default. Use <code>setSelectedItem(index)</code> for manual control.</li>
+    <li>SSR-safe: <code>getBoundingClientRect</code> calls are guarded with <code>isPlatformBrowser</code>.</li>
   </ul>
 </section>

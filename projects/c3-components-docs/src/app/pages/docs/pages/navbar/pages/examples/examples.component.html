@@ -1,0 +1,41 @@
+<h1>Navbar</h1>
+<p class="my-4">
+  The <code>c3-navbar</code> component provides a navigation bar with Material elevation. Links are projected as content.
+</p>
+
+<example-viewer>
+  <h4 title>Basic Navbar</h4>
+
+  <ng-container example>
+    <c3-navbar>
+      <a style="padding: 0 16px; line-height: 36px; text-decoration: none; color: inherit;">Home</a>
+      <a class="selected" style="padding: 0 16px; line-height: 36px; text-decoration: none; color: inherit;">Dashboard</a>
+      <a style="padding: 0 16px; line-height: 36px; text-decoration: none; color: inherit;">Settings</a>
+    </c3-navbar>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-navbar>
+  <a routerLink="/home" routerLinkActive="selected">Home</a>
+  <a routerLink="/dashboard" routerLinkActive="selected">Dashboard</a>
+  <a routerLink="/settings" routerLinkActive="selected">Settings</a>
+</c3-navbar>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3NavbarModule } from 'c3-components';
+
+@Component({
+  imports: [C3NavbarModule, RouterModule],
+})
+export class MyComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

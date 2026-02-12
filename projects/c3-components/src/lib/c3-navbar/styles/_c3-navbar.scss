@@ -1,0 +1,65 @@
+@use "@angular/material" as mat;
+
+@mixin c3-navbar-theme($theme) {
+  $bg: mat.get-theme-color($theme, background, background);
+  $accent: mat.get-theme-color($theme, accent);
+  $is-dark-theme: if(mat.get-theme-type($theme) == dark, true, false);
+
+  .c3-navbar {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    background-color: $bg;
+
+    &.fixed {
+      position: fixed;
+      width: calc(100% - 60px);
+      left: 60px;
+      height: 36px;
+      display: flex;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    &:hover {
+      overflow-x: visible;
+    }
+
+    a {
+      display: block;
+      flex-direction: row;
+      min-width: 150px;
+      cursor: pointer;
+      padding: 0 16px;
+      text-decoration: none;
+      line-height: 1.8em;
+      border-top: 3px solid transparent;
+      border-right: 1px solid #ffffff1a;
+      color: inherit;
+
+      &:last-of-type {
+        border-right: none;
+      }
+
+      &.selected {
+        border-top: 3px solid $accent;
+
+        @if $is-dark-theme {
+          background-color: $accent;
+        }
+      }
+    }
+
+    &.flex a {
+      display: flex;
+      flex: 1;
+      padding-left: 16px;
+    }
+
+    .spacer {
+      display: block;
+      flex-direction: row;
+      min-width: 100px;
+    }
+  }
+}

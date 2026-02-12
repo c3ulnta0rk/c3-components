@@ -1,0 +1,37 @@
+@use "@angular/material" as mat;
+
+@mixin c3-rounded-title-theme($theme) {
+  $bg-accent: mat.get-theme-color($theme, accent);
+  $bg-primary: mat.get-theme-color($theme, primary);
+  $is-dark-theme: if(mat.get-theme-type($theme) == dark, true, false);
+
+  .c3-rounded-title {
+    $menuText-height: 44px;
+
+    position: relative;
+    display: flex;
+    border-radius: 26px;
+    height: $menuText-height;
+    padding: 4px;
+
+    @if $is-dark-theme {
+      background-color: $bg-accent;
+    } @else {
+      background-color: $bg-accent;
+    }
+
+    .title {
+      z-index: 1;
+      cursor: pointer;
+      transition: 0.5s all ease;
+      line-height: calc($menuText-height - 8px);
+      text-decoration: none;
+      color: white;
+      padding: 0 8px;
+      width: 100%;
+      background: $bg-primary;
+      border-radius: 18px;
+      user-select: none;
+    }
+  }
+}

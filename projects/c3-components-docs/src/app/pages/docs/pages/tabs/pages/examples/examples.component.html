@@ -1,1 +1,79 @@
-<p>examples works!</p>
+<p class="my-4">
+  The <code>c3-tabs</code> component provides a pill-shaped tab bar with a sliding background indicator.
+  It integrates with Angular Router to auto-detect the active tab.
+</p>
+
+<example-viewer>
+  <h4 title>Basic Tabs (Without Router)</h4>
+
+  <ng-container example>
+    <c3-tabs #tabs>
+      <c3-tab (click)="tabs.setSelectedItem(0)">Tab One</c3-tab>
+      <c3-tab (click)="tabs.setSelectedItem(1)">Tab Two</c3-tab>
+      <c3-tab (click)="tabs.setSelectedItem(2)">Tab Three</c3-tab>
+    </c3-tabs>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-tabs #tabs>
+  <c3-tab (click)="tabs.setSelectedItem(0)">Tab One</c3-tab>
+  <c3-tab (click)="tabs.setSelectedItem(1)">Tab Two</c3-tab>
+  <c3-tab (click)="tabs.setSelectedItem(2)">Tab Three</c3-tab>
+</c3-tabs>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3TabsModule } from 'c3-components';
+
+@Component({
+  imports: [C3TabsModule],
+})
+export class MyComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Tabs with Router</h4>
+
+  <ng-container example>
+    <p class="note" style="padding: 1rem; background: var(--surface-elevated, #f5f5f5); border-left: 3px solid var(--c3-accent, #6c63ff); border-radius: 8px; color: var(--text-secondary, #666);">
+      When used with <code>routerLink</code>, the active tab is detected automatically on navigation.
+    </p>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-tabs>
+  <c3-tab><a routerLink="/page-a">Page A</a></c3-tab>
+  <c3-tab><a routerLink="/page-b">Page B</a></c3-tab>
+  <c3-tab><a routerLink="/page-c">Page C</a></c3-tab>
+</c3-tabs>
+
+<router-outlet></router-outlet>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3TabsModule } from 'c3-components';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  imports: [C3TabsModule, RouterModule],
+})
+export class MyComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

@@ -105,6 +105,37 @@ export * from './lib/c3-menu/components/c3-menu/c3-menu.component';
 export * from './lib/c3-menu/components/c3-nav-item/c3-nav-item.component';
 
 /**
+ * C3 Highlight Text
+ */
+export * from './lib/c3-highlight-text/c3-highlight-text.directive';
+export * from './lib/c3-highlight-text/c3-highlight-text.module';
+
+/**
+ * C3 Rounded Title
+ */
+export * from './lib/c3-rounded-title/c3-rounded-title.component';
+export * from './lib/c3-rounded-title/c3-rounded-title.module';
+
+/**
+ * C3 Navbar
+ */
+export * from './lib/c3-navbar/c3-navbar.component';
+export * from './lib/c3-navbar/c3-navbar.module';
+
+/**
+ * C3 Modal
+ */
+export * from './lib/c3-modal/c3-modal.component';
+export * from './lib/c3-modal/c3-modal.module';
+
+/**
+ * C3 Tabs
+ */
+export * from './lib/c3-tabs/components/c3-tabs/c3-tabs.component';
+export * from './lib/c3-tabs/components/c3-tab/c3-tab.component';
+export * from './lib/c3-tabs/c3-tabs.module';
+
+/**
  * C3 PDF Viewer
  */
 // export * from './lib/c3-pdf-viewer/pdf-viewer-container/pdf-viewer-container.component';

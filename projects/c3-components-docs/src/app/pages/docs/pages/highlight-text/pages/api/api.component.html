@@ -1,32 +1,84 @@
 <h1>Highlight Text API</h1>
 
 <section class="api-section">
-  <h2>Status</h2>
-  <div class="status-notice status-notice--coming-soon">
-    <p><strong>Coming Soon</strong></p>
-    <p>
-      This component is currently in development. The module <code>C3HighlightTextModule</code> is available but does
-      not yet export any components.
-    </p>
-  </div>
+  <h2>Import</h2>
+  <pre><code>import &#123; C3HighlightTextDirective &#125; from 'c3-components';
+// or
+import &#123; C3HighlightTextModule &#125; from 'c3-components';</code></pre>
 </section>
 
 <section class="api-section">
-  <h2>Planned Features</h2>
+  <h2>C3HighlightTextDirective</h2>
+  <p>Selector: <code>[c3HighlightText]</code></p>
+  <p>A directive that highlights matching text within the host element's content. Wraps matched text in <code>&lt;span class="c3-highlight"&gt;</code> elements.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>c3HighlightText</code></td>
+        <td><code>string</code></td>
+        <td><code>''</code></td>
+        <td>The text string to search for and highlight.</td>
+      </tr>
+      <tr>
+        <td><code>c3HighlightTextCaseSensitive</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether the matching should be case-sensitive.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>CSS Classes</h2>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.c3-highlight</code></td>
+        <td>Applied to the <code>&lt;span&gt;</code> wrapping matched text. Style this class to customize the highlight appearance.</td>
+      </tr>
+      <tr>
+        <td><code>.c3-highlight_container</code></td>
+        <td>Applied to the wrapper <code>&lt;span&gt;</code> that contains the highlighted text node.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre ngNonBindable><code>&lt;!-- Basic usage (case-insensitive by default) --&gt;
+&lt;p [c3HighlightText]="searchTerm"&gt;Some text to search in&lt;/p&gt;
+
+&lt;!-- Case-sensitive matching --&gt;
+&lt;p [c3HighlightText]="searchTerm"
+   [c3HighlightTextCaseSensitive]="true"&gt;
+  Case Sensitive Text
+&lt;/p&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Notes</h2>
   <ul class="notes-list">
-    <li>Text highlighting pipe or directive</li>
-    <li>Search term highlighting</li>
-    <li>Customizable highlight styles</li>
-    <li>Case-insensitive matching</li>
-    <li>Multiple term support</li>
+    <li>The directive operates on the DOM directly, walking text nodes within the host element.</li>
+    <li>When the search text changes, previous highlights are automatically reset before new ones are applied.</li>
+    <li>Special regex characters in the search text are escaped automatically.</li>
+    <li>The directive is standalone and can be imported directly without a module.</li>
   </ul>
-</section>
-
-<section class="api-section">
-  <h2>Planned Usage</h2>
-  <pre ngNonBindable><code>&lt;!-- As a pipe --&gt;
-&lt;p [innerHTML]="text | c3HighlightText: searchTerm"&gt;&lt;/p&gt;
-
-&lt;!-- As a directive --&gt;
-&lt;p [c3HighlightText]="searchTerm"&gt;{{ text }}&lt;/p&gt;</code></pre>
 </section>

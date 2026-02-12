@@ -23,21 +23,30 @@ Also, make sure you have installed and configured @angular/material as per [thei
 
 ## Components
 
-c3-components offer a variety of components that extend the functionality of @angular/material. Below is a table listing the available components and the progress status of their documentation:
+c3-components offer a variety of components that extend the functionality of @angular/material. Below is a table listing the available components and their current status:
 
-| Component      | Documentation Status                                                        |
-| -------------- | --------------------------------------------------------------------------- |
-| Dialog         | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
-| Dropdown       | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
-| File Upload    | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| File Viewer    | ![#ff9800](https://via.placeholder.com/15/ff9800/000000?text=+) In Progress |
-| Highlight Text | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Completed   |
-| Menu           | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| Modal          | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| NavBar         | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| Pdf Dialog     | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| Rounded Title  | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
-| Tabs           | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned     |
+| Component        | Status                                                                        |
+| ---------------- | ----------------------------------------------------------------------------- |
+| Auto Animate     | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Dialog           | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Dropdown         | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Expansion        | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| File Displayer   | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| File Upload      | ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Planned       |
+| File Viewer      | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Flowing Menu     | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Highlight Text   | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Menu             | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Modal            | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Navbar           | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| PDF Viewer       | ![#ff9800](https://via.placeholder.com/15/ff9800/000000?text=+) In Progress   |
+| Prevent Event    | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Rounded Title    | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Safe URL         | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Select on Focus  | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Tabs             | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Trace Card       | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
+| Tree             | ![#4caf50](https://via.placeholder.com/15/4caf50/000000?text=+) Available     |
 
 ## Documentation
 

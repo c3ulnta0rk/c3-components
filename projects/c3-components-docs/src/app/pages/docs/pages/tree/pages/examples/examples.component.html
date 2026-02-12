@@ -1,1 +1,74 @@
-<p>examples works!</p>
+<p class="my-4">
+  The <code>c3-tree</code> component wraps Angular Material's <code>MatTree</code> with automatic flattening and loading support.
+</p>
+
+<example-viewer>
+  <h4 title>Basic Tree</h4>
+
+  <ng-container example>
+    <c3-tree
+      [(treeData)]="treeData"
+      [(isLoading)]="isLoading"
+      (treeDataSelected)="onNodeSelected($event)"
+    ></c3-tree>
+
+    @if (selectedNode) {
+      <p style="margin-top: 16px; padding: 12px; background: var(--surface-elevated, #f5f5f5); border-radius: 8px;">
+        <strong>Selected:</strong> {{ selectedNode.name }} — {{ selectedNode.rawData.description }}
+      </p>
+    }
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-tree
+  [(treeData)]="treeData"
+  [(isLoading)]="isLoading"
+  (treeDataSelected)="onNodeSelected($event)"
+></c3-tree>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3TreeComponent, TreeType } from 'c3-components';
+
+interface MyData {
+  description: string;
+}
+type MyNode = TreeType<MyData>;
+
+@Component({
+  imports: [C3TreeComponent],
+})
+export class MyComponent {
+  isLoading = false;
+  selectedNode: MyNode | null = null;
+
+  treeData: MyNode[] = [
+    {
+      id: 1,
+      level: 0,
+      name: 'Documents',
+      children: [
+        {
+          id: 2, level: 1, name: 'Reports',
+          ancestorId: 1, children: [],
+          rawData: { description: 'All reports' }
+        },
+      ],
+      rawData: { description: 'Root folder' }
+    }
+  ];
+
+  onNodeSelected(node: MyNode): void {
+    this.selectedNode = node;
+  }
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

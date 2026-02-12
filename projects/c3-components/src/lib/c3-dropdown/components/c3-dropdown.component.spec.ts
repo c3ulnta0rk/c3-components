@@ -48,6 +48,15 @@ describe('C3DropdownComponent', () => {
     component.isOpen.set(false);
     expect(component.isOpen()).toBe(false);
   });
+
+  it('should have dropdownClass signal initialized to undefined', () => {
+    expect(component.dropdownClass()).toBeUndefined();
+  });
+
+  it('should merge panelClass and dropdownClass', () => {
+    component.dropdownClass.set(['class-from-trigger']);
+    expect(component.mergedClass()).toEqual(['class-from-trigger']);
+  });
 });
 
 describe('C3DropdownComponent with host', () => {

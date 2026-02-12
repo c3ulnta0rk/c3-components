@@ -1,1 +1,71 @@
-<p>examples works!</p>
+<p class="my-4">
+  The <code>c3HighlightText</code> directive highlights matching text within any element. Type in the input below to see it in action.
+</p>
+
+<example-viewer>
+  <h4 title>Basic Highlight</h4>
+
+  <ng-container example>
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Search text</mat-label>
+      <input matInput [(ngModel)]="searchText" placeholder="Type to highlight..." />
+    </mat-form-field>
+
+    <div [c3HighlightText]="searchText" style="padding: 16px; border: 1px solid var(--border-color, #ccc); border-radius: 8px;">
+      <p>This is a paragraph with some text you can highlight. Try typing "highlight" or "paragraph" in the input above.</p>
+      <p>The directive walks through all text nodes and wraps matching portions in highlight spans.</p>
+    </div>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<input [(ngModel)]="searchText" />
+
+<div [c3HighlightText]="searchText">
+  <p>This is a paragraph with some text you can highlight.</p>
+</div>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3HighlightTextDirective } from 'c3-components';
+
+@Component({
+  imports: [C3HighlightTextDirective, FormsModule],
+})
+export class MyComponent {
+  searchText = 'highlight';
+}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Case-Sensitive Highlight</h4>
+
+  <ng-container example>
+    <mat-checkbox [(ngModel)]="caseSensitive" style="margin-bottom: 16px">Case sensitive</mat-checkbox>
+
+    <div [c3HighlightText]="'Hello'" [c3HighlightTextCaseSensitive]="caseSensitive"
+         style="padding: 16px; border: 1px solid var(--border-color, #ccc); border-radius: 8px;">
+      <p>hello Hello HELLO hElLo</p>
+      <p>Toggle the checkbox above to see the difference between case-sensitive and case-insensitive matching for "Hello".</p>
+    </div>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<div [c3HighlightText]="'Hello'"
+     [c3HighlightTextCaseSensitive]="caseSensitive">
+  <p>hello Hello HELLO hElLo</p>
+</div>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

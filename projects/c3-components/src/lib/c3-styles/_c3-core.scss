@@ -4,6 +4,10 @@
 @use "../c3-expansion/styles/_c3-expansion" as *;
 @use "../c3-flowing-menu/styles/c3-flowing-menu" as *;
 @use "../c3-menu/styles/c3-menu" as *;
+@use "../c3-tabs/styles/c3-tabs" as *;
+@use "../c3-navbar/styles/c3-navbar" as *;
+@use "../c3-modal/styles/c3-modal" as *;
+@use "../c3-rounded-title/styles/c3-rounded-title" as *;
 
 @mixin c3-core($theme) {
   @include c3-root-variables($theme);
@@ -12,6 +16,10 @@
   @include c3-expansion($theme);
   @include c3-flowing-menu($theme);
   @include c3-menu-theme();
+  @include c3-tabs-theme($theme);
+  @include c3-navbar-theme($theme);
+  @include c3-modal-theme($theme);
+  @include c3-rounded-title-theme($theme);
 }
 
 @mixin c3-core-m3($theme) {

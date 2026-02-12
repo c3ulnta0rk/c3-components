@@ -1,0 +1,19 @@
+@use "@angular/material" as mat;
+
+@mixin c3-tabs-theme($theme) {
+  $primary: mat.get-theme-color($theme, primary);
+  $accent: mat.get-theme-color($theme, accent);
+  $is-dark-theme: mat.get-theme-type($theme) == dark;
+
+  .c3-tabs .menu-text__container {
+    @if $is-dark-theme {
+      background-color: color-mix(in srgb, #{$accent} 70%, black);
+    } @else {
+      background-color: color-mix(in srgb, #{$accent} 50%, white);
+    }
+
+    .toggle-btn__background {
+      background: #{$primary};
+    }
+  }
+}

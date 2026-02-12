@@ -1,0 +1,72 @@
+<h1>Navbar API</h1>
+
+<section class="api-section">
+  <h2>Import</h2>
+  <pre><code>import &#123; C3NavbarComponent &#125; from 'c3-components';
+// or
+import &#123; C3NavbarModule &#125; from 'c3-components';</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>C3NavbarComponent</h2>
+  <p>Selector: <code>c3-navbar</code></p>
+  <p>A simple navigation bar component with Material elevation. Content is projected via <code>&lt;ng-content&gt;</code>.</p>
+
+  <h3>Host Bindings</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>class</code></td>
+        <td><code>c3-navbar mat-elevation-z4</code></td>
+        <td>CSS classes applied to the host element for theming and elevation.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>CSS Classes</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.fixed</code></td>
+        <td>Add to the host to make the navbar fixed-positioned with offset for the side menu.</td>
+      </tr>
+      <tr>
+        <td><code>.flex</code></td>
+        <td>Add to the host to make link items evenly distributed with flexbox.</td>
+      </tr>
+      <tr>
+        <td><code>.selected</code></td>
+        <td>Add to an <code>&lt;a&gt;</code> child to mark it as the active/selected link.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>The component uses <code>ViewEncapsulation.None</code>. Apply the theme mixin globally:</p>
+  <pre><code>&#64;use 'c3-components' as c3;
+
+&#64;include c3.c3-navbar-theme($your-theme);</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;c3-navbar&gt;
+  &lt;a routerLink="/home" routerLinkActive="selected"&gt;Home&lt;/a&gt;
+  &lt;a routerLink="/settings" routerLinkActive="selected"&gt;Settings&lt;/a&gt;
+&lt;/c3-navbar&gt;</code></pre>
+</section>

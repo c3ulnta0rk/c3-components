@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { C3RoundedTitleComponent } from './c3-rounded-title.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  imports: [C3RoundedTitleComponent],
+  exports: [C3RoundedTitleComponent],
 })
 export class C3RoundedTitleModule {}

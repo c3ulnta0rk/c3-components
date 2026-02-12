@@ -1,39 +1,115 @@
 <h1>Modal API</h1>
 
 <section class="api-section">
-  <h2>Status</h2>
-  <div class="status-notice status-notice--coming-soon">
-    <p><strong>Coming Soon</strong></p>
-    <p>This component is currently in development. The module <code>C3ModalModule</code> is available but does not yet export any components.</p>
-  </div>
+  <h2>Import</h2>
+  <pre><code>import &#123; C3ModalComponent &#125; from 'c3-components';
+// or
+import &#123; C3ModalModule &#125; from 'c3-components';</code></pre>
 </section>
 
 <section class="api-section">
-  <h2>Planned Features</h2>
+  <h2>C3ModalComponent</h2>
+  <p>Selector: <code>c3-modal</code></p>
+  <p>A side-panel modal that slides in from the right. Uses a <code>router-outlet</code> for its content and
+    provides a close button that navigates back to a computed return route.</p>
+
+  <h3>Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>returnRoute</code></td>
+        <td><code>string | null</code></td>
+        <td><code>null</code></td>
+        <td>Overrides the auto-computed return route used by the close button and backdrop.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Internal Signals</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>_returnRoute</code></td>
+        <td><code>Signal&lt;string&gt;</code></td>
+        <td>The resolved return route (auto-computed or overridden by the input).</td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>Signal&lt;string&gt;</code></td>
+        <td>The modal container height, updated on window resize.</td>
+      </tr>
+      <tr>
+        <td><code>posButton</code></td>
+        <td><code>Signal&lt;number&gt;</code></td>
+        <td>The close button horizontal position, computed from the container width.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="api-section">
+  <h2>How It Works</h2>
   <ul class="notes-list">
-    <li>Lightweight modal component</li>
-    <li>Backdrop and close button support</li>
-    <li>Animation options</li>
-    <li>Configurable size and positioning</li>
+    <li>The return route is <strong>auto-computed</strong> by walking the <code>ActivatedRoute.pathFromRoot</code>. It builds the parent path by skipping the current route segment.</li>
+    <li>Clicking the backdrop (<code>.outer</code>) or the close button navigates to the return route via <code>[routerLink]</code>.</li>
+    <li>The modal height matches <code>window.innerHeight</code> and updates on resize.</li>
+    <li>The close button position is watched with a <code>setInterval</code> and updated when the container width changes.</li>
+    <li>The component is SSR-safe — browser-only APIs are guarded with <code>isPlatformBrowser</code>.</li>
   </ul>
 </section>
 
 <section class="api-section">
-  <h2>Alternative</h2>
-  <p>In the meantime, consider using:</p>
+  <h2>Usage Example</h2>
+  <pre><code>&lt;!-- In a route configuration --&gt;
+&#123;
+  path: 'detail',
+  component: DetailPageComponent,
+  children: [
+    &#123;
+      path: 'edit',
+      component: C3ModalComponent,
+      children: [
+        &#123; path: '', component: EditFormComponent &#125;
+      ]
+    &#125;
+  ]
+&#125;
+
+&lt;!-- In the parent template --&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+&lt;!-- Or with a custom return route --&gt;
+&lt;c3-modal returnRoute="/dashboard"&gt;&lt;/c3-modal&gt;</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Styling</h2>
+  <p>The component uses <code>ViewEncapsulation.None</code> with host class <code>c3-modal</code>. Apply the theme mixin:</p>
+  <pre><code>&#64;use 'c3-components' as c3;
+
+&#64;include c3.c3-modal-theme($your-theme);</code></pre>
+</section>
+
+<section class="api-section">
+  <h2>Dependencies</h2>
   <ul class="notes-list">
-    <li><code>C3DialogService</code> for dialog-based modals with full functionality</li>
-    <li>Angular Material <code>MatDialogModule</code> directly</li>
+    <li><code>&#64;angular/router</code> - RouterModule (router-outlet, routerLink)</li>
+    <li><code>&#64;angular/material/button</code> - MatButtonModule (close button FAB)</li>
+    <li><code>&#64;angular/material/icon</code> - MatIconModule (close icon)</li>
   </ul>
-  <pre><code>// Using C3DialogService
-import &#123; C3DialogService &#125; from 'c3-components';
-
-constructor(private dialog: C3DialogService) &#123;&#125;
-
-openModal() &#123;
-  this.dialog.createDialogFromComponent(&#123;
-    component: MyModalComponent,
-    width: '500px'
-  &#125;);
-&#125;</code></pre>
 </section>

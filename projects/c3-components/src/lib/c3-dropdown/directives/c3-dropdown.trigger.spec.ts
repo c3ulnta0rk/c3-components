@@ -10,6 +10,7 @@ import { C3DropdownModule } from '../c3-dropdown.module';
 class MockDropdownComponent {
   isOpen = signal(false);
   template = signal<TemplateRef<any> | null>(null);
+  dropdownClass = signal<any>(undefined);
 }
 
 @Component({
@@ -147,11 +148,18 @@ describe('C3DropdownTrigger', () => {
     expect(directive.dropdownDisabled()).toBe(false);
   });
 
-  it('should have dropdownClass input defaulting to empty string', () => {
+  it('should have dropdownClass input defaulting to undefined', () => {
     const buttonEl = fixture.debugElement.children[0];
     const directive = buttonEl.injector.get(C3DropdownTrigger);
 
-    expect(directive.dropdownClass()).toBe('');
+    expect(directive.dropdownClass()).toBeUndefined();
+  });
+
+  it('should have c3DropdownClass input defaulting to undefined', () => {
+    const buttonEl = fixture.debugElement.children[0];
+    const directive = buttonEl.injector.get(C3DropdownTrigger);
+
+    expect(directive.c3DropdownClass()).toBeUndefined();
   });
 });
 

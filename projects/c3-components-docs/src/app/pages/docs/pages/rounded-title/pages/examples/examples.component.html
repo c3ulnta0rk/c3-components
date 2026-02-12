@@ -1,1 +1,32 @@
-<p>examples works!</p>
+<p class="my-4">
+  The <code>c3-rounded-title</code> component wraps content in a pill-shaped container with themed colors.
+</p>
+
+<example-viewer>
+  <h4 title>Basic Rounded Title</h4>
+
+  <ng-container example>
+    <c3-rounded-title>Section Title</c3-rounded-title>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<c3-rounded-title>Section Title</c3-rounded-title>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3RoundedTitleModule } from 'c3-components';
+
+@Component({
+  imports: [C3RoundedTitleModule],
+})
+export class MyComponent {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

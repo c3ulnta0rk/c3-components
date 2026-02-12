@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { C3NavbarComponent } from './c3-navbar.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  imports: [C3NavbarComponent],
+  exports: [C3NavbarComponent],
 })
 export class C3NavbarModule {}

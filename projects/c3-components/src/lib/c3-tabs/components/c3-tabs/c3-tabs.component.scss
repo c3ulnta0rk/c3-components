@@ -1,0 +1,39 @@
+// Base structure; colors come from c3-tabs theme mixin
+.c3-tabs {
+  display: block;
+
+  .menu-text__container {
+    $menuText-height: 44px;
+
+    position: relative;
+    display: flex;
+    border-radius: 26px;
+    height: $menuText-height;
+    padding: 4px;
+
+    .item,
+    .item a {
+      z-index: 1;
+      cursor: pointer;
+      transition: 0.5s all ease;
+      line-height: calc($menuText-height - 8px);
+      text-decoration: none;
+      color: white;
+      padding: 0 8px;
+    }
+
+    .item:not(.active),
+    .item:not(.active) a {
+      color: white;
+    }
+
+    .toggle-btn__background {
+      position: absolute;
+      width: 70px;
+      border-radius: 18px;
+      height: calc($menuText-height - 8px);
+      transition: 0.5s all ease;
+      user-select: none;
+    }
+  }
+}

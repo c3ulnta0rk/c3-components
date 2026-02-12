@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { C3HighlightTextDirective } from './c3-highlight-text.directive';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  imports: [C3HighlightTextDirective],
+  exports: [C3HighlightTextDirective],
 })
 export class C3HighlightTextModule {}

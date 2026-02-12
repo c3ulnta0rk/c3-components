@@ -1,1 +1,89 @@
-<p>examples works!</p>
+<p class="my-4">
+  The <code>c3-modal</code> component is a side-panel modal designed to work with Angular Router.
+  It slides in from the right and displays routed content via a <code>router-outlet</code>.
+</p>
+
+<example-viewer>
+  <h4 title>Modal Preview</h4>
+
+  <ng-container example>
+    <p style="margin-bottom: 16px; color: var(--text-secondary, #666);">
+      Click the button to see a visual simulation of the modal panel. In a real app, this is triggered by navigating to a child route.
+    </p>
+    <button mat-raised-button color="primary" (click)="openModal()">Open Modal</button>
+
+    @if (showModal()) {
+      <div class="modal-preview">
+        <div class="modal-preview__backdrop" (click)="closeModal()"></div>
+        <div class="modal-preview__panel mat-elevation-z8">
+          <button mat-fab class="modal-preview__close" (click)="closeModal()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <div class="modal-preview__content">
+            <h3 style="margin-bottom: 16px;">Modal Content</h3>
+            <p>This is where the <code>router-outlet</code> renders the child route content.</p>
+            <p>The close button and backdrop navigate back to the parent route automatically.</p>
+          </div>
+        </div>
+      </div>
+    }
+  </ng-container>
+
+  <c3-example-viewer-tab label="Routes">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+const routes: Routes = [
+  {
+    path: 'items',
+    component: ItemListComponent,
+    children: [
+      {
+        path: ':id',
+        component: C3ModalComponent,
+        children: [
+          { path: '', component: ItemDetailComponent }
+        ]
+      }
+    ]
+  }
+];
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+
+  <c3-example-viewer-tab label="TypeScript">
+    <div>
+      <textarea highlight-js [options]="{}" lang="typescript">
+import { C3ModalModule } from 'c3-components';
+
+@NgModule({
+  imports: [C3ModalModule]
+})
+export class ItemsModule {}
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>
+
+<example-viewer>
+  <h4 title>Custom Return Route</h4>
+
+  <ng-container example>
+    <p style="padding: 1rem; background: var(--surface-elevated, #f5f5f5); border-left: 3px solid var(--c3-accent, #6c63ff); border-radius: 8px; color: var(--text-secondary, #666); margin: 0;">
+      Use the <code>returnRoute</code> input to override the auto-computed return route.
+      By default the modal computes the parent route from <code>ActivatedRoute.pathFromRoot</code>.
+    </p>
+  </ng-container>
+
+  <c3-example-viewer-tab label="HTML">
+    <div>
+      <textarea highlight-js [options]="{}" lang="html">
+<!-- Auto-computed return route (default) -->
+<c3-modal></c3-modal>
+
+<!-- Override return route -->
+<c3-modal returnRoute="/dashboard"></c3-modal>
+      </textarea>
+    </div>
+  </c3-example-viewer-tab>
+</example-viewer>

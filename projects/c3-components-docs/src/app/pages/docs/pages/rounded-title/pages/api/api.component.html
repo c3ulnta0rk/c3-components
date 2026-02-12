@@ -1,30 +1,53 @@
 <h1>Rounded Title API</h1>
 
 <section class="api-section">
-  <h2>Status</h2>
-  <div class="status-notice status-notice--coming-soon">
-    <p><strong>Coming Soon</strong></p>
-    <p>This component is currently in development. The module <code>C3RoundedTitleModule</code> is available but does not yet export any components.</p>
-  </div>
+  <h2>Import</h2>
+  <pre><code>import &#123; C3RoundedTitleComponent &#125; from 'c3-components';
+// or
+import &#123; C3RoundedTitleModule &#125; from 'c3-components';</code></pre>
 </section>
 
 <section class="api-section">
-  <h2>Planned Features</h2>
-  <ul class="notes-list">
-    <li>Stylized title component with rounded background</li>
-    <li>Customizable colors and sizes</li>
-    <li>Icon support</li>
-    <li>Multiple variants (primary, secondary, accent)</li>
-  </ul>
+  <h2>C3RoundedTitleComponent</h2>
+  <p>Selector: <code>c3-rounded-title</code></p>
+  <p>A pill-shaped title container that wraps projected content with a rounded background. Styled via the <code>c3-rounded-title-theme</code> SCSS mixin.</p>
+
+  <h3>Content Projection</h3>
+  <p>The component uses <code>&lt;ng-content&gt;</code> to project any content inside a <code>.title</code> wrapper element.</p>
+
+  <h3>Host Bindings</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>class</code></td>
+        <td><code>c3-rounded-title</code></td>
+        <td>CSS class applied to the host element for theming.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <section class="api-section">
-  <h2>Planned Usage</h2>
-  <pre><code>&lt;c3-rounded-title color="primary" size="lg"&gt;
-  Section Title
-&lt;/c3-rounded-title&gt;
+  <h2>Styling</h2>
+  <p>The component uses <code>ViewEncapsulation.None</code> so it can be styled globally via the theme mixin:</p>
+  <pre><code>&#64;use 'c3-components' as c3;
 
-&lt;c3-rounded-title icon="settings"&gt;
-  Settings
+&#64;include c3.c3-rounded-title-theme($your-theme);</code></pre>
+  <p>The mixin applies primary color to the <code>.title</code> inner element and accent color to the outer pill background.</p>
+</section>
+
+<section class="api-section">
+  <h2>Usage Example</h2>
+  <pre><code>&lt;c3-rounded-title&gt;Section Title&lt;/c3-rounded-title&gt;
+
+&lt;c3-rounded-title&gt;
+  &lt;mat-icon&gt;settings&lt;/mat-icon&gt; Settings
 &lt;/c3-rounded-title&gt;</code></pre>
 </section>
